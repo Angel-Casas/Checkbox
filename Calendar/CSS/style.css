@@ -1,0 +1,187 @@
+/* COLORS USED */
+/* blue: hsl(201, 85%, 50%) */
+/* dark blue: hsl(261, 85%, 50%) */
+/* green: hsl(81, 85%, 60%) */
+/* yellow: hsl(53, 99%, 50%) */
+/* orange: hsl(40, 99%, 50%) */
+/* strong orange: hsl(35, 99%, 50%) */
+/* Turqoise: hsl(171, 85%, 50%) */
+/*-------------*/
+/* Reset css */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline: 0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+body {
+    line-height:1;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    text-decoration: none;
+    vertical-align:baseline;
+    background:transparent;
+}
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* Style */
+#wrapper {
+  background-color: hsl(261, 85%, 50%);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 10% 70% 1fr;
+  height: 100vh;
+  text-align: center;
+}
+header {
+  font-size: 2.6rem;
+  margin: 10px 0 0 0;
+  font-weight: bold;
+  color: hsl(53, 99%, 50%);
+}
+blockquote {
+  margin: 10px 0;
+}
+.quote {
+    font-size: 1.4rem;
+  }
+
+.blockquote > p {
+  font-size: 1.9rem;
+}
+#frame {
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center;
+  overflow-y: scroll;
+  margin: 10px;
+  background: linear-gradient(to bottom right, hsl(171, 85%, 50%), hsl(201, 85%, 50%));
+}
+#frame::-webkit-scrollbar {
+  display:none;
+}
+  input[type=text] {
+    width: 85vw;
+    margin: 10px 0;
+    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+    color: black;
+    border-radius: 3px;
+    border: 2px solid hsl(53, 99%, 50%);
+    text-align: center;
+  }
+#text-box {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+  button {
+    padding: 10px;
+    width: 50%;
+    cursor: pointer;
+    border-radius: 3px;
+    background-color: hsl(53, 99%, 50%);
+    border: 2px solid hsl(40, 99%, 50%);
+    color: hsl(35, 99%, 50%);
+    font-size: 1.1rem;
+  }
+  button:hover {
+    border: 2px solid hsl(53, 99%, 50%);
+    background-color: hsl(40, 99%, 50%);
+    color: hsl(53, 99%, 50%);
+  }
+#display {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+}
+.card {
+  min-width: 300px;
+  width: 50vw;
+  min-height: 100px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  background-color: hsl(81, 85%, 60%);
+  border-radius: 3px;
+  margin: 10px 0;
+  box-shadow: 7px 10px 7px -3px;
+}
+.card:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+  time {
+    padding: 10px 0;
+    background-color: hsl(53, 99%, 50%);
+    border-radius: 3px;
+  }
+  span {
+    padding: 10px 0;
+  }
+
+#contact {
+  color: hsl(265, 85%, 55%);
+  margin: 5px;
+  font-weight: bolder;
+}
+  p {
+    font-size: 2.6rem;
+  }
+  .icons {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 5px 0;
+    justify-content: space-around;
+    list-style: none;
+    cursor: pointer;
+  }
+#contact > span {
+  display: block;
+  text-align: left;
+  }
