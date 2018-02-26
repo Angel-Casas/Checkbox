@@ -1,6 +1,7 @@
 /* COLORS USED */
 /* blue: hsl(201, 85%, 50%) */
 /* dark blue: hsl(261, 85%, 50%) */
+/* dark purple: hsl(265, 85%, 30%) */
 /* green: hsl(81, 85%, 60%) */
 /* yellow: hsl(53, 99%, 50%) */
 /* orange: hsl(40, 99%, 50%) */
@@ -70,9 +71,15 @@ html {
   background-color: hsl(261, 85%, 50%);
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 10% 70% 1fr;
+  grid-template-rows: 1fr 10% 700px 1fr;
   height: 100vh;
   text-align: center;
+}
+@media screen and (max-height: 700px) {
+  #wrapper {
+    grid-template-rows: 1fr 1fr 3fr 1fr;
+    border: 1px solid red;
+  }
 }
 header {
   font-size: 2.6rem;
@@ -93,28 +100,25 @@ blockquote > p {
 #frame {
   border-radius: 3px;
   box-sizing: border-box;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-around;
-  align-items: center;
-  overflow-y: scroll;
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  justify-content: space-between;
   margin: 10px;
   background: linear-gradient(to bottom right, hsl(171, 85%, 50%), hsl(201, 85%, 50%));
 }
-#frame::-webkit-scrollbar {
-  display:none;
+input[type=text] {
+  width: 85vw;
+  margin: 10px 0;
+  padding: 10px 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+  color: black;
+  border-radius: 3px;
+  border: 2px solid hsl(53, 99%, 50%);
+  text-align: center;
 }
-  input[type=text] {
-    width: 85vw;
-    margin: 10px 0;
-    padding: 10px 0;
-    background-color: rgba(255, 255, 255, 0.7);
-    font-size: 1.1rem;
-    color: black;
-    border-radius: 3px;
-    border: 2px solid hsl(53, 99%, 50%);
-    text-align: center;
-  }
 #text-box {
   display: flex;
   flex-flow: column nowrap;
@@ -136,21 +140,26 @@ blockquote > p {
     color: hsl(53, 99%, 50%);
   }
 #display {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-around;
+  overflow-y: scroll;
+  width: 70vw;
+}
+#display::-webkit-scrollbar {
+  display:none;
 }
 .card {
   min-width: 300px;
   width: 50vw;
-  min-height: 100px;
+  min-height: 150px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
   background-color: hsl(81, 85%, 60%);
   border-radius: 3px;
-  margin: 10px 0;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
   box-shadow: 7px 10px 7px -3px;
+  box-sizing: border-box;
 }
 .card:hover {
   cursor: pointer;
@@ -160,6 +169,7 @@ blockquote > p {
     padding: 10px 0;
     background-color: hsl(53, 99%, 50%);
     border-radius: 3px;
+    box-sizing: border-box;
   }
   span {
     padding: 10px 0;
