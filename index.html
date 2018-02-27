@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="icon" type="image/png" href="images/github-box.png" />
+  <script defer src="JS/fontawesome-all.js"></script>
 </head>
 
 <body>
@@ -27,6 +28,11 @@
     <main id="frame">
       <form id="text-box">
         <input type="text" maxlength="25" placeholder="E.g. Swimming" required>
+        <div class="time-range">
+          <input type="radio" name="selector" id="Daily"><label for="Daily">Day</label>
+          <input type="radio" name="selector" id="Weekly" checked><label for="Weekly">Week</label>
+          <input type="radio" name="selector" id="Monthly"><label for="Monthly">Month</label>
+        </div>
         <button onclick="addElement()">Create</button>
       </form>
       <section id="display">
@@ -43,9 +49,9 @@
       </span>
       <p>Ángel Casas Pescador</p>
       <ul class="icons">
-        <li><img src="images/instagram.png" alt="instagram" title="Instagram"></li>
-        <li><img src="images/linkedin.png" alt="linkedin" title="Linkedin"></li>
-        <li><img src="images/github-box.png" alt="github" title="Github"></li>
+        <li><i class="fab fa-instagram fa-2x"></i></li>
+        <li><i class="fab fa-linkedin fa-2x"></i></li>
+        <li><i class="fab fa-github-square fa-2x"></i></li>
       </ul>
     </footer>
   </div>
@@ -73,10 +79,10 @@ function addElement() {
       input += x.elements[i].value;
   }
   //add content
-  var time = new Date().toLocaleString();
+  var time = document.getElementbyId("checkbox").checked;
   //add content to div > span,time
   newSpan.innerHTML = input;
-  newTime.innerHTML = time;
+  newTime.innerHTML = ;
   newDiv.appendChild(newTime);
   newDiv.appendChild(newSpan);
   var element = document.getElementById("display");

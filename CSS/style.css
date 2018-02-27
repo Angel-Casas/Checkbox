@@ -1,12 +1,11 @@
 /* COLORS USED */
-/* blue: hsl(201, 85%, 50%) */
-/* dark blue: hsl(261, 85%, 50%) */
-/* dark purple: hsl(265, 85%, 30%) */
+/* light blue: hsl(190, 41%, 80%) */
+/* blue: hsl(198, 65%, 67%) */
+/* dark blue: hsl(198, 65%, 40%) */
 /* green: hsl(81, 85%, 60%) */
 /* yellow: hsl(53, 99%, 50%) */
 /* orange: hsl(40, 99%, 50%) */
-/* strong orange: hsl(35, 99%, 50%) */
-/* Turqoise: hsl(171, 85%, 50%) */
+/* Red: hsl(10, 70%, 50%) */
 /*-------------*/
 /* Reset css */
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -68,7 +67,6 @@ html {
 
 /* Style */
 #wrapper {
-  background-color: hsl(261, 85%, 50%);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 10% 700px 1fr;
@@ -78,7 +76,6 @@ html {
 @media screen and (max-height: 700px) {
   #wrapper {
     grid-template-rows: 1fr 1fr 3fr 1fr;
-    border: 1px solid red;
   }
 }
 header {
@@ -106,17 +103,16 @@ blockquote > p {
   justify-items: center;
   justify-content: space-between;
   margin: 10px;
-  background: linear-gradient(to bottom right, hsl(171, 85%, 50%), hsl(201, 85%, 50%));
+  border: 2px solid hsl(53, 99%, 50%);
 }
 input[type=text] {
   width: 85vw;
+  background-color: rgba(255, 255, 255, 0.7);
   margin: 10px 0;
   padding: 10px 0;
-  background-color: rgba(255, 255, 255, 0.7);
   font-size: 1.1rem;
-  color: black;
   border-radius: 3px;
-  border: 2px solid hsl(53, 99%, 50%);
+  border: 2px solid hsl(198, 65%, 67%);
   text-align: center;
 }
 #text-box {
@@ -129,41 +125,54 @@ input[type=text] {
     width: 50%;
     cursor: pointer;
     border-radius: 3px;
-    background-color: hsl(53, 99%, 50%);
-    border: 2px solid hsl(40, 99%, 50%);
-    color: hsl(35, 99%, 50%);
+    background-color: hsl(190, 41%, 80%);
+    border: 2px solid hsl(198, 65%, 67%);
+    color: hsl(198, 65%, 40%);
     font-size: 1.1rem;
   }
   button:hover {
-    border: 2px solid hsl(53, 99%, 50%);
-    background-color: hsl(40, 99%, 50%);
-    color: hsl(53, 99%, 50%);
+    border: 2px solid hsl(198, 65%, 67%);
+    background-color: hsl(198, 65%, 40%);
+    color: hsl(190, 41%, 80%);
   }
+.time-range {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 10px;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
 #display {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
   overflow-y: scroll;
-  width: 70vw;
+  width: 90vw;
+  height: 500px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
 }
 #display::-webkit-scrollbar {
   display:none;
 }
 .card {
-  min-width: 300px;
-  width: 50vw;
-  min-height: 150px;
+  min-width: 75px;
+  width: 150px;
+  min-height: 75px;
+  height: 150px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
   background-color: hsl(81, 85%, 60%);
   border-radius: 3px;
-  margin-top: 15px;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 7px 10px 7px -3px;
+  margin: 10px;
+  box-shadow: 7px 10px 7px -3px hsl(81, 65%, 30%);
   box-sizing: border-box;
 }
 .card:hover {
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: hsl(190, 41%, 80%);
 }
   time {
     padding: 10px 0;
@@ -176,25 +185,31 @@ input[type=text] {
   }
 
 #contact {
-  color: hsl(265, 85%, 30%);
+  color: hsl(11, 0%, 90%);
   margin: 5px;
   font-weight: bolder;
 }
 
 #contact > p {
-    font-size: 2.6rem;
-    text-align: left;
-    margin: 0 0 0 30px;
-  }
+  font-size: 2.6rem;
+  text-align: left;
+  margin: 0 0 0 30px;
+}
 .icons {
   display: flex;
   flex-flow: row nowrap;
   margin: 5px 0;
   justify-content: space-around;
   list-style: none;
+}
+.icons li svg {
   cursor: pointer;
-  }
+  color: hsl(53, 99%, 50%);
+}
+.icons li svg:hover {
+  color: hsl(190, 41%, 80%);
+}
 #contact > span {
   display: block;
   text-align: left;
-  }
+}
