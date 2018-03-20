@@ -16,18 +16,18 @@
   <div id="wrapper">
     <header>
       <h1>Checkbox</h1>
+      <blockquote id="random-quote" cite="">
+        <p>
+          <i class="quote">"Clean your room"</i>
+        </p>
+        <p>
+          Jordan B. Peterson
+        </p>
+      </blockquote>
     </header>
-    <blockquote id="random-quote" cite="">
-      <p>
-        <i class="quote">"Clean your room"</i>
-      </p>
-      <p>
-        Jordan B. Peterson
-      </p>
-    </blockquote>
     <main id="frame">
       <form id="text-box">
-        <input type="text" maxlength="25" placeholder="E.g. Swimming" required>
+        <input type="text" maxlength="25" onfocus="this.value=''" value="E.g. Swimming" required>
         <div class="time-range">
           <input type="radio" name="selector" id="Daily"><label for="Daily">Day</label>
           <input type="radio" name="selector" id="Weekly" checked><label for="Weekly">Week</label>

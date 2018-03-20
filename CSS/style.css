@@ -66,12 +66,15 @@ html {
 }
 
 /* Style */
+html {
+  background-color: hsl(160, 50%, 50%);
+}
 #wrapper {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 10% 700px 1fr;
-  height: 100vh;
   text-align: center;
+  margin-bottom: 130px;
+  z-index: 1;
 }
 @media screen and (max-height: 700px) {
   #wrapper {
@@ -80,8 +83,16 @@ html {
 }
 header {
   font-size: 2.6rem;
-  margin: 10px 0 0 0;
+  padding: 10px 0 0 0;
   font-weight: bold;
+  position: fixed;
+  top: 0;
+  margin: 0 auto;
+  width: 100%;
+  height: 130px;
+  z-index: -1;
+}
+header > h1 {
   color: hsl(53, 99%, 50%);
 }
 blockquote {
@@ -93,30 +104,39 @@ blockquote {
 
 blockquote > p {
   font-size: 1.6rem;
+  color: hsl(11, 0%, 90%);
 }
 #frame {
   border-radius: 3px;
   box-sizing: border-box;
   display: grid;
-  min-width: 300px;
   grid-template-rows: 1fr 3fr;
   grid-template-columns: 1fr;
   justify-items: center;
   justify-content: space-between;
-  margin: 5px auto;
-  width: 90%;
+  margin: 130px 10px 0 10px;
+  padding: 20px;
+  background-color: hsl(80, 50%, 90%);
   border: 2px solid hsl(53, 99%, 50%);
 }
 input[type=text] {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: hsl(80, 80%, 96%);
   margin: 10px 0;
   width: 60vw;
-  min-width: 200px;
+  max-width: 400px;
   padding: 10px 0;
   font-size: 1.1rem;
   border-radius: 3px;
-  border: 2px solid hsl(198, 65%, 67%);
+  border: 2px solid hsl(80, 95%, 40%);
   text-align: center;
+  }
+input[type=text]:active {
+  
+}
+@media screen and (min-width: 800px) {
+  #frame {
+    margin: 0 15vw;
+  }
 }
 #text-box {
   display: flex;
@@ -128,15 +148,15 @@ input[type=text] {
     width: 50%;
     cursor: pointer;
     border-radius: 3px;
-    background-color: hsl(190, 41%, 80%);
-    border: 2px solid hsl(198, 65%, 67%);
-    color: hsl(198, 65%, 40%);
+    background-color:hsl(80, 80%, 70%);
+    border: 2px solid hsl(80, 95%, 40%);
+    color: hsl(80, 95%, 40%);
     font-size: 1.1rem;
   }
   button:hover {
-    border: 2px solid hsl(198, 65%, 67%);
-    background-color: hsl(198, 65%, 40%);
-    color: hsl(190, 41%, 80%);
+    border: 2px solid hsl(80, 80%, 70%);
+    background-color: hsl(80, 95%, 40%);
+    color: hsl(80, 80%, 70%);
   }
 .time-range {
   display: flex;
@@ -152,9 +172,8 @@ input[type=text] {
   flex-flow: row wrap;
   align-items: center;
   overflow-y: scroll;
-  width: 90vw;
-  height: 500px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  width: 100%;
+  box-sizing: border-box;
 }
 #display::-webkit-scrollbar {
   display:none;
@@ -167,7 +186,7 @@ input[type=text] {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-  background-color:;
+  background-color:hsl(80, 80%, 70%);
   border-radius: 3px;
   margin: 10px;
   box-shadow: 7px 10px 7px -3px rgba(0, 0, 0, 0.7);
@@ -179,7 +198,7 @@ input[type=text] {
 }
   time {
     padding: 10px 0;
-    background-color: hsl(53, 99%, 50%);
+    background-color: hsl(53, 99%, 70%);
     border-radius: 3px;
     box-sizing: border-box;
   }
@@ -189,10 +208,15 @@ input[type=text] {
 
 #contact {
   color: hsl(11, 0%, 90%);
-  margin: 5px;
   font-weight: bolder;
+  box-sizing: border-box;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 130px;
+  margin: 0 auto;
+  z-index: -1;
 }
-
 #contact > p {
   font-size: 2.6rem;
   text-align: left;
@@ -215,4 +239,5 @@ input[type=text] {
 #contact > span {
   display: block;
   text-align: left;
+  padding-left: 15vw;
 }
