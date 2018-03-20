@@ -110,6 +110,7 @@ blockquote > p {
   padding: 20px;
   background-color: hsl(80, 50%, 90%);
   border: 2px solid hsl(53, 99%, 50%);
+  overflow-y: hidden;
 }
 input[type=text] {
   background-color: hsl(80, 80%, 96%);
