@@ -75,6 +75,7 @@ html {
 #wrapper {
   text-align: center;
   z-index: 1;
+  height: 100%;
 }
 
 header {
@@ -115,6 +116,7 @@ blockquote>p {
   justify-items: center;
   justify-content: space-between;
   margin: 150px 10px;
+  height: 100%;
   padding: 20px;
   background-color: hsl(80, 50%, 90%);
   border: 2px solid hsl(53, 99%, 50%);
@@ -146,10 +148,12 @@ input[type='radio'] + label {
   background: hsl(80, 80%, 70%);
   padding: 10px;
   border-radius: 3px;
+  width: 4.2rem;
   cursor: pointer;
 }
 input[type="radio"]:checked + label {
   background: hsl(53, 99%, 70%);
+  border: 2px solid hsl(80, 95%, 40%);
 }
 
 button {
