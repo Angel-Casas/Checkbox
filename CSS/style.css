@@ -129,6 +129,7 @@ input[type=text] {
   padding: 10px 0;
   font-size: 1.1rem;
   border-radius: 3px;
+  color: rgba(0, 0, 0, 0.5);
   border: 2px solid hsl(80, 95%, 40%);
   text-align: center;
 }
