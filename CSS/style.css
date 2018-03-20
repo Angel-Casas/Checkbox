@@ -138,6 +138,19 @@ input[type=text] {
   flex-flow: column nowrap;
   align-items: center;
 }
+input[type='radio'] {
+  display: none;
+}
+input[type='radio'] + label {
+  color: hsl(80, 95%, 40%);
+  background: hsl(80, 80%, 70%);
+  padding: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+input[type="radio"]:checked + label {
+  background: hsl(53, 99%, 70%);
+}
 
 button {
   padding: 10px;
@@ -169,6 +182,7 @@ button:hover {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
+  justify-content: center;
   overflow-y: scroll;
   width: 100%;
   box-sizing: border-box;
@@ -238,6 +252,7 @@ span {
 .icons li svg {
   cursor: pointer;
   color: hsl(53, 99%, 50%);
+  margin: 10px 0 0;
 }
 
 #contact>span {
