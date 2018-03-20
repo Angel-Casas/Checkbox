@@ -118,7 +118,7 @@ blockquote>p {
   grid-template-columns: 1fr;
   justify-items: center;
   justify-content: space-between;
-  margin: 150px 10px;
+  margin: 150px 10px 120px;
   padding: 20px;
   background-color: hsl(80, 50%, 90%);
   border: 2px solid hsl(53, 99%, 50%);
@@ -236,7 +236,7 @@ span {
   position: fixed;
   width: 100%;
   bottom: 0;
-  height: 150px;
+  height: 120px;
   margin: 0 auto;
   z-index: -1;
 }
