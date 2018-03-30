@@ -191,6 +191,7 @@ button:hover {
   justify-content: center;
   overflow-y: scroll;
   width: 100%;
+  min-height: 50vh;
   box-sizing: border-box;
   margin-bottom: 100px;
 }
