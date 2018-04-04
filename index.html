@@ -9,8 +9,8 @@
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Playfair+Display" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="icon" type="image/png" href="images/icons8-inspection-64.png" />
+  <script src="javascript.js"></script>
   <script defer src="JS/fontawesome-all.js"></script>
-  <script type='text/javascript' src='JS/javascript.js'></script>
 </head>
 
 <body>
@@ -28,11 +28,11 @@
     </header>
     <main id="frame">
       <form id="text-box">
-        <input type="text" maxlength="25" onfocus="this.value=''" value="E.g. Swimming" required>
+        <input type="text" name="input" maxlength="25" placeholder="Hard to find something to do..." onfocus="this.placeholder=''" onblur="this.placeholder='Hard to find something to do...'">
         <div class="time-range">
-          <input type="radio" name="selector" id="Daily"><label for="Daily">Day</label>
-          <input type="radio" name="selector" id="Weekly" checked><label for="Weekly">Week</label>
-          <input type="radio" name="selector" id="Monthly"><label for="Monthly">Month</label>
+          <input type="radio" name="selector" value="Daily"><label for="Daily">Day</label>
+          <input type="radio" name="selector" value="Weekly" checked><label for="Weekly">Week</label>
+          <input type="radio" name="selector" value="Monthly"><label for="Monthly">Month</label>
         </div>
         <button onclick="addElement()">Create</button>
       </form>
@@ -60,13 +60,40 @@
       </span>
       <p>Ángel Casas Pescador</p>
       <ul class="icons">
-         <a href="http://www.freebiebitcoin.com">Earn free bitcoin</a>
         <li><i class="fab fa-instagram fa-2x"></i></li>
         <li><i class="fab fa-linkedin fa-2x"></i></li>
         <li><i class="fab fa-github-square fa-2x"></i></li>
       </ul>
     </footer>
   </div>
+  <script type="text/javascript">
+  function addElement() {
+    //Create new div > span,time elements
+    var newDiv = document.createElement("div");
+    newDiv.className = "card";
+    var newSpan = document.createElement("span");
+    var newTime = document.createElement("time");
+    //add text input to span
+    var x = document.getElementsByName("input").value;
+    var newSpan.innerHTML = x;
+    //add content
+    var period = document.getElementsByTagName("input");
+    var txt = ""
+    var time = "";
+    for (var i = 0; i < time.length; i++) {
+      if (period[i].checked == true) {
+        txt = period[i].value;
+        console.log(txt)
+      }
+    }
+    //add content to div > span,time
+    newTime.innerHTML = txt;
+    newDiv.appendChild(newTime);
+    newDiv.appendChild(newSpan);
+    var element = document.getElementById("display");
+    element.appendChild(newDiv)
+  }
+  </script>
 </body>
 
 </html>

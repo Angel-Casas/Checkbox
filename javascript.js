@@ -15,10 +15,14 @@ function addElement() {
   var newSpan = document.createElement("span");
   var newTime = document.createElement("time");
   //add text input to span
-  var x = document.getElementsByName("input").value;
-  var newSpan.innerHTML = x;
+  var x = document.getElementById("text-box");
+  var input = "";
+  var i;
+  for (i = 0; i < x.length; i++) {
+    input += x.elements[i].value;
+  }
   //add content
-  var time = document.getElementbyId("time-range").checked;
+  var time = document.getElementbyId("checkbox").checked;
   //add content to div > span,time
   newSpan.innerHTML = input;
   newTime.innerHTML = time;
