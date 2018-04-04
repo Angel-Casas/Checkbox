@@ -212,23 +212,23 @@ button:hover {
 .card {
   width: 130px;
   min-height: 130px;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-  background-color: hsl(80, 80%, 70%);
+  cursor:pointer;
   border-radius: 3px;
   margin: 5px;
   box-shadow: 7px 10px 7px -3px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
 }
 
-.card:hover {
-  cursor: pointer;
-  background-color: hsl(190, 41%, 80%);
+.card > time:hover {
+  background-color: hsl(10, 61%, 50%);
+}
+.card > span:hover {
+  background-color: hsl(80, 80%, 70%);
 }
 
 .card > time {
   padding: 10px 0;
+  display: block;
   height: 50px;
   background-color: hsl(53, 99%, 70%);
   border-radius: 3px;
@@ -237,6 +237,9 @@ button:hover {
 
 .card > span {
   padding: 10px 0;
+  height: 80px;
+  box-sizing: border-box;
+  display: block;
   word-wrap: break-word;
 }
 
