@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Playfair+Display" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="icon" type="image/png" href="images/icons8-inspection-64.png" />
-  <script src="javascript.js"></script>
   <script defer src="JS/fontawesome-all.js"></script>
 </head>
 
@@ -28,29 +27,26 @@
     </header>
     <main id="frame">
       <form id="text-box">
-        <input type="text" name="input" maxlength="25" placeholder="Hard to find something to do..." onfocus="this.placeholder=''" onblur="this.placeholder='Hard to find something to do...'">
+        <input type="text" id="entry" maxlength="25" placeholder="Hard to find something to do..." onfocus="this.placeholder=''" onblur="this.placeholder='Hard to find something to do...'">
         <div class="time-range">
-          <input type="radio" name="selector" value="Daily"><label for="Daily">Day</label>
-          <input type="radio" name="selector" value="Weekly" checked><label for="Weekly">Week</label>
-          <input type="radio" name="selector" value="Monthly"><label for="Monthly">Month</label>
+          <input type="radio" name="selector" id="Daily" value="1"><label for="Daily">Day</label>
+          <input type="radio" name="selector" id="Weekly" value="7" checked><label for="Weekly">Week</label>
+          <input type="radio" name="selector" id="Monthly" value="30"><label for="Monthly">Month</label>
         </div>
-        <button onclick="addElement()">Create</button>
+        <button type="button" onclick="addElement()">Create</button>
       </form>
       <section id="display">
-        <div class="card" id="card-1">
+        <div class="card">
           <time>25/2/2018 12:32:32</time>
           <span>Coffee</span>
-          <p id="demo"></p>
         </div>
-        <div class="card" id="card-1">
+        <div class="card">
           <time>25/2/2018 12:32:32</time>
           <span>Coffee</span>
-          <p id="demo"></p>
         </div>
-        <div class="card" id="card-1">
+        <div class="card">
           <time>25/2/2018 12:32:32</time>
           <span>Coffee</span>
-          <p id="demo"></p>
         </div>
       </section>
     </main>
@@ -74,16 +70,23 @@
     var newSpan = document.createElement("span");
     var newTime = document.createElement("time");
     //add text input to span
-    var x = document.getElementsByName("input").value;
-    var newSpan.innerHTML = x;
+    var x = document.getElementById("entry").value;
+    newSpan.innerHTML = x;
     //add content
     var period = document.getElementsByTagName("input");
     var txt = ""
     var time = "";
-    for (var i = 0; i < time.length; i++) {
-      if (period[i].checked == true) {
-        txt = period[i].value;
-        console.log(txt)
+    for (var count = 0; count < period.length; count++) {
+      if (period[count].checked == true) {
+        txt = period[count].value;
+      }
+    }
+    for (var count=0; count < txt; count++) {
+      if (txt == 1){
+        txt = txt - count + " " + "day remaining!";
+      }
+      else {
+        txt = txt - count + " " + "days remaining";
       }
     }
     //add content to div > span,time
