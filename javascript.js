@@ -1,44 +1,28 @@
-function myFunction() {
-  var x = document.getElementById("text-box");
-  var text = "";
-  var i;
-  for (i = 0; i < x.length; i++) {
-    text += x.elements[i].value;
-  }
-  document.getElementById("new").innerHTML = text;
-}
-
-function addElement() {
-  //Create new div > span,time elements
-  var newDiv = document.createElement("div");
-  newDiv.className = "card";
-  var newSpan = document.createElement("span");
-  var newTime = document.createElement("time");
-  //add text input to span
+function getInput() {
   var x = document.getElementById("text-box");
   var input = "";
   var i;
   for (i = 0; i < x.length; i++) {
     input += x.elements[i].value;
   }
-  //add content
+  return input;
+}
+
+function addElement() {
+  //Create new div > span,time elements
+  var newDiv = document.createElement("div");
+  var newSpan = document.createElement("span");
+  var newTime = document.createElement("time");
+  var section = document.getElementById("display");
+  //Save time
   var time = document.getElementbyId("checkbox").checked;
+  //save input
+  var input = getInput();
   //add content to div > span,time
+  newDiv.className = "card";
   newSpan.innerHTML = input;
   newTime.innerHTML = time;
   newDiv.appendChild(newTime);
   newDiv.appendChild(newSpan);
-  var element = document.getElementById("display");
-  element.appendChild(newDiv)
+  section.appendChild(newDiv);
 }
-
-// time Display
-var time = document.forms.time;
-
-    var txt = "";
-    var i;
-    for (i = 0; i < coffee.length; i++) {
-        if (coffee[i].checked) {
-            txt = txt + coffee[i].value + " ";
-        }
-    }

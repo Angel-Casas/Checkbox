@@ -74,7 +74,6 @@ html {
 
 #wrapper {
   text-align: center;
-  z-index: 1;
   height: 100vh;
   font-family: 'Playfair Display', sans-serif;
 }
@@ -86,13 +85,11 @@ header {
   margin: 20px auto;
   width: 100%;
   height: 250px;
-  z-index: -1;
 }
 
 header>h1 {
   font-size: 3.6rem;
   color: hsl(53, 99%, 50%);
-  font-family: 'Indie Flower', serif;
 }
 
 blockquote {
@@ -102,14 +99,17 @@ blockquote {
 }
 
 #quote {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+}
+@media screen and (max-width: 400px) {
+  #frame {
+    margin-top: 270px !important;
+  }
 }
 
-blockquote>p {
-  font-size: 1.6rem;
-}
 
 #frame {
+  position: relative;
   border-radius: 3px;
   box-sizing: border-box;
   display: grid;
@@ -117,8 +117,9 @@ blockquote>p {
   grid-template-columns: 1fr;
   justify-items: center;
   justify-content: space-between;
-  margin: 250px 10px 120px;
+  margin: 220px 10px 120px;
   padding: 20px;
+  z-index: 2;
   background-color: hsl(80, 50%, 90%);
   border: 2px solid hsl(53, 99%, 50%);
   overflow-y: hidden;
@@ -249,9 +250,36 @@ button:hover {
   position: fixed;
   width: 100%;
   bottom: 0;
-  height: 120px;
+  height: 100px;
   margin: 0 auto;
-  z-index: -1;
+  overflow-y: scroll;
+}
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+}
+
+#contact:hover {
+  cursor: row-resize;
+}
+#contact > #Author {
+  height: 100%;
+}
+#contact:hover #social-arrow {
+  animation-duration: 0.3s;
+  animation-name: pop;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes pop {
+  from {
+  }
+  to {
+    transform: translateY(-3px);
+  }
+}
+#social-arrow {
+  display: block;
+  width: 100%;
 }
 
 #contact>p {
@@ -259,11 +287,20 @@ button:hover {
   text-align: left;
   margin: 0 0 0 30px;
 }
-
+#contact > #social {
+  display: flex;
+  height: 100%;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+#social > p {
+  font-size: 1rem;
+  letter-spacing: 7px;
+  font-weight: 400;
+}
 .icons {
   display: flex;
   flex-flow: row nowrap;
-  margin: 5px 0;
   justify-content: space-around;
   list-style: none;
 }
@@ -271,15 +308,7 @@ button:hover {
 .icons li svg {
   cursor: pointer;
   color: hsl(53, 99%, 50%);
-  margin: 10px 0 0;
-  height: 25px;
 }
 .icons li svg:hover {
   color: hsl(53, 99%, 70%);
-}
-
-#contact>span {
-  display: block;
-  text-align: left;
-  padding-left: 15vw;
 }
