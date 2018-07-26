@@ -1,127 +1,65 @@
 <!DOCTYPE HTML>
 <html>
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link type="text/css" rel="stylesheet" href="CSS/style.css">
-  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Playfair+Display" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="icon" type="image/png" href="images/icons8-inspection-64.png" />
-  <script defer src="JS/fontawesome-all.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
-
-<body>
-  <div id="wrapper">
-    <header>
-      <h1>Tik</h1>
-      <blockquote id="random-quote" cite="">
-        <i id="quote">Specify your damn goals - Jordan B. Peterson</i>
-      </blockquote>
-    </header>
-    <main id="frame">
-      <form id="text-box">
-        <input type="text" id="entry" maxlength="25" placeholder="Hard to find something to do..." onfocus="this.placeholder=''" onblur="this.placeholder='Hard to find something to do...'">
-        <div class="time-range">
-          <input type="radio" name="selector" id="Daily" value="1"><label for="Daily">Day</label>
-          <input type="radio" name="selector" id="Weekly" value="7" checked><label for="Weekly">Week</label>
-          <input type="radio" name="selector" id="Monthly" value="30"><label for="Monthly">Month</label>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link type="text/css" rel="stylesheet" href="CSS/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Playfair+Display" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
+    <link rel="icon" type="image/png" href="images/icons8-inspection-64.png" />
+    <script defer src="JS/fontawesome-all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <header>
+        <h1>Check</h1>
+        <blockquote id="random-quote" cite="">
+          <i id="quote">Specify your damn goals - Jordan B. Peterson</i>
+        </blockquote>
+      </header>
+      <main id="frame">
+        <form id="text-box">
+          <input type="text" id="entry" maxlength="25" placeholder="Hard to find something to do..." onfocus="this.placeholder=''" onblur="this.placeholder='Hard to find something to do...'">
+          <div class="time-range">
+            <input class="periods" type="radio" name="selector" id="Daily" value="1"><label for="Daily">Day</label>
+            <input class="periods" type="radio" name="selector" id="Weekly" value="7" checked><label for="Weekly">Week</label>
+            <input class="periods" type="radio" name="selector" id="Monthly" value="30"><label for="Monthly">Month</label>
+          </div>
+          <button id="postit" type="button">Create</button>
+        </form>
+        <section id="display">
+          <div class="card">
+            <time>Click me if you didn't complete it</time>
+            <span>Click me if you did!</span>
+          </div>
+          <div class="card">
+            <time>25/2/2018 12:32:32</time>
+            <span>Coffee</span>
+          </div>
+          <div class="card">
+            <time>25/2/2018 12:32:32</time>
+            <span>Coffee</span>
+          </div>
+        </section>
+      </main>
+      <footer id="contact">
+        <div id="social">
+          <ul class="icons">
+            <li><i class="fab fa-linkedin fa-lg" title='Angel Casas Pescador'></i></li>
+            <li><i class="fab fa-github-square fa-lg" title='@angel-casas'></i></li>
+          </ul>
+          <p>Author</p>
+          <i id="social-arrow" class="fas fa-angle-down fa-sm"></i>
         </div>
-        <button type="button" onclick="addElement()">Create</button>
-      </form>
-      <section id="display">
-        <div class="card">
-          <time>Click me if you didn't complete it</time>
-          <span>Click me if you did!</span>
-        </div>
-        <div class="card">
-          <time>25/2/2018 12:32:32</time>
-          <span>Coffee</span>
-        </div>
-        <div class="card">
-          <time>25/2/2018 12:32:32</time>
-          <span>Coffee</span>
-        </div>
-      </section>
-    </main>
-    <footer id="contact">
-      <div id="social">
-        <ul class="icons">
-          <li><i class="fab fa-instagram fa-lg"></i></li>
-          <li><i class="fab fa-linkedin fa-lg"></i></li>
-          <li><i class="fab fa-github-square fa-lg"></i></li>
-        </ul>
-        <p>Author</p>
-        <i id="social-arrow" class="fas fa-angle-down fa-sm"></i>
-      </div>
-      <aside id="Author">
-        <span>Made by</span>
-        <p>Ángel Casas Pescador</p>
-      </aside>
-    </footer>
-  </div>
-  <script type="text/javascript">
-  function addElement() {
-    //Create new div > span,time elements
-    var newDiv = document.createElement("div");
-    newDiv.className = "card";
-    var newSpan = document.createElement("span");
-    var newTime = document.createElement("time");
-    //add text input to span
-    var x = document.getElementById("entry").value;
-    newSpan.innerHTML = x;
-    //add content
-    var period = document.getElementsByTagName("input");
-    var txt = ""
-    var time = "";
-    for (var count = 0; count < period.length; count++) {
-      if (period[count].checked == true) {
-        txt = period[count].value;
-      }
-    }
-    for (var count=0; count < txt; count++) {
-      if (txt == 1){
-        txt = txt - count + " " + "day remaining!";
-      }
-      else {
-        txt = txt - count + " " + "days remaining";
-      }
-    }
-    //add content to div > span,time
-    newTime.innerHTML = txt;
-    newDiv.appendChild(newTime);
-    newDiv.appendChild(newSpan);
-    var element = document.getElementById("display");
-    element.appendChild(newDiv)
-  }
-  </script>
-  <script type="text/javascript">
-    // Random quotes
-    var quotes = [
-      "We all want to be famous people, and the moment we want to be something we are no longer free. - Jiddu Krishnamurti",
-      "Tradition becomes our security, and when the mind is secure it is in decay. - Jiddu Krishnamurti",
-      "Die to everything of yesterday so that your mind is always fresh, always young, innocent, full of vigor and passion. - Jiddu Krishnamurti",
-      "Education is what remains after one has forgotten what one has learned in school. - Albert Einstein",
-      "Anyone who has never made a mistake has never tried anything new. - Albert Einstein",
-      "The most beautiful thing we can experience is the mysterious. It is the source of all true art and science. - Albert Einstein",
-      "Stay hungry, stay foolish. - Steve Jobs",
-      "I believe life is an intelligent thing: that things aren't random. - Steve Jobs",
-      "Self-education is, I firmly believe, the only kind of education there is. - Isaac Asimov",
-      "In all chaos there is a cosmos, in all disorder a secret order. - Carl Gustav Jung",
-      "Imagination will often carry us to worlds that never were. But without it we go nowhere. - Carl Sagan",
-      "The first principle is that you must not fool yourself and you are the easiest person to fool. - Richard P. Feynman",
-      "The secret of genius is to carry the spirit of the child into old age, which means never losing your enthusiasm. - Aldous Huxley",
-      "Clean your room. - Jordan B. Peterson"
-      ]
-    function nextQuote() {
-      var randomNumber = Math.floor(Math.random()*quotes.length);
-      document.getElementById("quote").innerHTML = quotes[randomNumber];
-    }
-    setInterval(nextQuote, 10000);
-    // end random quotes script
-  </script>
-</body>
-
+        <aside id="Author">
+          <span>Made by</span>
+          <p>Ángel Casas Pescador</p>
+        </aside>
+      </footer>
+    </div>
+    <script type="text/javascript" src="javascript.js"></script>
+  </body>
 </html>

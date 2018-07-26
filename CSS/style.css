@@ -1,20 +1,23 @@
-/* COLORS USED */
+/*===================================================================
 
-/* light blue: hsl(190, 41%, 80%) */
 
-/* blue: hsl(198, 65%, 67%) */
+  Author:         Angel Casas Pescador
 
-/* dark blue: hsl(198, 65%, 40%) */
+	Description: 	 Checkbox main CSS.
 
-/* green: hsl(81, 85%, 60%) */
 
-/* yellow: hsl(53, 99%, 50%) */
+	Author URI:     http://angel-github.io/index.html
 
-/* orange: hsl(40, 99%, 50%) */
+	Version:        1.0
 
-/* Red: hsl(10, 70%, 50%) */
 
-/*-------------*/
+	License: GNU General Public License V2 or Later
+
+	License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+
+
+/*===================================================================*/
 
 /* Reset css */
 
@@ -69,9 +72,8 @@ html {
 /* Style */
 
 html {
-  background-color: hsl(160, 50%, 60%);
+  background-color: hsl(160, 50%, 60%) !important;
 }
-
 #wrapper {
   text-align: center;
   height: 100vh;
@@ -90,6 +92,8 @@ header {
 header>h1 {
   font-size: 3.6rem;
   color: hsl(53, 99%, 50%);
+  font-display: swap;
+  font-style: normal italic;
 }
 
 blockquote {
@@ -250,11 +254,11 @@ button:hover {
   position: fixed;
   width: 100%;
   bottom: 0;
-  height: 100px;
+  height: 70px;
   margin: 0 auto;
   overflow-y: scroll;
 }
-::-webkit-scrollbar {
+#contact::-webkit-scrollbar {
     width: 0px;  /* remove scrollbar space */
 }
 
@@ -264,7 +268,7 @@ button:hover {
 #contact > #Author {
   height: 100%;
 }
-#contact:hover #social-arrow {
+#social-arrow:hover {
   animation-duration: 0.3s;
   animation-name: pop;
   animation-iteration-count: infinite;
