@@ -66,3 +66,19 @@ function nextQuote() {
 }
 setInterval(nextQuote, 10000);
 // end random quotes script
+
+// reward dialog
+var rewardframe = document.getElementsByClassName("reward-frame")[0];
+var btn = document.getElementsByClassName("reward-ask")[0];
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function () {
+  rewardframe.style.display = "block";
+}
+span.onclick = function () {
+  rewardframe.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == rewardframe) {
+    rewardframe.style.display = "none";
+  }
+}
