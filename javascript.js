@@ -37,6 +37,8 @@ button.addEventListener('click', function() {
   }
   // add new reward Button to array list
   arrBtn.push(newButton);
+  // add eventlistener to new Buttons
+  rewardListener();
   //add content to div > span,time
   newDiv.className = "card";
   newButton.className = "reward-ask";
@@ -78,16 +80,20 @@ var rewardframe = document.getElementsByClassName("reward-frame")[0];
 var span = document.getElementsByClassName("close")[0];
 var btn = document.querySelectorAll(".reward-ask");
 var arrBtn = [].slice.call(btn, 0);
-// add eventListener on buttons
-for (var i = 0; i < arrBtn.length; i++) {
-  var self = arrBtn[i];
-  self.addEventListener('click', function (event) {
-    // Prevent browser's default action
-    event.preventDefault();
-    // call function
-    rewardframe.style.display = "block";
-  })
-}
+// create function to add eventListener to buttons
+function rewardListener () {
+  for (var i = 0; i < arrBtn.length; i++) {
+    var self = arrBtn[i];
+    self.addEventListener('click', function (event) {
+      // Prevent browser's default action
+      event.preventDefault();
+      // call function
+      rewardframe.style.display = "block";
+    })
+  }
+};
+// Run rewardListener first time for example postit.
+rewardListener();
 span.onclick = function () {
   rewardframe.style.display = "none";
 }
