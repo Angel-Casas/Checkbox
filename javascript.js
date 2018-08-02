@@ -12,6 +12,7 @@ let button = document.getElementById("postit");
 button.addEventListener('click', function() {
   //Create new div > span,time elements
   var newDiv = document.createElement("div");
+  var newButton = document.createElement("button");
   var newSpan = document.createElement("span");
   var newTime = document.createElement("time");
   var section = document.getElementById("display");
@@ -34,10 +35,15 @@ button.addEventListener('click', function() {
       txt = txt - count + " " + "days remaining";
     }
   }
+  // add new reward Button to array list
+  arrBtn.push(newButton);
   //add content to div > span,time
   newDiv.className = "card";
+  newButton.className = "reward-ask";
+  newButton.innerHTML = "Select Reward";
   newSpan.innerHTML = input;
   newTime.innerHTML = txt;
+  newDiv.appendChild(newButton);
   newDiv.appendChild(newTime);
   newDiv.appendChild(newSpan);
   section.appendChild(newDiv);
@@ -69,10 +75,18 @@ setInterval(nextQuote, 10000);
 
 // reward dialog
 var rewardframe = document.getElementsByClassName("reward-frame")[0];
-var btn = document.getElementsByClassName("reward-ask")[0];
 var span = document.getElementsByClassName("close")[0];
-btn.onclick = function () {
-  rewardframe.style.display = "block";
+var btn = document.querySelectorAll(".reward-ask");
+var arrBtn = [].slice.call(btn, 0);
+// add eventListener on buttons
+for (var i = 0; i < arrBtn.length; i++) {
+  var self = arrBtn[i];
+  self.addEventListener('click', function (event) {
+    // Prevent browser's default action
+    event.preventDefault();
+    // call function
+    rewardframe.style.display = "block";
+  })
 }
 span.onclick = function () {
   rewardframe.style.display = "none";
