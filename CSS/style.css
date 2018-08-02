@@ -205,9 +205,7 @@ button {
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
-  overflow-y: scroll;
   width: 100%;
-  position: relative;
   min-height: 50vh;
   box-sizing: border-box;
   margin-bottom: 100px;
