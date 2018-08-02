@@ -126,7 +126,6 @@ blockquote {
   z-index: 2;
   background-color: hsl(80, 50%, 90%);
   border: 2px solid hsl(53, 99%, 50%);
-  overflow-y: hidden;
 }
 
 input[type=text] {
