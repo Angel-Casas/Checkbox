@@ -215,8 +215,8 @@ button {
 }
 
 .card {
-  width: 130px;
-  min-height: 130px;
+  width: 180px;
+  min-height: 180px;
   cursor:pointer;
   border-radius: 3px;
   margin: 5px;
@@ -243,7 +243,6 @@ button {
 
 .card > span {
   padding: 10px 0;
-  height: 80px;
   box-sizing: border-box;
   display: block;
   word-wrap: break-word;
@@ -268,7 +267,7 @@ button {
   height: 100%;
   cursor: default;
   position: fixed;
-  z-index: 1;
+  z-index: 999;
   top: 0;
   left: 0;
   background-color: rgb(0,0,0); /* Fallback color */
@@ -280,7 +279,6 @@ button {
   border-radius: 3px;
   background-color: hsl(80, 50%, 90%);
   padding: 20px;
-  overflow: hidden;
   width: 80%;
   height: 80vh;
 }
