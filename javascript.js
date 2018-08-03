@@ -102,3 +102,63 @@ window.onclick = function(event) {
     rewardframe.style.display = "none";
   }
 }
+
+// set btc payments
+(function () {
+
+    var iframe = document.createElement('iframe');
+    iframe.name = 'setgetgo';
+    iframe.class = 'setgetgo';
+    iframe.setAttribute('allowtransparency', 'true');
+    iframe.style.display = 'none';
+    iframe.style.border = 0;
+    iframe.style.position = 'fixed';
+    iframe.style.top = 0;
+    iframe.style.left = 0;
+    iframe.style.height = '100%';
+    iframe.style.width = '100%';
+    iframe.style.zIndex = '2147483647';
+
+    var hostname = "https://setgetgo.com";
+
+    window.onload = function () { init() };
+
+    function init() {
+        var btn = window.document.getElementById("sgg_create-payment-btn");
+
+        btn.onclick = function (event) { showPaymentModal(event, btn) };
+    }
+
+    function showPaymentModal(e, btn) {
+        e.preventDefault();
+
+        var amount = btn.getAttribute('sgg-amount');
+        var merchAddr = btn.getAttribute('sgg-merch-addr');
+        var merchEmail = btn.getAttribute('sgg-merch-email');
+        var testnet = btn.getAttribute('sgg-testnet');
+
+        window.document.body.appendChild(iframe);
+        iframe.src = hostname + "/payment/create-payment-html?amount=" + amount + "&merch_addr=" + merchAddr + "&merch_email=" + merchEmail + "&testnet=" + testnet;
+        iframe.style.display = 'block';
+    }
+
+    function receiveMessage(event) {
+        var uri;
+
+        if (hostname !== event.origin) {
+            return;
+        }
+
+        if (event.data === 'close') {
+            hideFrame();
+        }
+    }
+
+    window.addEventListener('message', receiveMessage, false);
+
+    function hideFrame() {
+        iframe.style.display = 'none';
+        iframe = window.document.body.removeChild(iframe);
+    }
+
+})();

@@ -169,7 +169,7 @@ input[type="radio"]:checked + label {
   background: hsl(53, 99%, 70%);
   border: 2px solid hsl(80, 95%, 40%);
 }
-button {
+main button {
   font-size: 1.1rem;
   cursor: pointer;
   color: hsl(80, 95%, 30%);
@@ -323,8 +323,16 @@ button {
 #contact:hover {
   cursor: row-resize;
 }
-#contact > #Author {
+#contact > #author {
   height: 100%;
+}
+#author > button {
+  background-color: hsl(53, 99%, 70%);
+  border-radius: 3px;
+  border: 2px solid hsl(23, 99%, 70%);
+  height: 30px;
+  margin: 5px 0;
+  cursor: pointer;
 }
 #social-arrow:hover {
   animation-duration: 0.3s;
@@ -376,6 +384,7 @@ button {
 .icons li svg:hover {
   color: hsl(53, 99%, 70%);
 }
+
 
 /* fonts */
 h2 {
