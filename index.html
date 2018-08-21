@@ -2,17 +2,22 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <!-- iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link type="text/css" rel="stylesheet" href="CSS/style.css">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Playfair+Display" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
+    <link rel="stylesheet" href="css/normalize.css">
     <link rel="icon" type="image/png" href="images/icons8-inspection-64.png" />
     <script defer src="JS/fontawesome-all.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
+    <div id="loader-wrapper">
+      <div id="loader">
+      </div>
+    </div>
     <div id="wrapper">
       <header>
         <h1>Check</h1>
@@ -36,6 +41,38 @@
               <div class="reward-header">
                 <span class="close">&times;</span>
                 <h2>Available rewards</h2>
+              </div>
+              <div class="reward-list">
+                <div class="reward-list-cards">
+                  <span>Gift Card #1</span>
+                  <span>Gift Card #2</span>
+                  <span>Gift Card #3</span>
+                  <span>Gift Card #4</span>
+                </div>
+                <div class="reward-list-bitcoin">
+                  <span>Bitcoin Payment</span>
+                </div>
+                <div class="reward-list-paypal">
+                  <span>Pay with paypal</span>
+                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+                    <!-- Identify your business so that you can collect the payments. -->
+                    <input type="hidden" name="check" value="a.casas.lp@gmail.com">
+
+                    <!-- Specify a Buy Now button. -->
+                    <input type="hidden" name="cmd" value="_xclick">
+
+                    <!-- Specify details about the item that buyers will purchase. -->
+                    <input type="hidden" name="gift" value="custom amount">
+                    <input type="hidden" name="amount" value="1.00">
+                    <input type="hidden" name="currency_code" value="USD">
+
+                    <!-- Display the payment button. -->
+                    <input type="image" name="submit" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" alt="Buy Now">
+                    <img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+
+                  </form>
+                </div>
               </div>
             </div>
           </div>
