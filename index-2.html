@@ -20,7 +20,7 @@
     </div>
     <div id="wrapper">
       <header class="main-header">
-        <h1>Check</h1>
+        <h1 id="title">Check</h1>
         <nav id="main-nav">
           <a class="brand" href="#"></a>
           <div id="collapsibleNavbar">
@@ -36,12 +36,16 @@
       </header>
       <main id="main-frame">
         <div id="background-frame">
-          <div class="big-orange-circles">
-            <div class="small-yellow-circles"></div>
+          <div class="sunshine">
+            <div class="big-orange-circle"></div>
+            <div class="small-yellow-circle"></div>
+            <div class="small-white-circle"></div>
           </div>
           <div class="background-green-ground">
             <div class="medium-circle mountain-green-circles"></div>
-            <div class="big-circle mountain-green-circles shadow-circle"></div>
+            <div class="big-circle mountain-green-circles"></div>
+            <div class="big-circle-2 mountain-green-circles"></div>
+            <div class="small-circle mountain-green-circles"></div>
             <div class="large-circle mountain-green-circles"></div>
           </div>
           <div class="background-yellow-sky"></div>
@@ -111,6 +115,14 @@
       </main>
       <footer id="main-footer"></footer>
     </div>
+    <script type="text/javascript">
+      (function rotate () {
+        var base = document.getElementById("title");
+        base.addEventListener("mouseover", function() {
+          return;
+        })
+      })();
+    </script>
     <script type="text/javascript" src="javascript.js"></script>
     <!-- Bootstrap scripts requiered -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
