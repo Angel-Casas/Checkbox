@@ -391,7 +391,6 @@ main button {
 #display div.reward-frame .reward-dialog .reward-list .reward-list-cards > *:target {
   background-color: hsl(53, 99%, 70%);
   cursor: pointer;
-
 }
 
 

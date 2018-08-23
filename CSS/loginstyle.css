@@ -1,0 +1,65 @@
+html {
+  background-color: hsl(160, 50%, 60%) !important;
+  height: 100%;
+}
+html.placeholder #login label {
+  display: none !important;
+}
+#login {
+  height: 100%;
+  min-height: 100%;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+#login div#wrapper {
+  font-family: 'Playfair Display', sans-serif;
+}
+#login div#header {
+  height: 110px;
+  margin: 0 auto;
+  width: 200px;
+  padding-top: 90px;
+}
+#login div#header > h1 {
+  float: none;
+  height: 65px;
+  margin: 0 auto;
+  width: 190px;
+  font-size: 3.6rem;
+  color: hsl(53, 99%, 50%);
+  font-display: swap;
+  font-style: normal italic;
+}
+#login div#header a {
+  color: inherit;
+}
+#login div#main-body {
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px rgba(14, 41, 57, .12), 0 2px 5px rgba(14, 41, 57, .44), inset 0 -1px 2px rgba(14, 41, 57, .15);
+}
+#login div.box {
+  width: 330px;
+  margin: 0 auto;
+  position: relative;
+}
+#login div.title {
+  min-height: 55px;
+}
+.register-page #main-body #email_suggestion {
+	position: absolute;
+	top: -65px;
+	display: none;
+	padding: 15px 18px 14px;
+	width: 300px;
+	border-radius: 5px;
+	-ms-box-shadow: 0 0 0 1px hsla(43,15%,59%,.4),0 2px 1px rgba(0,0,0,.07),0 3px 8px rgba(0,0,0,.15);
+	-o-box-shadow: 0 0 0 1px hsla(43,15%,59%,.4),0 2px 1px rgba(0,0,0,.07),0 3px 8px rgba(0,0,0,.15);
+	box-shadow: 0 0 0 1px hsla(43,15%,59%,.4),0 2px 1px rgba(0,0,0,.07),0 3px 8px rgba(0,0,0,.15);
+}
+#login div#main-body form p.text label {
+  display: block;
+  margin: 0 0 3px 1px;
+  font-size: 13px;
+}
+a, a:hover {
+  text-decoration: none;
+}

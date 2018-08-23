@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="CSS/style2.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Playfair+Display" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="CSS/normalize.css">
+    <link rel="icon" type="image/png" href="images/icons8-inspection-64.png" />
+    <script defer src="JS/fontawesome-all.js"></script>
+    <title>Check</title>
+  </head>
+  <body>
+    <div id="loader-wrapper">
+      <div id="loader">
+      </div>
+    </div>
+    <div id="wrapper">
+      <header class="main-header">
+        <h1>Check</h1>
+        <nav id="main-nav">
+          <a class="brand" href="#"></a>
+          <div id="collapsibleNavbar">
+            <ul id="navbar-column">
+              <li><a href="#">How it works</a></li>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li class="users-nav"><a href="login.html">Login</a></li>
+              <li class="users-nav"><a href="register.html">Register</a></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <main id="main-frame">
+        <div id="background-frame">
+          <div class="big-orange-circles">
+            <div class="small-yellow-circles"></div>
+          </div>
+          <div class="background-green-ground">
+            <div class="medium-circle mountain-green-circles"></div>
+            <div class="big-circle mountain-green-circles shadow-circle"></div>
+            <div class="large-circle mountain-green-circles"></div>
+          </div>
+          <div class="background-yellow-sky"></div>
+        </div>
+        <form id="text-box">
+          <input type="text" id="entry" maxlength="25" placeholder="Hard to find something to do..." onfocus="this.placeholder=''" onblur="this.placeholder='Hard to find something to do...'">
+          <div class="time-range">
+            <input class="periods" type="radio" name="selector" id="Daily" value="1"><label for="Daily">Day</label>
+            <input class="periods" type="radio" name="selector" id="Weekly" value="7" checked><label for="Weekly">Week</label>
+            <input class="periods" type="radio" name="selector" id="Monthly" value="30"><label for="Monthly">Month</label>
+          </div>
+          <button id="postit" type="button">Create</button>
+        </form>
+        <section id="main-box">
+          <div class="reward-frame">
+            <div class="reward-dialog">
+              <div class="reward-header">
+                <span class="close"></span>
+                <h2>Available rewards</h2>
+              </div>
+              <div class="reward-list">
+                <div class="reward-list-cards">
+                  <span>Gift Card #1</span>
+                  <span>Gift Card #2</span>
+                  <span>Gift Card #3</span>
+                  <span>Gift Card #4</span>
+                </div>
+                <div class="reward-list-bitcoin">
+                  <span>Bitcoin Payment</span>
+                </div>
+                <div class="reward-list-paypal">
+                  <span>Pay with Paypal</span>
+                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+                    <!-- Identify your business so that you can collect the payments. -->
+                    <input type="hidden" name="check" value="a.casas.lp@gmail.com">
+
+                    <!-- Specify a Buy Now button. -->
+                    <input type="hidden" name="cmd" value="_xclick">
+
+                    <!-- Specify details about the item that buyers will purchase. -->
+                    <input type="hidden" name="gift" value="custom amount">
+                    <input type="hidden" name="amount" value="1.00">
+                    <input type="hidden" name="currency_code" value="USD">
+
+                    <!-- Display the payment button. -->
+                    <input type="image" name="submit" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" alt="Buy Now">
+                    <img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="card">
+            <button class="reward-ask" type="button" name="reward-ask">Select Reward</button>
+            <time></time>
+            <span class="card-incomplete">Incomplete</span>
+            <span class="card-complete">Complete</span>
+          </div>
+          <div class="card">
+            <time>25/2/2018 12:32:32</time>
+            <span class="card-incomplete"></span>
+            <span class="card-complete"></span>
+          </div>
+        </section>
+      </main>
+      <footer id="main-footer"></footer>
+    </div>
+    <script type="text/javascript" src="javascript.js"></script>
+    <!-- Bootstrap scripts requiered -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
