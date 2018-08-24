@@ -33,13 +33,13 @@
             </ul>
           </div>
         </nav>
+        <button type="button" name="button" id="toogle-rise"></button>
       </header>
       <main id="main-frame">
         <div id="background-frame">
           <div class="sunshine">
             <div class="big-orange-circle"></div>
             <div class="small-yellow-circle"></div>
-            <div class="small-white-circle"></div>
             <div class="star">
 
             </div>
@@ -130,14 +130,28 @@
       <footer id="main-footer"></footer>
     </div>
     <script type="text/javascript">
-      (function rotate () {
-        var base = document.getElementById("title");
-        base.addEventListener("mouseover", function() {
-          return;
-        })
-      })();
+      var base = document.getElementById("toogle-rise");
+      var wrap = document.getElementById("wrapper");
+      var sun = document.getElementsByClassName("sunshine")[0];
+      var moon = document.getElementsByClassName("moon")[0];
+      var bgColor = document.getElementsByClassName("background-yellow-sky")[0];
+      var numberClicks = 0;
+      base.addEventListener("click", function() {
+        numberClicks++;
+        if (numberClicks%2 == 0) {
+          sun.style.animation = sun.style.animation === "sunshine 5s ease-in 0s 1 forwards" ? "sunshine-return 4s ease-in 0s 1 forwards" : "";
+          moon.style.animation = moon.style.animation === "moonrise 4s ease-in 0s 1 forwards" ? "moonrise-return 4s ease-in 0s 1 forwards" : "";
+          wrap.style.color = wrap.style.color === "white" ? "" : "white";
+          bgColor.style.animation = bgColor.style.animation === "nightsky 3s ease-in 0s 1 forwards" ? "daysky 4s ease-in 0s 1 forwards" : "";
+        }
+        else {
+          sun.style.animation = sun.style.animation === "" ? "sunshine 5s ease-in 0s 1 forwards" : sun.style.animation === "sunshine-return 4s ease-in 0s 1 forwards" ? "sunshine 5s ease-in 0s 1 forwards" : "";
+          moon.style.animation = moon.style.animation === "" ? "moonrise 4s ease-in 0s 1 forwards" : moon.style.animation === "moonrise-return 4s ease-in 0s 1 forwards" ? "moonrise 4s ease-in 0s 1 forwards" : "";
+          wrap.style.color = wrap.style.color === "" ? "white" : "";
+          bgColor.style.animation = bgColor.style.animation === "" ? "nightsky 3s ease-in 0s 1 forwards" : bgColor.style.animation === "daysky 4s ease-in 0s 1 forwards" ? "nightsky 3s ease-in 0s 1 forwards" : "";
+        }
+      });
     </script>
-    <script type="text/javascript" src="javascript.js"></script>
     <!-- Bootstrap scripts requiered -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
