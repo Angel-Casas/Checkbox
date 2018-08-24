@@ -176,6 +176,7 @@ body {
   #wrapper .main-header #main-nav #navbar-column {
     flex-flow: row nowrap;
   }
+
 }
 #wrapper #main-frame {
   border: 1px solid yellow;
@@ -191,6 +192,7 @@ body {
   right: 0;
   height: 50vh;
   background-color: rgb( 49, 230, 175);
+  z-index: 1;
 }
 .background-yellow-sky {
   position: absolute;
@@ -199,14 +201,101 @@ body {
   right: 0;
   height: 50vh;
   background-color: rgb(230, 175, 49);
+  animation: nightsky 4s ease-in 2s 1 forwards;
 }
 .sunshine {
   position: absolute;
   top: 30%;
   left: 20%;
   z-index: 2;
-  animation: sunshine 5s ease-in 1s infinite;
-  transform-origin: 500px 0;
+  animation: sunshine 5s ease-in 1s 1 forwards;
+  transform-origin: 100vw 0;
+}
+:root {
+  --radius: 100px;
+  --bg: #3B4757;
+  --moon: #c7cbd0;
+  --crater: #737277;
+  --crater1: calc(var(--radius) / 2);
+  --crater2: calc(var(--radius) / 4);
+  --crater3: calc(var(--radius) / 8);
+}
+.moon {
+  position: absolute;
+  left: 30%;
+  top: 80%;
+  margin: calc(-1 * var(--radius));
+  width: calc(var(--radius) * 2);
+  height: calc(var(--radius) * 2);
+  background: var(--moon);
+  border-radius: 50%;
+  box-shadow: inset calc(-1 * 100px / 4) 0px 0 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  animation: moonrise 2s ease-in 4s 1 forwards;
+  transform-origin: 100% -40%;
+}
+
+.moon li {
+  position: absolute;
+  list-style: none;
+  background: var(--crater);
+  border-radius: 50%;
+}
+
+.moon li:nth-child(1) {
+  left: calc(var(--radius) / 4);
+  top: calc(var(--radius) / 5 * 3);
+  width: var(--crater1);
+  height: var(--crater1);
+  box-shadow: inset calc(2 * var(--radius) / 100 * 3) calc(2 * -1 * var(--radius) / 100) 0 0px rgba(0, 0, 0, 0.2);
+}
+
+.moon li:nth-child(2) {
+  left: calc(var(--radius) / 2 * 3);
+  top: calc(var(--radius) / 2);
+  width: var(--crater2);
+  height: var(--crater2);
+  box-shadow: inset calc(1 * var(--radius) / 100 * 3) calc(1 * -1 * var(--radius) / 100) 0 0px rgba(0, 0, 0, 0.2);
+}
+
+.moon li:nth-child(3) {
+  left: var(--radius);
+  top: calc(var(--radius) / 2 * 3);
+  width: var(--crater2);
+  height: var(--crater2);
+  box-shadow: inset calc(1 * var(--radius) / 100 * 3) calc(1 * -1 * var(--radius) / 100) 0 0px rgba(0, 0, 0, 0.2);
+}
+
+.moon li:nth-child(4) {
+  left: calc(var(--radius) / 2);
+  top: calc(var(--radius) / 2 * 3);
+  width: var(--crater3);
+  height: var(--crater3);
+  box-shadow: inset calc(0.8 * var(--radius) / 100 * 3) calc(0.8 * -1 * var(--radius) / 100) 0 0px rgba(0, 0, 0, 0.2);
+}
+
+.moon li:nth-child(5) {
+  left: calc(var(--radius) * 7 / 8);
+  top: calc(var(--radius) / 6);
+  width: var(--crater3);
+  height: var(--crater3);
+  box-shadow: inset calc(0.8 * var(--radius) / 100 * 3) calc(0.8 * -1 * var(--radius) / 100) 0 0px rgba(0, 0, 0, 0.2);
+}
+
+.moon li:nth-child(6) {
+  left: calc(var(--radius) * 8 / 7);
+  top: calc(var(--radius) * 4 / 5);
+  width: var(--crater3);
+  height: var(--crater3);
+  box-shadow: inset calc(0.8 * var(--radius) / 100 * 3) calc(0.8 * -1 * var(--radius) / 100) 0 0px rgba(0, 0, 0, 0.2);
+}
+
+.moon li:nth-child(7) {
+  left: calc(var(--radius) * 20 / 11);
+  top: var(--radius);
+  width: var(--crater3);
+  height: var(--crater3);
+  box-shadow: inset calc(0.8 * var(--radius) / 100 * 3) calc(0.8 * -1 * var(--radius) / 100) 0 0px rgba(0, 0, 0, 0.2);
 }
 .big-orange-circle {
   width: 200px;
@@ -282,5 +371,21 @@ body {
   }
   100% {
     transform: rotate(180deg);
+  }
+}
+@keyframes moonrise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(130deg);
+  }
+}
+@keyframes nightsky {
+  from{
+    background-color: rgb(230, 175, 49);
+  }
+  to {
+    background-color: rgb(87, 61, 111);
   }
 }
