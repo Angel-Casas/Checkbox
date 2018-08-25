@@ -109,6 +109,7 @@ body {
   right: 0;
   text-align: center;
   z-index: 100;
+  color: #FFF;
 }
 #wrapper .main-header h1 {
   flex: 1;
@@ -176,42 +177,10 @@ body {
   #wrapper .main-header #main-nav #navbar-column {
     flex-flow: row nowrap;
   }
-  .large-circle {
-    width: 300px;
-    height: 600px;
-    top: -20%;
-    right: -10%;
-  }
-  .big-circle {
-    width: 300px;
-    height: 600px;
-    top: -10%;
-    right: 20%;
-  }
-  .big-circle-2 {
-    width: 400px;
-    height: 800px;
-  }
-  .medium-circle {
-    width: 150px;
-    height: 200px;
-    top: -10%;
-  }
-  .small-circle {
-    width: 300px;
-    height: 200px;
-    right: 25%;
-    top: -10%;
-  }
-  .big-orange-circle {
-    width: 200px !important;
+  .mountain-green2 {
+    width: 250px !important;
     height: 200px !important;
   }
-  .small-yellow-circle {
-    width: 50px !important;
-    height: 50px !important;
-  }
-
 }
 #wrapper #main-frame {
   border: 1px solid yellow;
@@ -219,8 +188,13 @@ body {
   z-index: 100;
 }
 /* background image */
-#bacground-frame {
-  z-index: -1 !important;
+#background-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 .background-green-ground {
   position: absolute;
@@ -228,8 +202,8 @@ body {
   left: 0;
   right: 0;
   height: 50vh;
-  background-color: rgb( 49, 230, 175);
-  z-index: 1;
+  background-color: rgb(0, 230, 175);
+  box-shadow: 0 -20px 10px 5px rgb( 134, 233, 240 );
 }
 .background-yellow-sky {
   position: absolute;
@@ -238,13 +212,40 @@ body {
   right: 0;
   background-color: rgb(230, 175, 49);
   height: 50vh;
+  animation: night 30s ease-out 0s infinite;
 }
 .sunshine {
   position: absolute;
-  top: 10%;
-  left: 20%;
+  top: 100px;
+  left: 200px;
   z-index: 1;
   transform-origin: 100vw 0;
+  animation: sun 30s linear 0s infinite;
+}
+.sunshine .big-orange-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: relative;
+  top: 0;
+  left: 0;
+  box-shadow: 0px 0px 20px 40px rgb(255, 152, 61);
+  background-color: rgb(255, 152, 61);
+  z-index: 2;
+}
+.block {
+  display: block;
+}
+.sunshine .small-yellow-circle {
+  position: relative;
+  top: 70%;
+  left: -20%;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: rgb(255, 209, 54);
+  box-shadow: 0px 0px 10px 20px rgb(255, 209, 54);
+  z-index: 3;
 }
 :root {
   --radius: 100px;
@@ -265,8 +266,8 @@ body {
   background: var(--moon);
   border-radius: 50%;
   box-shadow: inset calc(-1 * 100px / 4) 0px 0 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  transform-origin: 100% -40%;
+  transform-origin: 100% -60%;
+  animation: moon 30s ease-in-out 0s infinite;
 }
 
 .moon li {
@@ -331,64 +332,128 @@ body {
   height: var(--crater3);
   box-shadow: inset calc(0.8 * var(--radius) / 100 * 3) calc(0.8 * -1 * var(--radius) / 100) 0 0px rgba(0, 0, 0, 0.2);
 }
-.big-orange-circle {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  position: relative;
-  top: 0;
-  left: 0;
-  box-shadow: 0px 0px 20px 40px rgb(255, 152, 61);
-  background-color: rgb(255, 152, 61);
-  z-index: 2;
-}
-.small-yellow-circle {
-  position: relative;
-  top: 70%;
-  left: -20%;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background-color: rgb(255, 209, 54);
-  box-shadow: 0px 0px 10px 20px rgb(255, 209, 54);
-  z-index: 3;
-}
-.mountain-green-circles {
-  border-radius: 50%;
-  background-color: rgb( 49, 230, 145 );
-  position: absolute;
-  z-index: 2;
-}
-.large-circle {
-  width: 150px;
-  height: 300px;
-  top: -20%;
-  right: 0%;
-}
-.big-circle {
-  width: 150px;
-  height: 200px;
-  top: -10%;
-  right: 30%;
-}
-.medium-circle {
-  width: 75px;
-  height: 100px;
-  top: -10%;
-  left: -5%;
+.index1 {
   z-index: 1;
 }
-.big-circle-2 {
-  width: 200px;
-  height: 400px;
-  top: -20%;
-  right: 10%;
+.index2 {
+  z-index: 2;
 }
-.small-circle {
+.index3 {
+  z-index: 3;
+}
+.no-bullet {
+  list-style: none;
+}
+.absolute {
+  position: absolute;
+}
+.tree-1 {
+  background-color: rgb( 197, 149, 204 );
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  top: 60%;
+  left: 10%;
+}
+.tree-1::after {
+  position: absolute;
+  content: '';
+  width: 4px;
+  height: 80px;
+  background: #FFF;
+  top: 80px;
+  margin: 0 0 0 38px;
+}
+.tree-1::before {
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 5px;
+  background: rgb( 224, 202, 243 );
+  border-radius: 50%;
+  top: 40px;
+  left: 20px;
+}
+.tree-2 {
+  background-color: rgb(197, 149, 204);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  top: 45vh;
+  right: 20%;
+}
+.tree-2::after {
+  position: absolute;
+  content: "";
+  width: 4px;
+  height: 80px;
+  background: #FFF;
+  top: 60px;
+  margin: 0 0 0 28px;
+}
+.tree-2::before {
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 5px;
+  background: rgb( 224, 202, 243 );
+  border-radius: 50%;
+  top: 40px;
+  left: 20px;
+}
+.mountain-green1 {
+  background: rgb(49, 230, 175);
+  border-radius: 50vh;
+  width: 200px;
+  height: 200px;
+  top: 45vh;
+  left: -10%;
+}
+.mountain-green2 {
+  background: rgb(49, 230, 175);
+  border-radius: 50%;
   width: 150px;
-  height: 100px;
-  right: 45%;
-  top: -10%;
+  height: 200px;
+  top: 45vh;
+  right: -5%;
+}
+.river {
+  border-left: 80px solid rgb(134, 233, 240);
+  width: 100px;
+  height: 50vh;
+  top: 47vh;
+  right: 35%;
+  border-radius: 100% 0 0 0;
+  box-shadow: -12px 0 10px 5px rgb(134, 233, 240);
+}
+.river > li {
+  position: absolute;
+  background: rgb( 199, 242, 243 );
+  width: 5px;
+  height: 40px;
+  border-radius: 100%;
+  transform: rotate(10deg);
+}
+.river > li:nth-child(1) {
+  top: 10%;
+  right: 40px;
+}
+.river > li:nth-child(2) {
+  top: 15%;
+  right: 50px;
+}
+.river > li:nth-child(3) {
+  top: 50%;
+  right: 80px;
+}
+.river > li:nth-child(4) {
+  top: 60%;
+  right: 85px;
+}
+.river > li:nth-child(5) {
+  top: -20px;
+  left: -35px;
+  transform: rotate(90deg);
 }
 #toogle-rise {
   position: absolute;
@@ -400,6 +465,14 @@ body {
   margin: 25px;
   border-radius: 50%;
   background-color: yellow;
+}
+@keyframes sun {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 @keyframes sunshine {
   0% {
@@ -417,6 +490,14 @@ body {
     transform: rotate(360deg);
   }
 }
+@keyframes moon {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 @keyframes moonrise {
   from {
     transform: rotate(0deg);
@@ -431,6 +512,17 @@ body {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+@keyframes night {
+  0% {
+    background-color: rgb(230, 175, 49);
+  }
+  50% {
+    background-color: rgb(87, 61, 111);
+  }
+  100% {
+    background-color: rgb(230, 175, 49);
   }
 }
 @keyframes nightsky {
