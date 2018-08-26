@@ -417,43 +417,35 @@ body {
   top: 45vh;
   right: -5%;
 }
-.river {
-  border-left: 80px solid rgb(134, 233, 240);
-  width: 100px;
-  height: 50vh;
-  top: 47vh;
-  right: 35%;
-  border-radius: 100% 0 0 0;
-  box-shadow: -12px 0 10px 5px rgb(134, 233, 240);
+.cloud1 {
+  top: 140px;
+  right: 40%;
 }
-.river > li {
-  position: absolute;
-  background: rgb( 199, 242, 243 );
-  width: 5px;
-  height: 40px;
-  border-radius: 100%;
-  transform: rotate(10deg);
+.cloud1 li {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  display: block;
 }
-.river > li:nth-child(1) {
-  top: 10%;
-  right: 40px;
+.cloud1 li:nth-child(1) {
+  margin-right: 15px;
+  width: 20px;
+  height: 5px;
+  display: inline-block;
 }
-.river > li:nth-child(2) {
-  top: 15%;
-  right: 50px;
+.cloud1 li:nth-child(2) {
+  width: 50px;
+  height: 5px;
+  display: inline-block;
 }
-.river > li:nth-child(3) {
-  top: 50%;
-  right: 80px;
+.cloud1 li:nth-child(3) {
+  width: 140px;
+  height: 13px;
+  margin-top: 10px;
 }
-.river > li:nth-child(4) {
-  top: 60%;
-  right: 85px;
-}
-.river > li:nth-child(5) {
-  top: -20px;
-  left: -35px;
-  transform: rotate(90deg);
+.cloud li:nth-child(4) {
+  width: 55px;
+  height: 13px;
+  margin-left: 45px;
 }
 #toogle-rise {
   position: absolute;
