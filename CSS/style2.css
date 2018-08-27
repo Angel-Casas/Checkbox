@@ -409,6 +409,28 @@ body {
   top: 45vh;
   left: -10%;
 }
+.mountain-green1::before {
+  content: "";
+  display: inline-block;
+  border-top: 4px dashed rgb( 134, 255, 101 );
+  width: 70%;
+  height: 70%;
+  top: calc(15% - 1px);
+  left: calc(15% - 1px);
+  border-radius: 50%;
+  position: absolute;
+}
+.mountain-green1::after {
+  content: "";
+  display: inline-block;
+  border-bottom: 4px dashed rgb( 134, 255, 101 );
+  width: 40%;
+  height: 40%;
+  top: calc(30% - 1px);
+  left: calc(30% - 1px);
+  border-radius: 50%;
+  position: absolute;
+}
 .mountain-green2 {
   background: rgb(49, 230, 175);
   border-radius: 50%;
@@ -416,6 +438,28 @@ body {
   height: 200px;
   top: 45vh;
   right: -5%;
+}
+.mountain-green2::before {
+  content: "";
+  display: inline-block;
+  border-top: 4px dashed rgb( 134, 255, 101 );
+  width: 70%;
+  height: 70%;
+  top: calc(15% - 1px);
+  left: calc(15% - 1px);
+  border-radius: 50%;
+  position: absolute;
+}
+.mountain-green2::after {
+  content: "";
+  display: inline-block;
+  border-bottom: 4px dashed rgb( 134, 255, 101 );
+  width: 40%;
+  height: 40%;
+  top: calc(30% - 1px);
+  left: calc(30% - 1px);
+  border-radius: 50%;
+  position: absolute;
 }
 .cloud1 {
   top: 140px;
