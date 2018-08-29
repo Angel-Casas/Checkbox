@@ -801,7 +801,6 @@ main button {
 }
 .stars {
   z-index: 0;
-  animation: appear 5s linear 0s infinite;
 }
 .stars li {
   width: 2px;
@@ -952,6 +951,18 @@ main button {
   to {
     transform: rotate(360deg);
   }
+}
+@keyframes starsNight {
+  0% {
+    display: none;
+  }
+  75% {
+    display: block;
+  }
+  100% {
+    display: none;
+  }
+
 }
 @keyframes appear {
   0% {
