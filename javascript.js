@@ -15,7 +15,7 @@ button.addEventListener('click', function() {
   var newButton = document.createElement("button");
   var newSpan = document.createElement("span");
   var newTime = document.createElement("time");
-  var section = document.getElementById("display");
+  var section = document.getElementById("main-box");
   //save input
   var input = getInput();
   //Save time
