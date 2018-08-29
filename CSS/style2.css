@@ -204,7 +204,153 @@ body {
   padding-top: 200px;
   z-index: 100;
 }
-/* background image */
+#wrapper #mainPage {
+  display: none;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 90vw;
+  height: 60vh;
+  margin-top: 0;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 10;
+  position: fixed;
+  top: 200px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+input[type=text] {
+  background-color: hsl(80, 80%, 96%);
+  margin: 10px 0;
+  width: 60vw;
+  max-width: 400px;
+  padding: 10px 0;
+  font-size: 1.1rem;
+  border-radius: 3px;
+  border: 2px solid hsl(80, 95%, 40%);
+  text-align: center;
+}
+input[type="text"]::placeholder {  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(0, 0, 0, 0.3);
+}
+input[type="text"]:-ms-input-placeholder {  /* Internet Explorer 10-11 */
+  color: rgba(0, 0, 0, 0.3);
+}
+input[type="text"]::-ms-input-placeholder { /* Microsoft Edge */
+  color: rgba(0, 0, 0, 0.3);
+}
+#text-box {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+input[type='radio'] {
+  display: none;
+}
+input[type='radio'] + label {
+  color: hsl(80, 95%, 40%);
+  background: hsl(80, 80%, 70%);
+  padding: 10px;
+  border-radius: 3px;
+  width: 4.2rem;
+  cursor: pointer;
+}
+input[type="radio"]:checked + label {
+  background: hsl(53, 99%, 70%);
+  border: 2px solid hsl(80, 95%, 40%);
+}
+main button {
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: hsl(80, 95%, 30%);
+  border-radius: 3px;
+  border: 2px solid hsl(80, 95%, 40%);
+}
+#text-box button {
+  padding: 10px;
+  width: 50%;
+  background-color: hsl(80, 80%, 70%);
+}
+
+#text-box button:hover {
+  border: 2px solid hsl(80, 80%, 70%);
+  background-color: hsl(80, 95%, 40%);
+  color: hsl(80, 80%, 70%);
+}
+
+.time-range {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 10px;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+#display {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 50vh;
+  height: 100%;
+  box-sizing: border-box;
+  margin-bottom: 100px;
+  margin-top: 10px;
+}
+
+#display::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  width: 180px;
+  min-height: 180px;
+  cursor:pointer;
+  border-radius: 3px;
+  margin: 5px;
+  position: relative;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-flow: column nowrap;
+  box-shadow: 7px 10px 7px -3px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+}
+
+.card > time:hover {
+  background-color: hsl(10, 61%, 50%);
+}
+.card > span:hover {
+  background-color: hsl(80, 80%, 70%);
+}
+
+.card > time {
+  padding: 10px 0;
+  display: block;
+  height: 50px;
+  background-color: hsl(53, 99%, 70%);
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.card > span {
+  padding: 10px 0;
+  box-sizing: border-box;
+  display: block;
+  -webkit-flex: 1; /* Safari 6.1+ */
+  -ms-flex: 1; /* IE 10 */
+  flex: 1;
+  height: 100%;
+  word-wrap: break-word;
+}
+
+/* --------------------------------- */
+/*       Background Image            */
+/*---------------------------------- */
 #background-frame {
   position: absolute;
   top: 0;
@@ -366,6 +512,50 @@ body {
 .absolute {
   position: absolute;
 }
+.tree {
+  height: 70px;
+  width: 70px;
+  background-color: rgb(197, 149, 204);
+  border-radius: 100%;
+  border-right: 5px solid rgb(152, 111, 158);
+  border-bottom: 5px solid rgb(152, 111, 158);
+}
+.trunk {
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 10px 112px 10px;
+  border-color: transparent transparent white transparent;
+  margin-top: 14px;
+  margin-left: 25px;
+}
+.leftbranch {
+  widh: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 3px 40px 3px;
+  border-color: transparent transparent white transparent;
+  transform: rotate(-50deg);
+  position: absolute;
+  margin-top: 12.5px;
+  margin-left: -19px;
+}
+.rightbranch {
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 2px 30px 2px;
+  border-color: transparent transparent white transparent;
+  transform: rotate(36deg);
+  position :absolute;
+  margin-top: 4px;
+  margin-left: 7px;
+}
+.tree-3 {
+  position: absolute;
+  bottom: 20%;
+  right: 10%;
+}
 .tree-1 {
   background-color: rgb( 197, 149, 204 );
   border-radius: 50%;
@@ -379,11 +569,13 @@ body {
 .tree-1::after {
   position: absolute;
   content: '';
-  width: 4px;
-  height: 80px;
-  background: #FFF;
-  top: 80px;
-  margin: 0 0 0 38px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 112px 10px;
+  border-color: transparent transparent white transparent;
+  top: 60px;
+  margin: 0 0 0 32px;
 }
 .tree-1::before {
   position: absolute;
@@ -408,11 +600,13 @@ body {
 .tree-2::after {
   position: absolute;
   content: "";
-  width: 4px;
-  height: 80px;
-  background: #FFF;
-  top: 60px;
-  margin: 0 0 0 28px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 8px 82px 8px;
+  border-color: transparent transparent white transparent;
+  top: 45px;
+  margin: 0 0 0 22px;
 }
 .tree-2::before {
   position: absolute;
@@ -426,7 +620,7 @@ body {
 }
 .mountain-green1 {
   background: rgb(49, 230, 175);
-  border-radius: 50vh;
+  border-radius: 50%;
   width: 200px;
   height: 200px;
   top: 45vh;
@@ -440,6 +634,31 @@ body {
   top: 45vh;
   right: -5%;
 }
+.mountain-green3 {
+  background: rgb(236, 226, 100);
+  border-radius: 50%;
+  width: 100%;
+  height: 200px;
+  top: 40vh;
+  left: 25%;
+  animation: mountainNight 40s linear 0s infinite;
+}
+.mountain-green4 {
+  background: rgb(49, 230, 175);
+  border-radius: 50%;
+  width: 300px;
+  height: 200px;
+  top: 45vh;
+  left: 25%;
+}
+.mountain-green5 {
+  background: rgb( 154, 236, 100 );
+  border-radius: 50%;
+  width: 300px;
+  height: 100px;
+  top: 45vh;
+  left: 5%;
+}
 .cloud1,
 .cloud1:before,
 .cloud1:after {
@@ -448,7 +667,7 @@ body {
 	display: block;
 	position: absolute;
 	right: 0;
-	top: 35%;
+	top: 27%;
 	border-radius: 100%;
 	width: 70px;
 	height: 30px;
@@ -479,7 +698,7 @@ body {
 	display: block;
 	position: absolute;
 	right: 80%;
-	top: 25%;
+	top: 20%;
 	border-radius: 100%;
 	width: 70px;
 	height: 30px;
@@ -504,6 +723,7 @@ body {
 }
 .stars {
   z-index: 0;
+  animation: appear 5s linear 0s infinite;
 }
 .stars li {
   width: 2px;
@@ -672,21 +892,15 @@ body {
     opacity: 0;
   }
 }
-@keyframes appear1 {
+@keyframes mountainNight {
   0% {
-    opacity: 0;
-  }
-  25% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
+    background: rgb(236, 226, 100);
   }
   75% {
-    opacity: 1;
+    background: rgb(150, 133, 182);
   }
   100% {
-    opacity: 0;
+    background: rgb(236, 226, 100);
   }
 }
 @keyframes night {

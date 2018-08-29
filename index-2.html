@@ -33,7 +33,7 @@
             </ul>
           </div>
         </nav>
-        <!-- <button type="button" name="button" id="toogle-rise"></button> -->
+        <button type="button" name="button" id="toogle-rise"></button>
       </header>
       <main id="main-frame">
         <div id="background-frame">
@@ -74,12 +74,21 @@
 				    <li></li>
 				    <li></li>
           </ul>
-          <div class="background-green-ground index1"></div>
+          <div class="background-green-ground index2"></div>
           <div class="background-yellow-sky"></div>
           <span class="absolute tree-1 index3"></span>
           <span class="absolute tree-2 index3"></span>
+          <div class="tree tree-3 index3">
+              <div class="trunk">
+                <div class="leftbranch"></div>
+                <div class="rightbranch"></div>
+              </div>
+          </div>
           <span class="absolute mountain-green1 index2"></span>
           <span class="absolute mountain-green2 index2"></span>
+          <span class="absolute mountain-green3 index1"></span>
+          <span class="absolute mountain-green4 index2"></span>
+          <span class="absolute mountain-green5 index1"></span>
           <span class="cloud1"></span>
           <span class="cloud2"></span>
           <ul class="absolute no-bullet cloud2 index1">
@@ -88,7 +97,8 @@
             <li></li>
           </ul>
         </div>
-        <form id="text-box">
+        <div id="mainPage">
+          <form id="text-box">
           <input type="text" id="entry" maxlength="25" placeholder="Hard to find something to do..." onfocus="this.placeholder=''" onblur="this.placeholder='Hard to find something to do...'">
           <div class="time-range">
             <input class="periods" type="radio" name="selector" id="Daily" value="1"><label for="Daily">Day</label>
@@ -136,7 +146,6 @@
                 </div>
               </div>
             </div>
-
           </div>
           <div class="card">
             <button class="reward-ask" type="button" name="reward-ask">Select Reward</button>
@@ -149,6 +158,7 @@
             <span class="card-incomplete"></span>
             <span class="card-complete"></span>
           </div>
+        </div>
         </section>
       </main>
       <footer id="main-footer"></footer>
@@ -156,24 +166,9 @@
     <script type="text/javascript">
       var base = document.getElementById("toogle-rise");
       var wrap = document.getElementById("wrapper");
-      var sun = document.getElementsByClassName("sunshine")[0];
-      var moon = document.getElementsByClassName("moon")[0];
-      var bgColor = document.getElementsByClassName("background-yellow-sky")[0];
-      var numberClicks = 0;
+      var mainPage = document.getElementById("mainPage");
       base.addEventListener("click", function() {
-        numberClicks++;
-        if (numberClicks%2 == 0) {
-          sun.style.animation = sun.style.animation === "sunshine 5s ease-in 0s 1 forwards" ? "sunshine-return 4s ease-in 0s 1 forwards" : "";
-          moon.style.animation = moon.style.animation === "moonrise 4s ease-in 0s 1 forwards" ? "moonrise-return 4s ease-in 0s 1 forwards" : "";
-          wrap.style.color = wrap.style.color === "white" ? "" : "white";
-          bgColor.style.animation = bgColor.style.animation === "nightsky 3s ease-in 0s 1 forwards" ? "daysky 4s ease-in 0s 1 forwards" : "";
-        }
-        else {
-          sun.style.animation = sun.style.animation === "" ? "sunshine 5s ease-in 0s 1 forwards" : sun.style.animation === "sunshine-return 4s ease-in 0s 1 forwards" ? "sunshine 5s ease-in 0s 1 forwards" : "";
-          moon.style.animation = moon.style.animation === "" ? "moonrise 4s ease-in 0s 1 forwards" : moon.style.animation === "moonrise-return 4s ease-in 0s 1 forwards" ? "moonrise 4s ease-in 0s 1 forwards" : "";
-          wrap.style.color = wrap.style.color === "" ? "white" : "";
-          bgColor.style.animation = bgColor.style.animation === "" ? "nightsky 3s ease-in 0s 1 forwards" : bgColor.style.animation === "daysky 4s ease-in 0s 1 forwards" ? "nightsky 3s ease-in 0s 1 forwards" : "";
-        }
+        mainPage.style.display = mainPage.style.display === 'none' ? 'flex' : 'none';
       });
     </script>
     <!-- Bootstrap scripts requiered -->
