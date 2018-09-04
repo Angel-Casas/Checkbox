@@ -1,21 +1,25 @@
 function getInput() {
-  var x = document.getElementsByTagName("input")[0];
-  var text = "";
-  if (x.length !== 0) {
-    for (var i = 0; i < x.length; i++) {
-      text += x.elements[i].value;
-    }
-  }
-  return text;
+  var x = document.getElementById("entry").value;
+  return x;
 }
-let button = document.getElementById("postit");
+function Div(className) {
+  let div = document.createElement("div");
+  div.className = className;
+  return div;
+}
+let button = document.getElementById("postIt");
 button.addEventListener('click', function() {
   //Create new div > span,time elements
-  var newDiv = document.createElement("div");
+  var newCard = Div("card");
+  let newObjective = Div("objective");
+  let newPaperCard = Div("paperCard");
+  let newTopTriangle = Div("topTriangle");
+  let newBottomTriangle = Div("bottomTriangle");
+  let newCardReward = document.createElement("span");
   var newButton = document.createElement("button");
-  var newSpan = document.createElement("span");
+  var newP = document.createElement("p");
   var newTime = document.createElement("time");
-  var section = document.getElementById("main-box");
+  var section = document.getElementById("mainBox");
   //save input
   var input = getInput();
   //Save time
@@ -40,15 +44,21 @@ button.addEventListener('click', function() {
   // add eventlistener to new Buttons
   rewardListener();
   //add content to div > span,time
-  newDiv.className = "card";
-  newButton.className = "reward-ask";
-  newButton.innerHTML = "Select Reward";
-  newSpan.innerHTML = input;
+  newButton.className = "rewardAsk";
+  newButton.innerHTML = "R";
+  newP.innerHTML = input;
   newTime.innerHTML = txt;
-  newDiv.appendChild(newButton);
-  newDiv.appendChild(newTime);
-  newDiv.appendChild(newSpan);
-  section.appendChild(newDiv);
+  newCardReward.className = "cardReward";
+  newCard.style.backgroundColor = get_random_color();
+  newTopTriangle.appendChild(newP);
+  newObjective.appendChild(newButton);
+  newObjective.appendChild(newTopTriangle);
+  newObjective.appendChild(newBottomTriangle);
+  newPaperCard.appendChild(newTime);
+  newPaperCard.appendChild(newCardReward);
+  newCard.appendChild(newObjective);
+  newCard.appendChild(newPaperCard);
+  section.appendChild(newCard);
 }, false);
 
 // Random quotes
@@ -162,3 +172,12 @@ window.onclick = function(event) {
     }
 
 })();
+
+//random color
+function get_random_color() {
+  function c() {
+    var hex = Math.floor(Math.random()*256).toString(16);
+    return ("0"+String(hex)).substr(-2); // pad with zero
+  }
+  return "#"+c()+c()+c();
+}

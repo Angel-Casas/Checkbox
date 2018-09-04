@@ -1,0 +1,276 @@
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  padding: 0 !important;
+}
+li {
+  list-style: none;
+}
+button {
+  border: none;
+}
+body {
+  width: 100vw;
+  max-width: 100%;
+  height: 100%;
+  background-color: white;
+  color: black;
+}
+#wrapper {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+}
+/*--------------------*/
+/*    Background      */
+/*--------------------*/
+
+
+
+/*--------------------*/
+/*    Main            */
+/*--------------------*/
+
+#wrapper #mainHeader h1 {
+  font-size: 2.8rem;
+}
+#wrapper #mainHeader {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+#wrapper #mainBox {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+input[type=text] {
+  background-color: hsl(80, 80%, 96%);
+  margin: 10px 0;
+  width: 60vw;
+  max-width: 400px;
+  padding: 10px 0;
+  font-size: 1.1rem;
+  border-radius: 3px;
+  border: 2px solid hsl(80, 95%, 40%);
+  text-align: center;
+}
+input[type="text"]::placeholder {  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(0, 0, 0, 0.3);
+}
+input[type="text"]:-ms-input-placeholder {  /* Internet Explorer 10-11 */
+  color: rgba(0, 0, 0, 0.3);
+}
+input[type="text"]::-ms-input-placeholder { /* Microsoft Edge */
+  color: rgba(0, 0, 0, 0.3);
+}
+#text-box {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+input[type='radio'] {
+  display: none;
+}
+input[type='radio'] + label {
+  color: hsl(80, 95%, 40%);
+  background: hsl(80, 80%, 70%);
+  padding: 10px;
+  border-radius: 3px;
+  width: 4.2rem;
+  cursor: pointer;
+}
+input[type="radio"]:checked + label {
+  background: hsl(53, 99%, 70%);
+  border: 2px solid hsl(80, 95%, 40%);
+}
+main button {
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: hsl(80, 95%, 30%);
+  border-radius: 3px;
+  border: 2px solid hsl(80, 95%, 40%);
+}
+#text-box button {
+  padding: 10px;
+  width: 50%;
+  background-color: hsl(80, 80%, 70%);
+}
+
+#text-box button:hover {
+  border: 2px solid hsl(80, 80%, 70%);
+  background-color: hsl(80, 95%, 40%);
+  color: hsl(80, 80%, 70%);
+}
+
+.time-range {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 10px;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.card {
+  width: 180px;
+  height: 180px;
+  border-radius: 3px;
+  position: relative;
+  box-sizing: border-box;
+  background-color: hsl(0, 98%, 63%);
+  margin: 10px 2px;
+}
+.card .objective {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+}
+.card .objective .topTriangle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: rgba(255, 255, 255, .2);
+  transition: all .3s ease-in-out;
+  z-index: 1;
+}
+.card .objective .topTriangle::after {
+  content: "";
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 90px solid transparent;
+  border-right: 90px solid transparent;
+  border-top: 80px solid rgba(255, 255, 255, .2);
+  z-index: 1;
+}
+.card .objective .bottomTriangle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 90px solid transparent;
+  border-right: 90px solid transparent;
+  border-bottom: 100px solid rgba(255, 255, 255, .2);
+}
+.card .objective .topTriangle > p {
+  position: absolute;
+  left: calc(50% - 80px);
+  top: 10px;
+  width: 160px;
+  height: 50px;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+  transition: height .3s ease-in-out;
+  z-index: 2;
+}
+.card .objective .topTriangle > p:hover {
+  height: 160px;
+  transition: height .3s ease-in-out;
+  overflow: auto;
+}
+.card .objective .topTriangle > p::-webkit-scrollbar {
+  display: none;
+}
+.card .paperCard {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 160px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.card .paperCard > * {
+}
+
+.card .paperCard time {
+  color: rgb(255, 179, 10);
+}
+
+.card .paperCard span {
+  font-size:  1.4rem;
+  color: rgb(204, 0, 0);
+}
+.rewardAsk {
+  visibility: visible;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  bottom: 5px;
+  right: calc(50% - 25px);
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  z-index: 2;
+  transition: all .3s ease-in-out;
+}
+.rewardAsk:hover ~ .topTriangle,
+.rewardAsk:target ~ .topTriangle {
+  transform: rotateX(50deg);
+  transform-origin: 50% 0;
+  transition: transform .3s ease-in-out;
+}
+.rewardAsk:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, .7);
+}
+.reward-frame {
+  display: none;
+  width: 100%;
+  height: 100%;
+  cursor: default;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4);
+}
+.reward-dialog {
+  margin: 15vh auto;
+  border: 2px solid hsl(53, 99%, 50%);
+  border-radius: 3px;
+  background-color: hsl(80, 50%, 90%);
+  padding: 20px;
+  z-index: 1;
+  width: 80%;
+  height: 70vh;
+}
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
+.reward-header > h2 {
+  color: hsl(160, 50%, 60%);
+}

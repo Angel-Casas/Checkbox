@@ -199,15 +199,15 @@ body {
   }
 }
 #wrapper #main-frame {
-  border: 1px solid yellow;
-  padding-top: 200px;
-  z-index: 100;
+  height: 100%;
+  width: 100%;
 }
 #wrapper #main-frame #mainPage {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   width: 95vw;
+  height: calc(100vh - 160px);
   margin-top: 0;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.7);
