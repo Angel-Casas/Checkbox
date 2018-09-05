@@ -69,7 +69,7 @@ body {
   color: rgb(238, 193, 32);
 }
 #wrapper #mainHeader h1 > span:nth-child(1)::before {
-  top: calc(50% - 20px);
+  bottom: 0;
   left: calc(50% - 13px);
   background: rgb(238, 193, 32);
   width: 30px;
@@ -81,8 +81,8 @@ body {
   color: rgb(150, 228, 75);
 }
 #wrapper #mainHeader h1 > span:nth-child(2)::before {
-  top: .1rem;
-  left: .2rem;
+  top: 5%;
+  left: 7%;
   background: rgb(150, 228, 75);
   width: 2.0rem;
   height: 2.4rem;
