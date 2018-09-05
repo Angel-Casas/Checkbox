@@ -14,7 +14,7 @@
     <div id="wrapper">
       <header id="mainHeader">
         <h1>Check</h1>
-        <nav>
+        <nav id="mainNav">
           <ul>
             <li><a href="#">Introduction</a></li>
             <li><a href="#">Main</a></li>
@@ -22,11 +22,7 @@
           </ul>
         </nav>
       </header>
-      <div class="parallax">
-        <div class="parallax__layer parallax__layer-back"></div>
-        <div class="parallax__layer parallax__layer-base"></div>
-      </div>
-      <section id="mainFrame">
+      <section>
         <div class="reward-frame">
           <div class="reward-dialog">
             <div class="reward-header">
@@ -66,39 +62,41 @@
             </div>
           </div>
         </div>
-        <div id="mainPage">
-          <form id="text-box">
-          <input type="text" id="entry" maxlength="25">
-          <div class="time-range">
-            <input class="periods" type="radio" name="selector" id="Daily" value="1"><label for="Daily">Day</label>
-            <input class="periods" type="radio" name="selector" id="Weekly" value="7" checked><label for="Weekly">Week</label>
-            <input class="periods" type="radio" name="selector" id="Monthly" value="30"><label for="Monthly">Month</label>
-          </div>
-          <button id="postIt" type="button">Create</button>
-          </form>
-          <section id="mainBox">
-            <div class="card">
-              <div class="objective">
-                <button class="rewardAsk" type="button" name="reward-ask">R</button>
-                <div class="topTriangle">
-                  <p>Lorem ipsum dolor sit amet, consecteturs</p>
+        <div id="mainFrame">
+          <div id="mainPage">
+            <form id="text-box">
+            <input type="text" id="entry" maxlength="25">
+            <div class="time-range">
+              <input class="periods" type="radio" name="selector" id="Daily" value="1"><label for="Daily">Day</label>
+              <input class="periods" type="radio" name="selector" id="Weekly" value="7" checked><label for="Weekly">Week</label>
+              <input class="periods" type="radio" name="selector" id="Monthly" value="30"><label for="Monthly">Month</label>
+            </div>
+            <button id="postIt" type="button">Create</button>
+            </form>
+            <section id="mainBox">
+              <div class="card">
+                <div class="objective">
+                  <button class="rewardAsk" type="button" name="reward-ask">R</button>
+                  <div class="topTriangle">
+                    <p>Lorem ipsum dolor sit amet, consecteturs</p>
+                  </div>
+                  <div class="bottomTriangle"></div>
                 </div>
-                <div class="bottomTriangle"></div>
+                <div class="paperCard">
+                  <time>25/2/2018 12:32:32</time>
+                  <p>Lorem ipsum dolor sit amet, consecteturs</p>
+                  <span class="cardReward">0.01XBT</span>
+                </div>
               </div>
-              <div class="paperCard">
-                <time>25/2/2018 12:32:32</time>
-                <p>Lorem ipsum dolor sit amet, consecteturs</p>
-                <span class="cardReward">0.01XBT</span>
+              <div class="card">
+                <div class="paperCard">
+                  <time>25/2/2018 12:32:32</time>
+                  <p>Lorem ipsum dolor sit amet, consecteturs</p>
+                  <span class="cardReward">0.01XBT</span>
+                </div>
               </div>
-            </div>
-            <div class="card">
-              <div class="paperCard">
-                <time>25/2/2018 12:32:32</time>
-                <p>Lorem ipsum dolor sit amet, consecteturs</p>
-                <span class="cardReward">0.01XBT</span>
-              </div>
-            </div>
-          </section>
+            </section>
+          </div>
         </div>
       </section>
       <footer>

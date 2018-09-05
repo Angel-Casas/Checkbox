@@ -98,7 +98,9 @@ function rewardListener () {
       // Prevent browser's default action
       event.preventDefault();
       // call function
-      rewardframe.style.display = "block";
+      setTimeout(function() {
+        rewardframe.style.display = "block";
+      }, 500);
     })
   }
 };
