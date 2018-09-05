@@ -69,11 +69,11 @@ body {
   color: rgb(238, 193, 32);
 }
 #wrapper #mainHeader h1 > span:nth-child(1)::before {
-  top: calc(50% - 1.2rem);
-  left: calc(50% - 0.9rem);
+  top: calc(50% - 20px);
+  left: calc(50% - 15px);
   background: rgb(238, 193, 32);
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   animation: colorLoop 3s ease-in-out infinite;
 }
