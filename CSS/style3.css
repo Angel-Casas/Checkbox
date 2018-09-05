@@ -69,8 +69,8 @@ body {
   color: rgb(238, 193, 32);
 }
 #wrapper #mainHeader h1 > span:nth-child(1)::before {
-  top: .4rem;
-  left: .3rem;
+  top: 7px;
+  left: 4px;
   background: rgb(238, 193, 32);
   width: 1.8rem;
   height: 1.8rem;
@@ -138,6 +138,7 @@ body {
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
+  height: 200px;
 }
 #wrapper #mainHeader #mainNav {
   width: 100%;
