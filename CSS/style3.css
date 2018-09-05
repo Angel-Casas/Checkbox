@@ -24,7 +24,7 @@ body {
   min-height: 100vh;
   background-color: white;
   color: black;
-  overflow-y: auto;
+  overflow-x: hidden;
   transform-style: preserve-3d;
 }
 #wrapper {
@@ -40,11 +40,11 @@ body {
   top: 0;
   left: 0;
   perspective: 300px;
-  perspective-origin: 0 0;
+  perspective-origin: 100% 0;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
   transform-style: inherit;
   z-index: -1;
 }
@@ -52,20 +52,20 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  min-height: 150vh;
-  height: 100%;
+  height: 200vh;
   width: 100%;
-  transform-origin: 0 0;
+  transform-origin: 100% 0;
 }
 #wrapper .parallax .parallax__layer-back {
   transform: translateZ(-300px), scale(6);
   background-image: url("../images/bckgrMobileBack.png");
   background-size: auto;
+  border: 1px solid red;
   background-position: left center;
   background-repeat: no-repeat;
 }
 #wrapper .parallax .parallax__layer-base {
-  transform: translateZ(50px);
+  transform: translateZ(20px), scale(2);
   background-image: url("../images/bckgrMobileBase.png");
   background-size: auto;
   background-position: left center;
@@ -84,6 +84,11 @@ body {
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
+}
+#wrapper #mainFrame {
+  min-height: 50vh;
+  width: 100vw;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 #wrapper #mainBox {
   display: flex;
