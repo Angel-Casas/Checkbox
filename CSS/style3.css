@@ -63,20 +63,20 @@ body {
   display: inline-block;
   line-height: 50px;
   height: 40px;
-  width: 60px;
   text-align: center;
 }
 #wrapper #mainHeader h1 > span::before,
 #wrapper #mainHeader h1 > span::after {
   content: "";
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 #wrapper #mainHeader h1 > span:nth-child(1) {
   color: rgb(238, 193, 32);
 }
 #wrapper #mainHeader h1 > span:nth-child(1)::before {
-  bottom: 3px;
-  left: 15px;
   background: rgb(238, 193, 32);
   width: 30px;
   height: 30px;
@@ -87,8 +87,6 @@ body {
   color: rgb(150, 228, 75);
 }
 #wrapper #mainHeader h1 > span:nth-child(2)::before {
-  top: 0;
-  left: 15px;
   background: rgb(150, 228, 75);
   width: 30px;
   height: 40px;
@@ -98,8 +96,6 @@ body {
   color: rgb(231, 72, 72);
 }
 #wrapper #mainHeader h1 > span:nth-child(3)::before {
-  top: 0;
-  left: 13px;
   background: rgb(231, 72, 72);
   width: 32px;
   height: 40px;
@@ -109,8 +105,6 @@ body {
   color: rgb(109, 223, 227);
 }
 #wrapper #mainHeader h1 > span:nth-child(4)::before {
-  top: 3px;
-  left: 15px;
   background: rgb(109, 223, 227);
   width: 30px;
   height: 30px;
@@ -121,8 +115,6 @@ body {
   color: rgb(148, 32, 238);
 }
 #wrapper #mainHeader h1 > span:nth-child(5)::before {
-  top: 0;
-  left: 10px;
   background: rgb(148, 32, 238);
   width: 37px;
   height: 40px;
@@ -183,6 +175,7 @@ body {
 #wrapper #mainPage {
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 0 8px 8px rgba(255, 255, 255, 0.8);
+  margin: 0 20px;
 }
 #wrapper #mainBox {
   display: flex;
