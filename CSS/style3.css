@@ -55,10 +55,16 @@ body {
 }
 #wrapper #mainHeader h1 {
   font-size: 55px;
-  letter-spacing: -.07em;
+  display: flex;
+  flex-flow: row nowrap;
 }
 #wrapper #mainHeader h1 > * {
   position: relative;
+  display: inline-block;
+  line-height: 50px;
+  height: 40px;
+  width: 60px;
+  text-align: center;
 }
 #wrapper #mainHeader h1 > span::before,
 #wrapper #mainHeader h1 > span::after {
@@ -69,8 +75,8 @@ body {
   color: rgb(238, 193, 32);
 }
 #wrapper #mainHeader h1 > span:nth-child(1)::before {
-  bottom: 0;
-  left: calc(50% - 13px);
+  bottom: 3px;
+  left: 15px;
   background: rgb(238, 193, 32);
   width: 30px;
   height: 30px;
@@ -81,33 +87,33 @@ body {
   color: rgb(150, 228, 75);
 }
 #wrapper #mainHeader h1 > span:nth-child(2)::before {
-  top: 5%;
-  left: 7%;
+  top: 0;
+  left: 15px;
   background: rgb(150, 228, 75);
-  width: 2.0rem;
-  height: 2.4rem;
+  width: 30px;
+  height: 40px;
   animation: colorLoop 3.1s ease-in-out .2s infinite;
 }
 #wrapper #mainHeader h1 > span:nth-child(3) {
   color: rgb(231, 72, 72);
 }
 #wrapper #mainHeader h1 > span:nth-child(3)::before {
-  top: .1rem;
-  left: .2rem;
+  top: 0;
+  left: 13px;
   background: rgb(231, 72, 72);
-  width: 2.0rem;
-  height: 2.4rem;
+  width: 32px;
+  height: 40px;
   animation: colorLoop 3.2s ease-in-out .4s infinite;
 }
 #wrapper #mainHeader h1 > span:nth-child(4) {
   color: rgb(109, 223, 227);
 }
 #wrapper #mainHeader h1 > span:nth-child(4)::before {
-  top: .4rem;
-  left: .3rem;
+  top: 3px;
+  left: 15px;
   background: rgb(109, 223, 227);
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   animation: colorLoop 3.3s ease-in-out .6s infinite;
 }
@@ -115,11 +121,11 @@ body {
   color: rgb(148, 32, 238);
 }
 #wrapper #mainHeader h1 > span:nth-child(5)::before {
-  top: .1rem;
-  left: .2rem;
+  top: 0;
+  left: 10px;
   background: rgb(148, 32, 238);
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 37px;
+  height: 40px;
   animation: colorLoop 3.4s ease-in-out .8s infinite;
 }
 @keyframes colorLoop {
