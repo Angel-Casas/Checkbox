@@ -11,9 +11,26 @@
     <title>Check</title>
   </head>
   <body>
+    <div id="loaderWrapper">
+      <div class="loaderSection">
+        <div class="boxCheck">
+          <span class="checkLoader"></span>
+          <span class="checkLoader"></span>
+          <span class="checkLoader"></span>
+        </div>
+      </div>
+    </div>
     <div id="wrapper">
       <header id="mainHeader">
-        <h1><span>C</span><span>H</span><span>E</span><span>C</span><span>K</span></h1>
+        <div class="checkSection">
+          <div class="boxCheck">
+            <span class="checkLoader"></span>
+            <span class="checkLoader"></span>
+            <span class="checkLoader"></span>
+            <span class="checkLoader"></span>
+            <span class="checkLoader"></span>
+          </div>
+        </div>
         <nav id="mainNav">
           <ul>
             <li><a href="#">Introduction</a></li>
@@ -103,6 +120,23 @@
 
       </footer>
     </div>
+    <script>
+      // Transition from presentation to blog:
+      var loader = document.getElementById('loaderWrapper');
+      var wrapper = document.getElementById("wrapper");
+      document.onreadystatechange = function () {
+        var state = document.readyState;
+        if (state == 'complete') {
+          setTimeout(function() {
+            setTimeout(function(){
+               loader.style.display = "none";
+               wrapper.style.animation = "fadein 2s forwards";
+            },2000);
+            loader.style.animation="fadeout 2s forwards";
+          }, 4000);
+        }
+      }
+    </script>
     <script type="text/javascript" src="javascript.js"></script>
   </body>
 </html>
