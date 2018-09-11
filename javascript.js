@@ -62,38 +62,45 @@ button.addEventListener('click', function() {
 }, false);
 
 // intro
+function getIntro () {
+  let executed = false;
+  return function() {
+    if (!executed) {
+      executed = true;
+      //Create new div > span,time elements
+      var newCard = Div("card");
+      let newObjective = Div("objective");
+      let newPaperCard = Div("paperCard");
+      let newTopTriangle = Div("topTriangle");
+      let newBottomTriangle = Div("bottomTriangle");
+      var newButton = document.createElement("button");
+      var newP = document.createElement("p");
+      var section = document.getElementsByClassName("introCard")[0];
+      // add new reward Button to array list
+      arrBtn.push(newButton);
+      // add eventlistener to new Buttons
+      rewardListener();
+      //add content to div > span,time
+      newButton.className = "rewardAsk";
+      newButton.innerHTML = "R";
+      newP.innerHTML = introInput;
+      newCard.style.backgroundColor = get_random_color();
+      newTopTriangle.appendChild(newP);
+      newObjective.appendChild(newButton);
+      newObjective.appendChild(newTopTriangle);
+      newObjective.appendChild(newBottomTriangle);
+      newCard.appendChild(newObjective);
+      section.appendChild(newCard);
+    }
+  }
+}
 function getIntroInput() {
   var x = document.getElementById("introEntry").value;
   return x;
 }
 let introInput = getIntroInput();
 let introButton = document.getElementById("introPostIt");
-introButton.addEventListener('click', function() {
-  //Create new div > span,time elements
-  var newCard = Div("card");
-  let newObjective = Div("objective");
-  let newPaperCard = Div("paperCard");
-  let newTopTriangle = Div("topTriangle");
-  let newBottomTriangle = Div("bottomTriangle");
-  var newButton = document.createElement("button");
-  var newP = document.createElement("p");
-  var section = document.getElementsByClassName("introCard")[0];
-  // add new reward Button to array list
-  arrBtn.push(newButton);
-  // add eventlistener to new Buttons
-  rewardListener();
-  //add content to div > span,time
-  newButton.className = "rewardAsk";
-  newButton.innerHTML = "R";
-  newP.innerHTML = introInput;
-  newCard.style.backgroundColor = get_random_color();
-  newTopTriangle.appendChild(newP);
-  newObjective.appendChild(newButton);
-  newObjective.appendChild(newTopTriangle);
-  newObjective.appendChild(newBottomTriangle);
-  newCard.appendChild(newObjective);
-  section.appendChild(newCard);
-}, false);
+introButton.addEventListener('click', getIntro(), false);
 // // Random quotes
 // var quotes = [
 //   "We all want to be famous people, and the moment we want to be something we are no longer free. - Jiddu Krishnamurti",
