@@ -59,7 +59,7 @@ body {
   z-index: 1000;
   width: 100vw;
   height: 100vh;
-  display: none;
+  display: block;
   background-color: white;
 }
 #loaderWrapper .loaderSection {
@@ -634,13 +634,13 @@ input[type="radio"]:hover + label {
   background-repeat: repeat-y;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 #introduction .mainIntro {
-  width: inherit;
+  width: 80vw;
   height: inherit;
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 0 8px 8px rgba(255, 255, 255, 0.8);
-  margin: 0 20px;
   text-align: center;
   display: flex;
   flex-flow: row wrap;
@@ -648,20 +648,29 @@ input[type="radio"]:hover + label {
   align-items: flex-start;
 }
 #introduction .mainIntro .introSteps {
+  position: relative;
+  width: inherit;
+  height: 100%;
 }
 #introduction .mainIntro .introSteps .radioContainer {
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+}
+#introduction .mainIntro .introSteps .radioElements {
   display: inline-block;
   position: relative;
   width: 20px;
   height: 20px;
 }
-#introduction .mainIntro .introSteps .radioContainer > input {
+#introduction .mainIntro .introSteps .radioElements > input {
   opacity: 0;
   position: absolute;
 }
-#introduction .mainIntro .introSteps .radioContainer > span {
+#introduction .mainIntro .introSteps .radioElements > span {
   position: absolute;
-  top: -2em;
+  bottom: -2em;
   left: 50%;
   width: 15px;
   height: 15px;
@@ -670,21 +679,21 @@ input[type="radio"]:hover + label {
   border: 1px solid grey;
   cursor: pointer;
 }
-#introduction .mainIntro .introSteps .radioContainer .yellow {
+#introduction .mainIntro .introSteps .radioElements .yellow {
   background-color: rgb(221, 180, 10);
 }
-#introduction .mainIntro .introSteps .radioContainer .green {
+#introduction .mainIntro .introSteps .radioElements .green {
   background-color: rgb(94, 222, 183);
 }
-#introduction .mainIntro .introSteps .radioContainer .red {
+#introduction .mainIntro .introSteps .radioElements .red {
   background-color: rgb(240, 90, 90);
 }
-#introduction .mainIntro .introSteps .radioContainer .checkmark::after {
+#introduction .mainIntro .introSteps .radioElements .checkmark::after {
   content: "";
   position: absolute;
   display: none;
 }
-#introduction .mainIntro .introSteps .radioContainer .checkmark::after {
+#introduction .mainIntro .introSteps .radioElements .checkmark::after {
   top: -5px;
   left: -5px;
   width: 23px;
@@ -692,15 +701,15 @@ input[type="radio"]:hover + label {
   border-radius: 50%;
   border: 2px solid rgb(221, 221, 221);
 }
-#introduction .mainIntro .introSteps .radioContainer input:checked ~ .checkmark:after {
+#introduction .mainIntro .introSteps .radioElements input:checked ~ .checkmark:after {
   display: block;
 }
-#introduction .mainIntro .introSteps .radioContainer .checkmark:hover {
+#introduction .mainIntro .introSteps .radioElements .checkmark:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
-#introduction .mainIntro .introSteps .radioContainer input:checked ~ .checkmark {
+#introduction .mainIntro .introSteps .radioElements input:checked ~ .checkmark {
 }
-#introduction .mainIntro .introStepOne #introInput > button {
+#introduction .mainIntro .introSteps .introStepOne #introInput > button {
   padding: 10px;
   display: block;
   margin: 0 auto;
@@ -709,26 +718,33 @@ input[type="radio"]:hover + label {
   color: white;
   font-size: 1.4rem;
 }
-#introduction .mainIntro h2 {
+#introduction .mainIntro .introSteps h2 {
   font-size: 2.2rem;
 }
-#introduction .mainIntro .introStepOne {
-  background-color: white;
-  height: 100%;
+#introduction .mainIntro .introSteps .introStepOne {
 }
-#introduction .mainIntro .introStepOne p {
+#introduction .mainIntro .introSteps .introStepOne > p {
   margin: 4em;
 }
-#introduction .mainIntro .introStepOne .card {
-  margin: 0 auto;
+#introduction .mainIntro .introSteps .introCard .card {
+  margin: 2em auto;
 }
-#introduction .mainIntro .introStepOne .card .objective .topTriangle > p {
+#introduction .mainIntro .introSteps .introStepOne .card .objective .topTriangle > p {
   animation: introCard 2s linear 0s alternate infinite;
   overflow: auto;
 }
-#introduction .mainIntro .introStepOne .card .objective .topTriangle {
+#introduction .mainIntro .introSteps .introStepOne .card .objective .topTriangle {
   animation: introCardFlip 2s linear 0s alternate infinite;
   transform-origin: 50% 0;
+}
+#introduction .mainIntro .introSteps .introStepOne,
+#introduction .mainIntro .introSteps .introStepTwo,
+#introduction .mainIntro .introSteps .introStepThree {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: white;
 }
 @keyframes introCard {
   from {

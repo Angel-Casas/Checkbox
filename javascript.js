@@ -1,4 +1,4 @@
-function getInput() {
+﻿function getInput() {
   var x = document.getElementById("entry").value;
   return x;
 }
@@ -76,6 +76,7 @@ function getIntro () {
       var newButton = document.createElement("button");
       var newP = document.createElement("p");
       var section = document.getElementsByClassName("introCard")[0];
+      let introInput = getIntroInput();
       // add new reward Button to array list
       arrBtn.push(newButton);
       // add eventlistener to new Buttons
@@ -98,9 +99,33 @@ function getIntroInput() {
   var x = document.getElementById("introEntry").value;
   return x;
 }
-let introInput = getIntroInput();
 let introButton = document.getElementById("introPostIt");
 introButton.addEventListener('click', getIntro(), false);
+// intro steps
+let stepsSelector = document.querySelectorAll("input[name=radioIntro]");
+function steps() {
+  if (stepsSelector[0].checked === true) {
+    document.getElementsByClassName("introStepOne")[0].style.display = "block";
+    document.getElementsByClassName("introStepTwo")[0].style.display = "none";
+    document.getElementsByClassName("introStepThree")[0].style.display = "none";
+    document.getElementsByClassName("introCard")[0].style.display = "block";
+  }
+  else if (stepsSelector[1].checked === true) {
+    document.getElementsByClassName("introStepOne")[0].style.display = "none";
+    document.getElementsByClassName("introStepTwo")[0].style.display = "block";
+    document.getElementsByClassName("introStepThree")[0].style.display = "none";
+    document.getElementsByClassName("introCard")[0].style.display = "none";
+  }
+  else if (stepsSelector[2].checked === true) {
+    document.getElementsByClassName("introStepOne")[0].style.display = "none";
+    document.getElementsByClassName("introStepTwo")[0].style.display = "none";
+    document.getElementsByClassName("introStepThree")[0].style.display = "block";
+    document.getElementsByClassName("introCard")[0].style.display = "none";
+  }
+};
+steps();
+document.getElementsByClassName("introSteps")[0].addEventListener('change', steps, false);
+
 // // Random quotes
 // var quotes = [
 //   "We all want to be famous people, and the moment we want to be something we are no longer free. - Jiddu Krishnamurti",
