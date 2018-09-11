@@ -647,15 +647,23 @@ input[type="radio"]:hover + label {
   justify-content: center;
   align-items: flex-start;
 }
-#introduction .mainIntro #introRadio {
-  position: absolute;
-  width: 70px;
+#introduction .mainIntro .introSteps {
 }
-#introduction .mainIntro #introRadio > input {
+#introduction .mainIntro .introSteps .radioContainer {
+  display: inline-block;
+  position: relative;
+  border: 1px solid red;
+  width: 20px;
+  height: 20px;
+}
+#introduction .mainIntro .introSteps .radioContainer > input {
   opacity: 0;
   position: absolute;
 }
-#introduction .mainIntro #introRadio > span {
+#introduction .mainIntro .introSteps .radioContainer > span {
+  position: absolute;
+  top: -2em;
+  left: 50%;
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -663,11 +671,20 @@ input[type="radio"]:hover + label {
   border: 1px solid grey;
   cursor: pointer;
 }
-#introduction .mainIntro #introRadio .checkmark:hover {
-  background-color: black;
+#introduction .mainIntro .introSteps .radioContainer .yellow {
+  background-color: rgb(221, 180, 10);
 }
-#introduction .mainIntro #introRadio input:checked ~ .checkmark {
-  background-color: blue;
+#introduction .mainIntro .introSteps .radioContainer .green {
+  background-color: rgb(94, 222, 183);
+}
+#introduction .mainIntro .introSteps .radioContainer .red {
+  background-color: rgb(240, 90, 90);
+}
+#introduction .mainIntro .introSteps .radioContainer .checkmark:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+#introduction .mainIntro .introSteps .radioContainer input:checked ~ .checkmark {
+  background-color: white;
 }
 #introduction .mainIntro .introStepOne #introInput > button {
   padding: 10px;
@@ -683,7 +700,7 @@ input[type="radio"]:hover + label {
 }
 #introduction .mainIntro .introStepOne {
   background-color: white;
-  height: 400px;
+  height: 100%;
 }
 #introduction .mainIntro .introStepOne p {
   margin: 4em;
