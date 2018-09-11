@@ -61,29 +61,62 @@ button.addEventListener('click', function() {
   section.appendChild(newCard);
 }, false);
 
-// Random quotes
-var quotes = [
-  "We all want to be famous people, and the moment we want to be something we are no longer free. - Jiddu Krishnamurti",
-  "Tradition becomes our security, and when the mind is secure it is in decay. - Jiddu Krishnamurti",
-  "Die to everything of yesterday so that your mind is always fresh, always young, innocent, full of vigor and passion. - Jiddu Krishnamurti",
-  "Education is what remains after one has forgotten what one has learned in school. - Albert Einstein",
-  "Anyone who has never made a mistake has never tried anything new. - Albert Einstein",
-  "The most beautiful thing we can experience is the mysterious. It is the source of all true art and science. - Albert Einstein",
-  "Stay hungry, stay foolish. - Steve Jobs",
-  "I believe life is an intelligent thing: that things aren't random. - Steve Jobs",
-  "Self-education is, I firmly believe, the only kind of education there is. - Isaac Asimov",
-  "In all chaos there is a cosmos, in all disorder a secret order. - Carl Gustav Jung",
-  "Imagination will often carry us to worlds that never were. But without it we go nowhere. - Carl Sagan",
-  "The first principle is that you must not fool yourself and you are the easiest person to fool. - Richard P. Feynman",
-  "The secret of genius is to carry the spirit of the child into old age, which means never losing your enthusiasm. - Aldous Huxley",
-  "Clean your room. - Jordan B. Peterson"
-  ]
-function nextQuote() {
-  var randomNumber = Math.floor(Math.random()*quotes.length);
-  document.getElementById("quote").innerHTML = quotes[randomNumber];
+// intro
+function getIntroInput() {
+  var x = document.getElementById("introEntry").value;
+  return x;
 }
-setInterval(nextQuote, 10000);
-// end random quotes script
+let introInput = getIntroInput();
+let introButton = document.getElementById("introPostIt");
+introButton.addEventListener('click', function() {
+  //Create new div > span,time elements
+  var newCard = Div("card");
+  let newObjective = Div("objective");
+  let newPaperCard = Div("paperCard");
+  let newTopTriangle = Div("topTriangle");
+  let newBottomTriangle = Div("bottomTriangle");
+  var newButton = document.createElement("button");
+  var newP = document.createElement("p");
+  var section = document.getElementsByClassName("introCard")[0];
+  // add new reward Button to array list
+  arrBtn.push(newButton);
+  // add eventlistener to new Buttons
+  rewardListener();
+  //add content to div > span,time
+  newButton.className = "rewardAsk";
+  newButton.innerHTML = "R";
+  newP.innerHTML = introInput;
+  newCard.style.backgroundColor = get_random_color();
+  newTopTriangle.appendChild(newP);
+  newObjective.appendChild(newButton);
+  newObjective.appendChild(newTopTriangle);
+  newObjective.appendChild(newBottomTriangle);
+  newCard.appendChild(newObjective);
+  section.appendChild(newCard);
+}, false);
+// // Random quotes
+// var quotes = [
+//   "We all want to be famous people, and the moment we want to be something we are no longer free. - Jiddu Krishnamurti",
+//   "Tradition becomes our security, and when the mind is secure it is in decay. - Jiddu Krishnamurti",
+//   "Die to everything of yesterday so that your mind is always fresh, always young, innocent, full of vigor and passion. - Jiddu Krishnamurti",
+//   "Education is what remains after one has forgotten what one has learned in school. - Albert Einstein",
+//   "Anyone who has never made a mistake has never tried anything new. - Albert Einstein",
+//   "The most beautiful thing we can experience is the mysterious. It is the source of all true art and science. - Albert Einstein",
+//   "Stay hungry, stay foolish. - Steve Jobs",
+//   "I believe life is an intelligent thing: that things aren't random. - Steve Jobs",
+//   "Self-education is, I firmly believe, the only kind of education there is. - Isaac Asimov",
+//   "In all chaos there is a cosmos, in all disorder a secret order. - Carl Gustav Jung",
+//   "Imagination will often carry us to worlds that never were. But without it we go nowhere. - Carl Sagan",
+//   "The first principle is that you must not fool yourself and you are the easiest person to fool. - Richard P. Feynman",
+//   "The secret of genius is to carry the spirit of the child into old age, which means never losing your enthusiasm. - Aldous Huxley",
+//   "Clean your room. - Jordan B. Peterson"
+//   ]
+// function nextQuote() {
+//   var randomNumber = Math.floor(Math.random()*quotes.length);
+//   document.getElementById("quote").innerHTML = quotes[randomNumber];
+// }
+// setInterval(nextQuote, 10000);
+// // end random quotes script
 
 // reward dialog
 var rewardframe = document.getElementsByClassName("reward-frame")[0];

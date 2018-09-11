@@ -38,7 +38,7 @@ body {
   overflow-y: hidden;
 }
 #wrapper {
-  width: 100%;
+  width: inherit;
   height: inherit;
   z-index: 2;
   background-image: url("../images/bckgrDesktopBack.png");
@@ -48,7 +48,7 @@ body {
   background-repeat: repeat-y;
   overflow-y: scroll;
   overflow-x: hidden;
-  opacity: 0;
+  opacity: 1;
 }
 
 /*--------------------*/
@@ -59,7 +59,7 @@ body {
   z-index: 1000;
   width: 100vw;
   height: 100vh;
-  display: block;
+  display: none;
   background-color: white;
 }
 #loaderWrapper .loaderSection {
@@ -220,7 +220,7 @@ body {
   25% {
     border-radius: 50%;
     transform: translateY(-25px);
-    background-color: rgb(214, 141, 244);
+    background-color: rgb(94, 222, 183);
     border-radius: 50%;
   }
   50% {
@@ -231,7 +231,7 @@ body {
   75% {
     border-radius: 50%;
     transform: translateY(25px);
-    background-color: rgb(94, 222, 183);
+    background-color: rgb(150, 228, 55);
     border-radius: 50%;
   }
   100% {
@@ -272,7 +272,10 @@ body {
     background-image: url("../images/bckgrMobileBack.png");
   }
   #wrapper #mainFrame {
-    background-image: url("../images/bckgrMobileBase.png") !important;
+    background-image: url("../images/bckgrMobileBase.png");
+  }
+  #introduction {
+    background-image: url("../images/bckgrMobileBase.png");
   }
 }
 #wrapper .checkSection {
@@ -358,6 +361,9 @@ body {
     width: 100%;
     //transition: width .3s;
 }
+#wrapper #mainArea {
+  display: none;
+}
 #wrapper #mainFrame {
   margin-top: 30px;
   background-image: url("../images/bckgrDesktopBase.png");
@@ -394,7 +400,7 @@ input[type=text] {
   flex-flow: column nowrap;
   align-items: center;
 }
-input[type='radio'] {
+#mainArea input[type='radio'] {
   display: none;
 }
 input[type='radio'] + label {
@@ -613,4 +619,99 @@ input[type="radio"]:hover + label {
   border-bottom: 1px solid rgb(247, 207, 63);
   border-left: 1px solid rgb(240, 77, 77);
   padding: 20px 10px;
+}
+
+/*--------------------*/
+/*    Introduction    */
+/*--------------------*/
+
+#introduction {
+  display: block;
+  height: 85vh;
+  background-image: url("../images/bckgrDesktopBase.png");
+  background-size: 600 auto;
+  background-position: left top;
+  background-repeat: repeat-y;
+  display: flex;
+  justify-content: center;
+}
+#introduction .mainIntro {
+  width: inherit;
+  height: inherit;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 8px 8px rgba(255, 255, 255, 0.8);
+  margin: 0 20px;
+  text-align: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+#introduction .mainIntro #introRadio {
+  position: absolute;
+  width: 70px;
+}
+#introduction .mainIntro #introRadio > input {
+  opacity: 0;
+  position: absolute;
+}
+#introduction .mainIntro #introRadio > span {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+#introduction .mainIntro #introRadio .checkmark:hover {
+  background-color: black;
+}
+#introduction .mainIntro #introRadio input:checked ~ .checkmark {
+  background-color: blue;
+}
+#introduction .mainIntro .introStepOne #introInput > button {
+  padding: 10px;
+  display: block;
+  margin: 0 auto;
+  width: 200px;
+  background-color: hsl(0, 98%, 63%);
+  color: white;
+  font-size: 1.4rem;
+}
+#introduction .mainIntro h2 {
+  font-size: 2.2rem;
+}
+#introduction .mainIntro .introStepOne {
+  background-color: white;
+  height: 400px;
+}
+#introduction .mainIntro .introStepOne p {
+  margin: 4em;
+}
+#introduction .mainIntro .introStepOne .card {
+  margin: 0 auto;
+}
+#introduction .mainIntro .introStepOne .card .objective .topTriangle > p {
+  animation: introCard 2s linear 0s alternate infinite;
+  overflow: auto;
+}
+#introduction .mainIntro .introStepOne .card .objective .topTriangle {
+  animation: introCardFlip 2s linear 0s alternate infinite;
+  transform-origin: 50% 0;
+}
+@keyframes introCard {
+  from {
+    height: 50px;
+  }
+  to {
+    height: 160px;
+  }
+}
+@keyframes introCardFlip {
+  from {
+    transform: rotateX(0deg);
+  }
+  to {
+    transform: rotateX(50deg);
+  }
 }

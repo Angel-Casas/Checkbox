@@ -33,13 +33,13 @@
         </div>
         <nav id="mainNav">
           <ul>
-            <li><a href="#">Introduction</a></li>
-            <li><a href="#">Main</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href=".introduction" name="introduction">Introduction</a></li>
+            <li><a href="#mainArea" name="mainArea">Main</a></li>
+            <li><a href="#about" name="about">About</a></li>
           </ul>
         </nav>
       </header>
-      <section>
+      <section id="mainArea">
         <div class="reward-frame">
           <div class="reward-dialog">
             <div class="reward-header">
@@ -119,6 +119,34 @@
       <footer>
 
       </footer>
+      <div id="introduction">
+        <div class="mainIntro">
+          <label class="radioContainer">
+            <input type="radio" checked="checked" name="radioIntroOne">
+            <span class="checkmark"></span>
+          </label>
+          <label class="radioContainer">
+            <input type="radio" checked="checked" name="radioIntroOne">
+            <span class="checkmark"></span>
+          </label>
+          <label class="radioContainer">
+            <input type="radio" checked="checked" name="radioIntroOne">
+            <span class="checkmark"></span>
+          </label>
+          <div class="introStepOne">
+            <h2>Write down an Objective</h2>
+            <form id="introInput">
+              <input type="text" id="introEntry" maxlength="25">
+              <button id="introPostIt" type="button">Create</button>
+            </form>
+            <p>A card will be created with your Objective, this is the objective you want to accomplish or want your family or friends to achieve.</p>
+          </div>
+          <div class="introStepTwo"></div>
+          <div class="introStepThree"></div>
+          <div class="introCard"></div>
+        </div>
+      </div>
+      <div id="about"></div>
     </div>
     <script>
       // Transition from presentation to blog:
@@ -133,9 +161,37 @@
                wrapper.style.animation = "fadein 2s forwards";
             },2000);
             loader.style.animation="fadeout 2s forwards";
-          }, 4000);
+          }, 1000);
         }
       }
+      // Navigation pages
+var anchors = document.getElementsByTagName('a');
+for (var i = 0; i<anchors.length; i++) {
+  anchors[i].addEventListener('click', handler, false);
+}
+function handler(event) {
+  var mainArea = document.getElementById("mainArea");
+  var introduction = document.getElementById("introduction");
+  let about = document.getElementById("about");
+  event.preventDefault();
+  if (this.name == "introduction") {
+    introduction.style.display = "block";
+    mainArea.style.display = "none";
+    about.style.display = "none";
+    return;
+  }
+  else if (this.name == "mainArea") {
+    introduction.style.display = "none";
+    mainArea.style.display = "block";
+    about.style.display = "none";
+    return;
+  }
+  else if (this.name == "about") {
+    introduction.style.display = "none";
+    mainArea.style.display = "none";
+    about.style.display = "block";
+  }
+}
     </script>
     <script type="text/javascript" src="javascript.js"></script>
   </body>
