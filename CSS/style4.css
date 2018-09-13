@@ -1,5 +1,13 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
 #wrapper {
-  border: 1px solid red;
   width: 100%;
   height: 100vh;
   box-sizing: border-box;
@@ -7,6 +15,66 @@
   background-position: left top;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+#main nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-orientation: upright;
+  writing-mode: vertical-rl;
+  margin: 1em 1.5em;
+}
+#main nav ul {
+  display: flex;
+  flex-flow: row nowrap;
+  transition: height 1s ease-in;
+  height: 100px;
+}
+#main nav ul li {
+  padding: 1.5em 1em;
+  font-size: 1.2rem;
+  color: rgb(58, 39, 82);
+  font-weight: bold;
+  max-height: 0;
+  background-color: rgba(255, 255, 255, .4);
+  transition: border-bottom .5s ease-in-out;
+}
+#main nav ul li:hover {
+  color: white;
+  transition: color .2s ease-in;
+}
+#main nav ul > li::after {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 0;
+    background: rgb(58, 39, 82);
+    transition: width .3s;
+}
+#main nav ul > li:hover::after {
+    height: 100%;
+    transition: height .3s;
+}
+#main nav ul .icon {
+  display: none;
+  background-color: rgba(255, 255, 255, .4);
+  padding: 1.5em 1em;
+}
+#main nav ul .icon:hover {
+  outline: 1px solid rgb(58, 39, 82);
+}
+#main nav ul .maxHeight {
+  max-height: 200px;
+}
+@media screen and (max-height: 600px) {
+  #main nav ul li {
+    display: none;
+    font-size: .8rem;
+  }
+  #main nav ul .icon {
+    display: block;
+  }
 }
 @media (min-width: 800px) {
   #wrapper {
