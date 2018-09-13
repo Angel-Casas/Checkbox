@@ -1,0 +1,17 @@
+#wrapper {
+  border: 1px solid red;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  background: url("../images/CheckMobile.png");
+  background-position: left top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@media (min-width: 800px) {
+  #wrapper {
+    background: url("../images/CheckDesktop.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
