@@ -7,13 +7,18 @@ a {
   text-decoration: none;
   color: inherit;
 }
+body {
+  background-color: rgb(33, 35, 73);
+  overflow-y: scroll;
+  height :200vh;
+}
 #wrapper {
   width: 100%;
   height: 100vh;
   box-sizing: border-box;
-  background: url("../images/CheckMobile.png");
+  background: url("../images/checkMobile.png");
   background-position: left top;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
 }
 
@@ -24,21 +29,25 @@ a {
   text-orientation: upright;
   writing-mode: vertical-rl;
   margin: 1em 1.5em;
+  display: flex;
+  flex-flow: row nowrap;
 }
 #main nav ul {
   display: flex;
   flex-flow: row nowrap;
-  transition: height 1s ease-in;
-  height: 100px;
+  padding: 0;
+  margin: 0;
+  height: 0px;
+  transition: height .5s ease-in;
+  overflow: hidden;
 }
 #main nav ul li {
   padding: 1.5em 1em;
   font-size: 1.2rem;
   color: rgb(58, 39, 82);
   font-weight: bold;
-  max-height: 0;
   background-color: rgba(255, 255, 255, .4);
-  transition: border-bottom .5s ease-in-out;
+  transition: all .5s ease-in-out;
 }
 #main nav ul li:hover {
   color: white;
@@ -56,29 +65,25 @@ a {
     height: 100%;
     transition: height .3s;
 }
-#main nav ul .icon {
+#main nav .icon {
   display: none;
   background-color: rgba(255, 255, 255, .4);
   padding: 1.5em 1em;
 }
-#main nav ul .icon:hover {
-  outline: 1px solid rgb(58, 39, 82);
-}
-#main nav ul .maxHeight {
-  max-height: 200px;
+#main nav .icon:hover {
+  color: white;
 }
 @media screen and (max-height: 600px) {
   #main nav ul li {
-    display: none;
     font-size: .8rem;
   }
-  #main nav ul .icon {
+  #main nav .icon {
     display: block;
   }
 }
-@media (min-width: 800px) {
+@media (min-width: 669px) {
   #wrapper {
-    background: url("../images/CheckDesktop.png");
+    background: url("../images/checkDesktop.png");
     background-size: contain;
     background-repeat: no-repeat;
   }
