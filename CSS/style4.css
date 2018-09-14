@@ -8,7 +8,6 @@ a {
   color: inherit;
 }
 body {
-  background-color: rgb(33, 35, 73);
   overflow-y: scroll;
   height :200vh;
   z-index: 0;
