@@ -10,7 +10,7 @@
 </head>
 <body>
   <div id="wrapper">
-    <div id="main">
+    <section id="main">
       <nav>
         <a href="javascript:void(0);" class="icon" onclick="collapsibleNavbar()">&#9776;</a>
         <ul id="mainUlNav">
@@ -19,7 +19,43 @@
           <li class="collapsible"><a href="">About</a></li>
         </ul>
       </nav>
-    </div>
+      <div id="bckgr"></div>
+      <div id="mainFrame">
+        <h2>create your checkbox</h2>
+        <form id="text-box">
+        <input type="text" id="entry" maxlength="25">
+        <div class="time-range">
+          <input class="periods" type="radio" name="selector" id="Daily" value="1"><label for="Daily">Day</label>
+          <input class="periods" type="radio" name="selector" id="Weekly" value="7" checked><label for="Weekly">Week</label>
+          <input class="periods" type="radio" name="selector" id="Monthly" value="30"><label for="Monthly">Month</label>
+        </div>
+        <button id="postIt" type="button">Create</button>
+        </form>
+        <section id="mainBox">
+          <div class="card">
+            <div class="objective">
+              <button class="rewardAsk" type="button" name="reward-ask">R</button>
+              <div class="topTriangle">
+                <p>Lorem ipsum dolor sit amet, consecteturs</p>
+              </div>
+              <div class="bottomTriangle"></div>
+            </div>
+            <div class="paperCard">
+              <time>25/2/2018 12:32:32</time>
+              <p>Lorem ipsum dolor sit amet, consecteturs</p>
+              <span class="cardReward">0.01XBT</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="paperCard">
+              <time>25/2/2018 12:32:32</time>
+              <p>Lorem ipsum dolor sit amet, consecteturs</p>
+              <span class="cardReward">0.01XBT</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
   </div>
   <script>
     function collapsibleNavbar() {
