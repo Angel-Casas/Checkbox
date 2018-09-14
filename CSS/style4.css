@@ -38,6 +38,8 @@ body {
   width: 50px;
   display: flex;
   flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
 }
 #main nav ul {
   display: flex;
@@ -49,10 +51,9 @@ body {
   overflow: hidden;
 }
 #main nav ul li {
-  padding: 1.5em 1em;
+  padding: 1em .5em;
   font-size: 1.2rem;
   color: rgb(58, 39, 82);
-  font-weight: bold;
   background-color: rgba(255, 255, 255, .4);
   transition: all .5s ease-in-out;
 }
@@ -75,12 +76,12 @@ body {
 #main nav .icon {
   display: none;
   background-color: rgba(255, 255, 255, .4);
-  padding: 1.5em 1em;
+  padding: 1em .5em;
 }
 #main nav .icon:hover {
   color: white;
 }
-@media screen and (max-height: 600px) {
+@media screen and (max-height: 650px) {
   #main nav ul {
     height: 0;
   }
@@ -96,5 +97,6 @@ body {
     background: url("../images/checkDesktop.png");
     background-size: contain;
     background-repeat: no-repeat;
+    border: 1px solid red;
   }
 }
