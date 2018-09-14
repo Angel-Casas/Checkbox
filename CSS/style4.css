@@ -11,6 +11,7 @@ body {
   background-color: rgb(33, 35, 73);
   overflow-y: scroll;
   height :200vh;
+  z-index: 0;
 }
 #wrapper {
   width: 100%;
@@ -20,6 +21,7 @@ body {
   background-position: left top;
   background-size: contain;
   background-repeat: no-repeat;
+  z-index: 1;
 }
 
 #main nav {
@@ -29,6 +31,7 @@ body {
   text-orientation: upright;
   writing-mode: vertical-rl;
   margin: 1em 1.5em;
+  width: 50px;
   display: flex;
   flex-flow: row nowrap;
 }
