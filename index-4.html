@@ -23,16 +23,16 @@
       <div id="stars"></div>
       <div id="mainFrame">
         <h2>create</h2>
-        <form id="text-box">
-        <input type="text" id="entry" maxlength="25">
-        <div class="time-range">
-          <input class="periods" type="radio" name="selector" id="Daily" value="1"><label for="Daily">Day</label>
-          <input class="periods" type="radio" name="selector" id="Weekly" value="7" checked><label for="Weekly">Week</label>
-          <input class="periods" type="radio" name="selector" id="Monthly" value="30"><label for="Monthly">Month</label>
-        </div>
-        <button id="postIt" type="button">Create</button>
+        <form class="createForm">
+          <input type="text" id="entry" maxlength="25">
+          <div class="time-range">
+            <input class="periods" type="radio" name="selector" id="Daily" value="1"><label for="Daily">Day</label>
+            <input class="periods" type="radio" name="selector" id="Weekly" value="7" checked><label for="Weekly">Week</label>
+            <input class="periods" type="radio" name="selector" id="Monthly" value="30"><label for="Monthly">Month</label>
+          </div>
+          <button id="postIt" type="button">Create</button>
         </form>
-        <section id="mainBox">
+        <section class="mainBox">
           <div class="card">
             <div class="objective">
               <button class="rewardAsk" type="button" name="reward-ask">R</button>

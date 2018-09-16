@@ -38,7 +38,7 @@ body {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-
+  border: 1px solid red;
 }
 #main nav ul {
   display: flex;
@@ -110,8 +110,8 @@ body {
   background-color: rgb(33, 35, 73);
   margin-top: 0.2em;
   display: grid;
-  grid-template-columns: 100px 2fr 2fr;
-  grid-template-rows: 250px 3fr 2fr 1fr;
+  grid-template-columns: 100px 1fr 2fr;
+  grid-template-rows: 125px 125px 1fr 2fr;
   grid-column-gap: 1em;
   grid-row-gap: 2em;
 }
@@ -121,9 +121,26 @@ body {
   text-transform: uppercase;
   padding: .5em 0;
   margin: .1em 1.5em;
-  border-left: 1px solid white;
+  border-right: 1px solid white;
   text-orientation: upright;
   writing-mode: vertical-rl;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+#mainFrame .createForm {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  justify-self: start;
+}
+#mainFrame .mainBox {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
 }
 @media screen and (max-height: 650px) {
   #main nav ul {
@@ -147,5 +164,11 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     padding-top: 56.25%;
+  }
+  #mainFrame .mainBox {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
   }
 }
