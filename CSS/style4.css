@@ -170,7 +170,7 @@ body {
 #mainFrame .createForm  button {
   padding: 10px;
   width: 50%;
-  background: transparent;
+  background: rgb(33, 35, 73);
   color: white;
   border-radius: 20px;
   font-size: 1.4rem;
