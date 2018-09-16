@@ -32,7 +32,7 @@ body {
   right: 0;
   text-orientation: upright;
   writing-mode: vertical-rl;
-  margin: 1em .5em;
+  margin: .5em .5em;
   padding: 0;
   width: 45px;
   display: flex;
@@ -51,7 +51,8 @@ body {
   overflow: hidden;
 }
 #main nav ul li {
-  padding: 1em .5em;
+  padding: .5em .5em;
+  margin: 0;
   font-size: 1.2rem;
   width: 100%;
   color: white;
@@ -109,7 +110,7 @@ body {
   background-color: rgb(33, 35, 73);
   margin-top: 0.2em;
   display: grid;
-  grid-template-columns: 60px minmax(100px, 300px) 2fr;
+  grid-template-columns: 60px minmax(100px, 300px) minmax(100px, 200px) 50px;
   grid-template-rows: 125px 125px 100px minmax(100px, 200px);
   grid-column-gap: 1em;
   grid-row-gap: 2em;
@@ -117,17 +118,43 @@ body {
 }
 
 #mainFrame h2 {
+  position: relative;
+  top: -15px;
   font-size: 2.2rem;
   text-transform: uppercase;
   padding: .5em 0;
   margin: .1em 1.5em;
-  border-right: 1px solid white;
+  border-right: 2px solid white;
   text-orientation: upright;
   writing-mode: vertical-rl;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 3;
+}
+#mainFrame > p {
+  position: relative;
+  color: rgb(33, 35, 73);
+  padding: 1em;
+  text-align: center;
+  border-radius: 20px;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  background-color: rgba(255, 255, 255, .6);
+}
+#mainFrame > p::after {
+  content: "";
+  position: absolute;
+  bottom: -40px;
+  left: 30%;
+  width: 0;
+  height: 0;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-top: 40px solid rgba(255, 255, 255, .6);
+  z-index: 1;
 }
 #mainFrame .createForm {
   grid-column-start: 2;
@@ -138,8 +165,9 @@ body {
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
-  background: rgba(255, 255, 255, 0.6);
-  padding: 25px;
+  background: rgba(255, 255, 255, .6);
+  padding: 1em;
+  min-width: 250px;
   border-radius: 20px;
 }
 #mainFrame .createForm #entry {
@@ -148,6 +176,10 @@ body {
   border-radius: 5px;
   line-height: 30px;
 }
+#mainFrame .createForm .time-range {
+  display: flex;
+  flex-flow: row nowrap;
+}
 #mainFrame .createForm input[type='radio'] {
   display: none;
 }
@@ -155,8 +187,9 @@ body {
   color: white;
   background: rgb(221, 182, 78);
   padding: 10px;
+  margin: .2em;
+  min-width: 60px;
   border-radius: 3px;
-  width: 4.2rem;
   cursor: pointer;
 }
 #mainFrame .createForm input[type="radio"]:checked + label {
@@ -184,8 +217,8 @@ body {
   border: 2px solid rgb(221, 182, 78);
 }
 #mainFrame .mainBox {
-  grid-column-start: 2;
-  grid-column-end: 3;
+  grid-column-start: 3;
+  grid-column-end: 4;
   grid-row-start: 4;
   grid-row-end: 5;
   justify-self: center;
@@ -236,14 +269,17 @@ body {
   padding: .5em 0;
 }
 #main #rewardFrame h2 {
+  position: relative;
+  top: -15px;
   font-size: 2.2rem;
   text-transform: uppercase;
   padding: .5em 0;
   margin: .1em 1.5em;
-  border-right: 1px solid white;
+  border-right: 2px solid white;
   text-orientation: upright;
   writing-mode: vertical-rl;
-  padding: 0 .1em;
+  margin: .1em 1.5em;
+  padding: .5em .1em;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
@@ -274,6 +310,12 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     padding-top: 56.25%;
+  }
+  #mainFrame > p {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
   }
   #mainFrame .mainBox {
     grid-column-start: 3;
