@@ -46,6 +46,40 @@
       </div>
       <div id="rewardFrame">
         <h2>reward</h2>
+        <p>Choose a reward for completing the task.</p>
+        <div class="rewardList">
+          <div class="rewardBox">
+            <div class="reward-list-cards">
+              <span>Gift Card #1</span>
+              <span>Gift Card #2</span>
+              <span>Gift Card #3</span>
+              <span>Gift Card #4</span>
+            </div>
+            <div class="reward-list-bitcoin">
+              <span>Bitcoin Payment</span>
+            </div>
+            <div class="reward-list-paypal">
+              <span>Pay with Paypal</span>
+              <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+              <!-- Identify your business so that you can collect the payments. -->
+              <input type="hidden" name="check" value="a.casas.lp@gmail.com">
+
+              <!-- Specify a Buy Now button. -->
+              <input type="hidden" name="cmd" value="_xclick">
+
+              <!-- Specify details about the item that buyers will purchase. -->
+              <input type="hidden" name="gift" value="custom amount">
+              <input type="hidden" name="amount" value="1.00">
+              <input type="hidden" name="currency_code" value="USD">
+
+              <!-- Display the payment button. -->
+              <input type="image" name="submit" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" alt="Buy Now">
+              <img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
