@@ -38,7 +38,6 @@ body {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
 }
 #main nav ul {
   display: flex;
@@ -105,13 +104,13 @@ body {
   background-repeat: no-repeat;
 }
 #main #mainFrame {
+  background-color: rgb(33, 35, 73);
   height: 100vh;
   color: white;
-  background-color: rgb(33, 35, 73);
   margin-top: 0.2em;
   display: grid;
-  grid-template-columns: 100px 1fr 2fr;
-  grid-template-rows: 125px 125px 1fr 2fr;
+  grid-template-columns: 60px 1fr 2fr;
+  grid-template-rows: 125px 125px 100px 100px 2fr;
   grid-column-gap: 1em;
   grid-row-gap: 2em;
 }
@@ -130,17 +129,75 @@ body {
   grid-row-end: 3;
 }
 #mainFrame .createForm {
+  height: 100%;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 2;
-  grid-row-end: 3;
-  justify-self: start;
+  grid-row-end: 4;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 25px;
+}
+#mainFrame .createForm #entry {
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  line-height: 30px;
+}
+#mainFrame .createForm input[type='radio'] {
+  display: none;
+}
+#mainFrame .createForm input[type='radio'] + label {
+  color: white;
+  background: rgb(221, 182, 78);
+  padding: 10px;
+  border-radius: 3px;
+  width: 4.2rem;
+  cursor: pointer;
+}
+#mainFrame .createForm input[type="radio"]:checked + label {
+  background: white;
+  border: 2px solid rgb(221, 182, 78);
+  color: rgb(221, 182, 78);
+}
+#mainFrame .createForm input[type="radio"]:hover + label {
+  background: white;
+  color: rgb(221, 182, 78);
+}
+#mainFrame .createForm  button {
+  padding: 10px;
+  width: 50%;
+  background: transparent;
+  color: white;
+  border-radius: 20px;
+  font-size: 1.4rem;
+  border: 2px solid white;
+}
+
+#mainFrame .createForm  button:hover {
+  color: rgb(221, 182, 78);
+  border: 2px solid rgb(221, 182, 78);
 }
 #mainFrame .mainBox {
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+#mainFrame .mainBox .card {
+  position: relative;
+  background-color: rgb(33, 35, 73);
+  border: 3px solid transparent;
+  border-radius: 20px;
+  border-image: linear-gradient(30deg, rgb(247, 159, 87), rgb(196, 2, 205));
+  border-image-slice: 1;
+  width: 200px;
+  height: 200px;
+  padding: 10px;
+  background-clip: padding-box;
 }
 @media screen and (max-height: 650px) {
   #main nav ul {
