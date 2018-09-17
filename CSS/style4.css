@@ -115,9 +115,8 @@ body {
   background-color: rgb(33, 35, 73);
   margin-top: 0.2em;
   display: grid;
-  grid-template-columns: 60px minmax(100px, 300px) minmax(100px, 200px) minmax(100px, 200px) 50px;
-  grid-template-rows: 125px 125px minmax(100px, 200px) minmax(100px, 200px) 50px;
-  grid-column-gap: .5em;
+  grid-template-columns: 70px 20px 250px 20px 70px;
+  grid-template-rows: 70px 100px 100px 200px 200px 50px;
   grid-row-gap: 2em;
   padding: .5em 0;
 }
@@ -140,33 +139,31 @@ body {
 #mainFrame > p {
   position: relative;
   color: white;
-  padding: 2em 1em;
-  width: 250px;
+  padding: 1em .7em;
   text-align: center;
   grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 #mainFrame > svg {
   position: relative;
   grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 #mainFrame .createForm {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
   background: rgba(255, 255, 255, .6);
   padding: 1em;
-  min-width: 250px;
   border-radius: 20px;
 }
 #mainFrame .createForm #entry {
@@ -218,16 +215,16 @@ body {
 #mainFrame .mainBox {
   grid-column-start: 3;
   grid-column-end: 4;
-  grid-row-start: 4;
-  grid-row-end: 5;
+  grid-row-start: 5;
+  grid-row-end: 6;
   justify-self: center;
 }
 #mainFrame .mainBox .card {
   position: relative;
   border-radius: 20px;
   background: linear-gradient(30deg, rgb(247, 159, 87), rgb(196, 2, 205));
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   padding: .2em;
 }
 #mainFrame .mainBox .card .objective {
@@ -260,9 +257,8 @@ body {
   background-color: rgb(33, 35, 73);
   margin-top: 0.2em;
   display: grid;
-  grid-template-columns: 60px minmax(100px, 300px) minmax(50px, 150px) minmax(50px, 150px) 50px;
-  grid-template-rows: 125px 125px 100px minmax(100px, 300px) 50px;
-  grid-column-gap: 1em;
+  grid-template-columns: 70px 20px 250px 20px 70px;
+  grid-template-rows: 70px 100px 100px 400px 70px;
   grid-row-gap: 2em;
   padding: .5em 0;
 }
@@ -276,8 +272,6 @@ body {
   border-right: 2px solid white;
   text-orientation: upright;
   writing-mode: vertical-rl;
-  margin: .1em 1.5em;
-  padding: .5em .1em;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
@@ -286,24 +280,23 @@ body {
 #rewardFrame > p {
   position: relative;
   color: white;
-  padding: 1em;
-  width: 250px;
+  padding: 1em .7em;
   text-align: center;
   grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 #rewardFrame > svg {
   grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 #rewardFrame .rewardList {
-  grid-column-start: 2;
-  grid-column-end: 5;
-  grid-row-start: 3;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 4;
   grid-row-end: 5;
   background: linear-gradient(30deg, rgb(247, 159, 87), rgb(196, 2, 205));
   border-radius: 20px;
@@ -341,8 +334,8 @@ body {
   background-color: rgb(33, 35, 73);
   margin-top: 0.2em;
   display: grid;
-  grid-template-columns: 60px minmax(100px, 300px) minmax(100px, 150px) minmax(50px, 150px) 50px;
-  grid-template-rows: 125px 125px 100px minmax(100px, 300px) 50px;
+  grid-template-columns: 70px 20px 250px 20px 70px;
+  grid-template-rows: 70px 100px 100px minmax(100px, 300px) 70px;
   grid-column-gap: 1em;
   grid-row-gap: 2em;
   padding: .5em 0;
@@ -371,15 +364,15 @@ body {
   width: 250px;
   text-align: center;
   grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 #completeFrame > svg {
   grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 
 
