@@ -260,7 +260,7 @@ body {
   background-color: rgb(33, 35, 73);
   margin-top: 0.2em;
   display: grid;
-  grid-template-columns: 60px minmax(100px, 300px) minmax(100px, 150px) minmax(50px, 150px) 50px;
+  grid-template-columns: 60px minmax(100px, 300px) minmax(50px, 150px) minmax(50px, 150px) 50px;
   grid-template-rows: 125px 125px 100px minmax(100px, 300px) 50px;
   grid-column-gap: 1em;
   grid-row-gap: 2em;
@@ -301,8 +301,8 @@ body {
   grid-row-end: 2;
 }
 #rewardFrame .rewardList {
-  grid-column-start: 1;
-  grid-column-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 5;
   grid-row-start: 3;
   grid-row-end: 5;
   background: linear-gradient(30deg, rgb(247, 159, 87), rgb(196, 2, 205));
