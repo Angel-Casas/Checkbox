@@ -115,7 +115,7 @@ body {
   background-color: rgb(33, 35, 73);
   margin-top: 0.2em;
   display: grid;
-  grid-template-columns: 70px 20px 250px 20px 70px;
+  grid-template-columns: 70px 20px 200px 20px 70px;
   grid-template-rows: 70px 100px 100px 200px 200px 50px;
   grid-row-gap: 2em;
   padding: .5em 0;
@@ -171,6 +171,7 @@ body {
   border: 1px solid white;
   border-radius: 5px;
   line-height: 30px;
+  width: 150px;
 }
 #mainFrame .createForm .time-range {
   display: flex;
@@ -257,8 +258,8 @@ body {
   background-color: rgb(33, 35, 73);
   margin-top: 0.2em;
   display: grid;
-  grid-template-columns: 70px 20px 250px 20px 70px;
-  grid-template-rows: 70px 100px 100px 400px 70px;
+  grid-template-columns: 70px 20px 200px 20px 70px;
+  grid-template-rows: 70px 100px 100px minmax(400px, 600px) 70px;
   grid-row-gap: 2em;
   padding: .5em 0;
 }
@@ -334,7 +335,7 @@ body {
   background-color: rgb(33, 35, 73);
   margin-top: 0.2em;
   display: grid;
-  grid-template-columns: 70px 20px 250px 20px 70px;
+  grid-template-columns: 70px 20px 200px 20px 70px;
   grid-template-rows: 70px 100px 100px minmax(100px, 300px) 70px;
   grid-column-gap: 1em;
   grid-row-gap: 2em;
