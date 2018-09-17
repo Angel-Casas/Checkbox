@@ -23,6 +23,10 @@
       <div id="stars"></div>
       <div id="mainFrame">
         <h2>create</h2>
+        <svg height="200" width="250">
+             <path d="M0 50 L0 0 L 50 0" stroke="white" stroke-width="2" fill="none"></path>
+             <path d="M250 150 L250 200 L200 200" stroke="white" stroke-width="2" fill="none"></path>
+        </svg>
         <p>Write down your objective and set a time-limit to complete the task.</p>
         <form class="createForm">
           <input type="text" id="entry" maxlength="25">
@@ -46,6 +50,10 @@
       </div>
       <div id="rewardFrame">
         <h2>reward</h2>
+        <svg height="200" width="250">
+             <path d="M0 50 L0 0 L 50 0" stroke="white" stroke-width="2" fill="none"></path>
+             <path d="M250 150 L250 200 L200 200" stroke="white" stroke-width="2" fill="none"></path>
+        </svg>
         <p>Choose a reward for completing the task.</p>
         <div class="rewardList">
           <div class="rewardBox">
@@ -88,7 +96,7 @@
       let li = document.getElementsByClassName("collapsible");
       let ul = document.getElementById("mainUlNav");
       if (!ul.style.height) {
-        ul.style.height = "378px";
+        ul.style.height = "400px";
       }
       else {
         ul.style.height = null;

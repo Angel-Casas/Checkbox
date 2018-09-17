@@ -11,6 +11,7 @@ a {
 body {
   background-image: linear-gradient(30deg, rgb(247, 159, 87), rgb(196, 2, 205));
   overflow-y: scroll;
+  overflow-x: hidden;
   z-index: 0;
 }
 #wrapper {
@@ -39,6 +40,8 @@ body {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
+  border: 1px solid red;
+
 }
 #main nav ul {
   display: flex;
@@ -110,9 +113,9 @@ body {
   background-color: rgb(33, 35, 73);
   margin-top: 0.2em;
   display: grid;
-  grid-template-columns: 60px minmax(100px, 300px) minmax(100px, 200px) 50px;
-  grid-template-rows: 125px 125px 100px minmax(100px, 200px) 50px;
-  grid-column-gap: 1em;
+  grid-template-columns: 60px minmax(100px, 300px) minmax(100px, 200px) minmax(100px, 200px) 50px;
+  grid-template-rows: 125px 125px minmax(100px, 200px) minmax(100px, 200px) 50px;
+  grid-column-gap: .5em;
   grid-row-gap: 2em;
   padding: .5em 0;
 }
@@ -134,32 +137,26 @@ body {
 }
 #mainFrame > p {
   position: relative;
-  color: rgb(33, 35, 73);
+  color: white;
   padding: 1em;
+  width: 250px;
   text-align: center;
-  border-radius: 20px;
   grid-column-start: 2;
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
-  background-color: rgba(255, 255, 255, .6);
 }
-#mainFrame > p::after {
-  content: "";
-  position: absolute;
-  bottom: -40px;
-  left: 30%;
-  width: 0;
-  height: 0;
-  border-left: 40px solid transparent;
-  border-right: 40px solid transparent;
-  border-top: 40px solid rgba(255, 255, 255, .6);
-  z-index: 1;
+#mainFrame > svg {
+  position: relative;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 #mainFrame .createForm {
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 2;
+  grid-row-start: 3;
   grid-row-end: 4;
   display: flex;
   flex-flow: column nowrap;
@@ -261,7 +258,7 @@ body {
   background-color: rgb(33, 35, 73);
   margin-top: 0.2em;
   display: grid;
-  grid-template-columns: 60px minmax(100px, 300px) minmax(100px, 150px) minmax(75px, 150px) 50px;
+  grid-template-columns: 60px minmax(100px, 300px) minmax(100px, 150px) minmax(50px, 150px) 50px;
   grid-template-rows: 125px 125px 100px minmax(100px, 300px) 50px;
   grid-column-gap: 1em;
   grid-row-gap: 2em;
@@ -286,32 +283,26 @@ body {
 }
 #rewardFrame > p {
   position: relative;
-  color: rgb(33, 35, 73);
+  color: white;
   padding: 1em;
+  width: 250px;
   text-align: center;
   border-radius: 20px;
   grid-column-start: 2;
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
-  background-color: rgba(255, 255, 255, .6);
 }
-#rewardFrame > p::after {
-  content: "";
-  position: absolute;
-  bottom: -40px;
-  left: 30%;
-  width: 0;
-  height: 0;
-  border-left: 40px solid transparent;
-  border-right: 40px solid transparent;
-  border-top: 40px solid rgba(255, 255, 255, .6);
-  z-index: 1;
+#rewardFrame > svg {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 #rewardFrame .rewardList {
   grid-column-start: 2;
   grid-column-end: 5;
-  grid-row-start: 2;
+  grid-row-start: 3;
   grid-row-end: 5;
   background: linear-gradient(30deg, rgb(247, 159, 87), rgb(196, 2, 205));
   border-radius: 20px;
@@ -375,16 +366,22 @@ body {
     grid-row-start: 1;
     grid-row-end: 2;
   }
-  #mainFrame .mainBox {
-    grid-column-start: 3;
+  #mainFrame .createForm {
+    grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 3;
     grid-row-end: 4;
+}
+  #mainFrame .mainBox {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 4;
+    grid-row-end: 5;
   }
   #rewardFrame .rewardList {
     grid-column-start: 2;
     grid-column-end: 5;
-    grid-row-start: 2;
+    grid-row-start: 3;
     grid-row-end: 5;
   }
 }
