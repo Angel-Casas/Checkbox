@@ -35,17 +35,17 @@ body {
   writing-mode: vertical-rl;
   margin: .5em .5em;
   padding: 0;
-  width: 45px;
+  width: 40px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
 
 }
 #main nav ul {
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
   padding: 0;
   margin: 0;
   height: 100%;
@@ -53,10 +53,10 @@ body {
   transition: height .5s ease-in-out;
   overflow: hidden;
 }
-#main nav ul li {
-  padding: .5em .5em;
+#main nav ul li:not(:nth-child(1)) {
   margin: 0;
-  font-size: 1.2rem;
+  padding: .6em .5em;
+  font-size: .8rem;
   width: 100%;
   color: white;
   background-color: rgba(255, 255, 255, .4);
@@ -66,7 +66,7 @@ body {
   color: rgb(33, 35, 73);
   transition: color .2s ease-in;
 }
-#main nav ul > li::after {
+#main nav ul > li:not(:nth-child(1))::after {
     content: '';
     display: block;
     width: 2px;
@@ -78,17 +78,19 @@ body {
     height: 100%;
     transition: height .3s;
 }
-#main nav .icon {
+#main nav ul .icon {
+  box-sizing: border-box;
   display: none;
   background-color: rgba(255, 255, 255, .4);
-  padding: 1em 0;
-  margin: 0;
   text-align: center;
-  line-height: 45px;
-  width: 45px;
+  line-height: 40px;
+  height: 45px;
+  width: 40px;
+  padding: 0;
+  margin: 0;
 }
 #main nav .icon:hover {
-  color: white;
+  color: rgb(33, 35, 73);
 }
 #main #bckgr {
   width: 100%;
@@ -138,7 +140,7 @@ body {
 #mainFrame > p {
   position: relative;
   color: white;
-  padding: 1em;
+  padding: 2em 1em;
   width: 250px;
   text-align: center;
   grid-column-start: 2;
@@ -287,7 +289,6 @@ body {
   padding: 1em;
   width: 250px;
   text-align: center;
-  border-radius: 20px;
   grid-column-start: 2;
   grid-column-end: 4;
   grid-row-start: 1;
@@ -300,8 +301,8 @@ body {
   grid-row-end: 2;
 }
 #rewardFrame .rewardList {
-  grid-column-start: 2;
-  grid-column-end: 5;
+  grid-column-start: 1;
+  grid-column-end: 4;
   grid-row-start: 3;
   grid-row-end: 5;
   background: linear-gradient(30deg, rgb(247, 159, 87), rgb(196, 2, 205));
@@ -336,15 +337,60 @@ body {
 #rewardFrame .rewardList .rewardBox .reward-list-cards > *:hover {
   outline: 1px solid white;
 }
+#main #completeFrame {
+  background-color: rgb(33, 35, 73);
+  margin-top: 0.2em;
+  display: grid;
+  grid-template-columns: 60px minmax(100px, 300px) minmax(100px, 150px) minmax(50px, 150px) 50px;
+  grid-template-rows: 125px 125px 100px minmax(100px, 300px) 50px;
+  grid-column-gap: 1em;
+  grid-row-gap: 2em;
+  padding: .5em 0;
+}
+#completeFrame > h2 {
+  position: relative;
+  top: -15px;
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  padding: .5em 0;
+  margin: .1em 1.5em;
+  border-right: 2px solid white;
+  text-orientation: upright;
+  writing-mode: vertical-rl;
+  margin: .1em 1.5em;
+  padding: .5em .1em;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+#completeFrame > p {
+  position: relative;
+  color: white;
+  padding: 1em;
+  width: 250px;
+  text-align: center;
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+#completeFrame > svg {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
 
 @media screen and (max-height: 650px) {
   #main nav ul {
-    height: 0;
+    height: 45px;
   }
   #main nav ul li {
     font-size: .8rem;
   }
-  #main nav .icon {
+  #main nav ul .icon {
     display: block;
   }
 }

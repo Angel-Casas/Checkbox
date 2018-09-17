@@ -12,8 +12,8 @@
   <div id="wrapper">
     <section id="main">
       <nav>
-        <a href="javascript:void(0);" class="icon" onclick="collapsibleNavbar()">&#9776;</a>
         <ul id="mainUlNav">
+          <li><a href="javascript:void(0);" class="icon" onclick="collapsibleNavbar()">&#9776;</a></li>
           <li class="collapsible"><a href="">Introduction</a </li>
           <li class="collapsible"><a href="">Login</a></li>
           <li class="collapsible"><a href="">About</a></li>
@@ -24,8 +24,8 @@
       <div id="mainFrame">
         <h2>create</h2>
         <svg height="200" width="250">
-             <path d="M0 50 L0 0 L 50 0" stroke="white" stroke-width="2" fill="none"></path>
-             <path d="M250 150 L250 200 L200 200" stroke="white" stroke-width="2" fill="none"></path>
+             <path d="M0 75 L0 0 L 50 0" stroke="white" stroke-width="2" fill="none"></path>
+             <path d="M250 125 L250 200 L200 200" stroke="white" stroke-width="2" fill="none"></path>
         </svg>
         <p>Write down your objective and set a time-limit to complete the task.</p>
         <form class="createForm">
@@ -49,10 +49,10 @@
         </section>
       </div>
       <div id="rewardFrame">
-        <h2>reward</h2>
+        <h2>Reward</h2>
         <svg height="200" width="250">
-             <path d="M0 50 L0 0 L 50 0" stroke="white" stroke-width="2" fill="none"></path>
-             <path d="M250 150 L250 200 L200 200" stroke="white" stroke-width="2" fill="none"></path>
+             <path d="M0 75 L0 0 L 50 0" stroke="white" stroke-width="2" fill="none"></path>
+             <path d="M250 125 L250 200 L200 200" stroke="white" stroke-width="2" fill="none"></path>
         </svg>
         <p>Choose a reward for completing the task.</p>
         <div class="rewardList">
@@ -89,17 +89,26 @@
           </div>
         </div>
       </div>
+      <div id="completeFrame">
+        <h2>Complete</h2>
+        <p>Check the complete box to allow the creator know you finished. <br>
+        Once the creator approves it was indeed complete the reward will be sent.</p>
+        <svg height="200" width="250">
+             <path d="M0 75 L0 0 L 50 0" stroke="white" stroke-width="2" fill="none"></path>
+             <path d="M250 125 L250 200 L200 200" stroke="white" stroke-width="2" fill="none"></path>
+        </svg>
+      </div>
     </section>
   </div>
   <script>
     function collapsibleNavbar() {
       let li = document.getElementsByClassName("collapsible");
       let ul = document.getElementById("mainUlNav");
-      if (!ul.style.height) {
+      if (ul.style.height == "45px") {
         ul.style.height = "400px";
       }
       else {
-        ul.style.height = null;
+        ul.style.height = "45px";
       }
     }
   </script>
