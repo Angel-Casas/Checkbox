@@ -56,14 +56,14 @@ body {
 #main nav ul li:not(:nth-child(1)) {
   margin: 0;
   padding: .6em .5em;
-  font-size: .8rem;
+  font-size: .9rem;
   width: 100%;
-  color: white;
-  background-color: rgba(255, 255, 255, .4);
+  color: rgb(33, 35, 78);
+  background-color: rgba(255, 255, 255, .3);
   transition: all .5s ease-in-out;
 }
 #main nav ul li:hover {
-  color: rgb(33, 35, 73);
+  color: white;
   transition: color .2s ease-in;
 }
 #main nav ul > li:not(:nth-child(1))::after {
@@ -71,7 +71,7 @@ body {
     display: block;
     width: 2px;
     height: 0;
-    background: rgb(58, 39, 82);
+    background: white;
     transition: width .3s;
 }
 #main nav ul > li:hover::after {
@@ -81,7 +81,7 @@ body {
 #main nav ul .icon {
   box-sizing: border-box;
   display: none;
-  background-color: rgba(255, 255, 255, .4);
+  background-color: rgba(255, 255, 255, .3);
   text-align: center;
   line-height: 45px;
   height: 45px;
@@ -156,23 +156,32 @@ body {
 }
 #mainFrame .createForm {
   grid-column-start: 3;
-  grid-column-end: 4;
+  grid-column-end: 5;
   grid-row-start: 4;
   grid-row-end: 5;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
-  background: rgba(255, 255, 255, .6);
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
   padding: 1em;
-  border-radius: 20px;
+  border-radius: 3px;
 }
 #mainFrame .createForm #entry {
-  background-color: white;
-  border: 1px solid white;
+  background-color: rgb(33, 35, 78);
+  border: 1px solid rgb(221, 182, 78);
+  color: white;
   border-radius: 5px;
   line-height: 30px;
   width: 150px;
+  text-align: center;
+  font-weight: bold;
+  transition: box-shadow .1s ease-in;
+}
+#mainFrame .createForm #entry:hover {
+  box-shadow: 0 0 2px 2px rgb(221, 182, 78);
+  transition: box-shadow .1s ease-in;
 }
 #mainFrame .createForm .time-range {
   display: flex;
@@ -182,37 +191,42 @@ body {
   display: none;
 }
 #mainFrame .createForm input[type='radio'] + label {
-  color: white;
+  color: rgb(33, 35, 73);
   background: rgb(221, 182, 78);
   padding: 10px;
   margin: .2em;
   min-width: 50px;
   border-radius: 3px;
   cursor: pointer;
+  transition: all .2s ease-in;
 }
 #mainFrame .createForm input[type="radio"]:checked + label {
-  background: white;
+  background: rgb(33, 35, 73);
   border: 2px solid rgb(221, 182, 78);
   color: rgb(221, 182, 78);
 }
 #mainFrame .createForm input[type="radio"]:hover + label {
-  background: white;
+  background: rgb(33, 35, 78);
   color: rgb(221, 182, 78);
+  border: 2px solid rgb(221, 182, 78);
+  transition: all .2s ease-in;
 }
 #mainFrame .createForm  button {
   padding: .6rem;
   width: 60%;
-  background: rgb(33, 35, 73);
-  color: white;
+  background: rgb(33, 35, 78);
+  color: rgb(221, 182, 78);
   border-radius: 20px;
   text-transform: uppercase;
   font-size: 1.1rem;
-  border: 2px solid white;
+  border: 2px solid rgb(221, 182, 78);
+  transition: all .2s ease-in;
 }
 
 #mainFrame .createForm  button:hover {
-  color: rgb(221, 182, 78);
-  border: 2px solid rgb(221, 182, 78);
+  color: rgb(33, 35, 78);
+  background: rgb(221, 182, 78);
+  transition: all .2s ease-in;
 }
 #mainFrame .mainBox {
   grid-column-start: 3;
@@ -221,7 +235,7 @@ body {
   grid-row-end: 6;
   justify-self: center;
 }
-#mainFrame .mainBox .card {
+.card {
   position: relative;
   border-radius: 20px;
   background: linear-gradient(30deg, rgb(247, 159, 87), rgb(196, 2, 205));
@@ -229,7 +243,7 @@ body {
   height: 220px;
   padding: .2em;
 }
-#mainFrame .mainBox .card .objective {
+.card .objective {
   background-color: rgb(33, 35, 73);
   border-radius: 20px;
   height: 100%;
@@ -239,7 +253,7 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-#mainFrame .mainBox .card .objective button {
+.card .objective button {
   width: 75px;
   height: 30px;
   background: rgb(33, 35, 73);
@@ -247,11 +261,11 @@ body {
   border: 1px solid rgb(221, 182, 78);
   border-radius: 20px;
 }
-#mainFrame .mainBox .card .objective .rewardAsk:hover {
+.card .objective .rewardAsk:hover {
   background-color: rgb(221, 182, 78);
   color: rgb(33, 35, 73);
 }
-#mainFrame .mainBox .card .objective .cardCheck {
+.card .objective .cardCheck {
   display: none;
 }
 
@@ -297,7 +311,7 @@ body {
   grid-row-end: 3;
 }
 #rewardFrame .rewardList {
-  grid-column-start: 3;
+  grid-column-start: 2;
   grid-column-end: 4;
   grid-row-start: 4;
   grid-row-end: 5;
