@@ -58,13 +58,14 @@ body {
   padding: .6em .5em;
   font-size: .9rem;
   width: 100%;
-  color: rgb(33, 35, 78);
+  color: white;
   background-color: rgba(255, 255, 255, .3);
   transition: all .5s ease-in-out;
 }
 #main nav ul li:hover {
-  color: white;
+  color: rgb(33, 35, 78);
   transition: color .2s ease-in;
+  background: rgba(255, 255, 255, .5);
 }
 #main nav ul > li:not(:nth-child(1))::after {
     content: '';
@@ -235,6 +236,11 @@ body {
   grid-row-end: 6;
   justify-self: center;
 }
+#mainFrame .mainBox .card {
+  transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg);
+  width: 300px;
+  height: 300px;
+}
 .card {
   position: relative;
   border-radius: 20px;
@@ -392,14 +398,15 @@ body {
   position: relative;
   border-radius: 20px;
   background: linear-gradient(30deg, rgb(247, 159, 87), rgb(196, 2, 205));
-  width: 220px;
-  height: 220px;
   padding: .2em;
   grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 4;
   grid-row-end: 5;
   justify-self: center;
+  transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg);
+  width: 300px;
+  height: 300px;
 }
 #completeFrame .card .objective {
   background-color: rgb(33, 35, 73);
