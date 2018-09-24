@@ -242,6 +242,7 @@ body {
   height: 300px;
   box-shadow: 10px 7px 15px 10px rgba(0, 0, 0, .3);
   transition: transform .4s ease-in;
+  z-index: 1;
 }
 #mainFrame .mainBox .card,
 #mainFrame .mainBox .card .objective {
@@ -418,6 +419,7 @@ body {
   transition: transform .4s ease-in;
   width: 300px;
   height: 300px;
+  box-shadow: 10px 7px 15px 10px rgba(0, 0, 0, .3);
 }
 #completeFrame .card,
 #completeFrame .card .objective {
