@@ -240,6 +240,16 @@ body {
   transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg);
   width: 300px;
   height: 300px;
+  box-shadow: 10px 7px 15px 10px rgba(0, 0, 0, .3);
+  transition: transform .4s ease-in;
+}
+#mainFrame .mainBox .card,
+#mainFrame .mainBox .card .objective {
+  transform-style: preserve-3d;
+}
+#mainFrame .mainBox .card:hover {
+  transform: translate3d(0, 0, 50px);
+  transition: transform .4s ease-in;
 }
 .card {
   position: relative;
@@ -405,8 +415,17 @@ body {
   grid-row-end: 5;
   justify-self: center;
   transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg);
+  transition: transform .4s ease-in;
   width: 300px;
   height: 300px;
+}
+#completeFrame .card,
+#completeFrame .card .objective {
+  transform-style: preserve-3d;
+}
+#completeFrame .card:hover {
+  transform: translate3d(0, 0, 50px);
+  transition: transform .4s ease-in;
 }
 #completeFrame .card .objective {
   background-color: rgb(33, 35, 73);
