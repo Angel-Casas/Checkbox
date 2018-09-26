@@ -10,15 +10,15 @@
 </head>
 <body>
   <div id="wrapper">
+    <nav>
+      <ul id="mainUlNav">
+        <li><a href="javascript:void(0);" class="icon" onclick="collapsibleNavbar()">&#9776;</a></li>
+        <li class="collapsible"><a href="" name="introduction">Introduction</a </li>
+        <li class="collapsible"><a href="" name="home">Login</a></li>
+        <li class="collapsible"><a href="" name="about">About</a></li>
+      </ul>
+    </nav>
     <section id="main">
-      <nav>
-        <ul id="mainUlNav">
-          <li><a href="javascript:void(0);" class="icon" onclick="collapsibleNavbar()">&#9776;</a></li>
-          <li class="collapsible"><a href="">Introduction</a </li>
-          <li class="collapsible"><a href="">Login</a></li>
-          <li class="collapsible"><a href="">About</a></li>
-        </ul>
-      </nav>
       <div id="bckgr"></div>
       <div id="stars"></div>
       <div id="mainFrame">
@@ -50,16 +50,16 @@
         <div class="rewardList">
           <div class="rewardBox">
             <div class="reward-list-cards">
-              <span>Gift Card #1</span>
-              <span>Gift Card #2</span>
-              <span>Gift Card #3</span>
-              <span>Gift Card #4</span>
+              <span>Gift Card</span>
+              <div id="rewardGift" class="hidden"></div>
             </div>
             <div class="reward-list-bitcoin">
-              <span>Bitcoin Payment</span>
+              <span>Bitcoin</span>
+              <div id="rewardBitcoin" class="hidden"></div>
             </div>
             <div class="reward-list-paypal">
-              <span>Pay with Paypal</span>
+              <span>Paypal</span>
+              <div id="rewardPaypal" class="hidden"></div>
               <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 
               <!-- Identify your business so that you can collect the payments. -->
@@ -93,6 +93,14 @@
           </div>
         </div>
       </div>
+    </section>
+    <section id="home">
+      <div id="mainFrame">
+
+      </div>
+    </section>
+    <section id="about">
+      <div id=""></div>
     </section>
   </div>
   <script>

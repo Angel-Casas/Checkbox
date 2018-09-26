@@ -27,7 +27,7 @@ body {
   justify-content: space-between;
 }
 
-#main nav {
+#wrapper > nav {
   position: absolute;
   top: 0;
   right: 0;
@@ -42,7 +42,7 @@ body {
   align-items: center;
 
 }
-#main nav ul {
+#wrapper > nav ul {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -53,7 +53,7 @@ body {
   transition: height .5s ease-in-out;
   overflow: hidden;
 }
-#main nav ul li:not(:nth-child(1)) {
+#wrapper > nav ul li:not(:nth-child(1)) {
   margin: 0;
   padding: .6em .5em;
   font-size: .9rem;
@@ -62,12 +62,12 @@ body {
   background-color: rgba(255, 255, 255, .3);
   transition: all .5s ease-in-out;
 }
-#main nav ul li:hover {
+#wrapper > nav ul li:hover {
   color: rgb(33, 35, 78);
   transition: color .2s ease-in;
   background: rgba(255, 255, 255, .5);
 }
-#main nav ul > li:not(:nth-child(1))::after {
+#wrapper > nav ul > li:not(:nth-child(1))::after {
     content: '';
     display: block;
     width: 2px;
@@ -75,11 +75,11 @@ body {
     background: white;
     transition: width .3s;
 }
-#main nav ul > li:hover::after {
+#wrapper > nav ul > li:hover::after {
     height: 100%;
     transition: height .3s;
 }
-#main nav ul .icon {
+#wrapper > nav ul .icon {
   box-sizing: border-box;
   display: none;
   background-color: rgba(255, 255, 255, .3);
@@ -90,7 +90,7 @@ body {
   padding: 0;
   margin: 0;
 }
-#main nav .icon:hover {
+#wrapper > nav .icon:hover {
   color: rgb(33, 35, 73);
 }
 #main #bckgr {
@@ -153,20 +153,18 @@ body {
   position: absolute;
   top: -1em;
   left: 0;
-  width: 50%;
-  height: 100%;
-  border-top: 1px solid white;
-  border-radius: 6px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
 }
 #mainFrame > p::after {
   content: '';
   position: absolute;
   bottom: -1em;
   right: 0;
-  width: 50%;
-  height: 100%;
-  border-bottom: 1px solid white;
-  border-radius: 6px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
 }
 #mainFrame .createForm {
   grid-column-start: 2;
@@ -212,7 +210,7 @@ body {
   min-width: 50px;
   border-radius: 3px;
   cursor: pointer;
-  transition: all .2s ease-in;
+  transition: all .1s ease-in;
 }
 #mainFrame .createForm input[type="radio"]:checked + label {
   background: rgb(33, 35, 73);
@@ -223,11 +221,12 @@ body {
   background: rgb(33, 35, 78);
   color: rgb(221, 182, 78);
   border: 2px solid rgb(221, 182, 78);
-  transition: all .2s ease-in;
+  transition: all .1s ease-in;
 }
 #mainFrame .createForm  button {
   padding: .6rem;
   width: 60%;
+  min-width: 100px;
   background: rgb(33, 35, 78);
   color: rgb(221, 182, 78);
   border-radius: 20px;
@@ -304,7 +303,7 @@ body {
   margin-top: 0.2em;
   display: grid;
   grid-template-columns: 70px minmax(200px, 400px) 70px;
-  grid-template-rows: 70px minmax(100px, 200px) minmax(400px, 600px) 70px;
+  grid-template-rows: 70px minmax(100px, 200px) minmax(200px, 400px) 70px;
   grid-row-gap: 1.5em;
   grid-column-gap: 1em;
   padding: .5em 0;
@@ -339,28 +338,28 @@ body {
   position: absolute;
   top: -1em;
   left: 0;
-  width: 50%;
-  height: 100%;
-  border-top: 1px solid white;
-  border-radius: 6px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
 }
 #rewardFrame > p::after {
   content: '';
   position: absolute;
   bottom: -1em;
   right: 0;
-  width: 50%;
-  height: 100%;
-  border-bottom: 1px solid white;
-  border-radius: 6px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
 }
 #rewardFrame .rewardList {
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 3;
   grid-row-end: 4;
-  background: linear-gradient(30deg, rgb(247, 159, 87), rgb(196, 2, 205));
-  border-radius: 20px;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  padding: 1em;
+  border-radius: 6px;
   padding: .2em;
 }
 #rewardFrame .rewardList .rewardBox {
@@ -368,14 +367,24 @@ body {
   flex-flow: column nowrap;
   align-items: center;
   justify-content: space-between;
-  background: rgb(33, 35, 73);
   border-radius: 20px;
   padding: 1em;
   width: 100%;
   height: 100%;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 200%;
+  color: rgb(221, 182, 78);
 }
 #rewardFrame .rewardList .rewardBox > * {
   padding: .5em;
+  width: 100%;
+  height: 100px;
+  cursor: pointer;
+  border: 2px solid rgb(221, 182, 78);
+
+
 }
 #rewardFrame .rewardList .rewardBox .reward-list-cards {
   display: flex;
@@ -383,13 +392,14 @@ body {
   align-items: center;
   justify-content: center;
 }
-#rewardFrame .rewardList .rewardBox .reward-list-cards > * {
+#rewardFrame .rewardList .rewardBox .reward-list-cards > *:not(#rewardGift) {
   width: 100px;
   height: 100px;
-  cursor: pointer;
+  padding: .3rem;
 }
-#rewardFrame .rewardList .rewardBox .reward-list-cards > *:hover {
-  outline: 1px solid white;
+#rewardFrame .rewardList .rewardBox > *:hover {
+  background: rgb(221, 182, 78);
+  color: rgb(33, 35, 73);
 }
 #main #completeFrame {
   background-color: rgb(33, 35, 73);
@@ -431,20 +441,18 @@ body {
   position: absolute;
   top: -1em;
   left: 0;
-  width: 50%;
-  height: 100%;
-  border-top: 1px solid white;
-  border-radius: 6px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
 }
 #completeFrame > p::after {
   content: '';
   position: absolute;
   bottom: -1em;
   right: 0;
-  width: 50%;
-  height: 100%;
-  border-bottom: 1px solid white;
-  border-radius: 6px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
 }
 #completeFrame .card {
   position: relative;
@@ -491,6 +499,14 @@ body {
 #completeFrame .card .objective button:hover {
   color: rgb(33, 35, 73);
   background-color: rgb(221, 182, 78);
+}
+
+/* ----------------------------- */
+/*            Home               */
+/* ------------------------------*/
+#wrapper #home {
+  display: none;
+  height: 100vh;
 }
 
 @media screen and (max-height: 650px) {

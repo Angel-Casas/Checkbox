@@ -2,6 +2,41 @@ function getInput() {
   var x = document.getElementById("entry").value;
   return x;
 }
+var anchors = document.getElementsByTagName('a');
+for (var i = 0; i<anchors.length; i++) {
+  anchors[i].addEventListener('click', handler, false);
+}
+function handler(event) {
+  var introduction = document.getElementById("main");
+  var home = document.getElementById("home");
+  var about = document.getElementsByClassName("about")[0];
+  event.preventDefault();
+  if (this.name == "introduction") {
+    introduction.style.display = "block";
+    home.style.display = "none";
+    // about.style.display = "none";
+    return;
+  }
+  else if (this.name == "home") {
+    introduction.style.display = "none";
+    home.style.display = "block";
+    // about.style.display = "none";
+    return;
+  }
+  else if (this.name == "about") {
+    introduction.style.display = "none";
+    home.style.display = "none";
+    // about.style.display = "block";
+    return;
+  }
+  else if (this.name == "About") {
+    document.getElementsByClassName("post")[0].style.display = "none";
+    document.getElementById("roadmap").style.display = "none";
+    document.getElementsByClassName("projects")[0].style.display = "none";
+    document.getElementsByClassName("about")[0].style.display = "block";
+    return;
+  }
+}
 function Div(className) {
   let div = document.createElement("div");
   div.className = className;
@@ -62,69 +97,69 @@ button.addEventListener('click', function() {
 }, false);
 
 // intro
-function getIntro () {
-  let executed = false;
-  return function() {
-    if (!executed) {
-      executed = true;
-      //Create new div > span,time elements
-      var newCard = Div("card");
-      let newObjective = Div("objective");
-      let newPaperCard = Div("paperCard");
-      let newTopTriangle = Div("topTriangle");
-      let newBottomTriangle = Div("bottomTriangle");
-      var newButton = document.createElement("button");
-      var newP = document.createElement("p");
-      var section = document.getElementsByClassName("introCard")[0];
-      let introInput = getIntroInput();
-      // add new reward Button to array list
-      arrBtn.push(newButton);
-      // add eventlistener to new Buttons
-      rewardListener();
-      //add content to div > span,time
-      newButton.className = "rewardAsk";
-      newButton.innerHTML = "R";
-      newP.innerHTML = introInput;
-      newCard.style.backgroundColor = get_random_color();
-      newTopTriangle.appendChild(newP);
-      newObjective.appendChild(newButton);
-      newObjective.appendChild(newTopTriangle);
-      newObjective.appendChild(newBottomTriangle);
-      newCard.appendChild(newObjective);
-      section.appendChild(newCard);
-    }
-  }
-}
-function getIntroInput() {
-  var x = document.getElementById("introEntry").value;
-  return x;
-}
-let introButton = document.getElementById("introPostIt");
-introButton.addEventListener('click', getIntro(), false);
-// intro steps
-let stepsSelector = document.querySelectorAll("input[name=radioIntro]");
-function steps() {
-  if (stepsSelector[0].checked === true) {
-    document.getElementsByClassName("introStepOne")[0].style.display = "block";
-    document.getElementsByClassName("introStepTwo")[0].style.display = "none";
-    document.getElementsByClassName("introStepThree")[0].style.display = "none";
-    document.getElementsByClassName("introCard")[0].style.display = "block";
-  }
-  else if (stepsSelector[1].checked === true) {
-    document.getElementsByClassName("introStepOne")[0].style.display = "none";
-    document.getElementsByClassName("introStepTwo")[0].style.display = "block";
-    document.getElementsByClassName("introStepThree")[0].style.display = "none";
-    document.getElementsByClassName("introCard")[0].style.display = "none";
-  }
-  else if (stepsSelector[2].checked === true) {
-    document.getElementsByClassName("introStepOne")[0].style.display = "none";
-    document.getElementsByClassName("introStepTwo")[0].style.display = "none";
-    document.getElementsByClassName("introStepThree")[0].style.display = "block";
-    document.getElementsByClassName("introCard")[0].style.display = "none";
-  }
-};
-steps();
-document.getElementsByClassName("introSteps")[0].addEventListener('change', steps, false);
+// function getIntro () {
+//   let executed = false;
+//   return function() {
+//     if (!executed) {
+//       executed = true;
+//       //Create new div > span,time elements
+//       var newCard = Div("card");
+//       let newObjective = Div("objective");
+//       let newPaperCard = Div("paperCard");
+//       let newTopTriangle = Div("topTriangle");
+//       let newBottomTriangle = Div("bottomTriangle");
+//       var newButton = document.createElement("button");
+//       var newP = document.createElement("p");
+//       var section = document.getElementsByClassName("introCard")[0];
+//       let introInput = getIntroInput();
+//       // add new reward Button to array list
+//       arrBtn.push(newButton);
+//       // add eventlistener to new Buttons
+//       rewardListener();
+//       //add content to div > span,time
+//       newButton.className = "rewardAsk";
+//       newButton.innerHTML = "R";
+//       newP.innerHTML = introInput;
+//       newCard.style.backgroundColor = get_random_color();
+//       newTopTriangle.appendChild(newP);
+//       newObjective.appendChild(newButton);
+//       newObjective.appendChild(newTopTriangle);
+//       newObjective.appendChild(newBottomTriangle);
+//       newCard.appendChild(newObjective);
+//       section.appendChild(newCard);
+//     }
+//   }
+// }
+// function getIntroInput() {
+//   var x = document.getElementById("introEntry").value;
+//   return x;
+// }
+// let introButton = document.getElementById("introPostIt");
+// introButton.addEventListener('click', getIntro(), false);
+// // intro steps
+// let stepsSelector = document.querySelectorAll("input[name=radioIntro]");
+// function steps() {
+//   if (stepsSelector[0].checked === true) {
+//     document.getElementsByClassName("introStepOne")[0].style.display = "block";
+//     document.getElementsByClassName("introStepTwo")[0].style.display = "none";
+//     document.getElementsByClassName("introStepThree")[0].style.display = "none";
+//     document.getElementsByClassName("introCard")[0].style.display = "block";
+//   }
+//   else if (stepsSelector[1].checked === true) {
+//     document.getElementsByClassName("introStepOne")[0].style.display = "none";
+//     document.getElementsByClassName("introStepTwo")[0].style.display = "block";
+//     document.getElementsByClassName("introStepThree")[0].style.display = "none";
+//     document.getElementsByClassName("introCard")[0].style.display = "none";
+//   }
+//   else if (stepsSelector[2].checked === true) {
+//     document.getElementsByClassName("introStepOne")[0].style.display = "none";
+//     document.getElementsByClassName("introStepTwo")[0].style.display = "none";
+//     document.getElementsByClassName("introStepThree")[0].style.display = "block";
+//     document.getElementsByClassName("introCard")[0].style.display = "none";
+//   }
+// };
+// steps();
+// document.getElementsByClassName("introSteps")[0].addEventListener('change', steps, false);
 
 // // Random quotes
 // var quotes = [
@@ -151,100 +186,103 @@ document.getElementsByClassName("introSteps")[0].addEventListener('change', step
 // // end random quotes script
 
 // reward dialog
-var rewardframe = document.getElementsByClassName("reward-frame")[0];
-var span = document.getElementsByClassName("close")[0];
-var btn = document.querySelectorAll(".reward-ask");
-var arrBtn = [].slice.call(btn, 0);
-// create function to add eventListener to buttons
-function rewardListener () {
-  for (var i = 0; i < arrBtn.length; i++) {
-    var self = arrBtn[i];
-    self.addEventListener('click', function (event) {
-      // Prevent browser's default action
-      event.preventDefault();
-      // call function
-      setTimeout(function() {
-        rewardframe.style.display = "block";
-      }, 500);
-    })
-  }
-};
-// Run rewardListener first time for example postit.
-rewardListener();
-span.onclick = function () {
-  rewardframe.style.display = "none";
-}
-window.onclick = function(event) {
-  if (event.target == rewardframe) {
-    rewardframe.style.display = "none";
-  }
-}
+// var rewardframe = document.getElementsByClassName("reward-frame")[0];
+// var span = document.getElementsByClassName("close")[0];
+// var btn = document.querySelectorAll(".reward-ask");
+// var arrBtn = [].slice.call(btn, 0);
+// // create function to add eventListener to buttons
+// function rewardListener () {
+//   for (var i = 0; i < arrBtn.length; i++) {
+//     var self = arrBtn[i];
+//     self.addEventListener('click', function (event) {
+//       // Prevent browser's default action
+//       event.preventDefault();
+//       // call function
+//       setTimeout(function() {
+//         rewardframe.style.display = "block";
+//       }, 500);
+//     })
+//   }
+// };
+// // Run rewardListener first time for example postit.
+// rewardListener();
+// span.onclick = function () {
+//   rewardframe.style.display = "none";
+// }
+// window.onclick = function(event) {
+//   if (event.target == rewardframe) {
+//     rewardframe.style.display = "none";
+//   }
+// }
+//
+// // set btc payments
+// (function () {
+//
+//     var iframe = document.createElement('iframe');
+//     iframe.name = 'setgetgo';
+//     iframe.class = 'setgetgo';
+//     iframe.setAttribute('allowtransparency', 'true');
+//     iframe.style.display = 'none';
+//     iframe.style.border = 0;
+//     iframe.style.position = 'fixed';
+//     iframe.style.top = 0;
+//     iframe.style.left = 0;
+//     iframe.style.height = '100%';
+//     iframe.style.width = '100%';
+//     iframe.style.zIndex = '2147483647';
+//
+//     var hostname = "https://setgetgo.com";
+//
+//     window.onload = function () { init() };
+//
+//     function init() {
+//         var btn = window.document.getElementById("sgg_create-payment-btn");
+//
+//         btn.onclick = function (event) { showPaymentModal(event, btn) };
+//     }
+//
+//     function showPaymentModal(e, btn) {
+//         e.preventDefault();
+//
+//         var amount = btn.getAttribute('sgg-amount');
+//         var merchAddr = btn.getAttribute('sgg-merch-addr');
+//         var merchEmail = btn.getAttribute('sgg-merch-email');
+//         var testnet = btn.getAttribute('sgg-testnet');
+//
+//         window.document.body.appendChild(iframe);
+//         iframe.src = hostname + "/payment/create-payment-html?amount=" + amount + "&merch_addr=" + merchAddr + "&merch_email=" + merchEmail + "&testnet=" + testnet;
+//         iframe.style.display = 'block';
+//     }
+//
+//     function receiveMessage(event) {
+//         var uri;
+//
+//         if (hostname !== event.origin) {
+//             return;
+//         }
+//
+//         if (event.data === 'close') {
+//             hideFrame();
+//         }
+//     }
+//
+//     window.addEventListener('message', receiveMessage, false);
+//
+//     function hideFrame() {
+//         iframe.style.display = 'none';
+//         iframe = window.document.body.removeChild(iframe);
+//     }
+//
+// })();
+//
+// //random color
+// function get_random_color() {
+//   function c() {
+//     var hex = Math.floor(Math.random()*256).toString(16);
+//     return ("0"+String(hex)).substr(-2); // pad with zero
+//   }
+//   return "#"+c()+c()+c();
+// }
 
-// set btc payments
-(function () {
-
-    var iframe = document.createElement('iframe');
-    iframe.name = 'setgetgo';
-    iframe.class = 'setgetgo';
-    iframe.setAttribute('allowtransparency', 'true');
-    iframe.style.display = 'none';
-    iframe.style.border = 0;
-    iframe.style.position = 'fixed';
-    iframe.style.top = 0;
-    iframe.style.left = 0;
-    iframe.style.height = '100%';
-    iframe.style.width = '100%';
-    iframe.style.zIndex = '2147483647';
-
-    var hostname = "https://setgetgo.com";
-
-    window.onload = function () { init() };
-
-    function init() {
-        var btn = window.document.getElementById("sgg_create-payment-btn");
-
-        btn.onclick = function (event) { showPaymentModal(event, btn) };
-    }
-
-    function showPaymentModal(e, btn) {
-        e.preventDefault();
-
-        var amount = btn.getAttribute('sgg-amount');
-        var merchAddr = btn.getAttribute('sgg-merch-addr');
-        var merchEmail = btn.getAttribute('sgg-merch-email');
-        var testnet = btn.getAttribute('sgg-testnet');
-
-        window.document.body.appendChild(iframe);
-        iframe.src = hostname + "/payment/create-payment-html?amount=" + amount + "&merch_addr=" + merchAddr + "&merch_email=" + merchEmail + "&testnet=" + testnet;
-        iframe.style.display = 'block';
-    }
-
-    function receiveMessage(event) {
-        var uri;
-
-        if (hostname !== event.origin) {
-            return;
-        }
-
-        if (event.data === 'close') {
-            hideFrame();
-        }
-    }
-
-    window.addEventListener('message', receiveMessage, false);
-
-    function hideFrame() {
-        iframe.style.display = 'none';
-        iframe = window.document.body.removeChild(iframe);
-    }
-
-})();
-
-//random color
-function get_random_color() {
-  function c() {
-    var hex = Math.floor(Math.random()*256).toString(16);
-    return ("0"+String(hex)).substr(-2); // pad with zero
-  }
-  return "#"+c()+c()+c();
-}
+// transition pages
+// Navigation pages
