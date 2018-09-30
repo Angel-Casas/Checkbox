@@ -42,15 +42,11 @@ function Div(className) {
   div.className = className;
   return div;
 }
-let button = document.getElementById("postIt");
+let button = document.getElementById("cardCreate");
 button.addEventListener('click', function() {
-  alert('hi');
   //Create new div > span,time elements
   var newCard = Div("card");
   let newObjective = Div("objective");
-  let newPaperCard = Div("paperCard");
-  let newTopTriangle = Div("topTriangle");
-  let newBottomTriangle = Div("bottomTriangle");
   let newCardReward = document.createElement("span");
   var newButton = document.createElement("button");
   var newP = document.createElement("p");
@@ -75,10 +71,8 @@ button.addEventListener('click', function() {
       txt = txt - count + " " + "days remaining";
     }
   }
-  // add new reward Button to array list
-  arrBtn.push(newButton);
   // add eventlistener to new Buttons
-  rewardListener();
+
   //add content to div > span,time
   newButton.className = "rewardAsk";
   newButton.innerHTML = "R";
@@ -92,6 +86,7 @@ button.addEventListener('click', function() {
   newCard.appendChild(newObjective);
   section.appendChild(newCard);
 }, false);
+
 
 // intro
 // function getIntro () {

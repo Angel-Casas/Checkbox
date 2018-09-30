@@ -187,6 +187,7 @@ body {
   border-radius: 5px;
   line-height: 30px;
   width: 150px;
+  color: white;
   text-align: center;
   font-weight: bold;
   transition: box-shadow .1s ease-in;
@@ -505,14 +506,15 @@ body {
 /*            Home               */
 /* ------------------------------*/
 #wrapper #home {
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   background-color: rgb(33, 35, 73);
   margin-top: 0.2em;
   padding: .5em 0;
-  display: none;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: flex-start;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
 }
 #wrapper #home .createForm {
   display: flex;
@@ -523,7 +525,10 @@ body {
   border-bottom: 1px solid white;
   padding: 1em;
   border-radius: 6px;
-  width: 250px;
+  color: white;
+  width: 80vw;
+  max-width: 600px;
+  height: 250px;
 }
 #wrapper #home > h2 {
   position: relative;
@@ -531,16 +536,15 @@ body {
   left: 0;
   font-size: 2.2rem;
   text-transform: uppercase;
-  padding: .5em 0;
-  margin: .1em .5em;
-  border-right: 2px solid white;
-  text-orientation: upright;
-  writing-mode: vertical-rl;
+  padding: .2em 0;
+  margin: .1em .2em;
+  border-bottom: 2px solid white;
 }
 #home #randomQuote {
-  width: 250px;
+  width: 80vw;
+  max-width: 600px;
   position: relative;
-  margin: 4em 0;
+  margin: 2em .5em;
   padding: 1.5em 1em;
 }
 #home #randomQuote > i {
@@ -563,6 +567,17 @@ body {
   width: 100%;
   height: 1px;
   background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
+}
+#home #mainObjectives {
+  width:100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 1em .5em;
+}
+#mainObjectives > * {
+  margin: .2em;
 }
 #about {
   display: none;
