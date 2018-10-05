@@ -73,6 +73,8 @@ button.addEventListener('click', function() {
   }
   // add eventlistener to new Buttons
 
+  //add Color to cards
+  newCard.style.background = "linear-gradient(30deg, " + get_random_color() + ", " + get_random_color() + ")";
   //add content to div > span,time
   newButton.className = "rewardAsk";
   newButton.innerHTML = "R";
@@ -268,13 +270,13 @@ setInterval(nextQuote, 10000);
 // })();
 //
 // //random color
-// function get_random_color() {
-//   function c() {
-//     var hex = Math.floor(Math.random()*256).toString(16);
-//     return ("0"+String(hex)).substr(-2); // pad with zero
-//   }
-//   return "#"+c()+c()+c();
-// }
+function get_random_color() {
+  function c() {
+    var hex = Math.floor(Math.random()*256).toString(16);
+    return ("0"+String(hex)).substr(-2); // pad with zero
+  }
+  return "#"+c()+c()+c();
+}
 
 // transition pages
 // Navigation pages

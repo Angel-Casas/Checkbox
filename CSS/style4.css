@@ -251,6 +251,7 @@ body {
 }
 #mainFrame .mainBox .card {
   transform: rotateX(50deg) rotateY(0deg) rotateZ(45deg);
+  background: linear-gradient(30deg, rgb(247, 159, 87), rgb(196, 2, 205));
   width: 300px;
   height: 300px;
   box-shadow: 10px 7px 15px 10px rgba(0, 0, 0, .3);
@@ -268,7 +269,6 @@ body {
 .card {
   position: relative;
   border-radius: 20px;
-  background: linear-gradient(30deg, rgb(247, 159, 87), rgb(196, 2, 205));
   width: 220px;
   height: 220px;
   padding: .2em;
