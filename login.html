@@ -13,17 +13,20 @@
   </head>
   <body id="login" class="register-page">
     <div id="wrapper">
+      <!--Bckgr-->
+      <div id="bckgr"></div>
+      <div id="stars"></div>
       <!--header-->
       <div id="header">
-        <h1><a href="#">Check</a> </h1>
+        <h1><a href="#">Check</a></h1>
       </div>
-      <div id="main-body" class="box">
+      <div id="login">
         <div class="inner">
           <div class="title extra">
             <h2>Create your Check account.</h2>
           </div>
           <form action="/register" method="post">
-            <div id="email_suggestion" style="/*! display: none; */">
+            <div id="email_suggestion" style="display: none;">
               <p class="email_suggestion-label">
                 Did you mean <strong class="suggested"></strong> instead of <strong class="current"></strong>?
               </p>
@@ -35,19 +38,19 @@
             <p class="text">
               <span>
                 <label for="email">Email</label>
-                <input id="email" type="text" name="email" value="">
+                <input id="email" type="text" name="email" value="" placeholder="Email">
               </span>
             </p>
             <p class="text">
               <span>
                 <label for="name">Full name</label>
-                <input id="name" type="text" name="name" value="">
+                <input id="name" type="text" name="name" value="" placeholder="Full name">
               </span>
             </p>
             <p class="text">
               <span class="password-strength" data-password-strength="-1">
                 <label for="password">Password</label>
-                <input id="password" class="password-strength-input" type="password" name="password" value="" >
+                <input id="password" class="password-strength-input" type="password" name="password" value="" placeholder="Password">
                 <span class="password-strength-indicator">
                   <span></span>
                   <span></span>
@@ -80,7 +83,7 @@
               <p class="submit">
                 <button type="submit" class="button blue medium">
                   <span>
-                    Create your Check account
+                    Create
                   </span>
                 </button>
               </p>

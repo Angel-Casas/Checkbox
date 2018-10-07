@@ -1,48 +1,71 @@
-html {
-  background-color: hsl(160, 50%, 60%) !important;
-  height: 100%;
-}
-html.placeholder #login label {
+html #login label {
   display: none !important;
+}
+#mainBody {
+  background-color: rgb(33, 35, 73);
+  margin-top: 0.2em;
+  padding: .5em 1em;
 }
 #login {
   height: 100%;
-  min-height: 100%;
   -webkit-font-smoothing: subpixel-antialiased;
 }
 #login div#wrapper {
   font-family: 'Playfair Display', sans-serif;
 }
 #login div#header {
-  height: 110px;
-  margin: 0 auto;
-  width: 200px;
-  padding-top: 90px;
 }
 #login div#header > h1 {
-  float: none;
-  height: 65px;
-  margin: 0 auto;
-  width: 190px;
-  font-size: 3.6rem;
-  color: hsl(53, 99%, 50%);
-  font-display: swap;
-  font-style: normal italic;
+  display: none;
 }
-#login div#header a {
-  color: inherit;
+#login div.title > h2 {
+  display: inline-block;
+  border-bottom: 2px solid white;
 }
-#login div#main-body {
+#mainBody > .inner {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  max-width: 600px;
+}
+#mainBody .inner > form {
+  border-top: 1px solid white;
+  border-bottom: 1px solid ;
   border-radius: 6px;
-  box-shadow: 0 0 0 1px rgba(14, 41, 57, .12), 0 2px 5px rgba(14, 41, 57, .44), inset 0 -1px 2px rgba(14, 41, 57, .15);
+  padding: .5em;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
-#login div.box {
-  width: 330px;
-  margin: 0 auto;
-  position: relative;
+#mainBody .inner > form > p {
+  margin-bottom: 16px;
 }
-#login div.title {
-  min-height: 55px;
+#mainBody .inner span {
+  display: block;
+}
+#mainBody .inner p.text input {
+  border-radius: 5px;
+  padding: 10px 12px;
+}
+#mainBody .inner .password-strength-popover {
+  display: none;
+}
+#mainBody .inner .submit button {
+  padding: .8rem 0;
+  background: rgb(33, 35, 78);
+  color: rgb(221, 182, 78);
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  line-height: 1.1rem;
+  width: 200px;
+  border: 2px solid rgb(221, 182, 78);
+  transition: all .2s ease-in;
+}
+#mainBody .inner .submit button:hover {
+  color: rgb(33, 35, 78);
+  background: rgb(221, 182, 78);
+  transition: all .2s ease-in;
 }
 .register-page #main-body #email_suggestion {
 	position: absolute;
@@ -54,12 +77,4 @@ html.placeholder #login label {
 	-ms-box-shadow: 0 0 0 1px hsla(43,15%,59%,.4),0 2px 1px rgba(0,0,0,.07),0 3px 8px rgba(0,0,0,.15);
 	-o-box-shadow: 0 0 0 1px hsla(43,15%,59%,.4),0 2px 1px rgba(0,0,0,.07),0 3px 8px rgba(0,0,0,.15);
 	box-shadow: 0 0 0 1px hsla(43,15%,59%,.4),0 2px 1px rgba(0,0,0,.07),0 3px 8px rgba(0,0,0,.15);
-}
-#login div#main-body form p.text label {
-  display: block;
-  margin: 0 0 3px 1px;
-  font-size: 13px;
-}
-a, a:hover {
-  text-decoration: none;
 }

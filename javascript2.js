@@ -9,19 +9,28 @@ for (var i = 0; i<anchors.length; i++) {
 function handler(event) {
   var introduction = document.getElementById("main");
   var home = document.getElementById("home");
+  var login = document.getElementById("login");
   var about = document.getElementsByClassName("about")[0];
   event.preventDefault();
   if (this.name == "introduction") {
     introduction.style.display = "block";
     home.style.display = "none";
+    login.style.display = "none";
     // about.style.display = "none";
     return;
   }
   else if (this.name == "home") {
     introduction.style.display = "none";
     home.style.display = "flex";
+    login.style.display = "none";
     // about.style.display = "none";
     return;
+  }
+  else if (this.name == "login") {
+    introduction.style.display = "none";
+    home.style.display = "none";
+    login.style.display = "block";
+    // about.style.display = "none";
   }
   else if (this.name == "about") {
     introduction.style.display = "none";
@@ -88,72 +97,6 @@ button.addEventListener('click', function() {
   newCard.appendChild(newObjective);
   section.appendChild(newCard);
 }, false);
-
-
-// intro
-// function getIntro () {
-//   let executed = false;
-//   return function() {
-//     if (!executed) {
-//       executed = true;
-//       //Create new div > span,time elements
-//       var newCard = Div("card");
-//       let newObjective = Div("objective");
-//       let newPaperCard = Div("paperCard");
-//       let newTopTriangle = Div("topTriangle");
-//       let newBottomTriangle = Div("bottomTriangle");
-//       var newButton = document.createElement("button");
-//       var newP = document.createElement("p");
-//       var section = document.getElementsByClassName("introCard")[0];
-//       let introInput = getIntroInput();
-//       // add new reward Button to array list
-//       arrBtn.push(newButton);
-//       // add eventlistener to new Buttons
-//       rewardListener();
-//       //add content to div > span,time
-//       newButton.className = "rewardAsk";
-//       newButton.innerHTML = "R";
-//       newP.innerHTML = introInput;
-//       newCard.style.backgroundColor = get_random_color();
-//       newTopTriangle.appendChild(newP);
-//       newObjective.appendChild(newButton);
-//       newObjective.appendChild(newTopTriangle);
-//       newObjective.appendChild(newBottomTriangle);
-//       newCard.appendChild(newObjective);
-//       section.appendChild(newCard);
-//     }
-//   }
-// }
-// function getIntroInput() {
-//   var x = document.getElementById("introEntry").value;
-//   return x;
-// }
-// let introButton = document.getElementById("introPostIt");
-// introButton.addEventListener('click', getIntro(), false);
-// // intro steps
-// let stepsSelector = document.querySelectorAll("input[name=radioIntro]");
-// function steps() {
-//   if (stepsSelector[0].checked === true) {
-//     document.getElementsByClassName("introStepOne")[0].style.display = "block";
-//     document.getElementsByClassName("introStepTwo")[0].style.display = "none";
-//     document.getElementsByClassName("introStepThree")[0].style.display = "none";
-//     document.getElementsByClassName("introCard")[0].style.display = "block";
-//   }
-//   else if (stepsSelector[1].checked === true) {
-//     document.getElementsByClassName("introStepOne")[0].style.display = "none";
-//     document.getElementsByClassName("introStepTwo")[0].style.display = "block";
-//     document.getElementsByClassName("introStepThree")[0].style.display = "none";
-//     document.getElementsByClassName("introCard")[0].style.display = "none";
-//   }
-//   else if (stepsSelector[2].checked === true) {
-//     document.getElementsByClassName("introStepOne")[0].style.display = "none";
-//     document.getElementsByClassName("introStepTwo")[0].style.display = "none";
-//     document.getElementsByClassName("introStepThree")[0].style.display = "block";
-//     document.getElementsByClassName("introCard")[0].style.display = "none";
-//   }
-// };
-// steps();
-// document.getElementsByClassName("introSteps")[0].addEventListener('change', steps, false);
 
 // Random quotes
 var quotes = [

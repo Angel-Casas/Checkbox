@@ -15,8 +15,9 @@
     <nav>
       <ul id="mainUlNav">
         <li><a href="javascript:void(0);" class="icon" onclick="collapsibleNavbar()">&#9776;</a></li>
-        <li class="collapsible"><a href="" name="introduction">Introduction</a </li>
-        <li class="collapsible"><a href="" name="home">Login</a></li>
+        <li class="collapsible"><a href="" name="introduction">Introduction</a></li>
+        <li class="collapsible"><a href="" name="home">Main</a></li>
+        <li class="collapsible"><a href="" name="login">Login</a></li>
         <li class="collapsible"><a href="" name="about">About</a></li>
       </ul>
     </nav>
@@ -92,6 +93,80 @@
             <button class="cardComplete" type="button" name="cardComplete">&#10004;</button>
           </div>
         </div>
+      </div>
+    </section>
+    <section id="login">
+      <div class="inner">
+        <div class="title extra">
+          <h2>Create your Check account.</h2>
+        </div>
+        <form action="/register" method="post">
+          <div id="email_suggestion" style="display: none;">
+            <p class="email_suggestion-label">
+              Did you mean <strong class="suggested"></strong> instead of <strong class="current"></strong>?
+            </p>
+            <a class="email_suggestion-button accept button grey small">
+              <span>Update my email</span>
+            </a>
+            <a class="email_suggestion-ignore">Close</a>
+          </div>
+          <p class="text">
+            <span>
+              <label for="email">Email</label>
+              <input id="email" type="text" name="email" value="" placeholder="Email">
+            </span>
+          </p>
+          <p class="text">
+            <span>
+              <label for="name">Full name</label>
+              <input id="name" type="text" name="name" value="" placeholder="Full name">
+            </span>
+          </p>
+          <p class="text">
+            <span class="password-strength" data-password-strength="-1">
+              <label for="password">Password</label>
+              <input id="password" class="password-strength-input" type="password" name="password" value="" placeholder="Password">
+              <span class="password-strength-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+              <span class="password-strength-popover">
+                <span class="password-strength-popover-status"></span>
+                <span class="password-strength-popover-explanation">
+                  Good passwords are hard to guess. Try using a multi-word phrase, uncommon words, numbers or symbols.
+                </span>
+              </span>
+            </span>
+          </p>
+          <p class="text">
+            <span>
+              <label for="confirm_password">Confirm Password</label>
+              <input id="confirm_password" type="password" name="confirm_password" value="" placeholder="Confirm password">
+            </span>
+          </p>
+          <div class="g-recaptcha" data-sitekey="6LdC12oUAAAAABEnAgKvD_o5tzAE2ZUMZREFfxXL">
+            <div style="width: 304px; height: 78px;">
+              <div>
+                <iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LezRwYTAAAAAClbeZahYjeSYHsbwpzjEQ0hQ1jB&amp;co=aHR0cHM6Ly9kYXNoYm9hcmQuc3RyaXBlLmNvbTo0NDM.&amp;hl=en&amp;v=v1531759913576&amp;size=normal&amp;cb=pfavrsacg6nn" role="presentation" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox" width="304" height="78" frameborder="0"></iframe>
+              </div>
+              <textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;  display: none; "></textarea>
+            </div>
+          </div>
+          <div>
+            <p class="submit">
+              <button type="submit" class="button blue medium">
+                <span>
+                  Create
+                </span>
+              </button>
+            </p>
+            <p class="remember" style="display:none">
+                <label><input name="remember" checked="checked" type="checkbox"> Remember me</label>
+            </p>
+            </div>
+        </form>
       </div>
     </section>
     <section id="home">
