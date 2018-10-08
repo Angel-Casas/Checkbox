@@ -199,11 +199,11 @@
     function collapsibleNavbar() {
       let li = document.getElementsByClassName("collapsible");
       let ul = document.getElementById("mainUlNav");
-      if (ul.style.height == "45px") {
-        ul.style.height = "600px";
+      if (ul.style.display == "none") {
+        ul.style.display = "flex";
       }
       else {
-        ul.style.height = "45px";
+        ul.style.display = "none";
       }
     }
   </script>
