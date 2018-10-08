@@ -27,10 +27,8 @@ function handler(event) {
     return;
   }
   else if (this.name == "login") {
-    introduction.style.display = "none";
-    home.style.display = "none";
-    login.style.display = "block";
-    // about.style.display = "none";
+    loginPopup();
+    return;
   }
   else if (this.name == "about") {
     introduction.style.display = "none";
@@ -97,7 +95,21 @@ button.addEventListener('click', function() {
   newCard.appendChild(newObjective);
   section.appendChild(newCard);
 }, false);
-
+// Login popup
+function loginPopup() {
+  let login = document.getElementById("login");
+  if (login.style.display == "none") {
+    login.style.display = "block";
+  }
+  else {
+    login.style.display = "none";
+  }
+  return;
+}
+let close = document.getElementsByClassName("close")[0];
+close.addEventListener('click', function() {
+  login.style.display = "none";
+});
 // Random quotes
 var quotes = [
   "We all want to be famous people, and the moment we want to be something we are no longer free. - Jiddu Krishnamurti",
