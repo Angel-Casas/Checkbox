@@ -27,35 +27,78 @@ body {
   justify-content: space-between;
 }
 
-#wrapper > nav {
+#wrapper #mainNav {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -180px;
   margin: .5em 0;
-  padding: 0 1em 0 3em;
-  width: 100%;
+  width: 220px;
+  background-color: rgba(255, 255, 255, .3);
   display: flex;
   flex-flow: row nowrap;
+  align-items: flex-start;
   justify-content: flex-end;
-  align-items: center;
+  transition: right .4s ease-in;
 }
-#wrapper > nav > * {
-  background-color: rgba(255, 255, 255, .3);
-  height: 50px;
+#wrapper #mainNav #navBox {
+  padding: 2em;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
-#wrapper >nav > a {
-  width: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#wrapper #mainNav #navBox:hover {
+  background-color: rgba(255, 255, 255, .2);
+}
+#wrapper #mainNav #navBox #navToggle {
+  position: absolute;
+  top: 20px;
+  left: 2px;
+  width: 35px;
+  height: 100%;
+}
+#wrapper #mainNav #navBox #navToggle:focus {
+  outline: none;
+}
+#wrapper #mainNav #navToggle span, #navToggle span:before, #navToggle span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 2px;
+  width: 35px;
+  background: white;
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  display: block;
+  content: '';
+}
+#wrapper #mainNav #navToggle span:before {
+  top: -10px;
+}
+#wrapper #mainNav #navToggle span:after {
+  bottom: -10px;
+}
+#wrapper #mainNav #navToggle span, #wrapper #mainNav #navToggle span:before, #wrapper #mainNav #navToggle span:after {
+  transition: all 500ms ease-in-out;
+}
+#wrapper #mainNav #navToggle.active span {
+  background-color: transparent;
+}
+#wrapper #mainNav #navToggle.active span:before, #wrapper #mainNav #navToggle.active span:after {
+  top: 0;
+}
+#wrapper #mainNav #navToggle.active span:before {
+  transform: rotate(45deg);
+}
+#wrapper #mainNav #navToggle.active span:after {
+  transform: rotate(-45deg);
 }
 #wrapper > nav ul {
-  display: none;
-  flex-flow: row nowrap;
+  display: flex;
+  flex-flow: column nowrap;
   align-items: center;
   padding: .2em;
   margin: 0;
-  height: 50px;
+  height: 200px;
   width: 100%;
   transition: height .5s ease-in-out;
   overflow: hidden;
@@ -72,7 +115,7 @@ body {
   transition: all .5s ease-in-out;
 }
 #wrapper > nav ul li:hover {
-  color: rgb(33, 35, 78);
+  color: rgb(33, 35, 73);
   transition: color .2s ease-in;
   background: rgba(255, 255, 255, .5);
 }
@@ -87,20 +130,6 @@ body {
 #wrapper > nav ul > li:hover::after {
     width: 100%;
     transition: width .3s;
-}
-#wrapper > nav ul .icon {
-  box-sizing: border-box;
-  display: block;
-  background-color: rgba(255, 255, 255, .3);
-  text-align: center;
-  line-height: 45px;
-  height: 45px;
-  width: 45px;
-  padding: 0;
-  margin: 0;
-}
-#wrapper > nav .icon:hover {
-  color: rgb(33, 35, 73);
 }
 #main {
   display: block;
@@ -192,7 +221,7 @@ body {
   border-radius: 6px;
 }
 .createForm #entry {
-  background-color: rgb(33, 35, 78);
+  background-color: rgb(33, 35, 73);
   border: 1px solid rgb(221, 182, 78);
   border-radius: 5px;
   line-height: 30px;
@@ -229,7 +258,7 @@ body {
   color: rgb(221, 182, 78);
 }
 .createForm input[type="radio"]:hover + label {
-  background: rgb(33, 35, 78);
+  background: rgb(33, 35, 73);
   color: rgb(221, 182, 78);
   border: 2px solid rgb(221, 182, 78);
   transition: all .1s ease-in;
@@ -238,7 +267,7 @@ body {
   padding: .6rem;
   width: 60%;
   min-width: 100px;
-  background: rgb(33, 35, 78);
+  background: rgb(33, 35, 73);
   color: rgb(221, 182, 78);
   border-radius: 20px;
   text-transform: uppercase;
@@ -248,7 +277,7 @@ body {
 }
 
 .createForm  button:hover {
-  color: rgb(33, 35, 78);
+  color: rgb(33, 35, 73);
   background: rgb(221, 182, 78);
   transition: all .2s ease-in;
 }
@@ -613,14 +642,10 @@ html #login label {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(33, 35, 73, .9);
   padding: 2em 1em;
   z-index: 1;
-}
-#login {
-  height: 100%;
-  -webkit-font-smoothing: subpixel-antialiased;
 }
 
 
@@ -637,27 +662,29 @@ html #login label {
   flex-flow: column nowrap;
   align-items: center;
   max-width: 600px;
+  height: 100%;
 }
 #login .inner > form {
   border-top: 1px solid white;
   border-bottom: 1px solid ;
   border-radius: 6px;
-  padding: .5em;
+  height: 100%;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  justify-content: space-around;
 }
 #login .inner > form > p {
-  margin-bottom: 16px;
+  margin: 0;
 }
 #login .inner span {
   display: block;
 }
 #login .inner p.text input {
   border-radius: 5px;
-  padding: 10px 12px;
+  padding: 8px 12px;
   color: white;
-  background-color: rgb(33, 35, 78);
+  background-color: rgb(33, 35, 73);
   border: 1px solid rgb(221, 182, 78);
 }
 #login .inner p.text input::placeholder {
@@ -687,10 +714,12 @@ html #login label {
 #login .inner .close {
   position: relative;
   width: 50px;
+  min-width: 50px;
   height: 50px;
-  margin: 2em 0;
+  min-height: 50px;
   border-radius: 50%;
-  border: 1px solid white;
+  margin-top: 1em;
+  border: 3px solid white;
 }
 #login .inner .close::before,
 #login .inner .close::after {
@@ -710,7 +739,7 @@ html #login label {
   transform: rotate(-45deg) scale(.8);
 }
 #login .inner .close:hover {
-  border: 1px solid rgb(221, 182, 78);
+  border: 3px solid rgb(221, 182, 78);
 }
 #login .inner .close:hover::before,
 #login .inner .close:hover::after {

@@ -12,14 +12,16 @@
   <div id="wrapper">
     <div id="bckgr"></div>
     <div id="stars"></div>
-    <nav>
-      <ul id="mainUlNav">
-        <li class="collapsible"><a href="" name="introduction">Introduction</a></li>
-        <li class="collapsible"><a href="" name="home">Main</a></li>
-        <li class="collapsible"><a href="" name="login">Login</a></li>
-        <li class="collapsible"><a href="" name="about">About</a></li>
-      </ul>
-      <a href="javascript:void(0);" class="icon" onclick="collapsibleNavbar()">&#9776;</a>
+    <nav id="mainNav">
+      <div id="navBox">
+        <a href="#" id="navToggle"><span></span></a>
+        <ul id="mainUlNav">
+          <li class="collapsible"><a href="" name="introduction">Introduction</a></li>
+          <li class="collapsible"><a href="" name="home">Main</a></li>
+          <li class="collapsible"><a href="" name="login">Login</a></li>
+          <li class="collapsible"><a href="" name="about">About</a></li>
+        </ul>
+      </div>
     </nav>
     <section id="main">
       <div id="mainFrame">
@@ -196,16 +198,22 @@
     </section>
   </div>
   <script>
-    function collapsibleNavbar() {
-      let li = document.getElementsByClassName("collapsible");
-      let ul = document.getElementById("mainUlNav");
-      if (ul.style.display == "none") {
-        ul.style.display = "flex";
+    let nav = document.getElementById("mainNav");
+    let navToggle = document.getElementById("navToggle");
+    nav.addEventListener("click", function(event) {
+      event.preventDefault();
+      if (this.style.right === "0px") {
+        this.style.right = "-180px";
+        navToggle.classList.remove("active");
       }
       else {
-        ul.style.display = "none";
+        this.style.right = "0px";
+        navToggle.classList.add("active");
       }
-    }
+      return;
+    }, false);
+    nav.addEventListener("mouseout", function(event) {
+    }, false);
   </script>
   <script type="text/javascript" src="javascript2.js"></script>
 </body>
