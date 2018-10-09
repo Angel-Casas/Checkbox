@@ -2,7 +2,7 @@ function getInput() {
   var x = document.getElementById("entry").value;
   return x;
 }
-var anchors = document.getElementsByTagName('a');
+var anchors = document.getElementsByClassName('collapsible');
 for (var i = 0; i<anchors.length; i++) {
   anchors[i].addEventListener('click', handler, false);
 }
