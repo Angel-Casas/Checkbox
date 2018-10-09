@@ -12,18 +12,18 @@ function handler(event) {
   var login = document.getElementById("login");
   var about = document.getElementsByClassName("about")[0];
   event.preventDefault();
-  if (this == "introduction") {
+  if (this.name == "introduction") {
     introduction.style.display = "block";
     home.style.display = "none";
     login.style.display = "none";
-    // about.style.display = "none";
+    about.style.display = "none";
     return;
   }
   else if (this.name == "home") {
     introduction.style.display = "none";
     home.style.display = "flex";
     login.style.display = "none";
-    // about.style.display = "none";
+    about.style.display = "none";
     return;
   }
   else if (this.name == "login") {
@@ -33,14 +33,7 @@ function handler(event) {
   else if (this.name == "about") {
     introduction.style.display = "none";
     home.style.display = "none";
-    // about.style.display = "block";
-    return;
-  }
-  else if (this.name == "About") {
-    document.getElementsByClassName("post")[0].style.display = "none";
-    document.getElementById("roadmap").style.display = "none";
-    document.getElementsByClassName("projects")[0].style.display = "none";
-    document.getElementsByClassName("about")[0].style.display = "block";
+    about.style.display = "block";
     return;
   }
 }
