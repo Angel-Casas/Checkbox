@@ -193,15 +193,15 @@
   <script>
     let nav = document.getElementById("mainNav");
     let navToggle = document.getElementById("navToggle");
-    nav.addEventListener("click", function(event) {
+    navToggle.addEventListener("click", function(event) {
       event.preventDefault();
-      if (this.style.right === "0px") {
-        this.style.right = "-180px";
-        navToggle.classList.remove("active");
+      if (nav.style.right === "0px") {
+        nav.style.right = "-180px";
+        this.classList.remove("active");
       }
       else {
-        this.style.right = "0px";
-        navToggle.classList.add("active");
+        nav.style.right = "0px";
+        this.classList.add("active");
       }
       return;
     }, false);

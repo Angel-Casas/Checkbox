@@ -2,7 +2,7 @@ function getInput() {
   var x = document.getElementById("entry").value;
   return x;
 }
-var anchors = document.getElementsByClassName('collapsible');
+var anchors = document.getElementsByTagName('a');
 for (var i = 0; i<anchors.length; i++) {
   anchors[i].addEventListener('click', handler, false);
 }
@@ -12,7 +12,7 @@ function handler(event) {
   var login = document.getElementById("login");
   var about = document.getElementsByClassName("about")[0];
   event.preventDefault();
-  if (this.name == "introduction") {
+  if (this == "introduction") {
     introduction.style.display = "block";
     home.style.display = "none";
     login.style.display = "none";
