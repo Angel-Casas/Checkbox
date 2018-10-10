@@ -26,7 +26,6 @@ body {
   flex-flow: column nowrap;
   justify-content: space-between;
 }
-
 #wrapper #mainNav {
   position: absolute;
   top: 0;
@@ -47,8 +46,8 @@ body {
   height: 100%;
   cursor: pointer;
 }
-#wrapper #mainNav #navBox:hover {
-  background-color: rgba(255, 255, 255, .2);
+#wrapper #mainNav:hover {
+  background-color: rgba(255, 255, 255, .5);
   color: rgb(33, 35, 73);
 }
 #wrapper #mainNav #navBox #navToggle {
