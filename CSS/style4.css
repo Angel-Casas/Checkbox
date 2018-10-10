@@ -623,6 +623,8 @@ body {
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
+}
+#home #randomQuote.quoteAnimation {
   animation: quoteColor 10s ease-in-out 1s infinite;
 }
 #home #randomQuote > i {
