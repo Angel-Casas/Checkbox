@@ -683,10 +683,19 @@ html #login label {
 #login div#header > h1 {
   display: none;
 }
-#login div.title > h2 {
+#login div.title > a {
   display: inline-block;
   margin: 2em 0;
-  border-bottom: 2px solid white;
+  border: 2px solid rgb(221, 182, 78);
+  border-radius: 20px;
+  padding: .8rem .5rem;
+  color: rgb(221, 182, 78);
+  width: 150px;
+  text-align: center;
+}
+#login .title > a:hover {
+  color: rgb(33, 35, 73);
+  background-color: rgb(221, 182, 78);
 }
 #login > .inner {
   display: flex;
