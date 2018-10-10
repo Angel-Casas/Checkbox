@@ -113,7 +113,7 @@ body {
   align-items: center;
   padding: .2em;
   margin: 0;
-  height: 200px;
+  height: 220px;
   width: 100%;
   transition: height .5s ease-in-out;
   overflow: hidden;
@@ -137,7 +137,7 @@ body {
     display: block;
     width: 0;
     height: 3px;
-    transition: height .3s;
+    transition: width .3s;
 }
 #wrapper > nav ul > li:nth-child(1)::after {
   background: rgb(33, 35, 73);
