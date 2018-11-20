@@ -40,6 +40,17 @@ body {
   justify-content: flex-end;
   transition: right .4s ease-in;
 }
+/* hide Header while keeping it available for assistive technologies */
+#wrapper #mainNav header {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding:0 !important;
+  border:0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
 #wrapper #mainNav #navBox {
   padding: 2em;
   width: 100%;
@@ -162,7 +173,7 @@ body {
   text-align: center;
 }
 #main {
-  display: block;
+  display: none;
 }
 #wrapper #bckgr {
   width: 100%;
@@ -449,8 +460,8 @@ body {
   width: 564px;
   height: 100%;
   top: 0;
-  right: 0;
-  background-image: url("../images/cubes.png");
+  left: 0;
+  background-image: url("../images/globo.png");
   background-size: contain;
   background-position: right top;
   background-repeat: no-repeat;
@@ -637,7 +648,7 @@ body {
   background-color: rgb(33, 35, 73);
   margin-top: 0.2em;
   padding: .5em 0;
-  display: none;
+  display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
@@ -682,13 +693,16 @@ body {
 }
 #home #randomQuote #quote::before,
 #home #randomQuote #quote::after {
-  font-size: 3.4rem;
+  font-size: 1.4rem;
+  position: absolute;
 }
 #home #randomQuote #quote::before {
   content: "“";
+  left: -.5rem;
 }
 #home #randomQuote #quote::after {
   content: "”";
+  right: -.5rem;
 }
 #home #randomQuote.quoteAnimation {
   animation: quoteColor 10s ease-in-out 1s infinite;
@@ -719,8 +733,24 @@ body {
   height: 1px;
   background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
 }
-#home #mainObjectives {
-  width:100%;
+#home > #mainSection {
+  width: 100%;
+}
+#mainSection > #cardEditor {
+}
+#cardEditor > i {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  float: right;
+  margin: .5rem .8rem;
+  color: rgba(255, 255, 255, .6);
+}
+#cardEditor > i:hover {
+  color: white;
+  cursor: pointer;
+}
+#home #mainSection > #mainObjectives {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -905,12 +935,12 @@ html #login label {
   }
 }
 @media (min-width: 550px) {
-  #main #bckgr {
+  #wrapper > #bckgr {
     background: url("../images/checkDesktopBckgr.png");
     background-size: contain;
     background-repeat: no-repeat;
   }
-  #main #stars {
+  #wrapper > #stars {
     background: url("../images/checkDesktopStars.png");
     background-size: contain;
     background-repeat: no-repeat;

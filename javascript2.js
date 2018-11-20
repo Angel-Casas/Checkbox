@@ -105,6 +105,7 @@ close.addEventListener('click', function() {
 });
 // Random quotes
 let quotes = {
+  "Aim at the highest good, tool yourself into something that can attain it and go out there and manifest it in the world, so everything that comes your way will be a blessing. All you have to do is give up your resentment and hatred.": "- Jordan Bernt Peterson -",
   "We all want to be famous people, and the moment we want to be something we are no longer free.": "- Jiddu Krishnamurti -",
   "Tradition becomes our security, and when the mind is secure it is in decay.": "- Jiddu Krishnamurti -",
   "Die to everything of yesterday so that your mind is always fresh, always young, innocent, full of vigor and passion.": "- Jiddu Krishnamurti -",
