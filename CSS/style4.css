@@ -15,6 +15,7 @@ body {
   z-index: 0;
 }
 #wrapper {
+  margin-top: 70px;
   width: 100%;
   box-sizing: border-box;
   z-index: 1;
@@ -27,18 +28,15 @@ body {
   justify-content: space-between;
 }
 #wrapper #mainNav {
-  position: absolute;
+  position: fixed;
   top: 0;
-  right: -180px;
-  margin: .5em 0;
-  width: 220px;
-  background-color: rgba(255, 255, 255, .3);
-  border-radius: 6px;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: flex-start;
-  justify-content: flex-end;
-  transition: right .4s ease-in;
+  left: 0;
+  height: 70px;
+  width: 100%;
+  background-color: rgb(33, 35, 73);
+  color: white;
+  z-index: 10;
+  border-bottom: 2px solid rgb(221, 182, 78);
 }
 /* hide Header while keeping it available for assistive technologies */
 #wrapper #mainNav header {
@@ -51,88 +49,27 @@ body {
   width: 1px !important;
   overflow: hidden;
 }
-#wrapper #mainNav #navBox {
-  padding: 2em;
+#mainNav > #navBox {
   width: 100%;
   height: 100%;
-  cursor: pointer;
 }
-#wrapper #mainNav:hover {
-  background-color: rgba(255, 255, 255, .5);
-  color: rgb(33, 35, 73);
-}
-#wrapper #mainNav #navBox #navToggle {
-  position: absolute;
-  top: 20px;
-  left: 3px;
-  width: 35px;
-  height: 100%;
-  z-index: 1;
-}
-#wrapper #mainNav #navBox #navToggle:focus {
-  outline: none;
-}
-#wrapper #mainNav #navToggle span, #navToggle span:before, #navToggle span:after {
-  cursor: pointer;
-  border-radius: 1px;
-  height: 2px;
-  width: 35px;
-  background: white;
-  position: absolute;
-  left: 0;
-  z-index: 1;
-  display: block;
-  content: '';
-}
-#wrapper #mainNav #navToggle span:before {
-  top: -10px;
-}
-#wrapper #mainNav #navToggle span:after {
-  bottom: -10px;
-}
-#wrapper #mainNav #navToggle span, #wrapper #mainNav #navToggle span:before, #wrapper #mainNav #navToggle span:after {
-  transition: all 500ms ease-in-out;
-}
-#wrapper #mainNav #navToggle.active span {
-  background-color: transparent;
-}
-#wrapper #mainNav #navToggle.active span:before, #wrapper #mainNav #navToggle.active span:after {
-  top: 0;
-}
-#wrapper #mainNav #navToggle.active span:before {
-  transform: rotate(45deg);
-}
-#wrapper #mainNav #navToggle.active span:after {
-  transform: rotate(-45deg);
-}
-#wrapper #mainNav #navBox > p {
-  text-orientation: upright;
-  writing-mode: vertical-rl;
-  position: absolute;
-  text-transform: uppercase;
-  left: 0;
-  margin: 1.5em .5em;
-  font-weight: bold;
-}
-#wrapper #mainNav #navBox #mainUlNav {
-  color: rgb(33, 35, 73);
-}
-#wrapper > nav ul {
+#navBox #mainUlNav {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
   align-items: center;
+  justify-content: space-around;
   margin: 0;
   padding: 0;
-  height: 240px;
-  width: 100%;
-  transition: height .5s ease-in-out;
-  overflow: hidden;
-}
-#wrapper > nav ul li {
-  margin: 0;
-  font-size: .9rem;
   width: 100%;
   height: 100%;
+}
+#mainUlNav > li {
+  margin: 0;
+  padding: .5rem .3rem 0 .3rem;
+  font-size: .9rem;
+  line-height: .9rem;
+  width: 100%;
+  height: 40px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -140,17 +77,18 @@ body {
   transition: all .5s ease-in-out;
 }
 #wrapper > nav ul li:hover {
-  background: rgba(255, 255, 255, .5);
+  background: rgba(0, 0, 0, .5);
 }
 #wrapper > nav ul > li::after {
     content: '';
     display: block;
     width: 0;
     height: 3px;
+    margin-top: .3rem;
     transition: width .3s;
 }
 #wrapper > nav ul > li:nth-child(1)::after {
-  background: rgb(33, 35, 73);
+  background: rgb(35, 70, 251);
 }
 #wrapper > nav ul > li:nth-child(2)::after {
   background: rgb(40, 193, 52);
@@ -169,8 +107,8 @@ body {
   width: 100%;
   height: 100%;
   font-weight: bold;
-  padding: 2em 0 0 0;
   text-align: center;
+  white-space: nowrap;
 }
 #main {
   display: none;
