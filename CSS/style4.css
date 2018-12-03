@@ -111,7 +111,7 @@ body {
   white-space: nowrap;
 }
 #main {
-  display: none;
+  display: block;
 }
 #wrapper #bckgr {
   width: 100%;
@@ -169,7 +169,7 @@ body {
   grid-row-end: 3;
   z-index: 1;
   font-size: 1.4rem;
-  background: rgba(33, 35, 73, .7);
+  background: rgba(33, 35, 73, .2);
 }
 #mainFrame > p::before {
   content: '';
@@ -373,7 +373,7 @@ body {
   grid-row-end: 3;
   z-index: 1;
   font-size: 1.4rem;
-  background: rgba(33, 35, 73, .7);
+  background: rgba(33, 35, 73, .2);
 }
 #rewardFrame > p::before {
   content: '';
@@ -393,15 +393,15 @@ body {
   height: 1px;
   background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
 }
-#rewardFrame > #bckgrCubes {
+#rewardFrame > #bckgrMoon {
   position: absolute;
-  width: 564px;
+  width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background-image: url("../images/globo.png");
+  background-image: url("../images/moon.png");
   background-size: contain;
-  background-position: right top;
+  background-position: left top;
   background-repeat: no-repeat;
   z-index: 0;
   opacity: .5;
@@ -463,7 +463,7 @@ body {
 }
 #main #completeFrame {
   position: relative;
-  background-color: rgb(33, 35, 73);
+  background-color: rgb(213, 135, 3);
   margin-top: 0.2em;
   display: grid;
   grid-template-columns: 70px minmax(200px, 400px) 40px;
@@ -486,6 +486,7 @@ body {
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 3;
+  z-index: 1;
 }
 #completeFrame > p {
   position: relative;
@@ -496,7 +497,7 @@ body {
   grid-row-start: 2;
   grid-row-end: 3;
   font-size: 1.4rem;
-  background: rgba(33, 35, 73, .7);
+  background: rgba(33, 35, 73, .2);
   z-index: 1;
 }
 #completeFrame > p::before {
@@ -517,18 +518,17 @@ body {
   height: 1px;
   background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
 }
-#completeFrame > #bckgrBoat {
+#completeFrame > #bckgrFallingStar {
   position: absolute;
-  width: 350px;
-  height: calc(100% - 10px);
-  top: 10px;
+  width: 100%;
+  height: 100%;
   right: 0;
-  background-image: url("../images/paperboat.png");
+  background-image: url("../images/fallingStar1.png");
   background-size: contain;
   background-position: right top;
   background-repeat: no-repeat;
   z-index: 0;
-  opacity: .5;
+  opacity: 0.9;
 }
 #completeFrame .card {
   position: relative;
@@ -586,7 +586,7 @@ body {
   background-color: rgb(33, 35, 73);
   margin-top: 0.2em;
   padding: .5em 0;
-  display: flex;
+  display: none;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
