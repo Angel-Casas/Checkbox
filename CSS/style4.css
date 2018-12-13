@@ -15,6 +15,8 @@ body {
   z-index: 0;
 }
 #wrapper {
+  height: 100%;
+  height: calc(var(--mobilevh, 1vh) * 100);
   margin-top: 70px;
   width: 100%;
   box-sizing: border-box;
@@ -858,7 +860,7 @@ html #login label {
 }
 #mainFooter > h2 {
   position: relative;
-  top: -5px;
+  top: -4px;
   left: 0;
   font-size: 2.2rem;
   text-transform: uppercase;
@@ -873,13 +875,13 @@ html #login label {
 #mainFooter > ul {
   margin: 0.5rem;
   padding: 0;
-  width: 300px;
+  width: 70%;
   list-style-type: none;
 }
 #mainFooter > ul > li {
   margin: 0 .2rem;
   padding: 1.5rem;
-  border-bottom: 1px solid white;
+  border-top: 1px solid white;
   cursor: pointer;
 }
 #mainFooter > ul > li:hover {
@@ -887,12 +889,14 @@ html #login label {
 }
 #mainFooter > #donations {
   color: rgba(221, 182, 78, .8);
-  padding-left: 60px;
-  width: 400px;
+  padding: 1rem 1rem 1rem 60px;
+  width: 100%;
   background-image: url("../images/patreon.png");
   background-size: 50px auto;
   background-repeat: no-repeat;
   background-position: center left;
+  background-color: black;
+  border-top: 1px solid rgb(221, 182, 78);
 }
 #mainFooter #donations a {
   color: white;

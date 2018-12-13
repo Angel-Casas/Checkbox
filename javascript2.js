@@ -1,3 +1,14 @@
+// Mobile Viewport Height correction
+let vh = window.innerHeight * 0.01;
+
+document.documentElement.style.setProperty('--mobilevh', `${vh}px`);
+
+window.addEventListener('resize', () => {
+  let vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--mobilevh', `${vh}px`);
+});
+
+// card Functionality
 function getInput() {
   var x = document.getElementById("entry").value;
   return x;
