@@ -712,7 +712,7 @@ body {
 /*            Login              */
 /* ------------------------------*/
 
-html #login label {
+html #login label:not(.rememberContainer) {
   display: none !important;
 }
 #login {
@@ -724,7 +724,7 @@ html #login label {
   height: 100vh;
   background-color: rgba(33, 35, 73, .9);
   padding: 2em 1em;
-  z-index: 1;
+  z-index: 10;
 }
 
 
@@ -752,7 +752,7 @@ html #login label {
   max-width: 600px;
   height: 100%;
 }
-#login .inner > form {
+#login .inner form {
   border-top: 1px solid white;
   border-bottom: 1px solid ;
   border-radius: 6px;
@@ -761,9 +761,6 @@ html #login label {
   flex-flow: column nowrap;
   align-items: center;
   justify-content: space-around;
-}
-#login .inner > form > p {
-  margin: 0;
 }
 #login .inner span {
   display: block;
@@ -833,16 +830,61 @@ html #login label {
 #login .inner .close:hover::after {
   background-color: rgb(221, 182, 78);
 }
-.register-page #main-body #email_suggestion {
-	position: absolute;
-	top: -65px;
-	display: none;
-	padding: 15px 18px 14px;
-	width: 300px;
-	border-radius: 5px;
-	-ms-box-shadow: 0 0 0 1px hsla(43,15%,59%,.4),0 2px 1px rgba(0,0,0,.07),0 3px 8px rgba(0,0,0,.15);
-	-o-box-shadow: 0 0 0 1px hsla(43,15%,59%,.4),0 2px 1px rgba(0,0,0,.07),0 3px 8px rgba(0,0,0,.15);
-	box-shadow: 0 0 0 1px hsla(43,15%,59%,.4),0 2px 1px rgba(0,0,0,.07),0 3px 8px rgba(0,0,0,.15);
+#login .inner #createAccountForm {
+  display: none;
+}
+#login .inner #loginForm {
+  display: block;
+}
+#login #loginForm .remember .rememberContainer{
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#loginForm .rememberContainer input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+#loginForm .rememberContainer .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: rgb(33, 35, 78);
+  border: 1px solid rgb(221, 182, 78);
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+#loginForm .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+#loginForm .rememberContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+.rememberContainer .checkmark:after {
+  left: 8px;
+  top: 4px;
+  width: 5px;
+  height: 10px;
+  border: solid rgb(221, 182, 78);
+  border-width: 0 3px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 /* ----------------------------- */

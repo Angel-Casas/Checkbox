@@ -107,69 +107,87 @@
       <div id="bckgrColor"></div>
       <div class="inner">
         <div class="title extra">
-          <a href="#">Sign in</a>
-          <a href="#">Create account</a>
+          <a id="signIn" href="#">Sign in</a>
+          <a id="createAccount" href="#">Create account</a>
         </div>
-        <form action="/register" method="post">
-          <div class="fb-login-button" data-width="200px" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
-          <div id="email_suggestion" style="display: none;">
-            <p class="email_suggestion-label">
-              Did you mean <strong class="suggested"></strong> instead of <strong class="current"></strong>?
-            </p>
-            <a class="email_suggestion-button accept button grey small">
-              <span>Update my email</span>
-            </a>
-            <a class="email_suggestion-ignore">Close</a>
-          </div>
-          <p class="text">
-            <span>
-              <label for="email">Email</label>
-              <input id="email" type="text" name="email" value="" placeholder="Email">
-            </span>
-          </p>
-          <p class="text">
-            <span>
-              <label for="name">Full name</label>
-              <input id="name" type="text" name="name" value="" placeholder="Full name">
-            </span>
-          </p>
-          <p class="text">
-            <span class="password-strength" data-password-strength="-1">
-              <label for="password">Password</label>
-              <input id="password" class="password-strength-input" type="password" name="password" value="" placeholder="Password">
-              <span class="password-strength-indicator">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+        <div id="createAccountForm">
+          <form action="/register" onsubmit="return false" method="post">
+            <p class="text">
+              <span>
+                <label for="email">Email</label>
+                <input id="email" type="text" name="email" value="" placeholder="Email">
               </span>
-              <span class="password-strength-popover">
-                <span class="password-strength-popover-status"></span>
-                <span class="password-strength-popover-explanation">
-                  Good passwords are hard to guess. Try using a multi-word phrase, uncommon words, numbers or symbols.
+            </p>
+            <p class="text">
+              <span>
+                <label for="name">Full name</label>
+                <input id="name" type="text" name="name" value="" placeholder="Full name">
+              </span>
+            </p>
+            <p class="text">
+              <span class="password-strength" data-password-strength="-1">
+                <label for="password">Password</label>
+                <input id="password" class="password-strength-input" type="password" name="password" value="" placeholder="Password">
+                <span class="password-strength-indicator">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+                <span class="password-strength-popover">
+                  <span class="password-strength-popover-status"></span>
+                  <span class="password-strength-popover-explanation">
+                    Good passwords are hard to guess. Try using a multi-word phrase, uncommon words, numbers or symbols.
+                  </span>
                 </span>
               </span>
-            </span>
-          </p>
-          <p class="text">
-            <span>
-              <label for="confirm_password">Confirm Password</label>
-              <input id="confirm_password" type="password" name="confirm_password" value="" placeholder="Confirm password">
-            </span>
-          </p>
-          <div>
+            </p>
+            <p class="text">
+              <span>
+                <label for="confirm_password">Confirm Password</label>
+                <input id="confirm_password" type="password" name="confirm_password" value="" placeholder="Confirm password">
+              </span>
+            </p>
+            <div>
+              <p class="submit">
+                <button type="submit" class="button blue medium">
+                  <span>
+                    Create
+                  </span>
+                </button>
+              </p>
+            </div>
+          </form>
+        </div>
+        <div id="loginForm">
+          <form action="/register" method="post">
+            <p class="text">
+              <span>
+                <label for="emailLogin">Email</label>
+                <input id="emailLogin" type="text" name="emailLogin" value="" placeholder="Email">
+              </span>
+            </p>
+            <p class="text">
+              <span>
+                <label for="passwordLogin">Password</label>
+                <input id="passwordLogin" type="password" name="passwordLogin" value="" placeholder="password">
+              </span>
+            </p>
+            <p class="remember">
+                <label class="rememberContainer">
+                  <input name="remember" type="checkbox">Remember me
+                  <span class="checkmark"></span>
+                </label>
+            </p>
             <p class="submit">
               <button type="submit" class="button blue medium">
                 <span>
-                  Create
+                  Login
                 </span>
               </button>
             </p>
-            <p class="remember" style="display:none">
-                <label><input name="remember" checked="checked" type="checkbox"> Remember me</label>
-            </p>
-            </div>
-        </form>
+          </form>
+        </div>
         <a href="#" class="close"></a>
       </div>
     </section>

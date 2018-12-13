@@ -7,6 +7,24 @@ window.addEventListener('resize', () => {
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--mobilevh', `${vh}px`);
 });
+// Login form
+function loginForm() {
+  let buttons = document.querySelectorAll(".inner a");
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function() {
+      if (this.id == 'signIn') {
+        document.querySelector("#createAccountForm").style.display = "none";
+        document.querySelector("#loginForm").style.display = "block";
+      }
+      if (this.id == 'createAccount') {
+        document.querySelector("#loginForm").style.display = "none";
+        document.querySelector("#createAccountForm").style.display = "block";
+      }
+      return;
+    });
+  }
+}
+loginForm();
 
 // card Functionality
 function getInput() {
