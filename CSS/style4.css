@@ -192,7 +192,7 @@ body {
   height: 100%;
   top: 0;
   right: 0;
-  background-image: url("../images/climbing.png");
+  background-image: url("../images/climbing2.png");
   background-size: contain;
   background-position: right top;
   background-repeat: no-repeat;
@@ -848,17 +848,66 @@ html #login label {
 /* ------------------------------*/
 
 #wrapper > #mainFooter {
-  margin-top: 0.3rem;
-  background-color: rgb(33, 35, 73);
-  height: 500px;
+  position: relative;
+  margin-top: 0.2rem;
+  background-color: rgb(16, 17, 36);
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 #mainFooter > h2 {
-  margin: 0;
-  padding: 0;
+  position: relative;
+  top: -5px;
+  left: 0;
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  border-right: 2px solid white;
+  text-orientation: upright;
+  writing-mode: vertical-rl;
+  margin: 0 .8rem;
+  padding: .5em 0;
+}
+#mainFooter > h2 > span {
 }
 #mainFooter > ul {
-  margin: 0;
+  margin: 0.5rem;
   padding: 0;
+  width: 300px;
+  list-style-type: none;
+}
+#mainFooter > ul > li {
+  margin: 0 .2rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid white;
+  cursor: pointer;
+}
+#mainFooter > ul > li:hover {
+  background: rgba(0, 0, 0, .5);
+}
+#mainFooter > #donations {
+  color: rgba(221, 182, 78, .8);
+  padding-left: 60px;
+  width: 400px;
+  background-image: url("../images/patreon.png");
+  background-size: 50px auto;
+  background-repeat: no-repeat;
+  background-position: center left;
+}
+#mainFooter #donations a {
+  color: white;
+  font-weight: bold;
+}
+#mainFooter #donations a:hover {
+  text-decoration: underline;
+}
+#mainFooter #copyright {
+  position: absolute;
+  font-size: .8rem;
+  width: 100%;
+  bottom: 0;
+  text-align: center;
+  color: rgb(190, 190, 190);
 }
 
 
