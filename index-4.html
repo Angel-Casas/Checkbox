@@ -33,7 +33,7 @@
         <div id="bckgrClimber"></div>
         <form class="createForm">
           <input type="text" id="exampleEntry" maxlength="25">
-          <div class="time-range">
+          <div class="time-range" id="exampleTimeRange">
             <input class="periods" type="radio" name="selector" id="Daily" value="1"><label for="Daily">Day</label>
             <input class="periods" type="radio" name="selector" id="Weekly" value="7" checked><label for="Weekly">Week</label>
             <input class="periods" type="radio" name="selector" id="Monthly" value="30"><label for="Monthly">Month</label>
@@ -42,11 +42,10 @@
         </form>
         <section class="mainBox">
           <div class="card">
-            <div class="objective">
-              <p>Lorem ipsum dolor sit amet, consecteturs</p>
+            <div class="objective objectiveExample">
+              <p>Example</p>
               <time>5 Days Remaining</time>
               <button class="rewardAsk" type="button" name="reward-ask">R</button>
-              <button class="cardCheck" type="button" name="cardCheck"></button>
             </div>
           </div>
         </section>
@@ -82,8 +81,6 @@
               <input type="hidden" name="currency_code" value="USD">
 
               <!-- Display the payment button. -->
-              <input type="image" name="submit" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" alt="Buy Now">
-              <img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
               </form>
             </div>
           </div>
@@ -95,8 +92,8 @@
         Once the creator approves it was indeed complete the reward will be sent.</p>
         <div id="bckgrFallingStar"></div>
         <div class="card">
-          <div class="objective">
-            <p>Lorem ipsum dolor sit amet, consecteturs</p>
+          <div class="objective objectiveExample">
+            <p>Example</p>
             <time>5 Days Remaining</time>
             <button class="cardComplete" type="button" name="cardComplete">&#10004;</button>
           </div>
@@ -223,10 +220,10 @@
     <footer id="mainFooter">
       <h2><span>CHECK</span></h2>
       <ul>
-        <li><a href="">Introduction</a></li>
-        <li><a href="">Home</a></li>
-        <li><a href="">Login / Reguster</a></li>
-        <li><a href="">About</a></li>
+        <li><a href="" name="introduction">Introduction</a></li>
+        <li><a href="" name="home">Home</a></li>
+        <li><a href="" name="login">Login / Reguster</a></li>
+        <li><a href="" name="about">About</a></li>
       </ul>
       <div id="donations"><p>Check provides a unique service towards the betterment of your productivity and wellfare.<br>
       If you enjoy this WebApp please consider donating via <a href="https://www.patreon.com/acasas">Patreon</a> so we can keep this project <b>growing.</b></p>

@@ -2,7 +2,7 @@
 - sign in/ create -
 - creators and participants -
 - Vouchers and Gift cards with credit card. -
-- desktop layout -
+- desktop layout - rework image from complete section-
 - copyright patente -
 */
 * {
@@ -328,7 +328,7 @@ body {
 }
 .card .objective button {
   width: 75px;
-  height: 30px;
+  height: 75px;
   background: rgb(33, 35, 73);
   color: rgb(221, 182, 78);
   border: 1px solid rgb(221, 182, 78);
@@ -454,10 +454,6 @@ body {
 
 }
 #rewardFrame .rewardList .rewardBox .reward-list-cards {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
 }
 #rewardFrame .rewardList .rewardBox .reward-list-cards > *:not(#rewardGift) {
   width: 100px;
@@ -560,24 +556,6 @@ body {
 #completeFrame .card:hover {
   transform: translate3d(0, 0, 50px);
   transition: transform .4s ease-in;
-}
-#completeFrame .card .objective {
-  background-color: rgb(33, 35, 73);
-  border-radius: 20px;
-  height: 100%;
-  padding: 1em;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-  align-items: center;
-}
-#completeFrame .card .objective button {
-  width: 75px;
-  height: 30px;
-  background: rgb(33, 35, 73);
-  color: rgb(221, 182, 78);
-  border: 1px solid rgb(221, 182, 78);
-  border-radius: 20px;
 }
 #completeFrame .card .objective button:hover {
   color: rgb(33, 35, 73);

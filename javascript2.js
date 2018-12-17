@@ -1,4 +1,5 @@
 // Mobile Viewport Height correction
+
 let vh = window.innerHeight * 0.01;
 
 document.documentElement.style.setProperty('--mobilevh', `${vh}px`);
@@ -7,6 +8,7 @@ window.addEventListener('resize', () => {
   let vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--mobilevh', `${vh}px`);
 });
+
 // Login form
 function loginForm() {
   let buttons = document.querySelectorAll(".inner a");
@@ -25,6 +27,30 @@ function loginForm() {
   }
 }
 loginForm();
+
+// Introduction javascript
+var exampleTimeRange = document.querySelectorAll("#exampleTimeRange > input[type=radio]");
+var createButton = document.querySelector("#postIt");
+var exampleRange = "";
+function timeRange() {
+  exampleRange = this.value + " Days Remaining";
+  return;
+};
+function introCard() {
+  let objectiveExample = document.querySelectorAll(".objectiveExample");
+  objectiveExample[0].childNodes[1].innerHTML = document.querySelector("#exampleEntry").value;
+  objectiveExample[1].childNodes[1].innerHTML = document.querySelector("#exampleEntry").value;
+
+  objectiveExample[0].childNodes[3].innerHTML = exampleRange;
+  objectiveExample[1].childNodes[3].innerHTML = exampleRange;
+  return;
+}
+for (var i = 0; i < exampleTimeRange.length; i++) {
+  exampleTimeRange[i].addEventListener("change", timeRange, false);
+}
+
+createButton.addEventListener("click", introCard, false);
+
 
 // card Functionality
 function getInput() {
@@ -71,7 +97,9 @@ function Div(className) {
   div.className = className;
   return div;
 }
+
 let button = document.getElementById("cardCreate");
+
 button.addEventListener('click', function() {
   //Create new div > span,time elements
   var newCard = Div("card");
@@ -100,7 +128,10 @@ button.addEventListener('click', function() {
       txt = txt - count + " " + "days remaining";
     }
   }
+
+
   // add eventlistener to new Buttons
+
 
   //add Color to cards
   newCard.style.background = "linear-gradient(30deg, " + get_random_color() + ", " + get_random_color() + ")";
@@ -132,6 +163,7 @@ let close = document.getElementsByClassName("close")[0];
 close.addEventListener('click', function() {
   login.style.display = "none";
 });
+
 // Random quotes
 let quotes = {
   "Aim at the highest good, tool yourself into something that can attain it and go out there and manifest it in the world, so everything that comes your way will be a blessing. All you have to do is give up your resentment and hatred.": "- Jordan Bernt Peterson -",
