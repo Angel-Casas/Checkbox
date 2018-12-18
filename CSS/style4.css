@@ -118,6 +118,7 @@ body {
   font-weight: bold;
   text-align: center;
   white-space: nowrap;
+  outline: none;
 }
 #wrapper #bckgr {
   width: 100%;
@@ -325,6 +326,9 @@ body {
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
+}
+.card .objective p {
+  text-align: center;
 }
 .card .objective button {
   width: 75px;

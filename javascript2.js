@@ -31,15 +31,15 @@ loginForm();
 // Introduction javascript
 var exampleTimeRange = document.querySelectorAll("#exampleTimeRange > input[type=radio]");
 var createButton = document.querySelector("#postIt");
-var exampleRange = "";
+var exampleRange = document.querySelector("input[type=radio]:checked").value + " Days Remaining" || "";
 function timeRange() {
   exampleRange = this.value + " Days Remaining";
   return;
 };
 function introCard() {
   let objectiveExample = document.querySelectorAll(".objectiveExample");
-  objectiveExample[0].childNodes[1].innerHTML = document.querySelector("#exampleEntry").value;
-  objectiveExample[1].childNodes[1].innerHTML = document.querySelector("#exampleEntry").value;
+  objectiveExample[0].childNodes[1].innerHTML = document.querySelector("#exampleEntry").value || "Example";
+  objectiveExample[1].childNodes[1].innerHTML = document.querySelector("#exampleEntry").value || "Example";
 
   objectiveExample[0].childNodes[3].innerHTML = exampleRange;
   objectiveExample[1].childNodes[3].innerHTML = exampleRange;
@@ -57,9 +57,14 @@ function getInput() {
   var x = document.getElementById("entry").value;
   return x;
 }
-var anchors = document.getElementsByTagName('a');
+var anchors = document.querySelectorAll(".navLinks");
 for (var i = 0; i<anchors.length; i++) {
   anchors[i].addEventListener('click', handler, false);
+}
+// When the user clicks on the nav buttons, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 function handler(event) {
   var introduction = document.getElementById("main");
@@ -67,28 +72,31 @@ function handler(event) {
   var login = document.getElementById("login");
   var about = document.getElementById("about");
   event.preventDefault();
-  if (this.name == "introduction") {
+  if (this.childNodes[0].name == "introduction") {
     introduction.style.display = "block";
     home.style.display = "none";
     login.style.display = "none";
     about.style.display = "none";
+    topFunction();
     return;
   }
-  else if (this.name == "home") {
+  else if (this.childNodes[0].name == "home") {
     introduction.style.display = "none";
     home.style.display = "flex";
     login.style.display = "none";
     about.style.display = "none";
+    topFunction();
     return;
   }
-  else if (this.name == "login") {
+  else if (this.childNodes[0].name == "login") {
     loginPopup();
     return;
   }
-  else if (this.name == "about") {
+  else if (this.childNodes[0].name == "about") {
     introduction.style.display = "none";
     home.style.display = "none";
     about.style.display = "block";
+    topFunction();
     return;
   }
 }
@@ -138,12 +146,12 @@ button.addEventListener('click', function() {
   //add content to div > span,time
   newButton.className = "rewardAsk";
   newButton.innerHTML = "R";
-  newP.innerHTML = input;
+  newP.innerHTML = input || "I could'nt think of any objectives";
   newTime.innerHTML = txt;
   newCardReward.className = "cardReward";
   newObjective.appendChild(newP);
-  newObjective.appendChild(newButton);
   newObjective.appendChild(newTime);
+  newObjective.appendChild(newButton);
   newObjective.appendChild(newCardReward);
   newCard.appendChild(newObjective);
   section.appendChild(newCard);
