@@ -1,3 +1,6 @@
+// global user (empty until log in)
+var userUpdatedGlobal;
+
 // Mobile Viewport Height correction
 
 let vh = window.innerHeight * 0.01;
@@ -53,11 +56,6 @@ for (var i = 0; i < exampleTimeRange.length; i++) {
 createButton.addEventListener("click", introCard, false);
 
 
-// card Functionality
-function getInput() {
-  var x = document.getElementById("entry").value;
-  return x;
-}
 var anchors = document.querySelectorAll(".navLinks");
 for (var i = 0; i<anchors.length; i++) {
   anchors[i].addEventListener('click', handler, false);
@@ -108,6 +106,9 @@ function loginPopup() {
   let login = document.getElementById("login");
   if (login.style.display == "none") {
     login.style.display = "block";
+  }
+  else {
+    login.style.display = "none";
   }
   return;
 }
@@ -252,72 +253,67 @@ function get_random_color() {
 // creator Function User
 
 function User( email, fullName, password) {
+  var self = this;
   // constructor function for user functionality
-  this.email = email;
-  this.name = fullName;
-  this.password = password;
-  this.card = {};
-  this.cardLength = this.card.length;
-}
-// methods
-User.prototype.checkCardLength = function() {
-  if (this.cardLength !== this.card.length) {
-    this.cardLength = this.card.length;
+  self.email = email;
+  self.name = fullName;
+  self.password = password;
+  self.card = {};
+  self.cardLength = 0;
+  // methods
+  self.checkCardLength = function() {
+    self.cardLength = Object.keys(self.card).length;
+    return self.cardLength;
   }
-  return this.cardLength;
-}
-User.prototype.addCard = function(objective, timePeriod) {
-  let idx = checkCardLength();
-  let newCard = {
-    "idx": idx,
-    "objective": objective,
-    "time": timePeriod,
-    "creator": 1,
-    "participants": this.name
-  }
-  displayCards();
-  this.card.push(newCard);
-  return newCard;
-}
-User.prototype.removeCard = function() {
-  let idx = checkCardLength();
-  for (var i=0; i < this.cardLength; i++) {
-    if (this.card[i].idx == idx) {
-      delete this.card[i];
-      return;
+  self.addCard = function(objective, time) {
+    let idx = self.checkCardLength();
+    console.log(idx);
+    let newCard = {
+      "idx": idx,
+      "objective": objective,
+      "time": time,
+      "creator": self.name,
+      "participants": self.name
     }
+    self.displayCards();
+    self.card[idx] = newCard;
+    return newCard;
   }
-  return;
-}
-User.prototype.showCards = function() {
-  console.log("inside");
-  let idx = checkCardLength();
-  for (i=0; i<idx; i++) {
-    let objective = this.card[i].objective;
-    let time = this.card[i].time;
-    displayCards(objective, time);
+  self.removeCard = function(idx) {
+    for (var i=0; i < this.cardLength; i++) {
+      if (this.card[i].idx == idx) {
+        delete this.card[i];
+        return;
+      }
+    }
+    return;
   }
-  return;
-}
-User.prototype.addReward = function() {
-  return;
-}
-User.prototype.changeReward = function() {
-  return;
-}
-User.prototype.removeReward = function() {
-  return;
-}
-User.prototype.personalizeCard = function() {
-  return;
-}
-User.prototype.participate = function(participant, idx) {
-  this.card[idx].participants += ", " + participant;
-  return this.card[idx].participants;
+  self.displayCards = function() {
+    for (i=0; i<self.card.length; i++) {
+      createCards(self.card[i].objective, self.card[i].time);
+    }
+    return;
+  }
+  self.addReward = function() {
+    return;
+  }
+  self.changeReward = function() {
+    return;
+  }
+  self.removeReward = function() {
+    return;
+  }
+  self.personalizeCard = function() {
+    return;
+  }
+  self.participate = function(participant, idx) {
+    this.card[idx].participants += ", " + participant;
+    return this.card[idx].participants;
+  }
 }
 
 // display Cards
-function displayCards(objective, time) {
+function createCards(objective, time) {
   var newCard = document.createElement("div");
   var newObjective = document.createElement("div");
   var newCardReward = document.createElement("span");
@@ -348,57 +344,23 @@ function displayCards(objective, time) {
   newObjective.appendChild(newCardReward);
   newCard.appendChild(newObjective);
   section.appendChild(newCard);
+  return;
 }
 
 // create Cards
-
-document.getElementById("cardCreate").addEventListener('click', createCards, false);
-function createCards() {
-  var newCard = document.createElement("div");
-  var newObjective = document.createElement("div");
-  var newCardReward = document.createElement("span");
-  var newButton = document.createElement("button");
-  var newP = document.createElement("p");
-  var newTime = document.createElement("time");
-  var section = document.querySelector("#mainObjectives");
-  var input = getInput();
-  var period = document.querySelectorAll("#home .time-range input");
-  var txt = "";
-
-  for (i=0; i<period.length; i++) {
-    if (period[i].checked) {
-      txt = period[i].value;
-    }
+document.querySelector("#homeForm").addEventListener('submit', function(e) {
+  e.preventDefault();
+  var objective = document.getElementById("entry").value || "I can't think of any Objectives.";
+  var time = document.querySelector("#home .time-range input:checked").value;
+  createCards(objective, time);
+  try {
+    userUpdatedGlobal.addCard(objective, time);
+  } catch(e) {
+    throw new Error(e.message);
   }
+}, false);
 
-  if (period == 1) {
-    txt = txt + " day remaining!";
-  }
-  else {
-    txt = txt + " days remaining!";
-  }
-
-  //add Color to cards
-  newCard.style.background = "linear-gradient(30deg, " + get_random_color() + ", " + get_random_color() + ")";
-
-  //add classes
-  newButton.className = "rewardAsk";
-  newCard.className = "card";
-  newCardReward.className = "cardReward";
-  newObjective.className = "objective";
-
-  //add content to div > span,time
-  newButton.innerHTML = "R";
-  newP.innerHTML = input || "I could'nt think of any objectives";
-  newTime.innerHTML = txt;
-  newObjective.appendChild(newP);
-  newObjective.appendChild(newTime);
-  newObjective.appendChild(newButton);
-  newObjective.appendChild(newCardReward);
-  newCard.appendChild(newObjective);
-  section.appendChild(newCard);
-}
-
+console.log(userUpdatedGlobal);
 // Local Storage
 // createAccount LocalStorage
 function createAccount(e) {
@@ -425,7 +387,6 @@ function createAccount(e) {
   }
   e.preventDefault();
 }
-
 // Login LocalStorage
 function login(e) {
   e.preventDefault();
@@ -434,26 +395,30 @@ function login(e) {
     var successLogin = document.querySelector("#successLogin");
     var userName = document.querySelector("#loginForm #userNameLogin").value;
     var password = window.btoa(document.querySelector("#passwordLogin").value);
-    var user = localStorage.getItem(userName);
-    var userObj = JSON.parse(user);
+    var userString = localStorage.getItem(userName);
+    var userObj = JSON.parse(userString);
+    userUpdatedGlobal = userObj;
+    loginError.innerHTML = "";
+    successLogin.innerHTML = "";
+    if (userName === "") {
+      loginError.innerHTML = "Please write a username";
+      return;
+    }
     // check if user exists
-    if (JSON.parse(user).name == null) {
-      loginError.innerHTML = "";
+    if (localStorage.getItem(userName) === null) {
       loginError.innerHTML = "No username found with that name.";
+      return;
     }
-    else if (JSON.parse(user).password == password) {
-      console.log(userObj);
-      successLogin.innerHTML = "";
-      successLogin.innerHTML = "Successfully logged in, welcome <span id='successUserName'>" + JSON.parse(user).name + "</span>!";
+    else if (JSON.parse(userString).password == password) {
+      successLogin.innerHTML = "Successfull log in, welcome <span id='successUserName'>" + userObj.name + "</span>!";
     }
-    else if (JSON.parse(user).password !== password) {
-      loginError.innerHTML = "";
-      loginError.innerHTML = "Password do Not Match, please check again.";
+    else if (JSON.parse(userString).password !== password) {
+      loginError.innerHTML = "Password incorrect, please check again.";
+      return;
     }
   } catch (e) {
     throw new Error(e.message);
   }
-  return false;
 }
 
 // check if localStorage is available

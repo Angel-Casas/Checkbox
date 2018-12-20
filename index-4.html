@@ -197,14 +197,15 @@
           <i id="quote">Specify your damn goals</i>
           <i id="author">- Jordan B. Peterson -</i>
         </blockquote>
-        <form class="createForm">
+        <form class="createForm" id="homeForm">
           <input type="text" id="entry" maxlength="25">
+          <p id="inputError"></p>
           <div class="time-range">
             <input class="periods" type="radio" name="selector" id="Daily" value="1"><label for="Daily">Day</label>
             <input class="periods" type="radio" name="selector" id="Weekly" value="7" checked><label for="Weekly">Week</label>
             <input class="periods" type="radio" name="selector" id="Monthly" value="30"><label for="Monthly">Month</label>
           </div>
-          <button id="cardCreate" type="button">Create</button>
+          <button id="cardCreate" type="submit">Create</button>
         </form>
       </div>
       <div id="mainSection">

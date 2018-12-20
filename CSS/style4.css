@@ -32,7 +32,7 @@ body {
 }
 #main {
   width: 100%;
-  display: block;
+  display: none;
   flex-flow: column nowrap;
   justify-content: space-between;
 }
@@ -574,7 +574,7 @@ body {
   background-color: rgb(33, 35, 73);
   margin-top: 0.2em;
   padding: .5em 0;
-  display: none;
+  display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
@@ -675,6 +675,10 @@ body {
 #cardEditor > i:hover {
   color: white;
   cursor: pointer;
+}
+#home .createForm #inputError {
+  color: red;
+  font-size: 0.8rem;
 }
 #home #mainSection > #mainObjectives {
   display: flex;
@@ -902,6 +906,7 @@ html #login label:not(.rememberContainer) {
 #login #loginForm #successUserName {
   font-size: 1.5rem;
   font-weight: bold;
+  display: inline-block;
 }
 
 /* ----------------------------- */
