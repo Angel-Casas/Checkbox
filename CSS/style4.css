@@ -32,7 +32,7 @@ body {
 }
 #main {
   width: 100%;
-  display: flex;
+  display: block;
   flex-flow: column nowrap;
   justify-content: space-between;
 }
@@ -118,7 +118,6 @@ body {
   font-weight: bold;
   text-align: center;
   white-space: nowrap;
-  outline: none;
 }
 #wrapper #bckgr {
   width: 100%;
@@ -737,17 +736,18 @@ html #login label:not(.rememberContainer) {
 #login > .inner {
   display: flex;
   flex-flow: column nowrap;
+  justify-content: space-around;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  max-width: 600px;
-  height: 100%;
+  height: 90%;
 }
 #login .inner form {
   border-top: 1px solid white;
-  border-bottom: 1px solid ;
+  border-bottom: 1px solid white;
   border-radius: 6px;
   height: 100%;
+  width: 300px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -823,9 +823,11 @@ html #login label:not(.rememberContainer) {
 }
 #login .inner #createAccountForm {
   display: none;
+  text-align: center;
 }
 #login .inner #loginForm {
   display: block;
+  text-align: center;
 }
 #login #loginForm .remember .rememberContainer{
   display: block;
@@ -876,6 +878,31 @@ html #login label:not(.rememberContainer) {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+#login #createAccountForm #passwordError {
+  color: red;
+  font-size: 0.8rem;
+}
+#login #createAccountForm #successCreate {
+  display: none;
+  color: rgb(221, 182, 78);
+  font-size: 1.2rem;
+}
+#login #createAccountForm #userNameCreate {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+#login #loginForm #loginError {
+  font-size: 0.8rem;
+  color: red;
+}
+#login #loginForm #successLogin {
+  color: rgb(221, 182, 78);
+  font-size: 1.2rem;
+}
+#login #loginForm #successUserName {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 
 /* ----------------------------- */
 /*            Footer             */
@@ -913,11 +940,36 @@ html #login label:not(.rememberContainer) {
 #mainFooter > ul > li {
   margin: 0 .2rem;
   padding: 1.5rem;
-  border-top: 1px solid white;
+  border-right: 1px solid rgb(221, 182, 78);
+  border-radius: 1px;
   cursor: pointer;
 }
 #mainFooter > ul > li:hover {
   background: rgba(0, 0, 0, .5);
+}
+#mainFooter li::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    margin-top: .3rem;
+    transition: width .3s;
+}
+#mainFooter li:nth-child(1)::after {
+  background: rgb(35, 70, 251);
+}
+#mainFooter li:nth-child(2)::after {
+  background: rgb(40, 193, 52);
+}
+#mainFooter li:nth-child(3)::after {
+  background: rgb(232, 93, 74);
+}
+#mainFooter li:nth-child(4)::after {
+  background: rgb(221, 182, 78);
+}
+#mainFooter li:hover::after {
+    width: 100%;
+    transition: width .3s;
 }
 #mainFooter > #donations {
   color: rgba(221, 182, 78, .8);

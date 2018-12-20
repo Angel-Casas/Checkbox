@@ -20,7 +20,7 @@ function loginForm() {
       }
       if (this.id == 'createAccount') {
         document.querySelector("#loginForm").style.display = "none";
-        document.querySelector("#createAccountForm").style.display = "block";
+        document.querySelector("#createAccountForm").style.display = "flex";
       }
       return;
     });
@@ -36,13 +36,14 @@ function timeRange() {
   exampleRange = this.value + " Days Remaining";
   return;
 };
-function introCard() {
+function introCard(e) {
   let objectiveExample = document.querySelectorAll(".objectiveExample");
   objectiveExample[0].childNodes[1].innerHTML = document.querySelector("#exampleEntry").value || "Example";
   objectiveExample[1].childNodes[1].innerHTML = document.querySelector("#exampleEntry").value || "Example";
 
   objectiveExample[0].childNodes[3].innerHTML = exampleRange;
   objectiveExample[1].childNodes[3].innerHTML = exampleRange;
+  e.preventDefault();
   return;
 }
 for (var i = 0; i < exampleTimeRange.length; i++) {
@@ -100,76 +101,18 @@ function handler(event) {
     return;
   }
 }
-function Div(className) {
-  let div = document.createElement("div");
-  div.className = className;
-  return div;
-}
 
-let button = document.getElementById("cardCreate");
-
-button.addEventListener('click', function() {
-  //Create new div > span,time elements
-  var newCard = Div("card");
-  let newObjective = Div("objective");
-  let newCardReward = document.createElement("span");
-  var newButton = document.createElement("button");
-  var newP = document.createElement("p");
-  var newTime = document.createElement("time");
-  var section = document.getElementById("mainObjectives");
-  //save input
-  var input = getInput();
-  //Save time
-  var period = document.getElementsByTagName("input");
-  var txt = "";
-  for (var count = 0; count < period.length; count++) {
-    if (period[count].checked == true) {
-      txt = period[count].value;
-      break;
-    }
-  }
-  for (var count=0; count < txt; count++) {
-    if (txt == 1){
-      txt = txt - count + " " + "day remaining!";
-    }
-    else {
-      txt = txt - count + " " + "days remaining";
-    }
-  }
-
-
-  // add eventlistener to new Buttons
-
-
-  //add Color to cards
-  newCard.style.background = "linear-gradient(30deg, " + get_random_color() + ", " + get_random_color() + ")";
-  //add content to div > span,time
-  newButton.className = "rewardAsk";
-  newButton.innerHTML = "R";
-  newP.innerHTML = input || "I could'nt think of any objectives";
-  newTime.innerHTML = txt;
-  newCardReward.className = "cardReward";
-  newObjective.appendChild(newP);
-  newObjective.appendChild(newTime);
-  newObjective.appendChild(newButton);
-  newObjective.appendChild(newCardReward);
-  newCard.appendChild(newObjective);
-  section.appendChild(newCard);
-}, false);
 // Login popup
+
 function loginPopup() {
   let login = document.getElementById("login");
   if (login.style.display == "none") {
     login.style.display = "block";
   }
-  else {
-    login.style.display = "none";
-  }
   return;
 }
-let close = document.getElementsByClassName("close")[0];
-close.addEventListener('click', function() {
-  login.style.display = "none";
+document.querySelector(".close").addEventListener('click', function() {
+  document.getElementById("login").style.display = "none";
 });
 
 // Random quotes
@@ -306,6 +249,246 @@ function get_random_color() {
   }
   return "#"+c()+c()+c();
 }
+// creator Function User
 
-// transition pages
-// Navigation pages
+function User( email, fullName, password) {
+  // constructor function for user functionality
+  this.email = email;
+  this.name = fullName;
+  this.password = password;
+  this.card = {};
+  this.cardLength = this.card.length;
+}
+// methods
+User.prototype.checkCardLength = function() {
+  if (this.cardLength !== this.card.length) {
+    this.cardLength = this.card.length;
+  }
+  return this.cardLength;
+}
+User.prototype.addCard = function(objective, timePeriod) {
+  let idx = checkCardLength();
+  let newCard = {
+    "idx": idx,
+    "objective": objective,
+    "time": timePeriod,
+    "creator": 1,
+    "participants": this.name
+  }
+  displayCards();
+  this.card.push(newCard);
+  return newCard;
+}
+User.prototype.removeCard = function() {
+  let idx = checkCardLength();
+  for (var i=0; i < this.cardLength; i++) {
+    if (this.card[i].idx == idx) {
+      delete this.card[i];
+      return;
+    }
+  }
+  return;
+}
+User.prototype.showCards = function() {
+  console.log("inside");
+  let idx = checkCardLength();
+  for (i=0; i<idx; i++) {
+    let objective = this.card[i].objective;
+    let time = this.card[i].time;
+    displayCards(objective, time);
+  }
+  return;
+}
+User.prototype.addReward = function() {
+  return;
+}
+User.prototype.changeReward = function() {
+  return;
+}
+User.prototype.removeReward = function() {
+  return;
+}
+User.prototype.personalizeCard = function() {
+  return;
+}
+User.prototype.participate = function(participant, idx) {
+  this.card[idx].participants += ", " + participant;
+  return this.card[idx].participants;
+}
+
+// display Cards
+function displayCards(objective, time) {
+  var newCard = document.createElement("div");
+  var newObjective = document.createElement("div");
+  var newCardReward = document.createElement("span");
+  var newButton = document.createElement("button");
+  var newP = document.createElement("p");
+  var newTime = document.createElement("time");
+  var section = document.querySelector("#mainObjectives");
+  var txt = "";
+  if (time == 1) {
+    txt = time + " day remining!";
+  }
+  else {
+    txt = time + " days remaining!";
+  }
+  newCard.style.background = "linear-gradient(30deg, " + get_random_color() + ", " + get_random_color() + ")";
+  //add classes
+  newButton.className = "rewardAsk";
+  newCard.className = "card";
+  newCardReward.className = "cardReward";
+  newObjective.className = "objective";
+  //add content to div > span,time
+  newButton.innerHTML = "R";
+  newP.innerHTML = objective || "I could'nt think of any objectives";
+  newTime.innerHTML = txt;
+  newObjective.appendChild(newP);
+  newObjective.appendChild(newTime);
+  newObjective.appendChild(newButton);
+  newObjective.appendChild(newCardReward);
+  newCard.appendChild(newObjective);
+  section.appendChild(newCard);
+}
+
+// create Cards
+
+document.getElementById("cardCreate").addEventListener('click', createCards, false);
+function createCards() {
+  var newCard = document.createElement("div");
+  var newObjective = document.createElement("div");
+  var newCardReward = document.createElement("span");
+  var newButton = document.createElement("button");
+  var newP = document.createElement("p");
+  var newTime = document.createElement("time");
+  var section = document.querySelector("#mainObjectives");
+  var input = getInput();
+  var period = document.querySelectorAll("#home .time-range input");
+  var txt = "";
+
+  for (i=0; i<period.length; i++) {
+    if (period[i].checked) {
+      txt = period[i].value;
+    }
+  }
+
+  if (period == 1) {
+    txt = txt + " day remaining!";
+  }
+  else {
+    txt = txt + " days remaining!";
+  }
+
+  //add Color to cards
+  newCard.style.background = "linear-gradient(30deg, " + get_random_color() + ", " + get_random_color() + ")";
+
+  //add classes
+  newButton.className = "rewardAsk";
+  newCard.className = "card";
+  newCardReward.className = "cardReward";
+  newObjective.className = "objective";
+
+  //add content to div > span,time
+  newButton.innerHTML = "R";
+  newP.innerHTML = input || "I could'nt think of any objectives";
+  newTime.innerHTML = txt;
+  newObjective.appendChild(newP);
+  newObjective.appendChild(newTime);
+  newObjective.appendChild(newButton);
+  newObjective.appendChild(newCardReward);
+  newCard.appendChild(newObjective);
+  section.appendChild(newCard);
+}
+
+// Local Storage
+// createAccount LocalStorage
+function createAccount(e) {
+  var emailCreate = document.querySelector("#email").value;
+  var userNameCreate = document.querySelector("#name").value;
+  var passwordCreate = window.btoa(document.querySelector("#password").value);
+  var confirmPasswordCreate = window.btoa(document.querySelector("#confirm_password").value);
+  var successCreate = document.querySelector("#successCreate");
+  var passwordError = document.querySelector("#passwordError");
+  if (window.atob(passwordCreate) !== window.atob(confirmPasswordCreate)) {
+    passwordError.innerHTML = "";
+    passwordError.innerHTML = "Password do Not Match, please check again.";
+  }
+  else if(localStorage.getItem(userNameCreate) == null) {
+    let user = new User(emailCreate, userNameCreate, passwordCreate);
+    localStorage.setItem( userNameCreate, JSON.stringify(user));
+    passwordError.innerHTML = "";
+    successCreate.innerHTML = "Account successfully created, welcome <span id='userNameCreate'>" + userNameCreate + "</span>!";
+    successCreate.style.display = "inline-block";
+  }
+  else if (localStorage.getItem(userNameCreate) !== null) {
+    passwordError.innerHTML = "";
+    passwordError.innerHTML = "Username already exists in this group, please choose another one.";
+  }
+  e.preventDefault();
+}
+
+// Login LocalStorage
+function login(e) {
+  e.preventDefault();
+  try {
+    var loginError = document.querySelector("#loginError");
+    var successLogin = document.querySelector("#successLogin");
+    var userName = document.querySelector("#loginForm #userNameLogin").value;
+    var password = window.btoa(document.querySelector("#passwordLogin").value);
+    var user = localStorage.getItem(userName);
+    var userObj = JSON.parse(user);
+    // check if user exists
+    if (JSON.parse(user).name == null) {
+      loginError.innerHTML = "";
+      loginError.innerHTML = "No username found with that name.";
+    }
+    else if (JSON.parse(user).password == password) {
+      console.log(userObj);
+      successLogin.innerHTML = "";
+      successLogin.innerHTML = "Successfully logged in, welcome <span id='successUserName'>" + JSON.parse(user).name + "</span>!";
+    }
+    else if (JSON.parse(user).password !== password) {
+      loginError.innerHTML = "";
+      loginError.innerHTML = "Password do Not Match, please check again.";
+    }
+  } catch (e) {
+    throw new Error(e.message);
+  }
+  return false;
+}
+
+// check if localStorage is available
+
+function storageAvailable(type) {
+    try {
+        var storage = window[type],
+            x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch(e) {
+        return e instanceof DOMException && (
+            // everything except Firefox
+            e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
+            // test name field too, because code might not be present
+            // everything except Firefox
+            e.name === 'QuotaExceededError' ||
+            // Firefox
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            storage.length !== 0;
+    }
+}
+
+if (storageAvailable('localStorage')) {
+  // Code for localStorage/sessionStorage.
+  var createForm = document.querySelector("#createAccountForm");
+  var loginForm = document.querySelector("#loginForm");
+
+  createForm.addEventListener("submit", createAccount, false);
+  loginForm.addEventListener("submit", login, false);
+} else {
+  // Sorry! No Web Storage support..
+}

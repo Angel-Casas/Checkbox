@@ -34,11 +34,11 @@
         <form class="createForm">
           <input type="text" id="exampleEntry" maxlength="25">
           <div class="time-range" id="exampleTimeRange">
-            <input class="periods" type="radio" name="selector" id="Daily" value="1" checked><label for="Daily">Day</label>
-            <input class="periods" type="radio" name="selector" id="Weekly" value="7"><label for="Weekly">Week</label>
-            <input class="periods" type="radio" name="selector" id="Monthly" value="30"><label for="Monthly">Month</label>
+            <input class="periods" type="radio" name="selector" value="1" checked><label for="Daily">Day</label>
+            <input class="periods" type="radio" name="selector" value="7"><label for="Weekly">Week</label>
+            <input class="periods" type="radio" name="selector" value="30"><label for="Monthly">Month</label>
           </div>
-          <button id="postIt" type="button">Create</button>
+          <button id="postIt" type="submit">Create</button>
         </form>
         <section class="mainBox">
           <div class="card">
@@ -107,8 +107,8 @@
           <a id="signIn" href="#">Sign in</a>
           <a id="createAccount" href="#">Create account</a>
         </div>
-        <div id="createAccountForm">
-          <form action="/register" onsubmit="return false" method="post">
+        <div id="createAccountDiv">
+          <form action="/register" method="post" id="createAccountForm">
             <p class="text">
               <span>
                 <label for="email">Email</label>
@@ -117,8 +117,8 @@
             </p>
             <p class="text">
               <span>
-                <label for="name">Full name</label>
-                <input id="name" type="text" name="name" value="" placeholder="Full name">
+                <label for="name">Username</label>
+                <input id="name" type="text" name="name" value="" placeholder="Username">
               </span>
             </p>
             <p class="text">
@@ -144,24 +144,24 @@
                 <label for="confirm_password">Confirm Password</label>
                 <input id="confirm_password" type="password" name="confirm_password" value="" placeholder="Confirm password">
               </span>
+              <span><p id="passwordError"></p></span>
             </p>
-            <div>
-              <p class="submit">
-                <button type="submit" class="button blue medium">
-                  <span>
-                    Create
-                  </span>
-                </button>
-              </p>
-            </div>
+            <p class="submit">
+              <button type="submit" class="button blue medium">
+                <span>
+                  Create
+                </span>
+              </button>
+            </p>
+            <p id="successCreate"></p>
           </form>
         </div>
         <div id="loginForm">
           <form action="/register" method="post">
             <p class="text">
               <span>
-                <label for="emailLogin">Email</label>
-                <input id="emailLogin" type="text" name="emailLogin" value="" placeholder="Email">
+                <label for="emailLogin">Username</label>
+                <input id="userNameLogin" type="text" name="userLogin" value="" placeholder="Username">
               </span>
             </p>
             <p class="text">
@@ -183,6 +183,8 @@
                 </span>
               </button>
             </p>
+            <p id="loginError"></p>
+            <p id="successLogin"></p>
           </form>
         </div>
         <a href="#" class="close"></a>
