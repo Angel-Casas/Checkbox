@@ -386,7 +386,6 @@ function userId(name) {
     }
     idx = i;
   }
-  console.log(idx);
   return idx;
 }
 // Local Storage
