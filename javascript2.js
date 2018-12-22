@@ -1,18 +1,27 @@
-// global user (empty until log in)
+// global variables
 var userUpdatedGlobal;
 var logged = false;
+var users = [];
 
-// Mobile Viewport Height correction
+// // Mobile Viewport Height correction
+//
+// let vh = window.innerHeight * 0.01;
+//
+// document.documentElement.style.setProperty('--mobilevh', `${vh}px`);
+//
+// window.addEventListener('resize', () => {
+//   let vh = window.innerHeight * 0.01;
+//   document.documentElement.style.setProperty('--mobilevh', `${vh}px`);
+// });
+//
 
-let vh = window.innerHeight * 0.01;
-
-document.documentElement.style.setProperty('--mobilevh', `${vh}px`);
-
-window.addEventListener('resize', () => {
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--mobilevh', `${vh}px`);
-});
-
+// window init
+window.onload = init;
+function init() {
+  if (localStorage.getItem("users") === null) {
+    localStorage.setItem("users", JSON.stringify(users));
+  }
+}
 // Login form
 function loginForm() {
   let buttons = document.querySelectorAll(".inner a");
@@ -365,36 +374,59 @@ document.querySelector("#homeForm").addEventListener('submit', function(e) {
   }
 }, false);
 
-console.log(userUpdatedGlobal);
+// loop over users
+function userId(name) {
+  let idx = 0;
+  console.log("users length: " + users.length);
+  for (var i=0; i<users.length; i++) {
+    if (users[i].name === name) {
+      console.log("click");
+      idx = i;
+      return;
+    }
+    idx = i;
+  }
+  console.log(idx);
+  return idx;
+}
 // Local Storage
 // createAccount LocalStorage
 function createAccount(e) {
-  var emailCreate = document.querySelector("#email").value;
-  var userNameCreate = document.querySelector("#name").value;
-  var passwordCreate = window.btoa(document.querySelector("#password").value);
-  var confirmPasswordCreate = window.btoa(document.querySelector("#confirm_password").value);
-  var successCreate = document.querySelector("#successCreate");
-  var passwordError = document.querySelector("#passwordError");
-  if (window.atob(passwordCreate) !== window.atob(confirmPasswordCreate)) {
-    passwordError.innerHTML = "";
-    passwordError.innerHTML = "Password do Not Match, please check again.";
-  }
-  else if (window.atob(passwordCreate) === "") {
-    passwordError.innerHTML = "";
-    passwordError.innerHTML = "Please type in a password.";
-  }
-  else if(localStorage.getItem(userNameCreate) == null) {
-    let user = new User(emailCreate, userNameCreate, passwordCreate);
-    localStorage.setItem( userNameCreate, JSON.stringify(user));
-    passwordError.innerHTML = "";
-    successCreate.innerHTML = "Account successfully created, welcome <span id='userNameCreate'>" + userNameCreate + "</span>!";
-    successCreate.style.display = "inline-block";
-  }
-  else if (localStorage.getItem(userNameCreate) !== null) {
-    passwordError.innerHTML = "";
-    passwordError.innerHTML = "Username already exists in this group, please choose another one.";
-  }
   e.preventDefault();
+  try {
+    var emailCreate = document.querySelector("#email").value;
+    var userNameCreate = document.querySelector("#name").value;
+    var passwordCreate = window.btoa(document.querySelector("#password").value);
+    var confirmPasswordCreate = window.btoa(document.querySelector("#confirm_password").value);
+    var successCreate = document.querySelector("#successCreate");
+    var passwordError = document.querySelector("#passwordError");
+    let id = userId(userNameCreate);
+    console.log(users[id]);
+    if (window.atob(passwordCreate) !== window.atob(confirmPasswordCreate)) {
+      passwordError.innerHTML = "";
+      passwordError.innerHTML = "Password do Not Match, please check again.";
+    }
+    else if (window.atob(passwordCreate) === "") {
+      passwordError.innerHTML = "";
+      passwordError.innerHTML = "Please type in a password.";
+    }
+    // else if (users[id].name === userNameCreate) {
+    //   passwordError.innerHTML = "";
+    //   passwordError.innerHTML = "Username already exists in this group, please choose another one.";
+    // }
+    else {
+      let user = new User(emailCreate, userNameCreate, passwordCreate);
+      users.push(user);
+      localStorage.setItem("users", JSON.stringify(users));
+      console.log(users.type);
+      passwordError.innerHTML = "";
+      successCreate.innerHTML = "Account successfully created, welcome <span id='userNameCreate'>" + userNameCreate + "</span>!";
+      successCreate.style.display = "inline-block";
+
+    }
+  } catch (e) {
+    throw new Error(e.message);
+  }
 }
 // Login LocalStorage
 function quickLogin(e) {
@@ -407,11 +439,13 @@ function quickLogin(e) {
   success.innerHTML = "";
   e.preventDefault();
   if (user !== "" && window.atob(password) !== "") {
+    let id = userId(user);
+    console.log(id);
     if (localStorage.getItem(user) === null) {
-      error.innerHTML = "No user found, please check again.";
+      error.innerHTML = "No user found, please check again.<br>Don't miss the Caps!";
       return false;
     }
-    else if (password !== JSON.parse(localStorage.getItem(user)).password) {
+    else if (password !== JSON.parse(localStorage.getItem(users)).password) {
       error.innerHTML = "Wrong password, please try again.";
       return false;
     }
