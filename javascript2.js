@@ -401,16 +401,26 @@ function quickLogin(e) {
   let user = document.querySelector("#quickLogin").value;
   let password = window.btoa(document.querySelector("#quickPassword").value);
   let error = document.querySelector("#quickLoginError");
+  let success = document.querySelector("#quickLoginSuccess");
+  let quickLogin = document.querySelector("#quickLoginForm");
   error.innerHTML = "";
+  success.innerHTML = "";
   e.preventDefault();
   if (user !== "" && window.atob(password) !== "") {
     if (localStorage.getItem(user) === null) {
       error.innerHTML = "No user found, please check again.";
       return false;
     }
-    else if (password !== localStorage.getItem(user).password) {
+    else if (password !== JSON.parse(localStorage.getItem(user)).password) {
       error.innerHTML = "Wrong password, please try again.";
       return false;
+    }
+    else {
+      success.innerHTML = "Successfull login, welcome <span id='quickSuccessUserName'>" + user + "</span>!";
+      userUpdatedGlobal = JSON.parse(localStorage.getItem(user));
+      error.innerHTML = "";
+      window.setTimeout(function() {success.innerHTML = "";}, 2000);
+      quickLogin.style.display = "none";
     }
   }
   else {
