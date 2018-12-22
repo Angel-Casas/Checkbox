@@ -21,9 +21,23 @@
         <ul id="mainUlNav">
           <li class="navLinks"><a href="" name="introduction">Introduction</a></li>
           <li class="navLinks"><a href="" name="home">Home</a></li>
-          <li class="navLinks"><a href="" name="login">Login / Register</a></li>
+          <li class="navLinks"><a href="" name="login">Register</a></li>
           <li class="navLinks"><a href="" name="about">About</a></li>
         </ul>
+        <form id="quickLoginForm">
+          <span>
+            <label for="quickLogin">Username</label>
+            <input id="quickLogin" type="text" name="quickLogin" value="" placeholder="Username">
+          </span>
+          <span>
+            <label for="quickPassword">Password</label>
+            <input id="quickPassword" type="password" name="quickPassword" value="" placeholder="Password">
+          </span>
+          <button type="submit" id="quickButton">
+            Login
+          </button>
+        </form>
+        <p id="quickLoginError"></p>
       </div>
     </nav>
     <section id="main">
@@ -31,12 +45,12 @@
         <h2>create</h2>
         <p>Write down your objective and set a time-limit to complete the task.</p>
         <div id="bckgrClimber"></div>
-        <form class="createForm">
+        <form class="createForm" id="exampleCreateForm">
           <input type="text" id="exampleEntry" maxlength="25">
           <div class="time-range" id="exampleTimeRange">
-            <input class="periods" type="radio" name="selector" value="1" checked><label for="Daily">Day</label>
-            <input class="periods" type="radio" name="selector" value="7"><label for="Weekly">Week</label>
-            <input class="periods" type="radio" name="selector" value="30"><label for="Monthly">Month</label>
+            <input class="periods" type="radio" name="selector" value="1" id="exampleDaily"><label for="exampleDaily">Day</label>
+            <input class="periods" type="radio" name="selector" value="7" id="exampleWeekly" checked><label for="exampleWeekly">Week</label>
+            <input class="periods" type="radio" name="selector" value="30" id="exampleMonthly"><label for="exampleMonthly">Month</label>
           </div>
           <button id="postIt" type="submit">Create</button>
         </form>
@@ -144,10 +158,10 @@
                 <label for="confirm_password">Confirm Password</label>
                 <input id="confirm_password" type="password" name="confirm_password" value="" placeholder="Confirm password">
               </span>
-              <span><p id="passwordError"></p></span>
             </p>
+            <p id="passwordError"></p>
             <p class="submit">
-              <button type="submit" class="button blue medium">
+              <button type="submit" class="">
                 <span>
                   Create
                 </span>
@@ -177,7 +191,7 @@
                 </label>
             </p>
             <p class="submit">
-              <button type="submit" class="button blue medium">
+              <button type="submit">
                 <span>
                   Login
                 </span>

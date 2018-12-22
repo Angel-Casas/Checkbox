@@ -1,5 +1,6 @@
 // global user (empty until log in)
 var userUpdatedGlobal;
+var logged = false;
 
 // Mobile Viewport Height correction
 
@@ -30,30 +31,34 @@ function loginForm() {
   }
 }
 loginForm();
+// quick Login eventListener
+document.querySelector("#quickLoginForm").addEventListener('submit', quickLogin, false);
 
 // Introduction javascript
-var exampleTimeRange = document.querySelectorAll("#exampleTimeRange > input[type=radio]");
-var createButton = document.querySelector("#postIt");
-var exampleRange = document.querySelector("input[type=radio]:checked").value + " Days Remaining" || "";
-function timeRange() {
-  exampleRange = this.value + " Days Remaining";
-  return;
-};
+var exampleCreateForm = document.querySelector("#exampleCreateForm");
+function timeRange(exampleRange) {
+  if (exampleRange == 1) {
+    txt = exampleRange + " day remining!";
+  }
+  else {
+    txt = exampleRange + " days remaining!";
+  }
+  return txt;
+}
 function introCard(e) {
+  let exampleRange = document.querySelector("#exampleCreateForm input[type=radio]:checked").value;
   let objectiveExample = document.querySelectorAll(".objectiveExample");
+  let time = timeRange(exampleRange);
+
   objectiveExample[0].childNodes[1].innerHTML = document.querySelector("#exampleEntry").value || "Example";
   objectiveExample[1].childNodes[1].innerHTML = document.querySelector("#exampleEntry").value || "Example";
-
-  objectiveExample[0].childNodes[3].innerHTML = exampleRange;
-  objectiveExample[1].childNodes[3].innerHTML = exampleRange;
+  objectiveExample[0].childNodes[3].innerHTML = time;
+  objectiveExample[1].childNodes[3].innerHTML = time;
   e.preventDefault();
   return;
 }
-for (var i = 0; i < exampleTimeRange.length; i++) {
-  exampleTimeRange[i].addEventListener("change", timeRange, false);
-}
 
-createButton.addEventListener("click", introCard, false);
+exampleCreateForm.addEventListener('submit', introCard, false);
 
 
 var anchors = document.querySelectorAll(".navLinks");
@@ -374,6 +379,10 @@ function createAccount(e) {
     passwordError.innerHTML = "";
     passwordError.innerHTML = "Password do Not Match, please check again.";
   }
+  else if (window.atob(passwordCreate) === "") {
+    passwordError.innerHTML = "";
+    passwordError.innerHTML = "Please type in a password.";
+  }
   else if(localStorage.getItem(userNameCreate) == null) {
     let user = new User(emailCreate, userNameCreate, passwordCreate);
     localStorage.setItem( userNameCreate, JSON.stringify(user));
@@ -388,6 +397,27 @@ function createAccount(e) {
   e.preventDefault();
 }
 // Login LocalStorage
+function quickLogin(e) {
+  let user = document.querySelector("#quickLogin").value;
+  let password = window.btoa(document.querySelector("#quickPassword").value);
+  let error = document.querySelector("#quickLoginError");
+  error.innerHTML = "";
+  e.preventDefault();
+  if (user !== "" && window.atob(password) !== "") {
+    if (localStorage.getItem(user) === null) {
+      error.innerHTML = "No user found, please check again.";
+      return false;
+    }
+    else if (password !== localStorage.getItem(user).password) {
+      error.innerHTML = "Wrong password, please try again.";
+      return false;
+    }
+  }
+  else {
+    error.innerHTML = "Fill in the input.";
+  }
+  return;
+}
 function login(e) {
   e.preventDefault();
   try {
@@ -401,7 +431,7 @@ function login(e) {
     loginError.innerHTML = "";
     successLogin.innerHTML = "";
     if (userName === "") {
-      loginError.innerHTML = "Please write a username";
+      loginError.innerHTML = "Please fill in the form.";
       return;
     }
     // check if user exists
@@ -410,6 +440,7 @@ function login(e) {
       return;
     }
     else if (JSON.parse(userString).password == password) {
+      logged = true;
       successLogin.innerHTML = "Successfull log in, welcome <span id='successUserName'>" + userObj.name + "</span>!";
     }
     else if (JSON.parse(userString).password !== password) {
