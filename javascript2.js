@@ -1,5 +1,5 @@
 // global variables
-var userUpdatedGlobal;
+var userUpdatedGlobal = {};
 var logged = false;
 var users = [];
 
@@ -21,25 +21,12 @@ function init() {
   if (localStorage.getItem("users") === null) {
     localStorage.setItem("users", JSON.stringify(users));
   }
+  users = JSON.parse(localStorage.getItem("users"));
+  console.log(users);
+  document.querySelector("#clearUsers").addEventListener("click", function() {
+    localStorage.removeItem("users");
+  }, false);
 }
-// Login form
-function loginForm() {
-  let buttons = document.querySelectorAll(".inner a");
-  for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function() {
-      if (this.id == 'signIn') {
-        document.querySelector("#createAccountForm").style.display = "none";
-        document.querySelector("#loginForm").style.display = "block";
-      }
-      if (this.id == 'createAccount') {
-        document.querySelector("#loginForm").style.display = "none";
-        document.querySelector("#createAccountForm").style.display = "flex";
-      }
-      return;
-    });
-  }
-}
-loginForm();
 // quick Login eventListener
 document.querySelector("#quickLoginForm").addEventListener('submit', quickLogin, false);
 
@@ -272,7 +259,7 @@ function User( email, fullName, password) {
   self.email = email;
   self.name = fullName;
   self.password = password;
-  self.card = {};
+  self.card = [];
   self.cardLength = 0;
   // methods
   self.checkCardLength = function() {
@@ -281,7 +268,6 @@ function User( email, fullName, password) {
   }
   self.addCard = function(objective, time) {
     let idx = self.checkCardLength();
-    console.log(idx);
     let newCard = {
       "idx": idx,
       "objective": objective,
@@ -325,7 +311,11 @@ function User( email, fullName, password) {
     return this.card[idx].participants;
   }
 }
+// save User state
 
+function saveUserState() {
+  localStorage.setItem("users", JSON.stringify(users));
+}
 // display Cards
 function createCards(objective, time) {
   var newCard = document.createElement("div");
@@ -336,12 +326,16 @@ function createCards(objective, time) {
   var newTime = document.createElement("time");
   var section = document.querySelector("#mainObjectives");
   var txt = "";
+  var cardObj = {};
   if (time == 1) {
     txt = time + " day remining!";
   }
   else {
     txt = time + " days remaining!";
   }
+  // create card object passed later to user
+  cardObj.objective = objective;
+  cardObj.time = time;
   newCard.style.background = "linear-gradient(30deg, " + get_random_color() + ", " + get_random_color() + ")";
   //add classes
   newButton.className = "rewardAsk";
@@ -351,14 +345,14 @@ function createCards(objective, time) {
   //add content to div > span,time
   newButton.innerHTML = "R";
   newP.innerHTML = objective || "I could'nt think of any objectives";
-  newTime.innerHTML = txt;
+  newTime.innerHTML = time || txt;
   newObjective.appendChild(newP);
   newObjective.appendChild(newTime);
   newObjective.appendChild(newButton);
   newObjective.appendChild(newCardReward);
   newCard.appendChild(newObjective);
   section.appendChild(newCard);
-  return;
+  return cardObj;
 }
 
 // create Cards
@@ -366,27 +360,49 @@ document.querySelector("#homeForm").addEventListener('submit', function(e) {
   e.preventDefault();
   var objective = document.getElementById("entry").value || "I can't think of any Objectives.";
   var time = document.querySelector("#home .time-range input:checked").value;
-  createCards(objective, time);
+  var cardObj = createCards(objective, time);
+  console.log(userUpdatedGlobal.checkCardLength);
   try {
-    userUpdatedGlobal.addCard(objective, time);
+    userUpdatedGlobal.card.push(cardObj);
+    saveUserState();
   } catch(e) {
     throw new Error(e.message);
   }
 }, false);
 
+// display cards
+
+function displayCards() {
+  for (var i=0; i<userUpdatedGlobal.card.length; i++) {
+    createCards(userUpdatedGlobal.card[i].objective, userUpdatedGlobal.card[i].time);
+  }
+  return;
+}
 // loop over users
 function userId(name) {
   let idx = 0;
-  console.log("users length: " + users.length);
   for (var i=0; i<users.length; i++) {
     if (users[i].name === name) {
-      console.log("click");
       idx = i;
-      return;
+      return idx;
     }
     idx = i;
   }
   return idx;
+}
+// check if users exists
+
+function checkUser(name) {
+  try {
+    for (var i=0; i<users.length; i++) {
+      if (users[i].name === name) {
+        return true;
+      }
+    }
+    return false;
+  } catch (e) {
+    throw new Error(e.message);
+  }
 }
 // Local Storage
 // createAccount LocalStorage
@@ -399,29 +415,28 @@ function createAccount(e) {
     var confirmPasswordCreate = window.btoa(document.querySelector("#confirm_password").value);
     var successCreate = document.querySelector("#successCreate");
     var passwordError = document.querySelector("#passwordError");
-    let id = userId(userNameCreate);
-    console.log(users[id]);
+    successCreate.innerHTML = "";
+    passwordError.innerHTML = "";
     if (window.atob(passwordCreate) !== window.atob(confirmPasswordCreate)) {
-      passwordError.innerHTML = "";
       passwordError.innerHTML = "Password do Not Match, please check again.";
+      return;
     }
     else if (window.atob(passwordCreate) === "") {
-      passwordError.innerHTML = "";
       passwordError.innerHTML = "Please type in a password.";
+      return;
     }
-    // else if (users[id].name === userNameCreate) {
-    //   passwordError.innerHTML = "";
-    //   passwordError.innerHTML = "Username already exists in this group, please choose another one.";
-    // }
+    else if (checkUser(userNameCreate)) {
+      passwordError.innerHTML = "Username already exists in this group, please choose another one.";
+      return;
+    }
     else {
       let user = new User(emailCreate, userNameCreate, passwordCreate);
       users.push(user);
-      localStorage.setItem("users", JSON.stringify(users));
-      console.log(users.type);
+      saveUserState();
       passwordError.innerHTML = "";
       successCreate.innerHTML = "Account successfully created, welcome <span id='userNameCreate'>" + userNameCreate + "</span>!";
       successCreate.style.display = "inline-block";
-
+      return;
     }
   } catch (e) {
     throw new Error(e.message);
@@ -429,28 +444,30 @@ function createAccount(e) {
 }
 // Login LocalStorage
 function quickLogin(e) {
-  let user = document.querySelector("#quickLogin").value;
+  let name = document.querySelector("#quickLogin").value;
   let password = window.btoa(document.querySelector("#quickPassword").value);
   let error = document.querySelector("#quickLoginError");
   let success = document.querySelector("#quickLoginSuccess");
   let quickLogin = document.querySelector("#quickLoginForm");
+  e.preventDefault();
   error.innerHTML = "";
   success.innerHTML = "";
-  e.preventDefault();
-  if (user !== "" && window.atob(password) !== "") {
-    let id = userId(user);
-    console.log(id);
-    if (localStorage.getItem(user) === null) {
+  if (name !== "" && window.atob(password) !== "") {
+    let id = userId(name);
+    if (!checkUser(name)) {
       error.innerHTML = "No user found, please check again.<br>Don't miss the Caps!";
       return false;
     }
-    else if (password !== JSON.parse(localStorage.getItem(users)).password) {
+    else if (password !== users[id].password) {
       error.innerHTML = "Wrong password, please try again.";
       return false;
     }
     else {
-      success.innerHTML = "Successfull login, welcome <span id='quickSuccessUserName'>" + user + "</span>!";
-      userUpdatedGlobal = JSON.parse(localStorage.getItem(user));
+      success.innerHTML = "Successfull login, welcome <span id='quickSuccessUserName'>" + name + "</span>!";
+      logged = true;
+      userUpdatedGlobal = users[id];
+      console.log(userUpdatedGlobal);
+      displayCards();
       error.innerHTML = "";
       window.setTimeout(function() {success.innerHTML = "";}, 2000);
       quickLogin.style.display = "none";
@@ -460,39 +477,6 @@ function quickLogin(e) {
     error.innerHTML = "Fill in the input.";
   }
   return;
-}
-function login(e) {
-  e.preventDefault();
-  try {
-    var loginError = document.querySelector("#loginError");
-    var successLogin = document.querySelector("#successLogin");
-    var userName = document.querySelector("#loginForm #userNameLogin").value;
-    var password = window.btoa(document.querySelector("#passwordLogin").value);
-    var userString = localStorage.getItem(userName);
-    var userObj = JSON.parse(userString);
-    userUpdatedGlobal = userObj;
-    loginError.innerHTML = "";
-    successLogin.innerHTML = "";
-    if (userName === "") {
-      loginError.innerHTML = "Please fill in the form.";
-      return;
-    }
-    // check if user exists
-    if (localStorage.getItem(userName) === null) {
-      loginError.innerHTML = "No username found with that name.";
-      return;
-    }
-    else if (JSON.parse(userString).password == password) {
-      logged = true;
-      successLogin.innerHTML = "Successfull log in, welcome <span id='successUserName'>" + userObj.name + "</span>!";
-    }
-    else if (JSON.parse(userString).password !== password) {
-      loginError.innerHTML = "Password incorrect, please check again.";
-      return;
-    }
-  } catch (e) {
-    throw new Error(e.message);
-  }
 }
 
 // check if localStorage is available
@@ -524,10 +508,8 @@ function storageAvailable(type) {
 if (storageAvailable('localStorage')) {
   // Code for localStorage/sessionStorage.
   var createForm = document.querySelector("#createAccountForm");
-  var loginForm = document.querySelector("#loginForm");
 
   createForm.addEventListener("submit", createAccount, false);
-  loginForm.addEventListener("submit", login, false);
 } else {
   // Sorry! No Web Storage support..
 }

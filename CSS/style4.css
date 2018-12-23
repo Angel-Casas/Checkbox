@@ -749,6 +749,22 @@ body {
 #mainObjectives > * {
   margin: .2em;
 }
+#mainSection #clearUsers {
+  display: block;
+  height: 50px;
+  font-size: 0.6rem;
+  padding: .5rem;
+  background: rgb(33, 35, 73);
+  color: rgb(221, 182, 78);
+  border: 1px solid rgb(221, 182, 78);
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+#mainSection #clearUsers:hover {
+  color: rgb(33, 35, 78);
+  background: rgb(221, 182, 78);
+  transition: all .2s ease-in;
+}
 #about {
   display: none;
   width: 100%;
@@ -809,16 +825,21 @@ html #login label:not(.rememberContainer) {
   margin-left: auto;
   margin-right: auto;
 }
-#login .inner form {
+#login .inner #createAccountForm {
   border-top: 1px solid white;
   border-bottom: 1px solid white;
   border-radius: 6px;
   height: 100%;
   width: 300px;
+  text-align: center;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: space-around;
+}
+#login .inner .title {
+  color: rgb(221, 182, 78);
+  text-transform: uppercase;
 }
 #login .inner span {
   display: block;
@@ -887,10 +908,6 @@ html #login label:not(.rememberContainer) {
 #login .inner .close:hover::before,
 #login .inner .close:hover::after {
   background-color: rgb(221, 182, 78);
-}
-#login .inner #createAccountForm {
-  display: block;
-  text-align: center;
 }
 #login .inner #loginForm {
   display: none;

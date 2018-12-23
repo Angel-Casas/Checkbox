@@ -118,9 +118,8 @@
     <section id="login">
       <div id="bckgrColor"></div>
       <div class="inner">
-        <div class="title extra">
-          <a id="signIn" href="#">Sign in</a>
-          <a id="createAccount" href="#">Create account</a>
+        <div class="title">
+          <h2>Create Account</h2>
         </div>
         <div id="createAccountDiv">
           <form action="/register" method="post" id="createAccountForm">
@@ -171,37 +170,6 @@
             <p id="successCreate"></p>
           </form>
         </div>
-        <div id="loginForm">
-          <form action="/register" method="post">
-            <p class="text">
-              <span>
-                <label for="emailLogin">Username</label>
-                <input id="userNameLogin" type="text" name="userLogin" value="" placeholder="Username">
-              </span>
-            </p>
-            <p class="text">
-              <span>
-                <label for="passwordLogin">Password</label>
-                <input id="passwordLogin" type="password" name="passwordLogin" value="" placeholder="password">
-              </span>
-            </p>
-            <p class="remember">
-                <label class="rememberContainer">
-                  <input name="remember" type="checkbox">Remember me
-                  <span class="checkmark"></span>
-                </label>
-            </p>
-            <p class="submit">
-              <button type="submit">
-                <span>
-                  Login
-                </span>
-              </button>
-            </p>
-            <p id="loginError"></p>
-            <p id="successLogin"></p>
-          </form>
-        </div>
         <a href="#" class="close"></a>
       </div>
     </section>
@@ -228,8 +196,8 @@
           <i class="fas fa-screwdriver fa-2x"></i>
         </div>
         <div id="mainObjectives">
-
         </div>
+        <button id="clearUsers" type="button">ClearUsers</button>
       </div>
     </section>
     <section id="about">
