@@ -25,6 +25,7 @@ function init() {
   console.log(users);
   document.querySelector("#clearUsers").addEventListener("click", function() {
     localStorage.removeItem("users");
+    location.reload();
   }, false);
 }
 // quick Login eventListener
@@ -116,6 +117,35 @@ function loginPopup() {
 document.querySelector(".close").addEventListener('click', function() {
   document.getElementById("login").style.display = "none";
 });
+
+// modifyCards
+function modifyCards() {
+  let cardClose = document.querySelectorAll("#home #mainObjectives .close");
+  if (this.getAttribute("class") === "") {
+    this.classList.add("activeEditor");
+    for (var i = 0; i < cardClose.length; i++) {
+      cardClose[i].style.display = "block";
+      cardClose[i].addEventListener("click", deleteCard, false);
+    }
+    return;
+  }
+  else {
+    this.classList.remove("activeEditor");
+    for (var i = 0; i < cardClose.length; i++) {
+      cardClose[i].style.display = "none";
+    }
+    return;
+  }
+}
+document.querySelector("#cardEditor").addEventListener("click", modifyCards, false);
+
+// delete Card
+function deleteCard() {
+  let idx = userUpdatedGlobal.card.indexOf(this.parentElement);
+  userUpdatedGlobal.card.splice(idx, 1);
+  saveUserState();
+  this.parentElement.outerHTML = "";
+}
 
 // Random quotes
 let quotes = {
@@ -327,6 +357,10 @@ function createCards(objective, time) {
   var section = document.querySelector("#mainObjectives");
   var txt = "";
   var cardObj = {};
+  // needed for Editor
+  var newClose = document.createElement("div");
+  newClose.classList.add("close");
+
   if (time == 1) {
     txt = time + " day remining!";
   }
@@ -350,6 +384,7 @@ function createCards(objective, time) {
   newObjective.appendChild(newTime);
   newObjective.appendChild(newButton);
   newObjective.appendChild(newCardReward);
+  newCard.appendChild(newClose);
   newCard.appendChild(newObjective);
   section.appendChild(newCard);
   return cardObj;
@@ -442,6 +477,13 @@ function createAccount(e) {
     throw new Error(e.message);
   }
 }
+
+// sign Out
+function signOut() {
+  userUpdatedGlobal = {};
+  logged = false;
+  location.reload();
+}
 // Login LocalStorage
 function quickLogin(e) {
   let name = document.querySelector("#quickLogin").value;
@@ -449,6 +491,8 @@ function quickLogin(e) {
   let error = document.querySelector("#quickLoginError");
   let success = document.querySelector("#quickLoginSuccess");
   let quickLogin = document.querySelector("#quickLoginForm");
+  let registerNav = document.querySelector("#mainNav #registerNav");
+  let signOutNav = document.querySelector("#mainNav #signOutNav");
   e.preventDefault();
   error.innerHTML = "";
   success.innerHTML = "";
@@ -468,7 +512,9 @@ function quickLogin(e) {
       userUpdatedGlobal = users[id];
       console.log(userUpdatedGlobal);
       displayCards();
-      error.innerHTML = "";
+      registerNav.style.display = "none";
+      signOutNav.style.display = "flex";
+      signOutNav.addEventListener("click", signOut, false);
       window.setTimeout(function() {success.innerHTML = "";}, 2000);
       quickLogin.style.display = "none";
     }

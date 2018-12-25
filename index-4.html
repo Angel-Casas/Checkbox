@@ -21,8 +21,9 @@
         <ul id="mainUlNav">
           <li class="navLinks"><a href="" name="introduction">Introduction</a></li>
           <li class="navLinks"><a href="" name="home">Home</a></li>
-          <li class="navLinks"><a href="" name="login">Register</a></li>
           <li class="navLinks"><a href="" name="about">About</a></li>
+          <li class="navLinks" id="registerNav"><a href="" name="login">Register</a></li>
+          <li class="navLinks" id="signOutNav"><a href="" name="signOut">SignOut</a></li>
         </ul>
         <form id="quickLoginForm">
           <span>
@@ -181,7 +182,7 @@
           <i id="author">- Jordan B. Peterson -</i>
         </blockquote>
         <form class="createForm" id="homeForm">
-          <input type="text" id="entry" maxlength="25">
+          <input type="text" id="entry" maxlength="25" placeholder="Objective">
           <p id="inputError"></p>
           <div class="time-range">
             <input class="periods" type="radio" name="selector" id="Daily" value="1"><label for="Daily">Day</label>
@@ -192,7 +193,7 @@
         </form>
       </div>
       <div id="mainSection">
-        <div id="cardEditor">
+        <div id="cardEditor" class="">
           <i class="fas fa-screwdriver fa-2x"></i>
         </div>
         <div id="mainObjectives">

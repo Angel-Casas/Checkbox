@@ -109,6 +109,9 @@ body {
 #wrapper > nav ul > li:nth-child(4)::after {
   background: rgb(221, 182, 78);
 }
+#wrapper > nav ul > li:nth-child(5)::after {
+  background: rgb(184, 244, 235);
+}
 #wrapper > nav ul > li:hover::after {
     width: 100%;
     transition: width .3s;
@@ -118,6 +121,9 @@ body {
   height: 100%;
   font-weight: bold;
   white-space: nowrap;
+}
+#mainNav #signOutNav {
+  display: none;
 }
 #mainNav #quickLoginForm {
   height: 50px;
@@ -172,7 +178,7 @@ body {
   font-size: 1.2rem;
   background-color: rgba(33, 35, 73, 0.6);
   margin: 0;
-  padding: 5px 0;
+  padding: 7px 0;
 }
 #mainNav #quickSuccessUserName {
   font-size: 1.5rem;
@@ -291,10 +297,9 @@ body {
   width: 150px;
   color: white;
   text-align: center;
-  font-weight: bold;
   transition: box-shadow .1s ease-in;
 }
-.createForm #entry:hover {
+input:hover {
   box-shadow: 0 0 2px 2px rgb(221, 182, 78);
   transition: box-shadow .1s ease-in;
 }
@@ -720,20 +725,39 @@ body {
 }
 #home > #mainSection {
   width: 100%;
+  position: relative;
 }
 #mainSection > #cardEditor {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: all .3s ease-in-out;
+}
+#mainSection > .activeEditor {
+  border-radius: 100%;
+  transform: rotate(-90deg);
+  transform-origin: center center;
+}
+#mainSection > .activeEditor > i {
+  color: rgb(221, 182, 78);
 }
 #cardEditor > i {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  float: right;
-  margin: .5rem .8rem;
+  width: 100%;
+  height: 100%;
   color: rgba(255, 255, 255, .6);
 }
 #cardEditor > i:hover {
-  color: white;
+  color: rgb(221, 182, 78);
   cursor: pointer;
+}
+#home .createForm #entry::placeholder {
+  color: white;
+}
+[placeholder]:focus::-webkit-input-placeholder {
+  transition: opacity 0.5s 0.5s ease;
+  opacity: 0;
 }
 #home .createForm #inputError {
   color: red;
@@ -748,6 +772,40 @@ body {
 }
 #mainObjectives > * {
   margin: .2em;
+}
+#mainObjectives .close {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  border: 2px solid white;
+  cursor: pointer;
+}
+#mainObjectives .close::before,
+#mainObjectives .close::after {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  content: "";
+  height: 2px;
+  width: 21px;
+  background-color: white;
+}
+#mainObjectives .close::before {
+  transform: rotate(45deg) scale(.8);
+}
+#mainObjectives .close::after {
+  transform: rotate(-45deg) scale(.8);
+}
+#mainObjectives .close:hover {
+  border: 2px solid rgb(221, 182, 78);
+}
+#mainObjectives .close:hover::before,
+#mainObjectives .close:hover::after {
+  background-color: rgb(221, 182, 78);
 }
 #mainSection #clearUsers {
   display: block;
