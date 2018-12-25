@@ -15,6 +15,20 @@ var users = [];
 // });
 //
 
+//hide loginNav when scrolling down
+
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.querySelector("#quickLoginDiv").style.top = "70px";
+  } else {
+    document.querySelector("#quickLoginDiv").style.top = "-50px";
+  }
+  prevScrollpos = currentScrollPos;
+}
+
+
 // window init
 window.onload = init;
 function init() {
@@ -114,6 +128,7 @@ function loginPopup() {
   }
   return;
 }
+
 document.querySelector(".close").addEventListener('click', function() {
   document.getElementById("login").style.display = "none";
 });
@@ -123,6 +138,7 @@ function modifyCards() {
   let cardClose = document.querySelectorAll("#home #mainObjectives .close");
   if (this.getAttribute("class") === "") {
     this.classList.add("activeEditor");
+    document.querySelector("#cardEditorInfo").style.display = "block";
     for (var i = 0; i < cardClose.length; i++) {
       cardClose[i].style.display = "block";
       cardClose[i].addEventListener("click", deleteCard, false);
@@ -131,6 +147,7 @@ function modifyCards() {
   }
   else {
     this.classList.remove("activeEditor");
+    document.querySelector("#cardEditorInfo").style.display = "none";
     for (var i = 0; i < cardClose.length; i++) {
       cardClose[i].style.display = "none";
     }
@@ -141,9 +158,11 @@ document.querySelector("#cardEditor").addEventListener("click", modifyCards, fal
 
 // delete Card
 function deleteCard() {
-  let idx = userUpdatedGlobal.card.indexOf(this.parentElement);
-  userUpdatedGlobal.card.splice(idx, 1);
-  saveUserState();
+  if (logged) {
+    let idx = userUpdatedGlobal.card.indexOf(this.parentElement);
+    userUpdatedGlobal.card.splice(idx, 1);
+    saveUserState();
+  }
   this.parentElement.outerHTML = "";
 }
 
@@ -396,10 +415,11 @@ document.querySelector("#homeForm").addEventListener('submit', function(e) {
   var objective = document.getElementById("entry").value || "I can't think of any Objectives.";
   var time = document.querySelector("#home .time-range input:checked").value;
   var cardObj = createCards(objective, time);
-  console.log(userUpdatedGlobal.checkCardLength);
   try {
-    userUpdatedGlobal.card.push(cardObj);
-    saveUserState();
+    if (logged) {
+      userUpdatedGlobal.card.push(cardObj);
+      saveUserState();
+    }
   } catch(e) {
     throw new Error(e.message);
   }

@@ -25,21 +25,23 @@
           <li class="navLinks" id="registerNav"><a href="" name="login">Register</a></li>
           <li class="navLinks" id="signOutNav"><a href="" name="signOut">SignOut</a></li>
         </ul>
-        <form id="quickLoginForm">
-          <span>
-            <label for="quickLogin">Username</label>
-            <input id="quickLogin" type="text" name="quickLogin" value="" placeholder="Username">
-          </span>
-          <span>
-            <label for="quickPassword">Password</label>
-            <input id="quickPassword" type="password" name="quickPassword" value="" placeholder="Password">
-          </span>
-          <button type="submit" id="quickButton">
-            Login
-          </button>
-        </form>
-        <p id="quickLoginError"></p>
-        <p id="quickLoginSuccess"></p>
+        <div id="quickLoginDiv">
+          <form id="quickLoginForm">
+            <span>
+              <label for="quickLogin">Username</label>
+              <input id="quickLogin" type="text" name="quickLogin" value="" placeholder="Username">
+            </span>
+            <span>
+              <label for="quickPassword">Password</label>
+              <input id="quickPassword" type="password" name="quickPassword" value="" placeholder="Password">
+            </span>
+            <button type="submit" id="quickButton">
+              Login
+            </button>
+          </form>
+          <p id="quickLoginError"></p>
+          <p id="quickLoginSuccess"></p>
+        </div>
       </div>
     </nav>
     <section id="main">
@@ -193,8 +195,11 @@
         </form>
       </div>
       <div id="mainSection">
-        <div id="cardEditor" class="">
-          <i class="fas fa-screwdriver fa-2x"></i>
+        <div id="cardEditorDiv">
+          <div id="cardEditor" class="">
+            <i class="fas fa-screwdriver fa-2x"></i>
+          </div>
+          <div id="cardEditorInfo"><span>Edit</span></div>
         </div>
         <div id="mainObjectives">
         </div>
