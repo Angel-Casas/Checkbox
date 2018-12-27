@@ -382,6 +382,7 @@ function createCards(objective, time) {
 
   if (time == 1) {
     txt = time + " day remining!";
+    console.log("tah");
   }
   else {
     txt = time + " days remaining!";
@@ -398,7 +399,7 @@ function createCards(objective, time) {
   //add content to div > span,time
   newButton.innerHTML = "R";
   newP.innerHTML = objective || "I could'nt think of any objectives";
-  newTime.innerHTML = time || txt;
+  newTime.innerHTML = txt;
   newObjective.appendChild(newP);
   newObjective.appendChild(newTime);
   newObjective.appendChild(newButton);
