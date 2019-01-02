@@ -372,7 +372,7 @@ function createCards(objective, time) {
   var newCardReward = document.createElement("span");
   var newButton = document.createElement("button");
   var newP = document.createElement("p");
-  var newTime = document.createElement("time");
+  var newTime = document.createElement("p");
   var section = document.querySelector("#mainObjectives");
   var txt = "";
   var cardObj = {};
