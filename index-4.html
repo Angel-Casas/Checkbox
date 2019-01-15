@@ -63,7 +63,8 @@
             <div class="objective objectiveExample">
               <p>Example</p>
               <p>5 Days Remaining</p>
-              <button class="rewardAsk" type="button" name="reward-ask">R</button>
+              <p id="rewardDisplay"></p>
+              <button class="rewardAsk" type="button" name="reward-ask"><i class="fa fa-gift"></i></button>
             </div>
           </div>
         </div>
@@ -75,32 +76,15 @@
         <div class="rewardList">
           <div class="rewardBox">
             <div class="reward-list-cards">
-              <span>Gift Card</span>
-              <div id="rewardGift" class="hidden"></div>
+              <input type="radio" name="selector" value="Gift Card" id="rewardGift"><label for="rewardGift">Gift Card</label>
             </div>
             <div class="reward-list-bitcoin">
-              <span>Bitcoin</span>
-              <div id="rewardBitcoin" class="hidden"></div>
+              <input type="radio" name="selector" value="Bitcoin" id="rewardBitcoin"><label for="rewardBitcoin">Bitcoin</label>
             </div>
             <div class="reward-list-paypal">
-              <span>Paypal</span>
-              <div id="rewardPaypal" class="hidden"></div>
-              <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-
-              <!-- Identify your business so that you can collect the payments. -->
-              <input type="hidden" name="check" value="a.casas.lp@gmail.com">
-
-              <!-- Specify a Buy Now button. -->
-              <input type="hidden" name="cmd" value="_xclick">
-
-              <!-- Specify details about the item that buyers will purchase. -->
-              <input type="hidden" name="gift" value="custom amount">
-              <input type="hidden" name="amount" value="1.00">
-              <input type="hidden" name="currency_code" value="USD">
-
-              <!-- Display the payment button. -->
-              </form>
+              <input type="radio" name="selector" value="Paypal" id="rewardPaypal"><label for="rewardPaypal">Paypal</label>
             </div>
+            <p id="successRewardInfo">Reward added to card below <span>&darr;</span></p>
           </div>
         </div>
       </div>
@@ -113,6 +97,7 @@
           <div class="objective objectiveExample">
             <p>Example</p>
             <p>5 Days Remaining</p>
+            <p id="rewardDisplay"></p>
             <button class="cardComplete" type="button" name="cardComplete">&#10004;</button>
           </div>
         </div>
@@ -179,10 +164,12 @@
     <section id="home">
       <h2>Objectives</h2>
       <div id="objectivesBox">
-        <blockquote id="randomQuote" cite="">
-          <i id="quote">Specify your damn goals</i>
-          <i id="author">- Jordan B. Peterson -</i>
-        </blockquote>
+        <div id="quoteBox">
+          <blockquote id="randomQuote" cite="">
+            <i id="quote">Specify your damn goals</i>
+            <i id="author">- Jordan B. Peterson -</i>
+          </blockquote>
+        </div>
         <form class="createForm" id="homeForm">
           <input type="text" id="entry" maxlength="25" placeholder="Objective">
           <p id="inputError"></p>
@@ -204,6 +191,23 @@
         <div id="mainObjectives">
         </div>
         <button id="clearUsers" type="button">ClearUsers</button>
+      </div>
+      <div id="bitcoinDialogBox">
+        <i class="fab fa-bitcoin fa-5x"></i>
+        <h4>Send Bitcoin as a Reward</h4>
+        <form id="bitcoinDialogForm">
+          <span>
+            <label for="">Address to send Reward</label>
+            <input type="text" id="bitcoinDialogAddress" maxlength="35">
+            <span id="bitcoinAddressPaste">Paste</span>
+          </span>
+          <span>
+            <label for="">Amount to send</label>
+            <input type="text" id="bitcoinDialogAmount">
+          </span>
+          <button id="bitcoinDialogSubmit" type="button" name="bitcoinSubmit">Reward</button>
+        </form>
+        <a href="#" class="close"></a>
       </div>
     </section>
     <section id="about">

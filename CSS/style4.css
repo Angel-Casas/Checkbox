@@ -36,7 +36,7 @@ body {
 }
 #main {
   width: 100%;
-  display: none;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-flow: column nowrap;
@@ -602,6 +602,7 @@ input:hover {
 .card .objective button {
   width: 75px;
   height: 75px;
+  font-size: 1.4rem;
   background: rgb(33, 35, 73);
   color: rgb(221, 182, 78);
   border: 1px solid rgb(221, 182, 78);
@@ -628,7 +629,6 @@ input:hover {
   grid-row-gap: 1.5em;
   grid-column-gap: 1em;
   padding: .5em 0;
-  z-index: 0;
 }
 
 #main #rewardFrame > *:nth-child(1) {
@@ -807,27 +807,49 @@ input:hover {
   line-height: 200%;
   color: rgb(221, 182, 78);
 }
-#rewardFrame .rewardList .rewardBox > * {
+#rewardFrame .rewardBox > * {
+}
+#rewardFrame .rewardBox input[type='radio'] {
+  display: none;
+}
+#rewardFrame .rewardBox input[type='radio'] + label {
+  display: block;
+  color: rgb(221, 182, 78);
+  cursor: pointer;
+  -webkit-transition: all .1s ease-in;
+  -o-transition: all .1s ease-in;
+  transition: all .1s ease-in;
   padding: .5em;
   width: 200px;
   height: 100px;
-  cursor: pointer;
   border-radius: 20px;
   border: 2px solid rgb(221, 182, 78);
   background: rgb(33, 35, 78);
 
+}
+#rewardFrame .rewardBox input[type="radio"]:checked + label {
+  background-color: rgb(221, 182, 78);
+  color: rgb(33, 35, 73);
+}
 
-}
-#rewardFrame .rewardList .rewardBox .reward-list-cards {
-}
-#rewardFrame .rewardList .rewardBox .reward-list-cards > *:not(#rewardGift) {
-  width: 100px;
-  height: 100px;
-  padding: .3rem;
-}
-#rewardFrame .rewardList .rewardBox > *:hover {
+#rewardFrame .rewardBox input[type="radio"]:hover + label {
   background: rgb(221, 182, 78);
   color: rgb(33, 35, 73);
+}
+#rewardFrame .rewardBox #successRewardInfo {
+  text-orientation: upright;
+  -webkit-writing-mode: vertical-rl;
+      -ms-writing-mode: tb-rl;
+          writing-mode: vertical-rl;
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: .8rem;
+  cursor: default;
+}
+#rewardFrame .rewardBox #successRewardInfo span {
+  font-size: 1.4rem;
 }
 #main #completeFrame {
   position: relative;
@@ -1024,6 +1046,21 @@ input:hover {
   padding: .5em 0;
   display: -webkit-box;
   display: -ms-flexbox;
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#home #objectivesBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -1074,10 +1111,12 @@ input:hover {
   width: 80vw;
   max-width: 600px;
   position: relative;
-  margin: 2em .5em;
-  height: 250px;
+  height: 100px;
+  font-size: .8rem;
+  font-weight: 600;
   text-align: center;
   color: rgb(221, 182, 78);
+  opacity: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1105,8 +1144,10 @@ input:hover {
   right: -.5rem;
 }
 #home #randomQuote.quoteAnimation {
-  -webkit-animation: quoteColor 10s ease-in-out 1s infinite;
-          animation: quoteColor 10s ease-in-out 1s infinite;
+  -webkit-animation: quoteFade 10s; /* Chrome, Safari, Opera */
+    -webkit-animation-iteration-count: infinite;
+    animation: quoteFade 10s infinity;
+    animation-iteration-count: infinite;
 }
 #home #randomQuote > i {
   letter-spacing: .2em;
@@ -1116,11 +1157,9 @@ input:hover {
   white-space: nowrap;
   margin-top: 1em;
 }
-#home #randomQuote::before {
+#home #quoteBox::before {
   content: '';
   position: absolute;
-  top: -1em;
-  left: 0;
   width: 100%;
   height: 1px;
   background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, .0)), color-stop(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, .0)));
@@ -1128,11 +1167,9 @@ input:hover {
   background: -o-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
   background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
 }
-#home #randomQuote::after {
+#home #quoteBox::after {
   content: '';
   position: absolute;
-  bottom: -1em;
-  right: 0;
   width: 100%;
   height: 1px;
   background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, .0)), color-stop(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, .0)));
@@ -1302,6 +1339,85 @@ input:hover {
   -o-transition: all .2s ease-in;
   transition: all .2s ease-in;
 }
+#home #bitcoinDialogBox {
+  display: none;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10% 2rem;
+  color: rgb(221, 182, 78);
+  background-color: rgba(33, 35, 73, .9);
+  z-index: 10;
+}
+#bitcoinDialogBox h4 {
+  font-size: 1.4rem;
+}
+#bitcoinDialogBox #bitcoinDialogForm {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid rgb(221, 182, 78);
+  height: 100%;
+  min-height: 200px;
+  padding: 0 1rem;
+}
+#bitcoinDialogForm > button {
+  padding: .6rem;
+  width: 60%;
+  min-width: 100px;
+  background: rgb(33, 35, 73);
+  color: rgb(221, 182, 78);
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  border: 2px solid rgb(221, 182, 78);
+  -webkit-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+#bitcoinDialogForm button:hover {
+  color: rgb(33, 35, 73);
+  background: rgb(221, 182, 78);
+  -webkit-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+#bitcoinDialogForm label {
+  display: block;
+  color: white;
+}
+#bitcoinDialogForm input[type="text"] {
+  color: rgb(221, 182, 78);
+  background: rgb(33, 35, 73);
+  padding: 10px;
+  margin: .2em;
+  min-width: 50px;
+  border-radius: 3px;
+  border: 1px solid rgb(221, 182, 78);
+  cursor: pointer;
+  -webkit-transition: all .1s ease-in;
+  -o-transition: all .1s ease-in;
+  transition: all .1s ease-in;
+}
+#bitcoinDialogForm input[type="text"]::placeholder {
+  color: red;
+}
+#bitcoinDialogForm #bitcoinAddressPaste {
+  color: rgb(221, 182, 78);
+  display: block;
+  padding: .2rem .4rem;
+  cursor: pointer;
+}
+#bitcoinDialogForm #bitcoinAddressPaste:hover {
+  font-weight: bold;
+}
+
 #about {
   display: none;
   width: 100%;
@@ -1449,7 +1565,7 @@ html #login label:not(.rememberContainer) {
   -o-transition: all .2s ease-in;
   transition: all .2s ease-in;
 }
-#login .inner .close {
+.close {
   position: relative;
   width: 50px;
   min-width: 50px;
@@ -1459,8 +1575,8 @@ html #login label:not(.rememberContainer) {
   margin-top: 1em;
   border: 3px solid white;
 }
-#login .inner .close::before,
-#login .inner .close::after {
+.close::before,
+.close::after {
   position: absolute;
   left: 0;
   top: 50%;
@@ -1470,24 +1586,24 @@ html #login label:not(.rememberContainer) {
   width: 100%;
   background-color: white;
 }
-#login .inner .close::before {
+.close::before {
   -webkit-transform: rotate(45deg) scale(.8);
       -ms-transform: rotate(45deg) scale(.8);
           transform: rotate(45deg) scale(.8);
 }
-#login .inner .close::after {
+.close::after {
   -webkit-transform: rotate(-45deg) scale(.8);
       -ms-transform: rotate(-45deg) scale(.8);
           transform: rotate(-45deg) scale(.8);
 }
-#login .inner .close:hover {
+.close:hover {
   border: 3px solid rgb(221, 182, 78);
 }
-#login .inner .close:hover::before,
-#login .inner .close:hover::after {
+.close:hover::before,
+.close:hover::after {
   background-color: rgb(221, 182, 78);
 }
-#login .inner #loginForm {
+.inner #loginForm {
   display: none;
   text-align: center;
 }
@@ -1554,6 +1670,7 @@ html #login label:not(.rememberContainer) {
 #login #createAccountForm #userNameCreate {
   font-size: 1.5rem;
   font-weight: bold;
+  display: inline;
 }
 #login #loginForm #loginError {
   font-size: 0.8rem;
@@ -1679,37 +1796,32 @@ html #login label:not(.rememberContainer) {
   color: rgb(190, 190, 190);
 }
 
-
-
-@-webkit-keyframes quoteColor {
+@-webkit-keyframes quoteFade {
   0% {
-    color: rgb(221, 182, 78);
+    opacity: 0;
   }
-  80% {
-    color: rgb(221, 182, 78);
+  10% {
+    opacity: 1;
   }
   90% {
-    color: rgb(33, 35, 73);
+    opacity: 1;
   }
   100% {
-    color: rgb(221, 182, 78);
+    opacity: 0;
   }
 }
-
-
-
-@keyframes quoteColor {
+@keyframes quoteFade {
   0% {
-    color: rgb(221, 182, 78);
+    opacity: 0;
   }
-  80% {
-    color: rgb(221, 182, 78);
+  10% {
+    opacity: 1;
   }
   90% {
-    color: rgb(33, 35, 73);
+    opacity: 1;
   }
   100% {
-    color: rgb(221, 182, 78);
+    opacity: 0;
   }
 }
 

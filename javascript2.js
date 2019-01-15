@@ -32,6 +32,10 @@ window.onscroll = function() {
 // window init
 window.onload = init;
 function init() {
+  let randomQuote = document.getElementById("randomQuote");
+  if (!randomQuote.classList.contains('quoteAnimation')) {
+    randomQuote.classList.add("quoteAnimation");
+  }
   if (localStorage.getItem("users") === null) {
     localStorage.setItem("users", JSON.stringify(users));
   }
@@ -41,6 +45,7 @@ function init() {
     localStorage.removeItem("users");
     location.reload();
   }, false);
+  listenRewardButton();
 }
 // quick Login eventListener
 document.querySelector("#quickLoginForm").addEventListener('submit', quickLogin, false);
@@ -115,6 +120,30 @@ function handler(event) {
     return;
   }
 }
+// example rewards setup
+function listenRewardButton() {
+  var nodes = document.querySelector(".rewardBox").childNodes;
+  for (var i = 0; i < nodes.length; i++) {
+    nodes[i].addEventListener("click", handleRewardMenu, false);
+  }
+  return;
+}
+function handleRewardMenu() {
+  document.querySelector("#successRewardInfo").style.display = "block";
+  if (this.className === "reward-list-cards") {
+    this.checked = true;
+    document.querySelector("#completeFrame #rewardDisplay").innerHTML = "Gift Card";
+  }
+  else if (this.className === "reward-list-bitcoin") {
+    this.checked = true;
+    document.querySelector("#completeFrame #rewardDisplay").innerHTML = "0.5 Bitcoin";
+  }
+  else {
+    this.checked = true;
+    document.querySelector("#completeFrame #rewardDisplay").innerHTML = "1.00 EUR";
+  }
+  return;
+}
 
 // Login popup
 
@@ -129,10 +158,49 @@ function loginPopup() {
   return;
 }
 
-document.querySelector(".close").addEventListener('click', function() {
+// bitcoin Address
+function handlePaste(e) {
+  var clipboardData;
+  //stop data actually being pasted into div
+  e.stopPropagation();
+  e.preventDefault();
+
+  // get clipboard address data
+  clipboardData = e.clipboardData || "Please copy a valid address";
+  document.querySelector("#bitcoinDialogAddress").placeholder = clipboardData;
+  return;
+}
+document.querySelector("#bitcoinAddressPaste").addEventListener("click", handlePaste, false);
+
+// save reward to card
+function saveBitcoinReward(address, amount, cardNumber) {
+  userUpdatedGlobal.card[cardNumber].reward = {"rewardType": "Bitcoin", "rewardAmount": amount, "rewardAddress": address};
+  return;
+}
+function handleRewards(e) {
+  if (logged) {
+
+  }
+  else {
+
+  }
+  return;
+}
+function checkRewards() {
+  var rewardList = document.querySelectorAll(".rewardAsk");
+  console.log("inside");
+  for (var i = 0; i < rewardList.length; i++) {
+    rewardList[i].addEventListener("click", handleRewards, false);
+  }
+}
+
+
+document.querySelector("#login .close").addEventListener('click', function() {
   document.getElementById("login").style.display = "none";
 });
-
+document.querySelector("#home .close").addEventListener('click', function() {
+  document.getElementById("bitcoinDialogBox").style.display = "none";
+});
 // modifyCards
 function modifyCards() {
   let cardClose = document.querySelectorAll("#home #mainObjectives .close");
@@ -186,10 +254,6 @@ let quotes = {
 };
 let previous = null;
 function nextQuote() {
-  let randomQuote = document.getElementById("randomQuote");
-  if (!randomQuote.classList.contains('quoteAnimation')) {
-    randomQuote.classList.add("quoteAnimation");
-  }
   var randomNumber = Math.floor(Math.random()*Object.keys(quotes).length);
   if (previous == randomNumber) {
     randomNumber = Math.floor(Math.random()*Object.keys(quotes).length);
@@ -369,10 +433,11 @@ function saveUserState() {
 function createCards(objective, time) {
   var newCard = document.createElement("div");
   var newObjective = document.createElement("div");
-  var newCardReward = document.createElement("span");
+  var newRewardIcon = document.createElement("i");
   var newButton = document.createElement("button");
   var newP = document.createElement("p");
   var newTime = document.createElement("p");
+  var newRewardDisplay = document.createElement("p");
   var section = document.querySelector("#mainObjectives");
   var txt = "";
   var cardObj = {};
@@ -390,23 +455,26 @@ function createCards(objective, time) {
   // create card object passed later to user
   cardObj.objective = objective;
   cardObj.time = time;
+  cardObj.rewardSet = false;
   newCard.style.background = "linear-gradient(30deg, " + get_random_color() + ", " + get_random_color() + ")";
   //add classes
   newButton.className = "rewardAsk";
   newCard.className = "card";
-  newCardReward.className = "cardReward";
+  newRewardIcon.className = "fa fa-gift";
   newObjective.className = "objective";
   //add content to div > span,time
-  newButton.innerHTML = "R";
   newP.innerHTML = objective || "I could'nt think of any objectives";
   newTime.innerHTML = txt;
+  newButton.appendChild(newRewardIcon);
   newObjective.appendChild(newP);
   newObjective.appendChild(newTime);
+  newObjective.appendChild(newRewardDisplay);
   newObjective.appendChild(newButton);
-  newObjective.appendChild(newCardReward);
   newCard.appendChild(newClose);
   newCard.appendChild(newObjective);
   section.appendChild(newCard);
+  // add event listener to reward button
+  checkRewards();
   return cardObj;
 }
 
@@ -429,6 +497,7 @@ document.querySelector("#homeForm").addEventListener('submit', function(e) {
 // display cards
 
 function displayCards() {
+  document.querySelector("#mainObjectives").innerHTML = "";
   for (var i=0; i<userUpdatedGlobal.card.length; i++) {
     createCards(userUpdatedGlobal.card[i].objective, userUpdatedGlobal.card[i].time);
   }
