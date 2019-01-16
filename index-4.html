@@ -192,22 +192,52 @@
         </div>
         <button id="clearUsers" type="button">ClearUsers</button>
       </div>
-      <div id="bitcoinDialogBox">
-        <i class="fab fa-bitcoin fa-5x"></i>
-        <h4>Send Bitcoin as a Reward</h4>
-        <form id="bitcoinDialogForm">
-          <span>
-            <label for="">Address to send Reward</label>
-            <input type="text" id="bitcoinDialogAddress" maxlength="35">
-            <span id="bitcoinAddressPaste">Paste</span>
-          </span>
-          <span>
-            <label for="">Amount to send</label>
-            <input type="text" id="bitcoinDialogAmount">
-          </span>
-          <button id="bitcoinDialogSubmit" type="button" name="bitcoinSubmit">Reward</button>
-        </form>
-        <a href="#" class="close"></a>
+      <div id="rewardList">
+        <h4>Select a Reward</h4>
+        <div class="rewardBox">
+          <div id="rewardMainBox">
+            <div class="reward-list-cards">
+              <input type="radio" name="selector" value="Gift Card" id="rewardGiftUser"><label for="rewardGiftUser">Gift Card</label>
+            </div>
+            <div class="reward-list-bitcoin">
+              <input type="radio" name="selector" value="Bitcoin" id="rewardBitcoinUser"><label for="rewardBitcoinUser">Bitcoin</label>
+            </div>
+            <div class="reward-list-paypal">
+              <input type="radio" name="selector" value="Paypal" id="rewardPaypalUser"><label for="rewardPaypalUser">Paypal</label>
+            </div>
+          </div>
+          <div id="giftCardDialogBox">
+            <i class="far fa-credit-card fa-5x"></i>
+            <h4>Gift Card</h4>
+            <div id="cardCatalog">
+              <div class="cardElement"></div>
+              <div class="cardElement"></div>
+              <div class="cardElement"></div>
+              <div class="cardElement"></div>
+            </div>
+          </div>
+          <div id="bitcoinDialogBox">
+            <i class="fab fa-bitcoin fa-5x"></i>
+            <h4>Send Bitcoin as a Reward</h4>
+            <form id="bitcoinDialogForm">
+              <span>
+                <label for="">Address to send Reward</label>
+                <input type="text" id="bitcoinDialogAddress" maxlength="35">
+                <span id="bitcoinAddressPaste">Paste</span>
+              </span>
+              <span>
+                <label for="">Amount to send</label>
+                <input type="text" id="bitcoinDialogAmount">
+              </span>
+              <button id="bitcoinDialogSubmit" type="button" name="bitcoinSubmit">Reward</button>
+            </form>
+          </div>
+          <div id="paypalDialogBox">
+
+          </div>
+          <a href="#" class="close"></a>
+          <a href="#"><i id="rewardUndo" class="fas fa-undo fa-lg"></i></a>
+        </div>
       </div>
     </section>
     <section id="about">

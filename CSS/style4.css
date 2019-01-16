@@ -36,7 +36,7 @@ body {
 }
 #main {
   width: 100%;
-  display: flex;
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-flow: column nowrap;
@@ -807,12 +807,10 @@ input:hover {
   line-height: 200%;
   color: rgb(221, 182, 78);
 }
-#rewardFrame .rewardBox > * {
-}
-#rewardFrame .rewardBox input[type='radio'] {
+.rewardBox input[type='radio'] {
   display: none;
 }
-#rewardFrame .rewardBox input[type='radio'] + label {
+.rewardBox input[type='radio'] + label {
   display: block;
   color: rgb(221, 182, 78);
   cursor: pointer;
@@ -827,12 +825,12 @@ input:hover {
   background: rgb(33, 35, 78);
 
 }
-#rewardFrame .rewardBox input[type="radio"]:checked + label {
+.rewardBox input[type="radio"]:checked + label {
   background-color: rgb(221, 182, 78);
   color: rgb(33, 35, 73);
 }
 
-#rewardFrame .rewardBox input[type="radio"]:hover + label {
+.rewardBox input[type="radio"]:hover + label {
   background: rgb(221, 182, 78);
   color: rgb(33, 35, 73);
 }
@@ -1046,7 +1044,7 @@ input:hover {
   padding: .5em 0;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: none;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-flow: column nowrap;
@@ -1109,14 +1107,12 @@ input:hover {
 }
 #home #randomQuote {
   width: 80vw;
-  max-width: 600px;
   position: relative;
   height: 100px;
   font-size: .8rem;
   font-weight: 600;
   text-align: center;
   color: rgb(221, 182, 78);
-  opacity: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1132,16 +1128,16 @@ input:hover {
 }
 #home #randomQuote #quote::before,
 #home #randomQuote #quote::after {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   position: absolute;
 }
 #home #randomQuote #quote::before {
   content: "“";
-  left: -.5rem;
+  left: -1.5rem;
 }
 #home #randomQuote #quote::after {
   content: "”";
-  right: -.5rem;
+  right: -1.5rem;
 }
 #home #randomQuote.quoteAnimation {
   -webkit-animation: quoteFade 10s; /* Chrome, Safari, Opera */
@@ -1156,26 +1152,6 @@ input:hover {
   display: block;
   white-space: nowrap;
   margin-top: 1em;
-}
-#home #quoteBox::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, .0)), color-stop(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, .0)));
-  background: -webkit-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-  background: -o-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-  background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-}
-#home #quoteBox::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, .0)), color-stop(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, .0)));
-  background: -webkit-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-  background: -o-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-  background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
 }
 #home > #mainSection {
   width: 100%;
@@ -1339,20 +1315,92 @@ input:hover {
   -o-transition: all .2s ease-in;
   transition: all .2s ease-in;
 }
+#home #rewardList {
+  position: fixed;
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  border-radius: 6px;
+  z-index: 10;
+  background: rgba(33, 35, 73, .9);
+  overflow: scroll;
+}
+#rewardList .rewardBox {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 300px;
+  height: auto;
+  min-height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  border: 1px solid rgb(221, 182, 78);
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: rgb(221, 182, 78);
+  transition: all 1s ease-in-out;
+}
+#rewardList h4 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-top: 100px;
+  color: rgb(221, 182, 78);
+}
+#rewardList #giftCardDialogBox {
+  display: none;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  -ms-align-items: center;
+  align-items: center;
+  width: 100%;
+  transition: all 1s ease-in-out;
+}
+#giftCardDialogBox > i {
+  animation: loop 2s ease-in-out;
+}
+#giftCardDialogBox #cardCatalog {
+}
+#cardCatalog .cardElement {
+  display: inline-block;
+  width: 100px;
+  height: 75px;
+  border: 1px solid rgb(221, 182, 78);
+  cursor: pointer;
+}
+#cardCatalog .cardElement:hover {
+  -webkit-box-shadow: 0 0 2px 2px rgb(221, 182, 78);
+          box-shadow: 0 0 2px 2px rgb(221, 182, 78);
+}
 #home #bitcoinDialogBox {
   display: none;
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 10% 2rem;
+  width: auto;
+  height: auto;
   color: rgb(221, 182, 78);
   background-color: rgba(33, 35, 73, .9);
   z-index: 10;
+  transition: all 1s ease-in-out;
+}
+#bitcoinDialogBox i {
+  animation: loop 2s ease-in-out;
 }
 #bitcoinDialogBox h4 {
   font-size: 1.4rem;
@@ -1362,10 +1410,8 @@ input:hover {
   flex-flow: column nowrap;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid rgb(221, 182, 78);
-  height: 100%;
   min-height: 200px;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
 }
 #bitcoinDialogForm > button {
   padding: .6rem;
@@ -1416,6 +1462,20 @@ input:hover {
 }
 #bitcoinDialogForm #bitcoinAddressPaste:hover {
   font-weight: bold;
+}
+#paypalDialogBox {
+  transition: all 1s ease-in-out;
+}
+#rewardList #rewardUndo {
+  display: none;
+  color: rgba(255, 255, 255, .5);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 1rem;
+}
+#rewardList #rewardUndo:hover {
+  color: rgb(221, 182, 78);
 }
 
 #about {
@@ -1794,6 +1854,17 @@ html #login label:not(.rememberContainer) {
   bottom: 0;
   text-align: center;
   color: rgb(190, 190, 190);
+}
+@keyframes loop {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
 }
 
 @-webkit-keyframes quoteFade {

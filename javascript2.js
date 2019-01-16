@@ -122,7 +122,7 @@ function handler(event) {
 }
 // example rewards setup
 function listenRewardButton() {
-  var nodes = document.querySelector(".rewardBox").childNodes;
+  var nodes = document.querySelector("#main .rewardBox").childNodes;
   for (var i = 0; i < nodes.length; i++) {
     nodes[i].addEventListener("click", handleRewardMenu, false);
   }
@@ -143,6 +143,12 @@ function handleRewardMenu() {
     document.querySelector("#completeFrame #rewardDisplay").innerHTML = "1.00 EUR";
   }
   return;
+}
+
+// user rewards setup
+function listenRewardButtonUser(e) {
+  var nodes = document.querySelectorAll("#home .rewardBox > *:not(:last-child)");
+  console.log(nodes);
 }
 
 // Login popup
@@ -178,29 +184,84 @@ function saveBitcoinReward(address, amount, cardNumber) {
   return;
 }
 function handleRewards(e) {
-  if (logged) {
-
-  }
-  else {
-
+  var rewardList = document.querySelector("#home #rewardList");
+  var rewardBitcoinUser = document.querySelector("#rewardBitcoinUser");
+  var rewardGiftCardUser = document.querySelector("#rewardGiftUser");
+  var rewardPaypalUser = document.querySelector("#rewardPaypalUser");
+  if (rewardList.style.display === "none" || rewardList.style.display === "") {
+    rewardList.style.display = "block";
+    document.querySelector("#rewardUndo").addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector("#rewardMainBox").style.display = "block";
+      document.querySelector("#giftCardDialogBox").style.display = "none";
+      document.querySelector("#bitcoinDialogBox").style.display = "none";
+      document.querySelector("#paypalDialogBox").style.Display = "none";
+      document.querySelector("#rewardUndo").style.display = "none";
+    }, false);
+    rewardGiftCardUser.addEventListener('click', function() {
+      document.querySelector("#rewardUndo").style.display = "inline-block";
+      document.querySelector("#rewardMainBox").style.display = "none";
+      document.querySelector("#giftCardDialogBox").style.display = "flex";
+      rewardGiftCardUser.checked = false;
+    }, false);
+    rewardBitcoinUser.addEventListener('click', function() {
+      document.querySelector("#rewardUndo").style.display = "inline-block";
+      document.querySelector("#rewardMainBox").style.display = "none";
+      document.querySelector("#bitcoinDialogBox").style.display = "flex";
+      rewardBitcoinUser.checked = false;
+      return;
+    }, false);
+    rewardPaypalUser.addEventListener('click', function() {
+      document.querySelector("#rewardUndo").style.display = "inline-block";
+      document.querySelector("#rewardMainBox").style.display = "none";
+      document.querySelector("#paypalDialogBox").style.Display = "flex";
+      rewardPaypalUser.checked = false;
+    }, false);
   }
   return;
 }
 function checkRewards() {
-  var rewardList = document.querySelectorAll(".rewardAsk");
-  console.log("inside");
-  for (var i = 0; i < rewardList.length; i++) {
-    rewardList[i].addEventListener("click", handleRewards, false);
+  var rewardAsk = document.querySelectorAll("#home .rewardAsk");
+  for (var i = 0; i < rewardAsk.length; i++) {
+    rewardAsk[i].addEventListener("click", handleRewards, false);
   }
+  return;
 }
 
-
-document.querySelector("#login .close").addEventListener('click', function() {
+document.querySelector("#login .close").addEventListener('click', function(e) {
   document.getElementById("login").style.display = "none";
-});
-document.querySelector("#home .close").addEventListener('click', function() {
-  document.getElementById("bitcoinDialogBox").style.display = "none";
-});
+  e.preventDefault();
+}, false);
+document.querySelector("#rewardList .close").addEventListener('click', function(e) {
+  e.preventDefault();
+  document.querySelector("#rewardUndo").style.display = "none";
+  document.querySelector("#rewardList").style.display = "none";
+  document.querySelector("#bitcoinDialogBox").style.display = "none";
+  document.querySelector("#giftCardDialogBox").style.display = "none";
+  document.querySelector("#paypalDialogBox").style.display = "none";
+  document.querySelector("#rewardList .rewardBox").style.display = "flex";
+  document.querySelector("#rewardMainBox").style.display = "block";
+}, false);
+
+// add Rewards to card
+function addReward(cardNumber, reward) {
+  var cards = userUpdatedGlobal;
+  var list = document.querySelectorAll("#mainObjectives .card");
+  if (logged) {
+    console.log("logged");
+    cards.card[cardNumber].reward = reward;
+    displayReward(reward);
+    for (var i = 0; i < list.length; i++) {
+      if (i == cardNumber) {
+      }
+    }
+  }
+  else {
+  }
+  return;
+}
+addReward(1, 0.05);
+
 // modifyCards
 function modifyCards() {
   let cardClose = document.querySelectorAll("#home #mainObjectives .close");
@@ -430,7 +491,7 @@ function saveUserState() {
   localStorage.setItem("users", JSON.stringify(users));
 }
 // display Cards
-function createCards(objective, time) {
+function createCards(objective, time, reward) {
   var newCard = document.createElement("div");
   var newObjective = document.createElement("div");
   var newRewardIcon = document.createElement("i");
@@ -460,10 +521,12 @@ function createCards(objective, time) {
   //add classes
   newButton.className = "rewardAsk";
   newCard.className = "card";
+  newRewardDisplay.className = "rewardItem";
   newRewardIcon.className = "fa fa-gift";
   newObjective.className = "objective";
   //add content to div > span,time
   newP.innerHTML = objective || "I could'nt think of any objectives";
+  newRewardDisplay.innerHTML = reward;
   newTime.innerHTML = txt;
   newButton.appendChild(newRewardIcon);
   newObjective.appendChild(newP);
@@ -496,10 +559,10 @@ document.querySelector("#homeForm").addEventListener('submit', function(e) {
 
 // display cards
 
-function displayCards() {
+function displayCards(reward) {
   document.querySelector("#mainObjectives").innerHTML = "";
   for (var i=0; i<userUpdatedGlobal.card.length; i++) {
-    createCards(userUpdatedGlobal.card[i].objective, userUpdatedGlobal.card[i].time);
+    createCards(userUpdatedGlobal.card[i].objective, userUpdatedGlobal.card[i].time, reward);
   }
   return;
 }
@@ -607,6 +670,7 @@ function quickLogin(e) {
       signOutNav.addEventListener("click", signOut, false);
       window.setTimeout(function() {success.innerHTML = "";}, 2000);
       quickLogin.style.display = "none";
+      addReward(1, 0.05);
     }
   }
   else {
