@@ -254,7 +254,7 @@ body {
   position: fixed;
   background: url("../images/checkBckgr2.png");
   background-position: left top;
-  background-size: contain;
+  background-size: 100vw auto;
   background-repeat: repeat;
   z-index: -1;
 }
@@ -264,7 +264,7 @@ body {
   padding-top: 133.5%;
   background: url("../images/checkMobileStars2.png");
   background-position: left top;
-  background-size: contain;
+  background-size: 100vw auto;
   background-repeat: no-repeat;
 }
 #main #mainFrame {
@@ -1966,7 +1966,7 @@ html #login label:not(.rememberContainer) {
     display: block;
   }
 }
-@media (min-width: 700px) {
+@media (min-width: 600px) {
   #wrapper > #bckgr {
     background: url("../images/checkDesktopBckgr2.png");
     background-size: contain;
@@ -2147,7 +2147,7 @@ html #login label:not(.rememberContainer) {
     grid-row-end: 4;
   }
   #completeFrame > #bckgrFallingStar {
-    background-size: cover;
+    background-size: 100vw auto;
     background-position: left top;
   }
 }
