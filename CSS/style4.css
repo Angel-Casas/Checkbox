@@ -252,7 +252,7 @@ body {
   width: 100%;
   height: 100%;
   position: fixed;
-  background: url("../images/checkMobileBckgr5.png");
+  background: url("../images/checkBckgr2.png");
   background-position: left top;
   background-size: contain;
   background-repeat: repeat;
@@ -262,7 +262,7 @@ body {
   width: 100%;
   height: 0;
   padding-top: 133.5%;
-  background: url("../images/checkMobileStars.png");
+  background: url("../images/checkMobileStars2.png");
   background-position: left top;
   background-size: contain;
   background-repeat: no-repeat;
@@ -1142,7 +1142,8 @@ input:hover {
 #home #randomQuote.quoteAnimation {
   -webkit-animation: quoteFade 10s; /* Chrome, Safari, Opera */
     -webkit-animation-iteration-count: infinite;
-    animation: quoteFade 10s infinity;
+    -webkit-animation: quoteFade 10s infinity;
+            animation: quoteFade 10s infinity;
     animation-iteration-count: infinite;
 }
 #home #randomQuote > i {
@@ -1354,6 +1355,8 @@ input:hover {
   font-size: 1.1rem;
   font-weight: bold;
   color: rgb(221, 182, 78);
+  -webkit-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
 #rewardList h4 {
@@ -1364,15 +1367,24 @@ input:hover {
 }
 #rewardList #giftCardDialogBox {
   display: none;
-  flex-flow: column nowrap;
-  justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -ms-align-items: center;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
+  -webkit-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
 #giftCardDialogBox > i {
-  animation: loop 2s ease-in-out;
+  -webkit-animation: loop 2s ease-in-out;
+          animation: loop 2s ease-in-out;
 }
 #giftCardDialogBox #cardCatalog {
 }
@@ -1389,27 +1401,45 @@ input:hover {
 }
 #home #bitcoinDialogBox {
   display: none;
-  flex-flow: column nowrap;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: auto;
   height: auto;
   color: rgb(221, 182, 78);
   background-color: rgba(33, 35, 73, .9);
   z-index: 10;
+  -webkit-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
 #bitcoinDialogBox i {
-  animation: loop 2s ease-in-out;
+  -webkit-animation: loop 2s ease-in-out;
+          animation: loop 2s ease-in-out;
 }
 #bitcoinDialogBox h4 {
   font-size: 1.4rem;
 }
 #bitcoinDialogBox #bitcoinDialogForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-around;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   min-height: 200px;
   padding: 0.5rem 1rem;
 }
@@ -1451,6 +1481,15 @@ input:hover {
   -o-transition: all .1s ease-in;
   transition: all .1s ease-in;
 }
+#bitcoinDialogForm input[type="text"]::-webkit-input-placeholder {
+  color: red;
+}
+#bitcoinDialogForm input[type="text"]:-ms-input-placeholder {
+  color: red;
+}
+#bitcoinDialogForm input[type="text"]::-ms-input-placeholder {
+  color: red;
+}
 #bitcoinDialogForm input[type="text"]::placeholder {
   color: red;
 }
@@ -1464,6 +1503,8 @@ input:hover {
   font-weight: bold;
 }
 #paypalDialogBox {
+  -webkit-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
 }
 #rewardList #rewardUndo {
@@ -1855,15 +1896,32 @@ html #login label:not(.rememberContainer) {
   text-align: center;
   color: rgb(190, 190, 190);
 }
-@keyframes loop {
+@-webkit-keyframes loop {
   0% {
-    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
   }
   50% {
-    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
   }
   100% {
-    transform: rotateY(360deg);
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
+  }
+}
+@keyframes loop {
+  0% {
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+  }
+  50% {
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+  }
+  100% {
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
   }
 }
 
@@ -1910,12 +1968,12 @@ html #login label:not(.rememberContainer) {
 }
 @media (min-width: 700px) {
   #wrapper > #bckgr {
-    background: url("../images/checkDesktopBckgr.png");
+    background: url("../images/checkDesktopBckgr2.png");
     background-size: contain;
     background-repeat: repeat;
   }
   #wrapper > #stars {
-    background: url("../images/checkDesktopStars.png");
+    background: url("../images/checkDesktopStars2.png");
     background-size: contain;
     background-repeat: no-repeat;
     padding-top: 56.25%;
