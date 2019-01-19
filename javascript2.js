@@ -295,6 +295,20 @@ function deleteCard() {
   this.parentElement.outerHTML = "";
 }
 
+// change Background (delete later);
+document.querySelector("#changeBckgr").addEventListener('click', function(e) {
+  e.preventDefault();
+  if (document.querySelector("#bckgr").style.backgroundImage == 'url("../images/checkMobileBckgr.png")') {
+    console.log("one");
+    document.querySelector("#bckgr").style.backgroundImage = 'url("../images/checkBckgr2.png")';
+    document.querySelector("stars").style.backgroundImage = 'url("../images/checkMobileStars2.png")';
+  }
+  else {
+    console.log("two");
+    document.querySelector("#bckgr").style.backgroundImage = 'url("../images/checkMobileBckgr.png")';
+    document.querySelector("#stars").style.backgroundImage = 'url("../images/checkMobileStars.png")';
+  }
+}, false);
 // Random quotes
 let quotes = {
   "Aim at the highest good, tool yourself into something that can attain it and go out there and manifest it in the world, so everything that comes your way will be a blessing. All you have to do is give up your resentment and hatred.": "- Jordan Bernt Peterson -",

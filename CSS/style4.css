@@ -1953,7 +1953,30 @@ html #login label:not(.rememberContainer) {
     opacity: 0;
   }
 }
-
+/* @media (min-width: 800px) {
+  #wrapper > #bckgr {
+    background: url("../images/check2HugeBckgr.png");
+    background-size: 100vw auto;
+    background-repeat: repeat;
+    z-index: -1;
+  }
+  #wrapper > #stars {
+    background: url("../images/check2HugeStars.png");
+    background-size: 100vw auto;
+    background-repeat: no-repeat;
+    z-index: 3;
+  }
+  #wrapper > #hugeBckgr {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(33, 35, 78);
+    z-index: -1;
+  }
+} */
 
 @media screen and (max-height: 650px) {
   #main nav ul {
