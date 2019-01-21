@@ -295,20 +295,6 @@ function deleteCard() {
   this.parentElement.outerHTML = "";
 }
 
-// change Background (delete later);
-document.querySelector("#changeBckgr").addEventListener('click', function(e) {
-  e.preventDefault();
-  if (document.querySelector("#bckgr").style.backgroundImage == 'url("../images/checkMobileBckgr.png")') {
-    console.log("one");
-    document.querySelector("#bckgr").style.backgroundImage = 'url("../images/checkBckgr2.png")';
-    document.querySelector("stars").style.backgroundImage = 'url("../images/checkMobileStars2.png")';
-  }
-  else {
-    console.log("two");
-    document.querySelector("#bckgr").style.backgroundImage = 'url("../images/checkMobileBckgr.png")';
-    document.querySelector("#stars").style.backgroundImage = 'url("../images/checkMobileStars.png")';
-  }
-}, false);
 // Random quotes
 let quotes = {
   "Aim at the highest good, tool yourself into something that can attain it and go out there and manifest it in the world, so everything that comes your way will be a blessing. All you have to do is give up your resentment and hatred.": "- Jordan Bernt Peterson -",
@@ -538,9 +524,15 @@ function createCards(objective, time, reward) {
   newRewardDisplay.className = "rewardItem";
   newRewardIcon.className = "fa fa-gift";
   newObjective.className = "objective";
+  // check if reward has been set
+  if (reward === undefined) {
+    newRewardDisplay.innerHTML = "";
+  }
+  else {
+    newRewardDisplay.innerHTML = reward;
+  }
   //add content to div > span,time
   newP.innerHTML = objective || "I could'nt think of any objectives";
-  newRewardDisplay.innerHTML = reward;
   newTime.innerHTML = txt;
   newButton.appendChild(newRewardIcon);
   newObjective.appendChild(newP);
