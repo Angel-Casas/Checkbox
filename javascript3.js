@@ -20,10 +20,6 @@ var cardIdx;
     if (event.target.matches('.navLinks')) {
       navHandler(event.target);
     }
-    if (event.target.matches('#registerNav')) {
-      event.preventDefault();
-      loginHandler(event.target);
-    }
     if (event.target.matches(".close")) {
       event.preventDefault();
       event.stopPropagation();
