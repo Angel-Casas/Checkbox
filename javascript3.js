@@ -19,6 +19,7 @@ var cardIdx;
     // NAVIGATION
     if (event.target.matches('.navLinks')) {
       navHandler(event.target);
+      return;
     }
     if (event.target.matches(".close")) {
       event.preventDefault();
@@ -32,13 +33,18 @@ var cardIdx;
       closureHandler(event.target);
       return;
     }
+    if (event.target.matches("#main button")) {
+      event.preventDefault();
+      introductionHandler(event.target);
+      return;
+    }
   }, false);
 })();
 
 
 // 2. Global Functions
 
-// NAVIGATION
+// NAVIGATION HANDLER
 function navHandler(target) {
   let introduction = document.getElementById("main");
   let home = document.getElementById("home");
@@ -73,7 +79,7 @@ function navHandler(target) {
   }
 }
 
-// LOGIN
+// LOGIN HANDLER
 function loginHandler(target) {
   let loginSection = document.querySelector("#login");
   let loginForm = document.querySelector("#loginAccountForm");
@@ -85,6 +91,7 @@ function loginHandler(target) {
   console.log("a");
 }
 
+// CLOSE HANDLER
 function closureHandler(target) {
   if (target.matches("#rewardList .close")) {
     document.querySelector("#rewardList").style.display = "none";
@@ -113,6 +120,25 @@ function closureHandler(target) {
     }
   }
 }
+
+// INTRODUCTION HANDLER
+function introductionHandler(target) {
+  let card = document.querySelectorAll("#main .card");
+  switch (target) {
+    case document.querySelector("#postIt"):
+      let objective = document.querySelector("#exampleEntry").value;
+      let time = document.querySelector("#exampleTimeRange input:checked").value;
+      let pOne = card[0].getElementsByTagName("p");
+      let pTwo = card[1].getElementsByTagName("p");
+      pOne[0].innerHTML, pTwo[0].innerHTML = objective || "Can't think of any Objectives!";
+      pOne[1].innerHTML, pTwo[1].innerHTML = time + " Days remaining";
+      break;
+    default:
+    alert("hi");
+  return;
+  }
+}
+
 // 3. User Management
 
 
