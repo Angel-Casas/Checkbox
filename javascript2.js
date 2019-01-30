@@ -2,6 +2,7 @@
 var userUpdatedGlobal = {};
 var logged = false;
 var users = [];
+var cardIdx;
 
 // // Mobile Viewport Height correction
 //
@@ -45,10 +46,8 @@ function init() {
     localStorage.removeItem("users");
     location.reload();
   }, false);
-  listenRewardButton();
+  listenRewardButtonExample();
 }
-// quick Login eventListener
-document.querySelector("#quickLoginForm").addEventListener('submit', quickLogin, false);
 
 // Introduction javascript
 var exampleCreateForm = document.querySelector("#exampleCreateForm");
@@ -121,7 +120,7 @@ function handler(event) {
   }
 }
 // example rewards setup
-function listenRewardButton() {
+function listenRewardButtonExample() {
   var nodes = document.querySelector("#main .rewardBox").childNodes;
   for (var i = 0; i < nodes.length; i++) {
     nodes[i].addEventListener("click", handleRewardMenu, false);
@@ -145,10 +144,19 @@ function handleRewardMenu() {
   return;
 }
 
-// user rewards setup
-function listenRewardButtonUser(e) {
-  var nodes = document.querySelectorAll("#home .rewardBox > *:not(:last-child)");
-  console.log(nodes);
+// user rewards
+function listenReward() {
+  var cardRewardInput = document.querySelectorAll("#mainObjectives .rewardAsk");
+  for (var i = 0; i < cardRewardInput.length; i++) {
+    cardRewardInput[i].addEventListener('click', completeReward, false);
+  }
+}
+
+// Complete reward
+function completeReward(e) {
+  console.log("index: " + i);
+  e.preventDefault();
+  return handleRewards(e);
 }
 
 // Login popup
@@ -203,12 +211,14 @@ function handleRewards(e) {
       document.querySelector("#rewardMainBox").style.display = "none";
       document.querySelector("#giftCardDialogBox").style.display = "flex";
       rewardGiftCardUser.checked = false;
+      return giftCardRewards();
     }, false);
     rewardBitcoinUser.addEventListener('click', function() {
       document.querySelector("#rewardUndo").style.display = "inline-block";
       document.querySelector("#rewardMainBox").style.display = "none";
       document.querySelector("#bitcoinDialogBox").style.display = "flex";
       rewardBitcoinUser.checked = false;
+      document.querySelector("#bitcoinDialogSubmit").addEventListener('click', bitcoinRewards, false);
       return;
     }, false);
     rewardPaypalUser.addEventListener('click', function() {
@@ -220,12 +230,22 @@ function handleRewards(e) {
   }
   return;
 }
-function checkRewards() {
-  var rewardAsk = document.querySelectorAll("#home .rewardAsk");
-  for (var i = 0; i < rewardAsk.length; i++) {
-    rewardAsk[i].addEventListener("click", handleRewards, false);
+function giftCardRewards() {
+  var giftCards = document.querySelectorAll("#giftCardDialogBox #cardCatalog .cardElement");
+  for (var i=0; i<giftCards.length; i++) {
+    giftCards[i].addEventListener('click', function() {
+      console.log(this.innerHTML);
+      reward = this.innerHTML;
+      return addReward(cardIdx, reward);
+    }, false);
   }
   return;
+}
+function bitcoinRewards(e) {
+  e.preventDefault();
+  var bitcoinAddress = document.querySelector("#bitcoinDialogAddress").value;
+  var bitcoinAmount = document.querySelector("#bitcoinDialogAmount").value;
+  return addReward(cardIdx, bitcoinAmount + ' Bitcoins');
 }
 
 document.querySelector("#login .close").addEventListener('click', function(e) {
@@ -245,22 +265,32 @@ document.querySelector("#rewardList .close").addEventListener('click', function(
 
 // add Rewards to card
 function addReward(cardNumber, reward) {
-  var cards = userUpdatedGlobal;
+  var user = userUpdatedGlobal;
   var list = document.querySelectorAll("#mainObjectives .card");
+  console.log(cardNumber + "!");
   if (logged) {
     console.log("logged");
-    cards.card[cardNumber].reward = reward;
-    displayReward(reward);
-    for (var i = 0; i < list.length; i++) {
-      if (i == cardNumber) {
-      }
-    }
+    user.card[cardNumber].reward = reward;
   }
-  else {
+  var cardList = document.querySelector("#mainObjectives");
+  for (var i = 0; i < list.length; i++) {
+    if (i == cardNumber && cardList.hasChildNodes()) {
+      var childCard = cardList.children[i].children[0];
+      console.log(cardList.children[i].children[0]);
+      childCard.children[2].innerHTML = reward;
+      document.querySelector("#rewardList").style.display = "none";
+      document.querySelector("#rewardList .rewardBox").style.display = "flex";
+      document.querySelector("#bitcoinDialogBox").style.display = "none";
+      document.querySelector("#giftCardDialogBox").style.display = "none";
+      document.querySelector("#paypalDialogBox").style.display = "none";
+      document.querySelector("#rewardMainBox").style.display = "block";
+      document.querySelector("#rewardUndo").style.display = "none";
+      childCard.children[3].innerHTML = "&#10004;";
+      return true;
+    }
   }
   return;
 }
-addReward(1, 0.05);
 
 // modifyCards
 function modifyCards() {
@@ -490,6 +520,11 @@ function User( email, fullName, password) {
 function saveUserState() {
   localStorage.setItem("users", JSON.stringify(users));
 }
+// check cards Length
+function cardLength() {
+  console.log(document.querySelectorAll("#mainObjectives .card").length);
+  return document.querySelectorAll("#mainObjectives .card").length;
+}
 // display Cards
 function createCards(objective, time, reward) {
   var newCard = document.createElement("div");
@@ -517,6 +552,7 @@ function createCards(objective, time, reward) {
   cardObj.objective = objective;
   cardObj.time = time;
   cardObj.rewardSet = false;
+  cardObj.index = cardLength();
   newCard.style.background = "linear-gradient(30deg, " + get_random_color() + ", " + get_random_color() + ")";
   //add classes
   newButton.className = "rewardAsk";
@@ -539,11 +575,11 @@ function createCards(objective, time, reward) {
   newObjective.appendChild(newTime);
   newObjective.appendChild(newRewardDisplay);
   newObjective.appendChild(newButton);
-  newCard.appendChild(newClose);
   newCard.appendChild(newObjective);
+  newCard.appendChild(newClose);
   section.appendChild(newCard);
   // add event listener to reward button
-  checkRewards();
+  listenReward();
   return cardObj;
 }
 
@@ -565,10 +601,10 @@ document.querySelector("#homeForm").addEventListener('submit', function(e) {
 
 // display cards
 
-function displayCards(reward) {
+function displayCards() {
   document.querySelector("#mainObjectives").innerHTML = "";
   for (var i=0; i<userUpdatedGlobal.card.length; i++) {
-    createCards(userUpdatedGlobal.card[i].objective, userUpdatedGlobal.card[i].time, reward);
+    createCards(userUpdatedGlobal.card[i].objective, userUpdatedGlobal.card[i].time, userUpdatedGlobal.card[i].reward);
   }
   return;
 }
@@ -650,8 +686,8 @@ function quickLogin(e) {
   let error = document.querySelector("#quickLoginError");
   let success = document.querySelector("#quickLoginSuccess");
   let quickLogin = document.querySelector("#quickLoginForm");
-  let registerNav = document.querySelector("#mainNav #registerNav");
-  let signOutNav = document.querySelector("#mainNav #signOutNav");
+  let navRegister = document.querySelector("#mainNav #navRegister");
+  let navSignOut = document.querySelector("#mainNav #navSignOut");
   e.preventDefault();
   error.innerHTML = "";
   success.innerHTML = "";
@@ -671,12 +707,11 @@ function quickLogin(e) {
       userUpdatedGlobal = users[id];
       console.log(userUpdatedGlobal);
       displayCards();
-      registerNav.style.display = "none";
-      signOutNav.style.display = "flex";
-      signOutNav.addEventListener("click", signOut, false);
+      navRegister.style.display = "none";
+      navSignOut.style.display = "flex";
+      navSignOut.addEventListener("click", signOut, false);
       window.setTimeout(function() {success.innerHTML = "";}, 2000);
       quickLogin.style.display = "none";
-      addReward(1, 0.05);
     }
   }
   else {
@@ -713,9 +748,7 @@ function storageAvailable(type) {
 
 if (storageAvailable('localStorage')) {
   // Code for localStorage/sessionStorage.
-  var createForm = document.querySelector("#createAccountForm");
 
-  createForm.addEventListener("submit", createAccount, false);
 } else {
   // Sorry! No Web Storage support..
 }

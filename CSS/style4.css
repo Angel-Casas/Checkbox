@@ -89,12 +89,11 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
+  list-style-type: none;
 }
 #mainUlNav > li {
   margin: 0;
-  padding: .5rem .3rem 0 .3rem;
   font-size: .9rem;
-  line-height: .9rem;
   width: 100%;
   height: 40px;
   display: -webkit-box;
@@ -149,104 +148,18 @@ body {
     transition: width .3s;
 }
 #wrapper #mainNav #navBox #mainUlNav li > a {
+  display: block;
+  line-height: 30px;
+  padding: 0 .2rem;
   width: 100%;
-  height: 70px;
+  height: 100%;
   font-weight: bold;
   white-space: nowrap;
+  text-decoration: none;
 }
-#mainNav #signOutNav {
+#mainNav #navSignOut {
   display: none;
   color: rgb(221, 182, 78);
-}
-#mainNav #quickLoginDiv {
-  position: fixed;
-  width: 100%;
-  top: 70px;
-  -webkit-transition: top .4s ease-in-out;
-  -o-transition: top .4s ease-in-out;
-  transition: top .4s ease-in-out;
-  z-index: -1;
-}
-#mainNav #quickLoginForm {
-  height: 50px;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 0 5px;
-  z-index: -1;
-  background-color: rgba(33, 35, 73, 0.6);
-}
-#quickLoginForm label{
-  display: none;
-}
-#quickLoginForm input {
-  border-radius: 5px;
-  padding: 8px 12px;
-  color: white;
-  width: 70%;
-  min-width: 100px;
-  font-size: 0.9rem;
-  background-color: rgb(33, 35, 73);
-  border: 1px solid rgb(221, 182, 78);
-}
-#quickLoginForm input::-webkit-input-placeholder {
-  color: white;
-}
-#quickLoginForm input:-ms-input-placeholder {
-  color: white;
-}
-#quickLoginForm input::-ms-input-placeholder {
-  color: white;
-}
-#quickLoginForm input::placeholder {
-  color: white;
-}
-#quickLoginForm button {
-  padding: .6rem;
-  width: 100px;
-  background: rgb(33, 35, 73);
-  color: rgb(221, 182, 78);
-  border-radius: 20px;
-  text-transform: uppercase;
-  font-size: .9rem;
-  border: 2px solid rgb(221, 182, 78);
-  -webkit-transition: all .2s ease-in;
-  -o-transition: all .2s ease-in;
-  transition: all .2s ease-in;
-}
-#quickLoginForm button:hover {
-  color: rgb(33, 35, 73);
-  background: rgb(221, 182, 78);
-  -webkit-transition: all .2s ease-in;
-  -o-transition: all .2s ease-in;
-  transition: all .2s ease-in;
-}
-#mainNav #quickLoginError {
-  font-size: 0.8rem;
-  color: red;
-  margin: 0;
-  background-color: rgba(33, 35, 73, 0.6);
-}
-#mainNav #quickLoginSuccess {
-  color: rgb(221, 182, 78);
-  font-size: 1.2rem;
-  background-color: rgba(33, 35, 73, 0.6);
-  margin: 0;
-  line-height: 50px;
-}
-#mainNav #quickSuccessUserName {
-  font-size: 1.5rem;
-  font-weight: bold;
 }
 #wrapper #bckgr {
   width: 100%;
@@ -1032,6 +945,9 @@ input:hover {
   color: rgb(33, 35, 73);
   background-color: rgb(221, 182, 78);
 }
+#completeFrame .card #rewardDisplay {
+  color: rgb(221, 182, 78);
+}
 
 /* ----------------------------- */
 /*            Home               */
@@ -1434,6 +1350,16 @@ input:hover {
           animation: loop 2s ease-in-out;
 }
 #giftCardDialogBox #cardCatalog {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 #cardCatalog .cardElement {
   display: inline-block;
@@ -1583,9 +1509,6 @@ input:hover {
 /*            Login              */
 /* ------------------------------*/
 
-html #login label:not(.rememberContainer) {
-  display: none !important;
-}
 #login {
   display: none;
   position: fixed;
@@ -1598,35 +1521,85 @@ html #login label:not(.rememberContainer) {
   z-index: 10;
   overflow-y: scroll;
 }
+#login .title {
+  color: rgb(221, 182, 78);
+}
+#login #loginRadio {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: 100px;
+  margin: 0 auto 20px;
+  border: 2px solid rgb(221, 182, 78);
+  border-radius: 10px;
+}
+#loginRadio .switch {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: rgb(33, 35, 78);
+  border-radius: 10px;
+}
 
+#loginRadio .switch-label {
+  position: relative;
+  z-index: 2;
+  float: left;
+  width: 50%;
+  height: 100%;
+  font-size: 1.6rem;
+  color: rgb(221, 182, 78);
+  text-align: center;
+  padding: 30px 0;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+#loginRadio .switch-label:active {
+  font-weight: bold;
+}
+#loginRadio .switch-label:hover {
+  font-size: 1.7rem;
+  transition: all 0.1s ease-in-out;
+}
 
-#login div#header > h1 {
+#loginRadio .switch-input {
   display: none;
 }
-#login .title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
-}
-#login div.title > a {
-  display: inline-block;
-  margin: 2em 0;
-  border: 2px solid rgb(221, 182, 78);
-  border-radius: 20px;
-  padding: .8rem .5rem;
-  color: rgb(221, 182, 78);
-  width: 150px;
-  text-align: center;
-}
-#login .title > a:hover {
+#loginRadio .switch-input:checked + .switch-label {
+  font-weight: bold;
   color: rgb(33, 35, 73);
-  background-color: rgb(221, 182, 78);
+  -webkit-transition: 0.15s ease-out;
+  -moz-transition: 0.15s ease-out;
+  -ms-transition: 0.15s ease-out;
+  -o-transition: 0.15s ease-out;
+  transition: 0.15s ease-out;
+  -webkit-transition-property: color, text-shadow;
+  -moz-transition-property: color, text-shadow;
+  -ms-transition-property: color, text-shadow;
+  -o-transition-property: color, text-shadow;
+  transition-property: color, text-shadow;
 }
-#login > .inner {
+#loginRadio .switch-input:checked + .switch-label-on ~ .switch-selection {
+  left: 50%;
+}
+
+#loginRadio .switch-selection {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 50%;
+  height: 100%;
+  border-radius: 3px;
+  background-color: rgb(221, 182, 78);
+  -webkit-transition: all 0.25s ease-out;
+  -moz-transition: all 0.25s ease-out;
+  -ms-transition: all 0.25s ease-out;
+  -o-transition: all 0.25s ease-out;
+  transition: all 0.25s ease-out;
+}
+#login .login, #login .register {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1642,7 +1615,7 @@ html #login label:not(.rememberContainer) {
   margin-left: auto;
   margin-right: auto;
 }
-#login .inner #createAccountForm {
+#login #loginAccountForm, #login #registerAccountForm {
   border-top: 1px solid white;
   border-bottom: 1px solid white;
   border-radius: 6px;
@@ -1662,40 +1635,36 @@ html #login label:not(.rememberContainer) {
   -ms-flex-pack: distribute;
       justify-content: space-around;
 }
-#login .inner .title {
-  color: rgb(221, 182, 78);
-  text-transform: uppercase;
-}
-#login .inner span {
+#login span {
   display: block;
 }
-#login .inner p.text input {
+#login p.text input {
   border-radius: 5px;
   padding: 8px 12px;
   color: white;
   background-color: rgb(33, 35, 73);
   border: 1px solid rgb(221, 182, 78);
 }
-#login .inner p.text input::-webkit-input-placeholder {
+#login p.text input::-webkit-input-placeholder {
   opacity: .8;
   color: white;
 }
-#login .inner p.text input:-ms-input-placeholder {
+#login p.text input:-ms-input-placeholder {
   opacity: .8;
   color: white;
 }
-#login .inner p.text input::-ms-input-placeholder {
+#login p.text input::-ms-input-placeholder {
   opacity: .8;
   color: white;
 }
-#login .inner p.text input::placeholder {
+#login p.text input::placeholder {
   opacity: .8;
   color: white;
 }
-#login .inner .password-strength-popover {
+#login .password-strength-popover {
   display: none;
 }
-#login .inner .submit button {
+#login .submit button {
   padding: .8rem 0;
   background: rgb(33, 35, 78);
   color: rgb(221, 182, 78);
@@ -1709,7 +1678,7 @@ html #login label:not(.rememberContainer) {
   -o-transition: all .2s ease-in;
   transition: all .2s ease-in;
 }
-#login .inner .submit button:hover {
+#login .submit button:hover {
   color: rgb(33, 35, 78);
   background: rgb(221, 182, 78);
   -webkit-transition: all .2s ease-in;
@@ -1718,12 +1687,11 @@ html #login label:not(.rememberContainer) {
 }
 #login .close {
   position: relative;
+  display: block;
   width: 50px;
-  min-width: 50px;
   height: 50px;
-  min-height: 50px;
+  margin: .5rem auto 0;
   border-radius: 50%;
-  margin-top: 1em;
   border: 3px solid white;
 }
 #login .close::before,
@@ -1754,31 +1722,33 @@ html #login label:not(.rememberContainer) {
 #login .close:hover::after {
   background-color: rgb(221, 182, 78);
 }
-.inner #loginForm {
+#login #loginAccountForm label:not(.rememberContainer),
+#login #registerAccountForm label {
   display: none;
-  text-align: center;
 }
-#login #loginForm .remember .rememberContainer{
-  display: block;
+#login #loginAccountForm .rememberContainer {
   position: relative;
-  padding-left: 35px;
+  display: block;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  padding-left: 35px;
+  margin-bottom: 12px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
-#loginForm .rememberContainer input[type=checkbox] {
+#loginAccountForm .rememberContainer input[type=checkbox] {
   position: absolute;
   opacity: 0;
   cursor: pointer;
   height: 0;
   width: 0;
 }
-#loginForm .rememberContainer .checkmark {
+#loginAccountForm .rememberContainer .checkmark {
   position: absolute;
-  top: -2px;
+  top: 0;
   left: 0;
   height: 25px;
   width: 25px;
@@ -1786,56 +1756,59 @@ html #login label:not(.rememberContainer) {
   border: 1px solid rgb(221, 182, 78);
 }
 /* Create the checkmark/indicator (hidden when not checked) */
-#loginForm .checkmark:after {
+#loginAccountForm .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
 /* Show the checkmark when checked */
-#loginForm .rememberContainer input:checked ~ .checkmark:after {
+#loginAccountForm .rememberContainer input:checked ~ .checkmark:after {
   display: block;
 }
-.rememberContainer .checkmark:after {
+#loginAccountForm .rememberContainer .checkmark:after {
   left: 8px;
   top: 4px;
-  width: 5px;
+  width: 4px;
   height: 10px;
   border: solid rgb(221, 182, 78);
-  border-width: 0 3px 2px 0;
+  border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-#login #createAccountForm #passwordError {
+#login #loginAccountForm #loginError {
+  font-size: 0.8rem;
+  color: red;
+  margin: 0;
+}
+#login #loginAccountForm #successLogin {
+  color: rgb(221, 182, 78);
+  font-size: 1.2rem;
+}
+#login #loginAccountForm #successUserName {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: inline-block;
+}
+#login .register {
+  display: none;
+}
+#login #registerAccountForm #passwordError {
   display: block;
   color: red;
   font-size: 0.8rem;
   margin: 0;
 }
-#login #createAccountForm #successCreate {
+#login #registerAccountForm #successCreate {
   display: none;
   color: rgb(221, 182, 78);
   font-size: 1.2rem;
 }
-#login #createAccountForm #userNameCreate {
+#login #registerAccountForm #userNameCreate {
   font-size: 1.5rem;
   font-weight: bold;
   display: inline;
-}
-#login #loginForm #loginError {
-  font-size: 0.8rem;
-  color: red;
-  margin: 0;
-}
-#login #loginForm #successLogin {
-  color: rgb(221, 182, 78);
-  font-size: 1.2rem;
-}
-#login #loginForm #successUserName {
-  font-size: 1.5rem;
-  font-weight: bold;
-  display: inline-block;
 }
 
 /* ----------------------------- */
@@ -1884,10 +1857,9 @@ html #login label:not(.rememberContainer) {
 }
 #mainFooter > ul > li {
   margin: 0 .2rem;
-  padding: 1.5rem;
+  height: 50px;
   border-right: 1px solid rgb(221, 182, 78);
   border-radius: 1px;
-  cursor: pointer;
 }
 #mainFooter > ul > li:hover {
   background: rgba(0, 0, 0, .5);
@@ -1897,7 +1869,6 @@ html #login label:not(.rememberContainer) {
     display: block;
     width: 0;
     height: 3px;
-    margin-top: .3rem;
     -webkit-transition: width .3s;
     -o-transition: width .3s;
     transition: width .3s;
@@ -1919,6 +1890,13 @@ html #login label:not(.rememberContainer) {
     -webkit-transition: width .3s;
     -o-transition: width .3s;
     transition: width .3s;
+}
+#mainFooter li > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: .6rem;
+  font-weight: bold;
 }
 #mainFooter > #donations {
   color: rgba(221, 182, 78, .8);

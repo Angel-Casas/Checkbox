@@ -20,29 +20,12 @@
       </header>
       <div id="navBox">
         <ul id="mainUlNav">
-          <li class="navLinks"><a href="" name="introduction">Introduction</a></li>
-          <li class="navLinks"><a href="" name="home">Home</a></li>
-          <li class="navLinks"><a href="" name="about">About</a></li>
-          <li class="navLinks" id="registerNav"><a href="" name="login">Register</a></li>
-          <li class="navLinks" id="signOutNav"><a href="" name="signOut">SignOut</a></li>
+          <li><a href="#" class="navLinks navIntroduction">Introduction</a></li>
+          <li><a href="#" class="navLinks navHome">Home</a></li>
+          <li><a href="#" class="navLinks navAbout">About</a></li>
+          <li id="navRegister"><a href="" class="navLinks navRegister">Login / Register</a></li>
+          <li id="navSignOut"><a href="" class="navLinks navSignOut">SignOut</a></li>
         </ul>
-        <div id="quickLoginDiv">
-          <form id="quickLoginForm">
-            <span>
-              <label for="quickLogin">Username</label>
-              <input id="quickLogin" type="text" name="quickLogin" value="" placeholder="Username">
-            </span>
-            <span>
-              <label for="quickPassword">Password</label>
-              <input id="quickPassword" type="password" name="quickPassword" value="" placeholder="Password">
-            </span>
-            <button type="submit" id="quickButton">
-              Login
-            </button>
-          </form>
-          <p id="quickLoginError"></p>
-          <p id="quickLoginSuccess"></p>
-        </div>
       </div>
     </nav>
     <section id="main">
@@ -106,12 +89,52 @@
     </section>
     <section id="login">
       <div id="bckgrColor"></div>
-      <div class="inner">
+      <div id="loginRadio">
+        <div class="switch">
+          <input type="radio" class="switch-input" name="view" value="login" id="loginInput" checked>
+          <label for="login" class="switch-label switch-label-off">Login</label>
+          <input type="radio" class="switch-input" name="view" value="register" id="registerInput">
+          <label for="register" class="switch-label switch-label-on">Register</label>
+          <span class="switch-selection"></span>
+        </div>
+      </div>
+      <div class="login">
+        <div class="title">
+          <h2>Welcome</h2>
+        </div>
+        <div id="loginAccountDiv">
+          <form action="/login" method="post" id="loginAccountForm">
+            <p class="text">
+              <span>
+                <label for="name">Username</label>
+                <input type="text" class="username" name="username" value="" placeholder="Username">
+              </span>
+            </p>
+            <p class="text">
+              <span>
+                <label for="password">Password</label>
+                <input type="password" class="password" name ="password" value="" placeholder="Password">
+              </span>
+            </p>
+            <label class="rememberContainer">
+              Keep me logged in
+              <input type="checkbox" checked="checked">
+              <span class="checkmark"></span>
+            </label>
+            <p class="submit">
+              <button type="submit" class="submit">Login</button>
+            </p>
+            <p id="loginError"></p>
+            <p id="successLogin"></p>
+          </form>
+        </div>
+      </div>
+      <div class="register">
         <div class="title">
           <h2>Create Account</h2>
         </div>
-        <div id="createAccountDiv">
-          <form action="/register" method="post" id="createAccountForm">
+        <div id="registerAccountDiv">
+          <form action="/register" method="post" id="registerAccountForm">
             <p class="text">
               <span>
                 <label for="email">Email</label>
@@ -127,7 +150,7 @@
             <p class="text">
               <span class="password-strength" data-password-strength="-1">
                 <label for="password">Password</label>
-                <input id="password" class="password-strength-input" type="password" name="password" value="" placeholder="Password">
+                <input class="password-strength-input" type="password" name="password" value="" placeholder="Password">
                 <span class="password-strength-indicator">
                   <span></span>
                   <span></span>
@@ -159,9 +182,10 @@
             <p id="successCreate"></p>
           </form>
         </div>
-        <a href="#" class="close"></a>
       </div>
+      <a href="#" class="close"></a>
     </section>
+    <!-- End Login Section -->
     <section id="home">
       <h2>Objectives</h2>
       <div id="objectivesBox">
@@ -211,10 +235,10 @@
             <i class="far fa-credit-card fa-5x"></i>
             <h4>Gift Card</h4>
             <div id="cardCatalog">
-              <div class="cardElement"></div>
-              <div class="cardElement"></div>
-              <div class="cardElement"></div>
-              <div class="cardElement"></div>
+              <div class="cardElement">Adidas</div>
+              <div class="cardElement">Google Play</div>
+              <div class="cardElement">Amazon</div>
+              <div class="cardElement">Itunes</div>
             </div>
           </div>
           <div id="bitcoinDialogBox">
@@ -248,10 +272,10 @@
     <footer id="mainFooter">
       <h2><span>CHECK</span></h2>
       <ul>
-        <li class="navLinks"><a href="" name="introduction">Introduction</a></li>
-        <li class="navLinks"><a href="" name="home">Home</a></li>
-        <li class="navLinks"><a href="" name="login">Login / Reguster</a></li>
-        <li class="navLinks"><a href="" name="about">About</a></li>
+        <li><a href="#" class="navLinks navIntroduction">Introduction</a></li>
+        <li><a href="#" class="navLinks navHome">Home</a></li>
+        <li><a href="#" class="navLinks navRegister">Login / Register</a></li>
+        <li><a href="#" class="navLinks navAbout">About</a></li>
       </ul>
       <div id="donations"><p>Check provides a unique service towards the betterment of your productivity and wellfare.<br>
       If you enjoy this WebApp please consider donating via <a href="https://www.patreon.com/acasas">Patreon</a> so we can keep this project <b>growing.</b></p>
@@ -259,6 +283,6 @@
       <div id="copyright"><span>Created by Angel Casas Pescador</span></div>
     </footer>
   </div>
-  <script src="javascript2.js"></script>
+  <script src="javascript3.js"></script>
 </body>
 </html>
