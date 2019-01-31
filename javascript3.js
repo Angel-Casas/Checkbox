@@ -18,6 +18,7 @@ var cardIdx;
     // One GLOBAL event Listener and a group of if clauses.
     // NAVIGATION
     if (event.target.matches('.navLinks')) {
+      event.preventDefault();
       navHandler(event.target);
       return;
     }
@@ -52,11 +53,9 @@ function navHandler(target) {
   let login = document.getElementById("login");
   let about = document.getElementById("about");
   if (target.classList.contains("navRegister")) {
-    event.preventDefault();
     login.style.display = "block";
     return;
   } else if (target.classList.contains("navSignOut")) {
-    event.preventDefault();
     return;
   } else {
     // reset pages displayed at start
