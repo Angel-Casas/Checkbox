@@ -33,8 +33,9 @@ var cardIdx;
       closureHandler(event.target);
       return;
     }
-    if (event.target.matches("#main button")) {
+    if (event.target.matches("#main button") || event.target.matches("#main label")) {
       event.preventDefault();
+      event.stopPropagation();
       introductionHandler(event.target);
       return;
     }
@@ -79,19 +80,7 @@ function navHandler(target) {
   }
 }
 
-// LOGIN HANDLER
-function loginHandler(target) {
-  let loginSection = document.querySelector("#login");
-  let loginForm = document.querySelector("#loginAccountForm");
-  let registerForm = document.querySelector("#registerAccountForm");
-  let loginRadio = document.querySelector("#loginRadioForm");
-  // Display loginSection
-  loginSection.style.display = "block";
-  // Toogle register / login
-  console.log("a");
-}
-
-// CLOSE HANDLER
+// CLOSURE HANDLER
 function closureHandler(target) {
   if (target.matches("#rewardList .close")) {
     document.querySelector("#rewardList").style.display = "none";
@@ -124,19 +113,42 @@ function closureHandler(target) {
 // INTRODUCTION HANDLER
 function introductionHandler(target) {
   let card = document.querySelectorAll("#main .card");
+  let rewardBool = false;
   switch (target) {
     case document.querySelector("#postIt"):
       let objective = document.querySelector("#exampleEntry").value;
       let time = document.querySelector("#exampleTimeRange input:checked").value;
       let pOne = card[0].getElementsByTagName("p");
       let pTwo = card[1].getElementsByTagName("p");
-      pOne[0].innerHTML, pTwo[0].innerHTML = objective || "Can't think of any Objectives!";
-      pOne[1].innerHTML, pTwo[1].innerHTML = time + " Days remaining";
+      pOne[0].innerHTML = pTwo[0].innerHTML = objective || "Can't think of any Objectives!";
+      pOne[1].innerHTML = pTwo[1].innerHTML = time + " Days remaining";
+      break;
+    case document.querySelectorAll("#rewardFrame label")[0]:
+      document.querySelector("#rewardGift").checked = true;
+      var radioReward = document.querySelector("input[name=rewardSelector]:checked").value;
+      rewardBool = true;
+      break;
+    case document.querySelectorAll("#rewardFrame label")[1]:
+      document.querySelector("#rewardBitcoin").checked = true;
+      var radioReward = document.querySelector("input[name=rewardSelector]:checked").value;
+      rewardBool = true;
+      break;
+    case document.querySelectorAll("#rewardFrame label")[2]:
+      document.querySelector("#rewardPaypal").checked = true;
+      var radioReward = document.querySelector("input[name=rewardSelector]:checked").value;
+      rewardBool = true;
       break;
     default:
-    alert("hi");
+    console.log("default");
   return;
   }
+  if (rewardBool) {
+    document.querySelector("#successRewardInfo").style.display = "block";
+    card[0].getElementsByTagName("p")[2].innerHTML = radioReward;
+    card[1].getElementsByTagName("p")[2].innerHTML = radioReward;
+    return;
+  }
+  return;
 }
 
 // 3. User Management

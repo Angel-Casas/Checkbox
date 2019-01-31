@@ -36,7 +36,7 @@ body {
 }
 #main {
   width: 100%;
-  display: none;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-flow: column nowrap;
@@ -627,7 +627,7 @@ input:hover {
 }
 #rewardFrame > p {
   position: relative;
-  padding: .2em .5em;
+  padding: 0;
   text-align: center;
   -ms-grid-column: 2;
       grid-column-start: 2;
@@ -748,16 +748,14 @@ input:hover {
   color: rgb(33, 35, 73);
 }
 #rewardFrame .rewardBox #successRewardInfo {
-  text-orientation: upright;
-  -webkit-writing-mode: vertical-rl;
-      -ms-writing-mode: tb-rl;
-          writing-mode: vertical-rl;
   display: none;
   position: absolute;
-  right: 0;
+  left: 0;
   bottom: 0;
-  font-size: .8rem;
-  cursor: default;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.2rem;
 }
 #rewardFrame .rewardBox #successRewardInfo span {
   font-size: 1.4rem;
@@ -945,8 +943,13 @@ input:hover {
   color: rgb(33, 35, 73);
   background-color: rgb(221, 182, 78);
 }
-#completeFrame .card #rewardDisplay {
+.card p {
+  margin-top: 5px;
+  font-size: 1.2rem;
+}
+.card .rewardDisplay {
   color: rgb(221, 182, 78);
+  font-size: 1.6rem;
 }
 
 /* ----------------------------- */
@@ -960,7 +963,7 @@ input:hover {
   padding: .5em 0;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-flow: column nowrap;
