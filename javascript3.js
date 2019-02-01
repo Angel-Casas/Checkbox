@@ -137,9 +137,14 @@ function introductionHandler(target) {
       var radioReward = document.querySelector("input[name=rewardSelector]:checked").value;
       rewardBool = true;
       break;
+    case document.querySelector("#main .completeButton"):
+      document.querySelector("#main").style.display = "none";
+      document.querySelector("#home").style.display = "flex";
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      break;
     default:
     console.log("default");
-  return;
   }
   if (rewardBool) {
     document.querySelector("#successRewardInfo").style.display = "block";
@@ -147,6 +152,7 @@ function introductionHandler(target) {
     card[1].getElementsByTagName("p")[2].innerHTML = radioReward;
     return;
   }
+
   return;
 }
 
