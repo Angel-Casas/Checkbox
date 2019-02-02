@@ -26,7 +26,7 @@ var cardIdx;
     if (event.target.matches(".close")) {
       event.preventDefault();
       event.stopPropagation();
-      document.querySelector("#login").style.display = "none";
+      closureHandler(event.target);
       return;
     }
     // LOGIN/REGISTER
@@ -55,8 +55,12 @@ var cardIdx;
 (function() {
   document.addEventListener("input", function(event) {
     // LOGIN PASSWORD INPUT
-    if (event.target.matches(".passwordInput")) {
-      validPass(event.target);
+    if (event.target.matches("#loginAccountDiv .passwordInput")) {
+      validPass(event.target, false);
+      return;
+    }
+    else if (event.target.matches("#registerAccountDiv input[type='password']")) {
+      validPass(event.target, true);
       return;
     }
   }, false);
@@ -72,10 +76,13 @@ function navHandler(target) {
   let about = document.getElementById("about");
   if (target.classList.contains("navRegister")) {
     login.style.display = "block";
+    scrollHandler(true);
     return;
   } else if (target.classList.contains("navSignOut")) {
     return;
   } else {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     // reset pages displayed at start
     introduction.style.display = "none";
     home.style.display = "none";
@@ -101,11 +108,9 @@ function navHandler(target) {
 function closureHandler(target) {
   if (target.matches("#rewardList .close")) {
     document.querySelector("#rewardList").style.display = "none";
-    return;
   }
   if (target.matches("#login .close")) {
     document.querySelector("#login").style.display = "none";
-    return;
   }
   if (target.matches(".switch label")) {
     let inputRadio = document.querySelectorAll("#login .switch-input");
@@ -122,6 +127,8 @@ function closureHandler(target) {
       return;
     }
   }
+  scrollHandler(false);
+  return;
 }
 
 // INTRODUCTION HANDLER
@@ -159,7 +166,6 @@ function introductionHandler(target) {
       document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
       break;
     default:
-    console.log("default");
   }
   if (rewardBool) {
     document.querySelector("#successRewardInfo").style.display = "block";
@@ -177,26 +183,53 @@ function loginHandler(target) {
     if (validEmail(document.querySelector("#loginAccountDiv .username").value)) {
       let email = document.querySelector("#loginAccountDiv .username").value;
     }
-    if (validPass(document.querySelector("#loginAccountDiv .password"))) {
+    else {
+      document.querySelector("#loginAccountDiv #loginError").innerHTML = "Invalid email address, please check again!";
+      return;
+    }
+    if (validPass(document.querySelector("#loginAccountDiv .password"), false)) {
       let pass = window.btoa(document.querySelector("#loginAccountDiv .password").value);
     }
   } else if (target === document.querySelector("#registerAccountDiv .submit")) {
     if (validEmail(document.querySelector("#registerAccountDiv .email").value)) {
       let email = document.querySelector("#registerAccountDiv .email").value;
-      return;
     }
     else {
       document.querySelector("#registerAccountDiv #registerError").innerHTML = "Make sure the Email is valid";
       return;
     }
-    if (validPass(document.querySelector("#registerAccountDiv .passwordInput").value)) {
+    if (validPass(document.querySelector("#registerAccountDiv .passwordInput").value, true)) {
       let pass = window.btoa(document.querySelector("#registerAccountDiv .password").value);
+
       return;
+    }
+    else {
+
     }
   }
   return;
 }
 
+// SCROLL HANDLER
+function scrollHandler(bool) {
+  let body = document.body;
+  let loginSection = document.querySelector("#login");
+  if (bool) {
+    if (!loginSection.hasAttribute("ariaHidden")) {
+      loginSection.setAttribute('ariaHidden', true);
+      loginSection.scrollTop = 0;
+    }
+    if (!body.classList.contains("noScroll")) {
+      body.classList.add("noScroll");
+    }
+    return;
+  }
+  else {
+    loginSection.removeAttribute('ariaHidden');
+    body.classList.remove('noScroll');
+    return;
+  }
+}
 // VALIDATE EMAIL
 function validEmail(emailString) {
   var filter = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -209,57 +242,72 @@ function validEmail(emailString) {
 }
 
 // VALIDATE PASSWORD
-function validPass(passInput) {
+function validPass(passInput, bool) {
   var letter = document.querySelector("#passwordLetter");
   var capital = document.querySelector("#passwordCapital");
   var number = document.querySelector("#passwordNumber");
   var length = document.querySelector("#passwordLength");
   var passwordTip = document.querySelector("#registerAccountDiv .passwordTipDiv");
+  var registerError = document.querySelector("#login #registerError");
 
-  // display password Tip
-  if (!passwordTip.classList.contains("tip")) {
-    passwordTip.classList.toggle("tip");
-  }
-  if (passInput.value === "") {
-    passwordTip.classList.toggle("tip");
-  }
-  // Validate lowercase letters
-  var lowerCaseLetters = /[a-z]/g;
-  if (passInput.value.match(lowerCaseLetters)) {
-    letter.classList.remove("invalid");
-    letter.classList.add("valid");
-  } else {
-    letter.classList.remove("valid");
-    letter.classList.add("invalid");
-  }
+  // check if login or register
+  if (bool) {
+    var password = document.querySelector("#registerAccountDiv .passwordInput").value;
+    var confirm = document.querySelector("#registerAccountDiv #confirmPassword").value;
+    // display password Tip
+    if (!passwordTip.classList.contains("tip")) {
+      passwordTip.classList.toggle("tip");
+    }
+    if (passInput.value === "") {
+      passwordTip.classList.toggle("tip");
+    }
+    // Validate lowercase letters
+    var lowerCaseLetters = /[a-z]/g;
+    if (passInput.value.match(lowerCaseLetters)) {
+      letter.classList.remove("invalid");
+      letter.classList.add("valid");
+    } else {
+      letter.classList.remove("valid");
+      letter.classList.add("invalid");
+    }
 
-  // Validate capital letters
-  var upperCaseLetters = /[A-Z]/g;
-  if (passInput.value.match(upperCaseLetters)) {
-    capital.classList.remove("invalid");
-    capital.classList.add("valid");
-  } else {
-    capital.classList.remove("valid");
-    capital.classList.add("invalid");
-  }
+    // Validate capital letters
+    var upperCaseLetters = /[A-Z]/g;
+    if (passInput.value.match(upperCaseLetters)) {
+      capital.classList.remove("invalid");
+      capital.classList.add("valid");
+    } else {
+      capital.classList.remove("valid");
+      capital.classList.add("invalid");
+    }
 
-  // Validate numbers
-  var numbers = /[0-9]/g;
-  if (passInput.value.match(numbers)) {
-    number.classList.remove("invalid");
-    number.classList.add("valid");
-  } else {
-    number.classList.remove("valid");
-    number.classList.add("invalid");
-  }
+    // Validate numbers
+    var numbers = /[0-9]/g;
+    if (passInput.value.match(numbers)) {
+      number.classList.remove("invalid");
+      number.classList.add("valid");
+    } else {
+      number.classList.remove("valid");
+      number.classList.add("invalid");
+    }
 
-  // Validate length
-  if (passInput.value.length >= 8) {
-    length.classList.remove("invalid");
-    length.classList.add("valid");
-  } else {
-    length.classList.remove("valid");
-    length.classList.add("invalid");
+    // Validate length
+    if (passInput.value.length >= 8) {
+      length.classList.remove("invalid");
+      length.classList.add("valid");
+    } else {
+      length.classList.remove("valid");
+      length.classList.add("invalid");
+    }
+    if (password === confirm && password !== "") {
+      console.log("confirmed");
+      registerError.innerHTML = "";
+    }
+    return false;
+  }
+  else {
+    var password = document.querySelector("#loginAccountDiv .passwordInput").value;
+    return true;
   }
 }
 // 3. User Management
