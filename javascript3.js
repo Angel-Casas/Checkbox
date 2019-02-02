@@ -12,37 +12,55 @@ var cardIdx;
 
 
 
-// 1. DocumentEventListener
+// 1. DOCUMENTEVENTLISTENER
 (function() {
-  document.addEventListener('click', function(event) {
+  document.addEventListener("click", function(event) {
     // One GLOBAL event Listener and a group of if clauses.
-    // NAVIGATION
-    if (event.target.matches('.navLinks')) {
+    // NAVIGATION HANDLER
+    if (event.target.matches(".navLinks")) {
       event.preventDefault();
       navHandler(event.target);
       return;
     }
+    // CLOSURE HANDLER
     if (event.target.matches(".close")) {
       event.preventDefault();
       event.stopPropagation();
       document.querySelector("#login").style.display = "none";
       return;
     }
+    // LOGIN/REGISTER
     if (event.target.matches("#login .switch label")) {
       event.preventDefault();
       event.stopPropagation();
       closureHandler(event.target);
       return;
     }
+    // INTRODUCTION HANDLER
     if (event.target.matches("#main button") || event.target.matches("#main label")) {
       event.preventDefault();
       event.stopPropagation();
       introductionHandler(event.target);
       return;
     }
+    // LOGIN HANDLER
+    if (event.target.matches("#login button")) {
+      event.preventDefault();
+      loginHandler(event.target);
+      return;
+    }
   }, false);
 })();
-
+// INPUTEVENTLISTENER
+(function() {
+  document.addEventListener("input", function(event) {
+    // LOGIN PASSWORD INPUT
+    if (event.target.matches(".passwordInput")) {
+      validPass(event.target);
+      return;
+    }
+  }, false);
+})();
 
 // 2. Global Functions
 
@@ -91,17 +109,14 @@ function closureHandler(target) {
   }
   if (target.matches(".switch label")) {
     let inputRadio = document.querySelectorAll("#login .switch-input");
-    console.log(!inputRadio[1].checked);
     inputRadio[0].checked = !inputRadio[0].checked;
     inputRadio[1].checked = !inputRadio[0].checked;
     if (document.querySelector("#loginInput").checked) {
-      console.log("login");
       document.querySelector(".register").style.display = "none";
       document.querySelector(".login").style.display = "flex";
       return;
     }
     else if (document.querySelector("#registerInput").checked) {
-      console.log("register");
       document.querySelector(".login").style.display = "none";
       document.querySelector(".register").style.display = "flex";
       return;
@@ -156,6 +171,97 @@ function introductionHandler(target) {
   return;
 }
 
+// LOGIN HANDLER
+function loginHandler(target) {
+  if (target === document.querySelector("#loginAccountDiv .submit")) {
+    if (validEmail(document.querySelector("#loginAccountDiv .username").value)) {
+      let email = document.querySelector("#loginAccountDiv .username").value;
+    }
+    if (validPass(document.querySelector("#loginAccountDiv .password"))) {
+      let pass = window.btoa(document.querySelector("#loginAccountDiv .password").value);
+    }
+  } else if (target === document.querySelector("#registerAccountDiv .submit")) {
+    if (validEmail(document.querySelector("#registerAccountDiv .email").value)) {
+      let email = document.querySelector("#registerAccountDiv .email").value;
+      return;
+    }
+    else {
+      document.querySelector("#registerAccountDiv #registerError").innerHTML = "Make sure the Email is valid";
+      return;
+    }
+    if (validPass(document.querySelector("#registerAccountDiv .passwordInput").value)) {
+      let pass = window.btoa(document.querySelector("#registerAccountDiv .password").value);
+      return;
+    }
+  }
+  return;
+}
+
+// VALIDATE EMAIL
+function validEmail(emailString) {
+  var filter = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (!filter.test(emailString)) {
+    alert('Please provide a valid email address');
+    email.focus;
+    return false;
+  }
+  return true;
+}
+
+// VALIDATE PASSWORD
+function validPass(passInput) {
+  var letter = document.querySelector("#passwordLetter");
+  var capital = document.querySelector("#passwordCapital");
+  var number = document.querySelector("#passwordNumber");
+  var length = document.querySelector("#passwordLength");
+  var passwordTip = document.querySelector("#registerAccountDiv .passwordTipDiv");
+
+  // display password Tip
+  if (!passwordTip.classList.contains("tip")) {
+    passwordTip.classList.toggle("tip");
+  }
+  if (passInput.value === "") {
+    passwordTip.classList.toggle("tip");
+  }
+  // Validate lowercase letters
+  var lowerCaseLetters = /[a-z]/g;
+  if (passInput.value.match(lowerCaseLetters)) {
+    letter.classList.remove("invalid");
+    letter.classList.add("valid");
+  } else {
+    letter.classList.remove("valid");
+    letter.classList.add("invalid");
+  }
+
+  // Validate capital letters
+  var upperCaseLetters = /[A-Z]/g;
+  if (passInput.value.match(upperCaseLetters)) {
+    capital.classList.remove("invalid");
+    capital.classList.add("valid");
+  } else {
+    capital.classList.remove("valid");
+    capital.classList.add("invalid");
+  }
+
+  // Validate numbers
+  var numbers = /[0-9]/g;
+  if (passInput.value.match(numbers)) {
+    number.classList.remove("invalid");
+    number.classList.add("valid");
+  } else {
+    number.classList.remove("valid");
+    number.classList.add("invalid");
+  }
+
+  // Validate length
+  if (passInput.value.length >= 8) {
+    length.classList.remove("invalid");
+    length.classList.add("valid");
+  } else {
+    length.classList.remove("valid");
+    length.classList.add("invalid");
+  }
+}
 // 3. User Management
 
 

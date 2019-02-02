@@ -1547,7 +1547,7 @@ input:hover {
 /* ------------------------------*/
 
 #login {
-  display: none;
+  display: block;
   position: fixed;
   top: 0;
   left: 0;
@@ -1834,7 +1834,7 @@ input:hover {
 #login .register {
   display: none;
 }
-#login #registerAccountForm #passwordError {
+#login #registerAccountForm #registerError {
   display: block;
   color: red;
   font-size: 0.8rem;
@@ -1849,6 +1849,34 @@ input:hover {
   font-size: 1.5rem;
   font-weight: bold;
   display: inline;
+}
+#login .passwordTipDiv {
+  width: 250px;
+  height: 0;
+  background: rgb(33, 35, 73);
+  margin: 0 auto;
+  opacity: 0;
+  transition: all .2s ease-in-out;
+}
+#login .passwordTipDiv.tip {
+  opacity: 1;
+  height: 200px;
+}
+#login .passwordTipDiv h3 {
+  font-size: 1.1rem;
+}
+#login .passwordTipDiv p {
+  font-size: .9rem;
+  color: rgba(255, 255, 255, .7);
+}
+#login .passwordTipDiv b {
+  font-size: 1rem;
+}
+#login .passwordTipDiv .invalid b {
+  color: rgb(255, 116, 38);
+}
+#login .passwordTipDiv .valid b {
+  color: rgb(221, 182, 78);
 }
 
 /* ----------------------------- */

@@ -110,13 +110,13 @@
             <p class="text">
               <span>
                 <label for="name">Username</label>
-                <input type="text" class="username" name="username" value="" placeholder="Username">
+                <input type="text" class="username email" name="username" value="" placeholder="Username">
               </span>
             </p>
             <p class="text">
               <span>
                 <label for="password">Password</label>
-                <input type="password" class="password" name ="password" value="" placeholder="Password">
+                <input type="password" class="passwordInput" name ="password" value="" placeholder="Password">
               </span>
             </p>
             <label class="rememberContainer">
@@ -141,31 +141,19 @@
             <p class="text">
               <span>
                 <label for="email">Email</label>
-                <input id="email" type="text" name="email" value="" placeholder="Email">
+                <input class="email" type="text" name="email" value="" placeholder="Email">
               </span>
             </p>
             <p class="text">
               <span>
                 <label for="name">Username</label>
-                <input id="name" type="text" name="name" value="" placeholder="Username">
+                <input id="name" class="username" type="text" name="name" value="" placeholder="Username">
               </span>
             </p>
             <p class="text">
-              <span class="password-strength" data-password-strength="-1">
+              <span class="password-strength">
                 <label for="password">Password</label>
-                <input class="password-strength-input" type="password" name="password" value="" placeholder="Password">
-                <span class="password-strength-indicator">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </span>
-                <span class="password-strength-popover">
-                  <span class="password-strength-popover-status"></span>
-                  <span class="password-strength-popover-explanation">
-                    Good passwords are hard to guess. Try using a multi-word phrase, uncommon words, numbers or symbols.
-                  </span>
-                </span>
+                <input class="passwordInput" type="password" name="password" value="" placeholder="Password">
               </span>
             </p>
             <p class="text">
@@ -174,13 +162,16 @@
                 <input id="confirm_password" type="password" name="confirm_password" value="" placeholder="Confirm password">
               </span>
             </p>
-            <p id="passwordError"></p>
+            <div class="passwordTipDiv">
+              <h3>Password must contain the following:</h3>
+              <p id="passwordLetter" class="invalid">A <b>lowercase</b> letter</p>
+              <p id="passwordCapital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+              <p id="passwordNumber" class="invalid">A <b>number</b></p>
+              <p id="passwordLength" class="invalid">Minimum <b>8 characters</b></p>
+            </div>
+            <p id="registerError"></p>
             <p class="submit">
-              <button type="submit" class="">
-                <span>
-                  Create
-                </span>
-              </button>
+              <button type="submit" class="submit">Create</button>
             </p>
             <p id="successCreate"></p>
           </form>
