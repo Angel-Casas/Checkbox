@@ -179,34 +179,55 @@ function introductionHandler(target) {
 
 // LOGIN HANDLER
 function loginHandler(target) {
+  document.querySelector("#loginAccountDiv #loginError").innerHTML = "";
+  document.querySelector("#registerAccountDiv #registerError").innerHTML = "";
+  document.querySelector("#loginAccountDiv #successLogin").innerHTML = "";
+
   if (target === document.querySelector("#loginAccountDiv .submit")) {
-    if (validEmail(document.querySelector("#loginAccountDiv .username").value)) {
-      let email = document.querySelector("#loginAccountDiv .username").value;
+    var email = document.querySelector("#loginAccountDiv .email");
+    if (validEmail(email, email.value)) {
+      var emailStr = document.querySelector("#loginAccountDiv .email").value;
     }
     else {
+      // Return Error Invalid Email
       document.querySelector("#loginAccountDiv #loginError").innerHTML = "Invalid email address, please check again!";
       return;
     }
     if (validPass(document.querySelector("#loginAccountDiv .password"), false)) {
-      let pass = window.btoa(document.querySelector("#loginAccountDiv .password").value);
-    }
-  } else if (target === document.querySelector("#registerAccountDiv .submit")) {
-    if (validEmail(document.querySelector("#registerAccountDiv .email").value)) {
-      let email = document.querySelector("#registerAccountDiv .email").value;
+      // Successfully Logged in
+      let pass = window.btoa(document.querySelector("#loginAccountDiv .passwordInput").value);
+      document.querySelector("#loginAccountDiv #loginError").innerHTML = "";
+      document.querySelector("#loginAccountDiv #successLogin").innerHTML = "Successfull login, welcome <span id='successUserName'>" + emailStr + "</span>!";
     }
     else {
+      // Return Error Invalid Password
+      document.querySelector("#loginAccountDiv #loginError").innerHTML = "Wrong password, please check again!";
+      return;
+    }
+  } else if (target === document.querySelector("#registerAccountDiv .submit")) {
+    var email = document.querySelector("#registerAccountDiv .email");
+    if (validEmail(email, document.querySelector("#registerAccountDiv .email").value)) {
+      // Successfully verified Email
+      var emailStr = document.querySelector("#registerAccountDiv .email").value;
+    }
+    else {
+      // Return Error Invalid Email
       document.querySelector("#registerAccountDiv #registerError").innerHTML = "Make sure the Email is valid";
       return;
     }
-    if (validPass(document.querySelector("#registerAccountDiv .passwordInput").value, true)) {
-      let pass = window.btoa(document.querySelector("#registerAccountDiv .password").value);
-
-      return;
+    if (validPass(document.querySelector("#registerAccountDiv .passwordInput"), true)) {
+      // Successfully Registered
+      let pass = window.btoa(document.querySelector("#registerAccountDiv .passwordInput").value);
+      document.querySelector("#registerAccountDiv .passwordTipDiv").classList.remove("tip");
+      document.querySelector("#registerAccountDiv #successCreate").innerHTML = "Account successfully created, welcome <span id='userNameCreate'>" + emailStr + "</span>!";
     }
     else {
-
+      // Return Error Invalid Password
+      document.querySelector("#registerAccountDiv #registerError").innerHTML = "Password invalid, please check again!";
+      return;
     }
   }
+  console.log("success");
   return;
 }
 
@@ -231,10 +252,10 @@ function scrollHandler(bool) {
   }
 }
 // VALIDATE EMAIL
-function validEmail(emailString) {
+function validEmail(email, emailStr) {
   var filter = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (!filter.test(emailString)) {
-    alert('Please provide a valid email address');
+  if (!filter.test(emailStr)) {
+    console.log("false");
     email.focus;
     return false;
   }
@@ -299,15 +320,21 @@ function validPass(passInput, bool) {
       length.classList.remove("valid");
       length.classList.add("invalid");
     }
-    if (password === confirm && password !== "") {
-      console.log("confirmed");
+    if (password === confirm && password.length >= 8) {
       registerError.innerHTML = "";
+      return true;
     }
     return false;
   }
   else {
     var password = document.querySelector("#loginAccountDiv .passwordInput").value;
-    return true;
+    if (password.length >= 8) {
+      registerError.innerHTML = "";
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }
 // 3. User Management

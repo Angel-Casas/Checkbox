@@ -1547,7 +1547,7 @@ input:hover {
 /* ------------------------------*/
 
 #login {
-  display: block;
+  display: none;
   position: fixed;
   top: 0;
   right: 0;
@@ -1710,7 +1710,7 @@ input:hover {
 #login .password-strength-popover {
   display: none;
 }
-#login .submit button {
+#login .submitButton button {
   padding: .8rem 0;
   background: rgb(33, 35, 78);
   color: rgb(221, 182, 78);
@@ -1724,7 +1724,7 @@ input:hover {
   -o-transition: all .2s ease-in;
   transition: all .2s ease-in;
 }
-#login .submit button:hover {
+#login .submitButton button:hover {
   color: rgb(33, 35, 78);
   background: rgb(221, 182, 78);
   -webkit-transition: all .1s ease-in;
@@ -1841,20 +1841,20 @@ input:hover {
   display: none;
 }
 #login #registerAccountForm #registerError {
-  display: block;
+  display: inline-block;
   color: red;
   font-size: 0.8rem;
   margin: 0;
 }
 #login #registerAccountForm #successCreate {
-  display: none;
+  display: inline-block;
   color: rgb(221, 182, 78);
   font-size: 1.2rem;
 }
 #login #registerAccountForm #userNameCreate {
   font-size: 1.5rem;
   font-weight: bold;
-  display: inline;
+  display: inline-block;
 }
 #login .passwordTipDiv {
   width: 250px;
