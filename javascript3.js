@@ -55,6 +55,13 @@ window.onload = init;
       location.reload();
       return;
     }
+    if (event.target.matches("#home #cardCreate")) {
+      let objective = document.querySelector("#home #entry").value || "I can't think of any Objectives.";
+      let time = document.querySelector("#home .timeRange input:checked").value;
+      event.preventDefault();
+      users[userIdx].addCard(objective, time);
+      return;
+    }
   }, false);
 })();
 // INPUTEVENTLISTENER
@@ -203,21 +210,22 @@ function loginHandler(target) {
   document.querySelector("#loginAccountDiv #successLogin").innerHTML = "";
 
   if (target === document.querySelector("#loginAccountDiv .submit")) {
+    // Login
     var nameInput = document.querySelector("#loginAccountDiv .username");
     userIdx = findUser(nameInput.value);
-    if (nameInput.value === users[userIdx].name) {
+    if (nameInput.value === users[userIdx].name || nameInput.value === users[userIdx].email) {
       var userStr = document.querySelector("#loginAccountDiv .username").value;
     }
     else {
       // Return Error Invalid Email
-      document.querySelector("#loginAccountDiv #loginError").innerHTML = "Invalid email address, please check again!";
+      document.querySelector("#loginAccountDiv #loginError").innerHTML = "No user found, please check again!";
       return;
     }
     if (validPass(document.querySelector("#loginAccountDiv .password"), false)) {
       // Successfully Logged in
       let pass = window.btoa(document.querySelector("#loginAccountDiv .passwordInput").value);
       document.querySelector("#loginAccountDiv #loginError").innerHTML = "";
-      document.querySelector("#loginAccountDiv #successLogin").innerHTML = "Successfull login, welcome <span id='successUserName'>" + userStr + "</span>!";
+      document.querySelector("#loginAccountDiv #successLogin").innerHTML = "Successfull login, welcome <span id='successUserName'>" + users[userIdx].name + "</span>!";
       setTimeout(function() {
         document.querySelector("#loginAccountDiv #successLogin").innerHTML = "";
         document.querySelector("#login").style.display = "none";
@@ -234,6 +242,7 @@ function loginHandler(target) {
       return;
     }
   } else if (target === document.querySelector("#registerAccountDiv .submit")) {
+    // Register
     var email = document.querySelector("#registerAccountDiv .email");
     if (validEmail(email, document.querySelector("#registerAccountDiv .email").value) && document.querySelector("#registerAccountDiv .username").value !== "") {
       // Successfully verified Email
@@ -249,7 +258,7 @@ function loginHandler(target) {
       // Successfully Registered
       let pass = window.btoa(document.querySelector("#registerAccountDiv .passwordInput").value);
       document.querySelector("#registerAccountDiv .passwordTipDiv").classList.remove("tip");
-      document.querySelector("#registerAccountDiv #successCreate").innerHTML = "Account successfully created, welcome <span id='userNameCreate'>" + emailStr + "</span>!";
+      document.querySelector("#registerAccountDiv #successCreate").innerHTML = "Account successfully created, welcome <span id='userNameCreate'>" + name + "</span>!";
       setTimeout(function() {
         document.querySelector("#registerAccountDiv #successCreate").innerHTML = "";
         document.querySelector("#login").style.display = "none";
@@ -395,11 +404,55 @@ function findUser(name) {
     if (users[i].name === name) {
       return i;
     }
-    return false;
+    return userIdx;
   }
 }
 
-// 3. User Management
+// CARDTOHTML
+function cardToHTML(objective, time) {
+  var newCard = document.createElement("div");
+  var newObjective = document.createElement("div");
+  var newRewardIcon = document.createElement("i");
+  var newButton = document.createElement("button");
+  var newP = document.createElement("p");
+  var newTime = document.createElement("p");
+  var newRewardDisplay = document.createElement("p");
+  var section = document.querySelector("#mainObjectives");
+  var txt = "";
+  // needed for Editor
+  var newClose = document.createElement("div");
+  newClose.classList.add("close");
+
+  if (time === 1) {
+    txt = time + " day remining!";
+    console.log("tah");
+  }
+  else {
+    txt = time + " days remaining!";
+  }
+  newCard.style.background = "linear-gradient(30deg, " + get_random_color() + ", " + get_random_color() + ")";
+  //add classes
+  newButton.className = "rewardAsk";
+  newCard.className = "card";
+  newRewardDisplay.className = "rewardItem";
+  newRewardIcon.className = "fa fa-gift";
+  newObjective.className = "objective";
+  // check if reward has been set
+  newRewardDisplay.innerHTML = "";
+  //add content to div > span,time
+  newP.innerHTML = objective || "I could'nt think of any objectives";
+  newTime.innerHTML = txt;
+  newButton.appendChild(newRewardIcon);
+  newObjective.appendChild(newP);
+  newObjective.appendChild(newTime);
+  newObjective.appendChild(newRewardDisplay);
+  newObjective.appendChild(newButton);
+  newCard.appendChild(newObjective);
+  newCard.appendChild(newClose);
+  section.appendChild(newCard);
+  return;
+}
+// 3. USER MANAGEMENT
 class User {
   constructor(name, email, pass) {
     this.name = name;
@@ -411,14 +464,12 @@ class User {
     return this.card.length;
   }
   addCard(objective, time) {
-    card[cardLength()] = {
-      "Objective": objective,
-      "time": time,
-      "idx": cardLength(),
-      "Creator": this.name,
-      "participants": [this.name]
-    }
-    return card[cardLength()];
+    let len = cardLength();
+    console.log("len: " + len);
+    var newCard = new Card(objective, time);
+    this.card.push(newCard);
+    cardToHTML(objective, time);
+    return card[len];
   }
   removeCard(idx, boolean) {
     if (boolean) {
@@ -432,17 +483,6 @@ class User {
   editCard(target, idx, boolean) {
     if (boolean) {
       //Creators can Edit cards
-      switch(target) {
-        case document.querySelector(".card .objective p:nth-child(1)"):
-          break;
-        case document.querySelector(".card .objective p:nth-child(2)"):
-          break;
-        case document.querySelector(".card .objective p:nth-child(3)"):
-          break;
-        default:
-          alert("could'nt Edit the element selected");
-          return false;
-      }
       return true;
     }
     return false;
@@ -451,6 +491,59 @@ class User {
     // TO DO Personalize Card background
     return;
   }
+}
+
+
+// CARD MANAGEMENT
+class Card {
+  constructor(objective, time) {
+    this.objective = objective;
+    this.time = time;
+    this.reward = "";
+    this.creator = users[userIdx].name;
+    this.participants = [users[userIdx].name];
+    this.bckgr = "";
+  }
+  modifyObjective(objective) {
+    if (objective !== "") {
+      this.objective = objective;
+      return true;
+    }
+    return false;
+  }
+  modifyTime(time) {
+    var d = new Date();
+    if (time !== "" && time > d.now()) {
+      this.time = time;
+      return true;
+    }
+    return false;
+  }
+  modifyReward(reward) {
+    this.reward = reward;
+    return true;
+  }
+  addParticipant(user) {
+    var part = findUser(user);
+    for (var i=0; i<users.length; i++) {
+      if (users.includes(user) && !this.participants.includes(user)) {
+        this.participants.push(user);
+        return true;
+      }
+    }
+    return false;
+  }
+  speak() {
+    console.log(
+      "Objective: " + this.objective
+      + " Time: " + this.time
+      + " Reward: " + this.reward
+      + " Creator: " + this.creator
+      + " Participants: " + this.participants
+      + " Bckgr: " + this.bckgr
+    )
+  }
+  return speak();
 }
 
 

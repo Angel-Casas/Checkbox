@@ -381,7 +381,7 @@ input:hover {
   transition: box-shadow .1s ease-in;
   transition: box-shadow .1s ease-in, -webkit-box-shadow .1s ease-in;
 }
-.createForm .time-range {
+.createForm .timeRange {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1547,7 +1547,7 @@ input:hover {
 /* ------------------------------*/
 
 #login {
-  display: block;
+  display: none;
   position: fixed;
   top: 0;
   right: 0;
