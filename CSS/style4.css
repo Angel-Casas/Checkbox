@@ -1566,8 +1566,14 @@ input:hover {
 #login .title {
   color: rgb(221, 182, 78);
 }
-#login p {
+#login p.text {
   margin: 10px 0;
+}
+#login .passwordTipDiv h3 {
+  margin: 0;
+}
+#login .passwordTipDiv p {
+  margin: 0;
 }
 #login #loginRadio {
   display: block;
@@ -1595,7 +1601,7 @@ input:hover {
   font-size: 1.6rem;
   color: rgb(221, 182, 78);
   text-align: center;
-  padding: 20px 0;
+  padding: 17px 0;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
 }
@@ -1863,6 +1869,7 @@ input:hover {
   margin: 0 auto;
   opacity: 0;
   transition: all .2s ease-in-out;
+  z-index: -1;
 }
 #login .passwordTipDiv.tip {
   opacity: 1;

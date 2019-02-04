@@ -79,6 +79,8 @@ function navHandler(target) {
     scrollHandler(true);
     return;
   } else if (target.classList.contains("navSignOut")) {
+    document.querySelector("#mainNav #navRegister").style.display = "flex";
+    document.querySelector("#mainNav #navSignOut").style.display = "none";
     return;
   } else {
     document.body.scrollTop = 0; // For Safari
@@ -198,6 +200,14 @@ function loginHandler(target) {
       let pass = window.btoa(document.querySelector("#loginAccountDiv .passwordInput").value);
       document.querySelector("#loginAccountDiv #loginError").innerHTML = "";
       document.querySelector("#loginAccountDiv #successLogin").innerHTML = "Successfull login, welcome <span id='successUserName'>" + emailStr + "</span>!";
+      setTimeout(function() {
+        document.querySelector("#loginAccountDiv #successLogin").innerHTML = "";
+        document.querySelector("#login").style.display = "none";
+        document.querySelector("#mainNav #navRegister").style.display = "none";
+        document.querySelector("#mainNav #navSignOut").style.display = "flex";
+        scrollHandler(false);
+        document.querySelector("#loginAccountForm").reset();
+      }, 2000);
     }
     else {
       // Return Error Invalid Password
@@ -206,13 +216,14 @@ function loginHandler(target) {
     }
   } else if (target === document.querySelector("#registerAccountDiv .submit")) {
     var email = document.querySelector("#registerAccountDiv .email");
-    if (validEmail(email, document.querySelector("#registerAccountDiv .email").value)) {
+    if (validEmail(email, document.querySelector("#registerAccountDiv .email").value) && document.querySelector("#registerAccountDiv .username").value !== "") {
       // Successfully verified Email
       var emailStr = document.querySelector("#registerAccountDiv .email").value;
+      var name = document.querySelector("#registerAccountDiv .username").value;
     }
     else {
       // Return Error Invalid Email
-      document.querySelector("#registerAccountDiv #registerError").innerHTML = "Make sure the Email is valid";
+      document.querySelector("#registerAccountDiv #registerError").innerHTML = "Make sure the Email is valid and you have typed a Name!";
       return;
     }
     if (validPass(document.querySelector("#registerAccountDiv .passwordInput"), true)) {
@@ -220,6 +231,14 @@ function loginHandler(target) {
       let pass = window.btoa(document.querySelector("#registerAccountDiv .passwordInput").value);
       document.querySelector("#registerAccountDiv .passwordTipDiv").classList.remove("tip");
       document.querySelector("#registerAccountDiv #successCreate").innerHTML = "Account successfully created, welcome <span id='userNameCreate'>" + emailStr + "</span>!";
+      setTimeout(function() {
+        document.querySelector("#registerAccountDiv #successCreate").innerHTML = "";
+        document.querySelector("#login").style.display = "none";
+        document.querySelector("#mainNav #navRegister").style.display = "none";
+        document.querySelector("#mainNav #navSignOut").style.display = "flex";
+        scrollHandler(false);
+        document.querySelector("#registerAccountForm").reset();
+      }, 2000);
     }
     else {
       // Return Error Invalid Password
@@ -227,7 +246,6 @@ function loginHandler(target) {
       return;
     }
   }
-  console.log("success");
   return;
 }
 
