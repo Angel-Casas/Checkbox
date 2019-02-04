@@ -1547,7 +1547,7 @@ input:hover {
 /* ------------------------------*/
 
 #login {
-  display: none;
+  display: block;
   position: fixed;
   top: 0;
   right: 0;

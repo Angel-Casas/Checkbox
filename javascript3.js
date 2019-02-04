@@ -6,11 +6,12 @@
 // 4. Reward Management
 
 //  0. Global Variables:
-var LoggedUser = {};
+var users = [];
+var userIdx = 0;
 var logged = false;
-var cardIdx;
 
-
+// WINDOW INIT
+window.onload = init;
 
 // 1. DOCUMENTEVENTLISTENER
 (function() {
@@ -49,6 +50,11 @@ var cardIdx;
       loginHandler(event.target);
       return;
     }
+    if (event.target.matches("#clearUsers")) {
+      localStorage.removeItem("users");
+      location.reload();
+      return;
+    }
   }, false);
 })();
 // INPUTEVENTLISTENER
@@ -67,6 +73,16 @@ var cardIdx;
 })();
 
 // 2. Global Functions
+// INIT HANDLER
+function init() {
+  if (localStorage.getItem("users") === null) {
+    localStorage.setItem("users", JSON.stringify(users));
+  }
+  else {
+    users = JSON.parse(localStorage.getItem("users"));
+  }
+  return;
+}
 
 // NAVIGATION HANDLER
 function navHandler(target) {
@@ -81,6 +97,7 @@ function navHandler(target) {
   } else if (target.classList.contains("navSignOut")) {
     document.querySelector("#mainNav #navRegister").style.display = "flex";
     document.querySelector("#mainNav #navSignOut").style.display = "none";
+    localStorageLogin(users, false);
     return;
   } else {
     document.body.scrollTop = 0; // For Safari
@@ -186,9 +203,10 @@ function loginHandler(target) {
   document.querySelector("#loginAccountDiv #successLogin").innerHTML = "";
 
   if (target === document.querySelector("#loginAccountDiv .submit")) {
-    var email = document.querySelector("#loginAccountDiv .email");
-    if (validEmail(email, email.value)) {
-      var emailStr = document.querySelector("#loginAccountDiv .email").value;
+    var nameInput = document.querySelector("#loginAccountDiv .username");
+    userIdx = findUser(nameInput.value);
+    if (nameInput.value === users[userIdx].name) {
+      var userStr = document.querySelector("#loginAccountDiv .username").value;
     }
     else {
       // Return Error Invalid Email
@@ -199,7 +217,7 @@ function loginHandler(target) {
       // Successfully Logged in
       let pass = window.btoa(document.querySelector("#loginAccountDiv .passwordInput").value);
       document.querySelector("#loginAccountDiv #loginError").innerHTML = "";
-      document.querySelector("#loginAccountDiv #successLogin").innerHTML = "Successfull login, welcome <span id='successUserName'>" + emailStr + "</span>!";
+      document.querySelector("#loginAccountDiv #successLogin").innerHTML = "Successfull login, welcome <span id='successUserName'>" + userStr + "</span>!";
       setTimeout(function() {
         document.querySelector("#loginAccountDiv #successLogin").innerHTML = "";
         document.querySelector("#login").style.display = "none";
@@ -208,6 +226,7 @@ function loginHandler(target) {
         scrollHandler(false);
         document.querySelector("#loginAccountForm").reset();
       }, 2000);
+      localStorageLogin(users, true);
     }
     else {
       // Return Error Invalid Password
@@ -239,6 +258,9 @@ function loginHandler(target) {
         scrollHandler(false);
         document.querySelector("#registerAccountForm").reset();
       }, 2000);
+      var user = new User(name, emailStr, pass);
+      users.push(user);
+      localStorageLogin(users, true);
     }
     else {
       // Return Error Invalid Password
@@ -273,7 +295,6 @@ function scrollHandler(bool) {
 function validEmail(email, emailStr) {
   var filter = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   if (!filter.test(emailStr)) {
-    console.log("false");
     email.focus;
     return false;
   }
@@ -346,7 +367,7 @@ function validPass(passInput, bool) {
   }
   else {
     var password = document.querySelector("#loginAccountDiv .passwordInput").value;
-    if (password.length >= 8) {
+    if (password === window.atob(users[userIdx].pass)) {
       registerError.innerHTML = "";
       return true;
     }
@@ -355,9 +376,82 @@ function validPass(passInput, bool) {
     }
   }
 }
+
+// LOCALSTORAGE LOGIN HANDLER (When succesfully logged in with LoginHandler)
+function localStorageLogin(users, bool) {
+  if (bool) {
+    localStorage.setItem("users", JSON.stringify(users));
+    logged = true;
+  }
+  else {
+    logged = false;
+  }
+  return;
+}
+
+// ITERATOR FOR USERS ARRAY
+function findUser(name) {
+  for (var i=0; i<users.length; i++) {
+    if (users[i].name === name) {
+      return i;
+    }
+    return false;
+  }
+}
+
 // 3. User Management
-
-
+class User {
+  constructor(name, email, pass) {
+    this.name = name;
+    this.email = email;
+    this.pass = pass;
+    this.card = [];
+  }
+  cardLength() {
+    return this.card.length;
+  }
+  addCard(objective, time) {
+    card[cardLength()] = {
+      "Objective": objective,
+      "time": time,
+      "idx": cardLength(),
+      "Creator": this.name,
+      "participants": [this.name]
+    }
+    return card[cardLength()];
+  }
+  removeCard(idx, boolean) {
+    if (boolean) {
+      //Creator can Delete Cards
+      this.card.splice(idx, 1);
+      return true;
+    }
+    // Participants can't Delete Cards
+    return false;
+  }
+  editCard(target, idx, boolean) {
+    if (boolean) {
+      //Creators can Edit cards
+      switch(target) {
+        case document.querySelector(".card .objective p:nth-child(1)"):
+          break;
+        case document.querySelector(".card .objective p:nth-child(2)"):
+          break;
+        case document.querySelector(".card .objective p:nth-child(3)"):
+          break;
+        default:
+          alert("could'nt Edit the element selected");
+          return false;
+      }
+      return true;
+    }
+    return false;
+  }
+  personalizeCard(idx) {
+    // TO DO Personalize Card background
+    return;
+  }
+}
 
 
 // 4. Reward Management
