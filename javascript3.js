@@ -8,6 +8,7 @@
 //  0. Global Variables:
 var users = [];
 var userIdx = 0;
+var cardIdx = 0;
 var logged = false;
 
 // WINDOW INIT
@@ -71,17 +72,27 @@ window.onload = init;
       }
       return;
     }
+    if (event.target.matches("#home #cardEditor i")) {
+      event.preventDefault();
+      event.target.classList.toggle("activeEditor");
+      if (event.target.classList.contains("activeEditor")) {
+        document.querySelector("#cardEditorInfo").style.display = "block";
+        document.querySelectorAll("#home .card .close").forEach(el => el.style.display = "block");
+        return;
+      }
+      else {
+        document.querySelector("#cardEditorInfo").style.display = "none";
+        document.querySelectorAll("#home .card .close").forEach(el => el.style.display = "none");
+      }
+      return;
+    }
   }, false);
 })();
 // INPUTEVENTLISTENER
 (function() {
   document.addEventListener("input", function(event) {
-    // LOGIN PASSWORD INPUT
-    if (event.target.matches("#loginAccountDiv .passwordInput")) {
-      validPass(event.target, false);
-      return;
-    }
-    else if (event.target.matches("#registerAccountDiv input[type='password']")) {
+    // REGISTER PASSWORD INPUT
+    if (event.target.matches("#registerAccountDiv input[type='password']")) {
       validPass(event.target, true);
       return;
     }
@@ -91,12 +102,12 @@ window.onload = init;
 // 2. Global Functions
 // INIT HANDLER
 function init() {
-  if (localStorage.getItem("users") === null) {
+  if (localStorageUsers(users, false) === null) {
     localStorage.setItem("users", JSON.stringify(users));
   }
   else {
     users = JSON.parse(localStorage.getItem("users"));
-    console.log(users[userIdx]);
+    console.log(users);
   }
   return;
 }
@@ -114,7 +125,9 @@ function navHandler(target) {
   } else if (target.classList.contains("navSignOut")) {
     document.querySelector("#mainNav #navRegister").style.display = "flex";
     document.querySelector("#mainNav #navSignOut").style.display = "none";
-    localStorageLogin(users, false);
+    document.querySelector("#home #mainObjectives").innerHTML = "";
+    localStorageUsers(users, true);
+    logged = false;
     return;
   } else {
     document.body.scrollTop = 0; // For Safari
@@ -162,6 +175,19 @@ function closureHandler(target) {
       document.querySelector(".register").style.display = "flex";
       return;
     }
+  }
+  if (target.matches("#home a.close")) {
+    if (logged) {
+      console.log(cardIdx);
+      if (users[userIdx].card[cardIdx].creator === users[userIdx].name) {
+        users[userIdx].removeCard(cardIdx, true);
+        target.parentElement.outerHTML = "";
+      }
+    }
+    else {
+      target.parentElement.outerHTML = "";
+    }
+    return;
   }
   scrollHandler(false);
   return;
@@ -223,12 +249,19 @@ function loginHandler(target) {
     // Login
     var nameInput = document.querySelector("#loginAccountDiv .username");
     userIdx = findUser(nameInput.value);
-    if (nameInput.value === users[userIdx].name || nameInput.value === users[userIdx].email) {
-      var userStr = document.querySelector("#loginAccountDiv .username").value;
+    try {
+      if (nameInput.value === users[userIdx].name || nameInput.value === users[userIdx].email) {
+        var userStr = document.querySelector("#loginAccountDiv .username").value;
+      }
+      else {
+        // Return Error Invalid Email
+        document.querySelector("#loginAccountDiv #loginError").innerHTML = "No user found, please check again!";
+        return;
+      }
     }
-    else {
-      // Return Error Invalid Email
+    catch(error) {
       document.querySelector("#loginAccountDiv #loginError").innerHTML = "No user found, please check again!";
+      console.log(error);
       return;
     }
     if (validPass(document.querySelector("#loginAccountDiv .password"), false)) {
@@ -246,7 +279,8 @@ function loginHandler(target) {
       }, 2000);
       document.querySelector("#home #mainObjectives").innerHTML = "";
       reloadUsers();
-      localStorageLogin(users, true);
+      localStorageUsers(users, true);
+      logged = true;
     }
     else {
       // Return Error Invalid Password
@@ -281,7 +315,8 @@ function loginHandler(target) {
       }, 2000);
       var user = new User(name, emailStr, pass);
       users.push(user);
-      localStorageLogin(users, true);
+      localStorageUsers(users, true);
+      logged = true;
       console.log(users[userIdx]);
       return;
     }
@@ -390,28 +425,42 @@ function validPass(passInput, bool) {
   }
   else {
     var password = document.querySelector("#loginAccountDiv .passwordInput").value;
-    if (password === window.atob(users[userIdx].pass)) {
-      registerError.innerHTML = "";
-      return true;
+    try {
+      if (password === window.atob(users[userIdx].pass)) {
+        registerError.innerHTML = "";
+        return true;
+      }
+      else {
+        return false;
+      }
     }
-    else {
-      return false;
+    catch(error) {
+      registerError.innerHTML = ""
     }
   }
 }
 
-// LOCALSTORAGE LOGIN HANDLER (When succesfully logged in with LoginHandler)
-function localStorageLogin(users, bool) {
+// LOCALSTORAGE HANDLER
+function localStorageUsers(users, bool) {
+  // if true Set new local Storage with updated Users
   if (bool) {
-    localStorage.setItem("users", JSON.stringify(users));
-    logged = true;
+    try {
+      localStorage.setItem("users", JSON.stringify(users));
+      console.log("Saved");
+    }
+    catch(error) {
+      console.log("Error caught at LocalStorageUsers true: " + error);
+    }
   }
   else {
-    logged = false;
+    try {
+      return localStorage.getItem("users");
+    }
+    catch(error) {
+      console.log("Error caught at LocalStorageUsers false: " + error);
+    }
   }
-  return;
 }
-
 // ITERATOR FOR USERS ARRAY
 function findUser(name) {
   for (var i=0; i<users.length; i++) {
@@ -436,15 +485,14 @@ function reloadUsers() {
       var creator = users[i].card[j].creator;
       var participants = users[i].card[j].participants;
       var bckgr = users[i].card[j].bckgr;
-      users[i].card[j] = new Card(objective, time, reward);
-      users[i].card[j].creator = creator;
-      users[i].card[j].participants = participants;
-      users[i].card[j].bckgr = bckgr;
+      user.card[j] = new Card(objective, time, reward);
+      user.card[j].creator = creator;
+      user.card[j].participants = participants;
+      user.card[j].bckgr = bckgr;
     }
     users[i] = user;
   }
   users[userIdx].display();
-  console.log(users[userIdx]);
   return;
 }
 // CARDTOHTML
@@ -459,7 +507,7 @@ function cardToHTML(objective, time) {
   var section = document.querySelector("#mainObjectives");
   var txt = "";
   // needed for Editor
-  var newClose = document.createElement("div");
+  var newClose = document.createElement("a");
   newClose.classList.add("close");
   if (time == 1) {
     txt = time + " day remining!";
@@ -512,11 +560,11 @@ class User {
   }
   addCard(objective, time) {
     let len = this.cardLength();
-    console.log("len: " + len);
     var newCard = new Card(objective, time);
     this.card.push(newCard);
     cardToHTML(objective, time);
-    localStorageLogin(users, true);
+    localStorageUsers(users, true);
+    console.log(users);
     return newCard;
   }
   removeCard(idx, boolean) {
@@ -563,6 +611,7 @@ class Card {
     this.creator = users[userIdx].name || "";
     this.participants = [users[userIdx].name] || "";
     this.bckgr = "";
+    this.cardIdx = cardIdx++;
   }
   modifyObjective(objective) {
     if (objective !== "") {
