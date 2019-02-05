@@ -560,8 +560,8 @@ class Card {
     this.objective = objective;
     this.time = time;
     this.reward = reward || "";
-    this.creator = users[userIdx].name;
-    this.participants = [users[userIdx].name];
+    this.creator = users[userIdx].name || "";
+    this.participants = [users[userIdx].name] || "";
     this.bckgr = "";
   }
   modifyObjective(objective) {
