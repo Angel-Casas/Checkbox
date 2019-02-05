@@ -59,7 +59,16 @@ window.onload = init;
       let objective = document.querySelector("#home #entry").value || "I can't think of any Objectives.";
       let time = document.querySelector("#home .timeRange input:checked").value;
       event.preventDefault();
-      users[userIdx].addCard(objective, time);
+      if (logged) {
+        var addedCard = users[userIdx].addCard(objective, time);
+        console.log(addedCard);
+        return;
+      }
+      else {
+        var newCard = new Card(objective, time);
+        cardToHTML(objective, time);
+        return;
+      }
       return;
     }
   }, false);
@@ -87,6 +96,7 @@ function init() {
   }
   else {
     users = JSON.parse(localStorage.getItem("users"));
+    console.log(users[userIdx]);
   }
   return;
 }
@@ -234,6 +244,8 @@ function loginHandler(target) {
         scrollHandler(false);
         document.querySelector("#loginAccountForm").reset();
       }, 2000);
+      document.querySelector("#home #mainObjectives").innerHTML = "";
+      reloadUsers();
       localStorageLogin(users, true);
     }
     else {
@@ -270,6 +282,8 @@ function loginHandler(target) {
       var user = new User(name, emailStr, pass);
       users.push(user);
       localStorageLogin(users, true);
+      console.log(users[userIdx]);
+      return;
     }
     else {
       // Return Error Invalid Password
@@ -408,6 +422,31 @@ function findUser(name) {
   }
 }
 
+// RELOAD USERS
+function reloadUsers() {
+  for (var i=0; i<users.length; i++) {
+    var name = users[i].name;
+    var email = users[i].email;
+    var pass = users[i].pass;
+    var user = new User(name, email, pass);
+    for (var j=0; j<users[i].card.length; j++) {
+      var objective = users[i].card[j].objective;
+      var time = users[i].card[j].time;
+      var reward = users[i].card[j].reward;
+      var creator = users[i].card[j].creator;
+      var participants = users[i].card[j].participants;
+      var bckgr = users[i].card[j].bckgr;
+      users[i].card[j] = new Card(objective, time, reward);
+      users[i].card[j].creator = creator;
+      users[i].card[j].participants = participants;
+      users[i].card[j].bckgr = bckgr;
+    }
+    users[i] = user;
+  }
+  users[userIdx].display();
+  console.log(users[userIdx]);
+  return;
+}
 // CARDTOHTML
 function cardToHTML(objective, time) {
   var newCard = document.createElement("div");
@@ -422,15 +461,13 @@ function cardToHTML(objective, time) {
   // needed for Editor
   var newClose = document.createElement("div");
   newClose.classList.add("close");
-
-  if (time === 1) {
+  if (time == 1) {
     txt = time + " day remining!";
-    console.log("tah");
   }
   else {
     txt = time + " days remaining!";
   }
-  newCard.style.background = "linear-gradient(30deg, " + get_random_color() + ", " + get_random_color() + ")";
+  newCard.style.background = "linear-gradient(30deg, " + getRandomColor() + ", " + getRandomColor() + ")";
   //add classes
   newButton.className = "rewardAsk";
   newCard.className = "card";
@@ -452,6 +489,16 @@ function cardToHTML(objective, time) {
   section.appendChild(newCard);
   return;
 }
+
+// RANDOM COLOR GEN
+function getRandomColor() {
+  function c() {
+    var hex = Math.floor(Math.random()*256).toString(16);
+    return ("0"+String(hex)).substr(-2); // pad with zero
+  }
+  return "#"+c()+c()+c();
+}
+
 // 3. USER MANAGEMENT
 class User {
   constructor(name, email, pass) {
@@ -464,12 +511,13 @@ class User {
     return this.card.length;
   }
   addCard(objective, time) {
-    let len = cardLength();
+    let len = this.cardLength();
     console.log("len: " + len);
     var newCard = new Card(objective, time);
     this.card.push(newCard);
     cardToHTML(objective, time);
-    return card[len];
+    localStorageLogin(users, true);
+    return newCard;
   }
   removeCard(idx, boolean) {
     if (boolean) {
@@ -491,15 +539,27 @@ class User {
     // TO DO Personalize Card background
     return;
   }
+  display() {
+    try {
+      for (var i=0; i<users[userIdx].card.length; i++) {
+        cardToHTML(users[userIdx].card[i].objective, users[userIdx].card[i].time);
+      }
+      return true;
+    }
+    catch(error) {
+      console.log("error in cardToHTML");
+      return false;
+    }
+  }
 }
 
 
 // CARD MANAGEMENT
 class Card {
-  constructor(objective, time) {
+  constructor(objective, time, reward) {
     this.objective = objective;
     this.time = time;
-    this.reward = "";
+    this.reward = reward || "";
     this.creator = users[userIdx].name;
     this.participants = [users[userIdx].name];
     this.bckgr = "";
@@ -541,9 +601,8 @@ class Card {
       + " Creator: " + this.creator
       + " Participants: " + this.participants
       + " Bckgr: " + this.bckgr
-    )
+    );
   }
-  return speak();
 }
 
 
