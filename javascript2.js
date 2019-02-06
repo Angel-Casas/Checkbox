@@ -21,11 +21,6 @@ var cardIdx;
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
   var currentScrollPos = window.pageYOffset;
-  if (prevScrollpos > currentScrollPos) {
-    document.querySelector("#quickLoginDiv").style.top = "70px";
-  } else {
-    document.querySelector("#quickLoginDiv").style.top = "-50px";
-  }
   prevScrollpos = currentScrollPos;
 }
 
@@ -319,6 +314,7 @@ document.querySelector("#cardEditor").addEventListener("click", modifyCards, fal
 function deleteCard() {
   if (logged) {
     let idx = userUpdatedGlobal.card.indexOf(this.parentElement);
+    console.log(this.parentElement);
     userUpdatedGlobal.card.splice(idx, 1);
     saveUserState();
   }

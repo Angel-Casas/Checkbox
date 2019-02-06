@@ -62,7 +62,6 @@ window.onload = init;
       event.preventDefault();
       if (logged) {
         var addedCard = users[userIdx].addCard(objective, time);
-        console.log(addedCard);
         return;
       }
       else {
@@ -178,9 +177,10 @@ function closureHandler(target) {
   }
   if (target.matches("#home a.close")) {
     if (logged) {
-      console.log(cardIdx);
+      cardIdx = findCardIdx(target.parentElement);
       if (users[userIdx].card[cardIdx].creator === users[userIdx].name) {
         users[userIdx].removeCard(cardIdx, true);
+        localStorageUsers(users, true);
         target.parentElement.outerHTML = "";
       }
     }
@@ -317,7 +317,6 @@ function loginHandler(target) {
       users.push(user);
       localStorageUsers(users, true);
       logged = true;
-      console.log(users[userIdx]);
       return;
     }
     else {
@@ -349,6 +348,7 @@ function scrollHandler(bool) {
     return;
   }
 }
+
 // VALIDATE EMAIL
 function validEmail(email, emailStr) {
   var filter = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -454,13 +454,14 @@ function localStorageUsers(users, bool) {
   }
   else {
     try {
-      return localStorage.getItem("users");
+      return JSON.parse(localStorage.getItem("users"));
     }
     catch(error) {
       console.log("Error caught at LocalStorageUsers false: " + error);
     }
   }
 }
+
 // ITERATOR FOR USERS ARRAY
 function findUser(name) {
   for (var i=0; i<users.length; i++) {
@@ -495,6 +496,7 @@ function reloadUsers() {
   users[userIdx].display();
   return;
 }
+
 // CARDTOHTML
 function cardToHTML(objective, time) {
   var newCard = document.createElement("div");
@@ -538,6 +540,18 @@ function cardToHTML(objective, time) {
   return;
 }
 
+// FIND CARD INDEX
+function findCardIdx(target) {
+  var cards = document.querySelectorAll("#home .card");
+  for (var i=0; i<cards.length; i++) {
+    if (target === cards[i]) {
+      cardIdx = i;
+      break;
+    }
+  }
+  return cardIdx;
+}
+
 // RANDOM COLOR GEN
 function getRandomColor() {
   function c() {
@@ -564,7 +578,6 @@ class User {
     this.card.push(newCard);
     cardToHTML(objective, time);
     localStorageUsers(users, true);
-    console.log(users);
     return newCard;
   }
   removeCard(idx, boolean) {
