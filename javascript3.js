@@ -7,6 +7,7 @@
 
 //  0. Global Variables:
 var users = [];
+var activeUser = {};
 var userIdx = 0;
 var cardIdx = 0;
 var logged = false;
@@ -51,17 +52,13 @@ window.onload = init;
       loginHandler(event.target);
       return;
     }
-    if (event.target.matches("#clearUsers")) {
-      localStorage.removeItem("users");
-      location.reload();
-      return;
-    }
+    // CREATE CARD HANDLER
     if (event.target.matches("#home #cardCreate")) {
       let objective = document.querySelector("#home #entry").value || "I can't think of any Objectives.";
       let time = document.querySelector("#home .timeRange input:checked").value;
       event.preventDefault();
       if (logged) {
-        var addedCard = users[userIdx].addCard(objective, time);
+        var addedCard = activeUser.addCard(objective, time);
         return;
       }
       else {
@@ -71,6 +68,7 @@ window.onload = init;
       }
       return;
     }
+    // EDIT CARD HANDLER
     if (event.target.matches("#home #cardEditor i")) {
       event.preventDefault();
       event.target.classList.toggle("activeEditor");
@@ -84,6 +82,22 @@ window.onload = init;
         document.querySelectorAll("#home .card .close").forEach(el => el.style.display = "none");
       }
       return;
+    }
+    // REWARD HANDLER
+    if (event.target.matches("#home .rewardAsk") || event.target.matches("#home .rewardAsk i")) {
+      if (logged) {
+        cardIdx = findCardIdx(event.target.parentElement.parentElement);
+        handleRewards();
+      }
+      return;
+    }
+    // EXTRA FUNCTIONALITY - DELETE USER LIST
+    if (event.target.matches("#clearUsers")) {
+      localStorage.removeItem("users");
+      location.reload();
+      return;
+    }
+    else {
     }
   }, false);
 })();
@@ -108,6 +122,16 @@ function init() {
     users = JSON.parse(localStorage.getItem("users"));
     console.log(users);
   }
+  reloadUsers();
+  for (var i=0; i<users.length; i++) {
+    if (users[i].keepLogged === true) {
+      logged = true;
+      activeUser = users[i];
+      document.querySelector("#mainNav #navRegister").style.display = "none";
+      document.querySelector("#mainNav #navSignOut").style.display = "flex";
+      console.log(activeUser);
+    }
+  }
   return;
 }
 
@@ -125,6 +149,7 @@ function navHandler(target) {
     document.querySelector("#mainNav #navRegister").style.display = "flex";
     document.querySelector("#mainNav #navSignOut").style.display = "none";
     document.querySelector("#home #mainObjectives").innerHTML = "";
+    activeUser.keepLogged = false;
     localStorageUsers(users, true);
     logged = false;
     return;
@@ -175,11 +200,11 @@ function closureHandler(target) {
       return;
     }
   }
-  if (target.matches("#home a.close")) {
+  if (target.matches("#home #mainSection a.close")) {
     if (logged) {
       cardIdx = findCardIdx(target.parentElement);
-      if (users[userIdx].card[cardIdx].creator === users[userIdx].name) {
-        users[userIdx].removeCard(cardIdx, true);
+      if (activeUser.card[cardIdx].creator === activeUser.name) {
+        activeUser.removeCard(cardIdx, true);
         localStorageUsers(users, true);
         target.parentElement.outerHTML = "";
       }
@@ -188,6 +213,15 @@ function closureHandler(target) {
       target.parentElement.outerHTML = "";
     }
     return;
+  }
+  if (target.matches("#home #rewardList a.close")) {
+    document.querySelector("#rewardUndo").style.display = "none";
+    document.querySelector("#rewardList").style.display = "none";
+    document.querySelector("#bitcoinDialogBox").style.display = "none";
+    document.querySelector("#giftCardDialogBox").style.display = "none";
+    document.querySelector("#paypalDialogBox").style.display = "none";
+    document.querySelector("#rewardList .rewardBox").style.display = "flex";
+    document.querySelector("#rewardMainBox").style.display = "block";
   }
   scrollHandler(false);
   return;
@@ -267,6 +301,11 @@ function loginHandler(target) {
     if (validPass(document.querySelector("#loginAccountDiv .password"), false)) {
       // Successfully Logged in
       let pass = window.btoa(document.querySelector("#loginAccountDiv .passwordInput").value);
+
+      // check if KeepUserLogged is checked
+      if (document.querySelector("#login .rememberContainer input").checked) {
+        users[userIdx].keepLogged = true;
+      }
       document.querySelector("#loginAccountDiv #loginError").innerHTML = "";
       document.querySelector("#loginAccountDiv #successLogin").innerHTML = "Successfull login, welcome <span id='successUserName'>" + users[userIdx].name + "</span>!";
       setTimeout(function() {
@@ -478,7 +517,8 @@ function reloadUsers() {
     var name = users[i].name;
     var email = users[i].email;
     var pass = users[i].pass;
-    var user = new User(name, email, pass);
+    var keepLogged = users[i].keepLogged;
+    var user = new User(name, email, pass, keepLogged);
     for (var j=0; j<users[i].card.length; j++) {
       var objective = users[i].card[j].objective;
       var time = users[i].card[j].time;
@@ -498,7 +538,7 @@ function reloadUsers() {
 }
 
 // CARDTOHTML
-function cardToHTML(objective, time) {
+function cardToHTML(objective, time, reward) {
   var newCard = document.createElement("div");
   var newObjective = document.createElement("div");
   var newRewardIcon = document.createElement("i");
@@ -520,12 +560,12 @@ function cardToHTML(objective, time) {
   newCard.style.background = "linear-gradient(30deg, " + getRandomColor() + ", " + getRandomColor() + ")";
   //add classes
   newButton.className = "rewardAsk";
+  newRewardIcon.className = "fa fa-gift";
   newCard.className = "card";
   newRewardDisplay.className = "rewardItem";
-  newRewardIcon.className = "fa fa-gift";
   newObjective.className = "objective";
   // check if reward has been set
-  newRewardDisplay.innerHTML = "";
+  newRewardDisplay.innerHTML = reward;
   //add content to div > span,time
   newP.innerHTML = objective || "I could'nt think of any objectives";
   newTime.innerHTML = txt;
@@ -552,6 +592,75 @@ function findCardIdx(target) {
   return cardIdx;
 }
 
+// HANDLE REWARDS
+function handleRewards() {
+  var rewardList = document.querySelector("#home #rewardList");
+  var rewardBitcoinUser = document.querySelector("#rewardBitcoinUser");
+  var rewardGiftCardUser = document.querySelector("#rewardGiftUser");
+  var rewardPaypalUser = document.querySelector("#rewardPaypalUser");
+  if (rewardList.style.display === "none" || rewardList.style.display === "") {
+    rewardList.style.display = "block";
+    document.querySelector("#rewardUndo").addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector("#rewardMainBox").style.display = "block";
+      document.querySelector("#giftCardDialogBox").style.display = "none";
+      document.querySelector("#bitcoinDialogBox").style.display = "none";
+      document.querySelector("#paypalDialogBox").style.Display = "none";
+      document.querySelector("#rewardUndo").style.display = "none";
+    }, false);
+    rewardGiftCardUser.addEventListener('click', function() {
+      document.querySelector("#rewardUndo").style.display = "inline-block";
+      document.querySelector("#rewardMainBox").style.display = "none";
+      document.querySelector("#giftCardDialogBox").style.display = "flex";
+      rewardGiftCardUser.checked = false;
+      if (giftCardRewards()) {
+        return true;
+      }
+      return false;
+    }, false);
+    rewardBitcoinUser.addEventListener('click', function() {
+      document.querySelector("#rewardUndo").style.display = "inline-block";
+      document.querySelector("#rewardMainBox").style.display = "none";
+      document.querySelector("#bitcoinDialogBox").style.display = "flex";
+      rewardBitcoinUser.checked = false;
+      document.querySelector("#bitcoinDialogSubmit").addEventListener('click', bitcoinRewards, false);
+      return;
+    }, false);
+    rewardPaypalUser.addEventListener('click', function() {
+      document.querySelector("#rewardUndo").style.display = "inline-block";
+      document.querySelector("#rewardMainBox").style.display = "none";
+      document.querySelector("#paypalDialogBox").style.Display = "flex";
+      rewardPaypalUser.checked = false;
+    }, false);
+  }
+  return;
+}
+// SAVE REWARDS
+function saveBitcoinReward(address, amount, cardNumber) {
+  userUpdatedGlobal.card[cardNumber].reward = {"rewardType": "Bitcoin", "rewardAmount": amount, "rewardAddress": address};
+  return;
+}
+function giftCardRewards() {
+  var giftCards = document.querySelectorAll("#giftCardDialogBox #cardCatalog .cardElement");
+  try {
+    for (var i=0; i<giftCards.length; i++) {
+      giftCards[i].addEventListener('click', function() {
+        reward = this.innerHTML;
+        if (activeUser.card[cardIdx].modifyReward(reward)) {
+          activeUser.display();
+          localStorageUsers(users, true);
+          return;
+        }
+      }, false);
+    }
+    return true;
+  }
+  catch(error) {
+    console.log("GiftCardRewards error: " + error);
+    return false;
+  }
+}
+
 // RANDOM COLOR GEN
 function getRandomColor() {
   function c() {
@@ -563,11 +672,12 @@ function getRandomColor() {
 
 // 3. USER MANAGEMENT
 class User {
-  constructor(name, email, pass) {
+  constructor(name, email, pass, keepLogged) {
     this.name = name;
     this.email = email;
     this.pass = pass;
     this.card = [];
+    this.keepLogged = keepLogged || false;
   }
   cardLength() {
     return this.card.length;
@@ -602,13 +712,14 @@ class User {
   }
   display() {
     try {
+      document.querySelector("#home #mainObjectives").innerHTML = "";
       for (var i=0; i<users[userIdx].card.length; i++) {
-        cardToHTML(users[userIdx].card[i].objective, users[userIdx].card[i].time);
+        cardToHTML(this.card[i].objective, this.card[i].time, this.card[i].reward);
       }
       return true;
     }
     catch(error) {
-      console.log("error in cardToHTML");
+      console.log("error in cardToHTML: " + error);
       return false;
     }
   }
@@ -620,7 +731,7 @@ class Card {
   constructor(objective, time, reward) {
     this.objective = objective;
     this.time = time;
-    this.reward = reward || "";
+    this.reward = reward;
     this.creator = users[userIdx].name || "";
     this.participants = [users[userIdx].name] || "";
     this.bckgr = "";

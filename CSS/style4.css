@@ -1131,6 +1131,7 @@ input:hover {
   -webkit-transform-origin: center 15px;
       -ms-transform-origin: center 15px;
           transform-origin: center 15px;
+  transition: all 0.2s ease-in-out;
 }
 #mainSection .activeEditor > i {
   color: rgb(221, 182, 78);
@@ -1254,6 +1255,9 @@ input:hover {
   color: rgb(221, 182, 78);
   font-weight: bold;
   font-size: 1.2rem;
+}
+#mainObjectives .rewardAsk i {
+  pointer-events: none;
 }
 #mainSection #clearUsers {
   display: block;
@@ -2087,17 +2091,17 @@ input:hover {
     display: block;
   }
 }
-@media (min-width: 900px) {
+@media (min-width: 1200px) {
   #wrapper > #bckgr {
     background: url("../images/check2HugeBckgr.png");
-    background-size: 800px auto;
+    background-size: 100vw auto;
     background-repeat: no-repeat;
   }
   #wrapper > #stars {
-    background: url("../images/check2HugeStars.png");
-    background-size: 800px auto;
+    background: url("../images/checkHugeStarsFinal2.png");
+    background-size: 100vw auto;
     background-repeat: no-repeat;
-    padding-top: 445px;
+    padding-top: 100vh;
   }
   #wrapper > #darkBckgr {
     display: block;
@@ -2110,15 +2114,15 @@ input:hover {
     z-index: -2;
   }
 }
-@media (min-width: 500px) and (max-width: 900px) {
+@media (min-width: 500px) and (max-width: 1200px) {
   #wrapper > #bckgr {
     background: url("../images/checkDesktopBckgr2.png");
     background-size: contain;
     background-repeat: repeat;
   }
   #wrapper > #stars {
-    background: url("../images/checkDesktopStarsFinal.png");
-    background-size: contain;
+    background: url("../images/checkDesktopStarsFinal2.png");
+    background-size: 100vw auto;
     background-repeat: no-repeat;
     padding-top: 56.25%;
   }
