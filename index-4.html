@@ -35,11 +35,12 @@
         <p>Write down your objective and set a time-limit to complete the task.</p>
         <div id="bckgrClimber"></div>
         <form class="createForm" id="exampleCreateForm">
-          <input type="text" id="exampleEntry" maxlength="25">
-          <div class="time-range" id="exampleTimeRange">
-            <input class="periods" type="radio" name="selector" value="1" id="exampleDaily"><label for="exampleDaily">Day</label>
-            <input class="periods" type="radio" name="selector" value="7" id="exampleWeekly" checked><label for="exampleWeekly">Week</label>
-            <input class="periods" type="radio" name="selector" value="30" id="exampleMonthly"><label for="exampleMonthly">Month</label>
+          <input type="text" id="exampleEntry" maxlength="25" placeholder="Objective">
+          <p id="inputError"></p>
+          <div class="timeRange" id="exampleTimeRange">
+            <input class="periods" type="radio" name="selector" id="exampleDaily" value="1"><label for="exampleDaily">Day</label>
+            <input class="periods" type="radio" name="selector" id="exampleWeekly" value="7" checked><label for="exampleWeekly">Week</label>
+            <input class="periods" type="radio" name="selector" id="exampleMonthly" value="30"><label for="exampleMonthly">Month</label>
           </div>
           <button id="postIt" type="submit">Create</button>
         </form>

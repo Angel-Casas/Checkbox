@@ -646,6 +646,8 @@ function giftCardRewards() {
     for (var i=0; i<giftCards.length; i++) {
       giftCards[i].addEventListener('click', function() {
         reward = this.innerHTML;
+        document.querySelector("#home .rewardAsk").innerHTML = "&#10004;";
+        console.log("Done");
         if (activeUser.card[cardIdx].modifyReward(reward)) {
           activeUser.display();
           localStorageUsers(users, true);
