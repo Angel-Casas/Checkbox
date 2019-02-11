@@ -172,12 +172,15 @@ body {
 }
 #wrapper #stars {
   width: 100%;
-  height: 0;
-  padding-top: 138%;
   background: url("../images/checkMobileStarsFinal.png");
-  background-position: left top;
-  background-size: 100vw auto;
+  background-position: center center;
+  background-size: cover;
   background-repeat: no-repeat;
+}
+#wrapper #stars::after {
+  display: block;
+  content: "";
+  padding-top: 144%;
 }
 #main #mainFrame {
   position: relative;
@@ -2107,30 +2110,22 @@ input:hover {
     display: block;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 900px) {
   #wrapper > #bckgr {
     background: url("../images/check2HugeBckgr.png");
-    background-size: 100vw auto;
+    background-size: contain;
     background-repeat: no-repeat;
   }
   #wrapper > #stars {
     background: url("../images/checkHugeStarsFinal2.png");
-    background-size: 100vw auto;
+    background-size: cover;
     background-repeat: no-repeat;
-    padding-top: 100vh;
   }
-  #wrapper > #darkBckgr {
-    display: block;
-    background-color: rgb(33, 35, 78);
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    border: 1px solid red;
-    top: 0;
-    z-index: -2;
+  #wrapper > #stars::after {
+    padding-top: 68.3%;
   }
 }
-@media (min-width: 500px) and (max-width: 1200px) {
+@media (min-width: 500px) and (max-width: 900px) {
   #wrapper > #bckgr {
     background: url("../images/check2.png");
     background-size: contain;
@@ -2138,9 +2133,11 @@ input:hover {
   }
   #wrapper > #stars {
     background: url("../images/checkDesktopStarsFinal2.png");
-    background-size: 100vw auto;
+    background-size: cover;
     background-repeat: no-repeat;
-    padding-top: 56.25%;
+  }
+  #wrapper > #stars::after {
+    padding-top: 68.3%;
   }
   #mainFrame {
     -ms-grid-columns: 70px minmax(200px, 400px) 40px 40px;
