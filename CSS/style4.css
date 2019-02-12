@@ -506,7 +506,7 @@ input:hover {
   border-radius: 20px;
   width: 220px;
   height: 220px;
-  padding: .2em;
+  padding: .4em;
 }
 .card .objective {
   background-color: rgb(33, 35, 73);
@@ -920,7 +920,6 @@ input:hover {
   background: -webkit-linear-gradient(60deg, rgb(247, 159, 87), rgb(196, 2, 205));
   background: -o-linear-gradient(60deg, rgb(247, 159, 87), rgb(196, 2, 205));
   background: linear-gradient(30deg, rgb(247, 159, 87), rgb(196, 2, 205));
-  padding: .2em;
   -ms-grid-column: 2;
       grid-column-start: 2;
   -ms-grid-column-span: 1;

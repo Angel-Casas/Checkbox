@@ -59,11 +59,13 @@ window.onload = init;
       event.preventDefault();
       if (logged) {
         var addedCard = activeUser.addCard(objective, time);
+        cardIdx = findCardIdx(addedCard);
+        console.log(cardIdx);
         return;
       }
       else {
         var newCard = new Card(objective, time);
-        cardToHTML(objective, time);
+        cardToHTML(objective, time, "");
         return;
       }
       return;
@@ -127,6 +129,7 @@ function init() {
     if (users[i].keepLogged === true) {
       logged = true;
       activeUser = users[i];
+      activeUser.display();
       document.querySelector("#mainNav #navRegister").style.display = "none";
       document.querySelector("#mainNav #navSignOut").style.display = "flex";
       console.log(activeUser);
@@ -230,6 +233,7 @@ function closureHandler(target) {
 // INTRODUCTION HANDLER
 function introductionHandler(target) {
   let card = document.querySelectorAll("#main .card");
+  let radio = document.querySelectorAll("#main #exampleTimeRange label");
   let rewardBool = false;
   switch (target) {
     case document.querySelector("#postIt"):
@@ -239,6 +243,15 @@ function introductionHandler(target) {
       let pTwo = card[1].getElementsByTagName("p");
       pOne[0].innerHTML = pTwo[0].innerHTML = objective || "Can't think of any Objectives!";
       pOne[1].innerHTML = pTwo[1].innerHTML = time + " Days remaining";
+      break;
+    case radio[0]:
+      target.previousSibling.checked = true;
+      break;
+    case radio[1]:
+      target.previousSibling.checked = true;
+      break;
+    case radio[2]:
+      target.previousSibling.checked = true;
       break;
     case document.querySelectorAll("#rewardFrame label")[0]:
       document.querySelector("#rewardGift").checked = true;
@@ -306,6 +319,7 @@ function loginHandler(target) {
       if (document.querySelector("#login .rememberContainer input").checked) {
         users[userIdx].keepLogged = true;
       }
+      activeUser = users[userIdx];
       document.querySelector("#loginAccountDiv #loginError").innerHTML = "";
       document.querySelector("#loginAccountDiv #successLogin").innerHTML = "Successfull login, welcome <span id='successUserName'>" + users[userIdx].name + "</span>!";
       setTimeout(function() {
@@ -317,9 +331,9 @@ function loginHandler(target) {
         document.querySelector("#loginAccountForm").reset();
       }, 2000);
       document.querySelector("#home #mainObjectives").innerHTML = "";
-      reloadUsers();
-      localStorageUsers(users, true);
       logged = true;
+      reloadUsers();
+      activeUser.display();
     }
     else {
       // Return Error Invalid Password
@@ -329,6 +343,7 @@ function loginHandler(target) {
   } else if (target === document.querySelector("#registerAccountDiv .submit")) {
     // Register
     var email = document.querySelector("#registerAccountDiv .email");
+    userIdx = findUser(nameInput.value);
     if (validEmail(email, document.querySelector("#registerAccountDiv .email").value) && document.querySelector("#registerAccountDiv .username").value !== "") {
       // Successfully verified Email
       var emailStr = document.querySelector("#registerAccountDiv .email").value;
@@ -356,6 +371,7 @@ function loginHandler(target) {
       users.push(user);
       localStorageUsers(users, true);
       logged = true;
+      activeUser = users[userIdx];
       return;
     }
     else {
@@ -533,7 +549,7 @@ function reloadUsers() {
     }
     users[i] = user;
   }
-  users[userIdx].display();
+  localStorageUsers(users, true);
   return;
 }
 
@@ -565,7 +581,7 @@ function cardToHTML(objective, time, reward) {
   newRewardDisplay.className = "rewardItem";
   newObjective.className = "objective";
   // check if reward has been set
-  newRewardDisplay.innerHTML = reward;
+  newRewardDisplay.innerHTML = reward || "";
   //add content to div > span,time
   newP.innerHTML = objective || "I could'nt think of any objectives";
   newTime.innerHTML = txt;
@@ -635,11 +651,13 @@ function handleRewards() {
   }
   return;
 }
-// SAVE REWARDS
+// BITCOIN REWARD
 function saveBitcoinReward(address, amount, cardNumber) {
   userUpdatedGlobal.card[cardNumber].reward = {"rewardType": "Bitcoin", "rewardAmount": amount, "rewardAddress": address};
   return;
 }
+
+// GIFTCARD REWARD
 function giftCardRewards() {
   var giftCards = document.querySelectorAll("#giftCardDialogBox #cardCatalog .cardElement");
   try {
@@ -733,7 +751,7 @@ class Card {
   constructor(objective, time, reward) {
     this.objective = objective;
     this.time = time;
-    this.reward = reward;
+    this.reward = reward || "";
     this.creator = users[userIdx].name || "";
     this.participants = [users[userIdx].name] || "";
     this.bckgr = "";
