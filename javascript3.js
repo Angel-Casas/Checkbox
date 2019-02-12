@@ -60,11 +60,10 @@ window.onload = init;
       if (logged) {
         var addedCard = activeUser.addCard(objective, time);
         cardIdx = findCardIdx(addedCard);
-        console.log(cardIdx);
+        console.log("CardIdx: " + cardIdx);
         return;
       }
       else {
-        var newCard = new Card(objective, time);
         cardToHTML(objective, time, "");
         return;
       }
@@ -88,7 +87,7 @@ window.onload = init;
     // REWARD HANDLER
     if (event.target.matches("#home .rewardAsk") || event.target.matches("#home .rewardAsk i")) {
       if (logged) {
-        cardIdx = findCardIdx(event.target.parentElement.parentElement);
+        cardIdx = findCardIdx();
         handleRewards();
       }
       return;
@@ -205,7 +204,15 @@ function closureHandler(target) {
   }
   if (target.matches("#home #mainSection a.close")) {
     if (logged) {
-      cardIdx = findCardIdx(target.parentElement);
+      var cards = document.querySelectorAll("#home .card");
+      console.log(target.parentElement.classList[1] + activeUser.card[0].cardIdx);
+      for (var i=0; i<cards.length; i++) {
+        console.log("yes");
+        if (target.parentElement.classList[1] == activeUser.card[i].cardIdx) {
+          console.log("inside: " + cardIdx);
+          cardIdx = i;
+        }
+      }
       if (activeUser.card[cardIdx].creator === activeUser.name) {
         activeUser.removeCard(cardIdx, true);
         localStorageUsers(users, true);
@@ -343,7 +350,6 @@ function loginHandler(target) {
   } else if (target === document.querySelector("#registerAccountDiv .submit")) {
     // Register
     var email = document.querySelector("#registerAccountDiv .email");
-    userIdx = findUser(nameInput.value);
     if (validEmail(email, document.querySelector("#registerAccountDiv .email").value) && document.querySelector("#registerAccountDiv .username").value !== "") {
       // Successfully verified Email
       var emailStr = document.querySelector("#registerAccountDiv .email").value;
@@ -371,6 +377,7 @@ function loginHandler(target) {
       users.push(user);
       localStorageUsers(users, true);
       logged = true;
+      userIdx = findUser(name);
       activeUser = users[userIdx];
       return;
     }
@@ -553,8 +560,23 @@ function reloadUsers() {
   return;
 }
 
+// FIND CARD INDEX
+function findCardIdx(target) {
+  var cards = document.querySelectorAll("#home .card");
+  console.log("target idx: " + target);
+  for (var i=0; i<cards.length; i++) {
+    if (target.cardIdx === cards[i].cardIdx) {
+      console.log("inside: " + cardIdx);
+      cardIdx = i;
+      break;
+    }
+  }
+  console.log(activeUser.card);
+  return cardIdx;
+}
+
 // CARDTOHTML
-function cardToHTML(objective, time, reward) {
+function cardToHTML(objective, time, reward, i) {
   var newCard = document.createElement("div");
   var newObjective = document.createElement("div");
   var newRewardIcon = document.createElement("i");
@@ -578,6 +600,7 @@ function cardToHTML(objective, time, reward) {
   newButton.className = "rewardAsk";
   newRewardIcon.className = "fa fa-gift";
   newCard.className = "card";
+  newCard.classList.add(i);
   newRewardDisplay.className = "rewardItem";
   newObjective.className = "objective";
   // check if reward has been set
@@ -594,18 +617,6 @@ function cardToHTML(objective, time, reward) {
   newCard.appendChild(newClose);
   section.appendChild(newCard);
   return;
-}
-
-// FIND CARD INDEX
-function findCardIdx(target) {
-  var cards = document.querySelectorAll("#home .card");
-  for (var i=0; i<cards.length; i++) {
-    if (target === cards[i]) {
-      cardIdx = i;
-      break;
-    }
-  }
-  return cardIdx;
 }
 
 // HANDLE REWARDS
@@ -665,7 +676,6 @@ function giftCardRewards() {
       giftCards[i].addEventListener('click', function() {
         reward = this.innerHTML;
         document.querySelector("#home .rewardAsk").innerHTML = "&#10004;";
-        console.log("Done");
         if (activeUser.card[cardIdx].modifyReward(reward)) {
           activeUser.display();
           localStorageUsers(users, true);
@@ -703,10 +713,9 @@ class User {
     return this.card.length;
   }
   addCard(objective, time) {
-    let len = this.cardLength();
     var newCard = new Card(objective, time);
     this.card.push(newCard);
-    cardToHTML(objective, time);
+    cardToHTML(objective, time, "", this.card.length);
     localStorageUsers(users, true);
     return newCard;
   }
@@ -734,7 +743,7 @@ class User {
     try {
       document.querySelector("#home #mainObjectives").innerHTML = "";
       for (var i=0; i<users[userIdx].card.length; i++) {
-        cardToHTML(this.card[i].objective, this.card[i].time, this.card[i].reward);
+        cardToHTML(this.card[i].objective, this.card[i].time, this.card[i].reward, i);
       }
       return true;
     }

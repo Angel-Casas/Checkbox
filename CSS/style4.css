@@ -166,7 +166,7 @@ body {
   position: fixed;
   background: url("../images/checkMobileBckgr.png");
   background-position: left top;
-  background-size: contain;
+  background-size: 100vw auto;
   background-repeat: repeat;
   z-index: -1;
 }
