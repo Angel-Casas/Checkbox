@@ -153,7 +153,7 @@ function navHandler(target) {
   let about = document.getElementById("about");
   if (target.classList.contains("navRegister")) {
     login.style.display = "block";
-    scrollHandler(true);
+    scrollHandler(true, login);
     return;
   } else if (target.classList.contains("navSignOut")) {
     document.querySelector("#mainNav #navRegister").style.display = "flex";
@@ -231,6 +231,7 @@ function closureHandler(target) {
     return;
   }
   if (target.matches("#home #rewardList a.close")) {
+    var box = document.querySelector("#home #rewardList");
     document.querySelector("#rewardUndo").style.display = "none";
     document.querySelector("#rewardList").style.display = "none";
     document.querySelector("#bitcoinDialogBox").style.display = "none";
@@ -239,7 +240,11 @@ function closureHandler(target) {
     document.querySelector("#rewardList .rewardBox").style.display = "flex";
     document.querySelector("#rewardMainBox").style.display = "block";
   }
-  scrollHandler(false);
+  if (target.matches("#home #editBox a.close")) {
+    var box = document.querySelector("#home #editRewards");
+    document.querySelector("#home #editRewards").style.display = "none";
+  }
+  scrollHandler(false, box);
   return;
 }
 
@@ -340,7 +345,7 @@ function loginHandler(target) {
         document.querySelector("#login").style.display = "none";
         document.querySelector("#mainNav #navRegister").style.display = "none";
         document.querySelector("#mainNav #navSignOut").style.display = "flex";
-        scrollHandler(false);
+        scrollHandler(false, document.querySelector("#login"));
         document.querySelector("#loginAccountForm").reset();
       }, 2000);
       document.querySelector("#home #mainObjectives").innerHTML = "";
@@ -376,7 +381,7 @@ function loginHandler(target) {
         document.querySelector("#login").style.display = "none";
         document.querySelector("#mainNav #navRegister").style.display = "none";
         document.querySelector("#mainNav #navSignOut").style.display = "flex";
-        scrollHandler(false);
+        scrollHandler(false, document.querySelector("#login"));
         document.querySelector("#registerAccountForm").reset();
       }, 2000);
       var user = new User(name, emailStr, pass);
@@ -397,13 +402,13 @@ function loginHandler(target) {
 }
 
 // SCROLL HANDLER
-function scrollHandler(bool) {
+function scrollHandler(bool, box) {
   let body = document.body;
-  let loginSection = document.querySelector("#login");
+  let section = box;
   if (bool) {
-    if (!loginSection.hasAttribute("ariaHidden")) {
-      loginSection.setAttribute('ariaHidden', true);
-      loginSection.scrollTop = 0;
+    if (!section.hasAttribute("ariaHidden")) {
+      section.setAttribute('ariaHidden', true);
+      section.scrollTop = 0;
     }
     if (!body.classList.contains("noScroll")) {
       body.classList.add("noScroll");
@@ -411,7 +416,7 @@ function scrollHandler(bool) {
     return;
   }
   else {
-    loginSection.removeAttribute('ariaHidden');
+    section.removeAttribute('ariaHidden');
     body.classList.remove('noScroll');
     return;
   }
@@ -678,6 +683,7 @@ function handleRewards() {
 // EDIT REWARDS
 function editRewardHandler(target, index) {
   event.preventDefault();
+  scrollHandler(true, document.querySelector("#home #editRewards"));
   document.querySelector("#home #editRewards").style.display = "block";
   if (logged) {
 
