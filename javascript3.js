@@ -64,7 +64,7 @@ window.onload = init;
         return;
       }
       else {
-        cardToHTML(objective, time, "");
+        cardToHTML(objective, time, "", "");
         return;
       }
       return;
@@ -74,20 +74,28 @@ window.onload = init;
       event.preventDefault();
       event.target.classList.toggle("activeEditor");
       if (event.target.classList.contains("activeEditor")) {
+        var span = document.querySelectorAll("#home .card .cardIndex");
         document.querySelector("#cardEditorInfo").style.display = "block";
         document.querySelectorAll("#home .card .close").forEach(el => el.style.display = "block");
+        document.querySelectorAll("#home .card .cardIndex").forEach(ci => ci.style.display = "block");
+        for (var i=0; i<span.length; i++) {
+          var self = span[i];
+          self.addEventListener('click', editRewardHandler, false);
+        }
         return;
       }
       else {
         document.querySelector("#cardEditorInfo").style.display = "none";
         document.querySelectorAll("#home .card .close").forEach(el => el.style.display = "none");
+        document.querySelectorAll("#home .card .cardIndex").forEach(ci => ci.style.display = "none");
       }
       return;
     }
     // REWARD HANDLER
     if (event.target.matches("#home .rewardAsk") || event.target.matches("#home .rewardAsk i")) {
       if (logged) {
-        cardIdx = findCardIdx();
+        let main = document.querySelector("#home #mainObjectives");
+        cardIdx = Array.from(main.children).indexOf(event.target.parentElement.parentElement);
         handleRewards();
       }
       return;
@@ -205,15 +213,13 @@ function closureHandler(target) {
   if (target.matches("#home #mainSection a.close")) {
     if (logged) {
       var cards = document.querySelectorAll("#home .card");
-      console.log(target.parentElement.classList[1] + activeUser.card[0].cardIdx);
       for (var i=0; i<cards.length; i++) {
-        console.log("yes");
-        if (target.parentElement.classList[1] == activeUser.card[i].cardIdx) {
-          console.log("inside: " + cardIdx);
+        if (target.nextSibling.classList[1] == activeUser.card[i].cardIdx) {
           cardIdx = i;
         }
       }
       if (activeUser.card[cardIdx].creator === activeUser.name) {
+        console.log("Removed: " + activeUser.card[cardIdx]);
         activeUser.removeCard(cardIdx, true);
         localStorageUsers(users, true);
         target.parentElement.outerHTML = "";
@@ -563,20 +569,17 @@ function reloadUsers() {
 // FIND CARD INDEX
 function findCardIdx(target) {
   var cards = document.querySelectorAll("#home .card");
-  console.log("target idx: " + target);
   for (var i=0; i<cards.length; i++) {
     if (target.cardIdx === cards[i].cardIdx) {
-      console.log("inside: " + cardIdx);
       cardIdx = i;
       break;
     }
   }
-  console.log(activeUser.card);
   return cardIdx;
 }
 
 // CARDTOHTML
-function cardToHTML(objective, time, reward, i) {
+function cardToHTML(objective, time, reward, colors, i) {
   var newCard = document.createElement("div");
   var newObjective = document.createElement("div");
   var newRewardIcon = document.createElement("i");
@@ -588,19 +591,27 @@ function cardToHTML(objective, time, reward, i) {
   var txt = "";
   // needed for Editor
   var newClose = document.createElement("a");
+  var newIndex = document.createElement("span");
   newClose.classList.add("close");
+  newIndex.className = "cardIndex";
+  newIndex.classList.add(i);
+  newIndex.innerHTML = i;
   if (time == 1) {
     txt = time + " day remining!";
   }
   else {
     txt = time + " days remaining!";
   }
-  newCard.style.background = "linear-gradient(30deg, " + getRandomColor() + ", " + getRandomColor() + ")";
+  if (colors.length) {
+    newCard.style.background = "linear-gradient(30deg, " + colors[0] + ", " + colors[1] + ")";
+  }
+  else {
+    newCard.style.background = "linear-gradient(30deg, " + getRandomColor() + ", " + getRandomColor() + ")";
+  }
   //add classes
   newButton.className = "rewardAsk";
   newRewardIcon.className = "fa fa-gift";
   newCard.className = "card";
-  newCard.classList.add(i);
   newRewardDisplay.className = "rewardItem";
   newObjective.className = "objective";
   // check if reward has been set
@@ -615,6 +626,7 @@ function cardToHTML(objective, time, reward, i) {
   newObjective.appendChild(newButton);
   newCard.appendChild(newObjective);
   newCard.appendChild(newClose);
+  newCard.appendChild(newIndex);
   section.appendChild(newCard);
   return;
 }
@@ -660,6 +672,20 @@ function handleRewards() {
       rewardPaypalUser.checked = false;
     }, false);
   }
+  return;
+}
+
+// EDIT REWARDS
+function editRewardHandler(target, index) {
+  event.preventDefault();
+  document.querySelector("#home #editRewards").style.display = "block";
+  if (logged) {
+
+  }
+  else {
+
+  }
+  console.log("hi " + index);
   return;
 }
 // BITCOIN REWARD
@@ -714,8 +740,8 @@ class User {
   }
   addCard(objective, time) {
     var newCard = new Card(objective, time);
+    cardToHTML(objective, time, "", [], this.card.length);
     this.card.push(newCard);
-    cardToHTML(objective, time, "", this.card.length);
     localStorageUsers(users, true);
     return newCard;
   }
@@ -743,7 +769,7 @@ class User {
     try {
       document.querySelector("#home #mainObjectives").innerHTML = "";
       for (var i=0; i<users[userIdx].card.length; i++) {
-        cardToHTML(this.card[i].objective, this.card[i].time, this.card[i].reward, i);
+        cardToHTML(this.card[i].objective, this.card[i].time, this.card[i].reward, this.card[i].bckgr, i);
       }
       return true;
     }
@@ -757,13 +783,14 @@ class User {
 
 // CARD MANAGEMENT
 class Card {
-  constructor(objective, time, reward) {
+  constructor(objective, time, reward, colors) {
     this.objective = objective;
     this.time = time;
     this.reward = reward || "";
     this.creator = users[userIdx].name || "";
     this.participants = [users[userIdx].name] || "";
     this.bckgr = "";
+    this.color = colors;
     this.cardIdx = cardIdx++;
   }
   modifyObjective(objective) {
@@ -784,6 +811,12 @@ class Card {
   modifyReward(reward) {
     this.reward = reward;
     return true;
+  }
+  modifyBckgr(input1, input2) {
+    let card = document.querySelectorAll("#home #mainObjectives .card");
+    this.bckgr = "linear-gradient(30deg, " + input1 + ", " + input2 + ")";
+    card[this.cardIdx].style.background = "linear-gradient(30deg, " + input1 + ", " + input2 + ")";
+    return this.bckgr;
   }
   addParticipant(user) {
     var part = findUser(user);
