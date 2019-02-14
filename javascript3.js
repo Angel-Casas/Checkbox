@@ -206,10 +206,12 @@ function navHandler(target) {
 // CLOSURE HANDLER
 function closureHandler(target) {
   if (target.matches("#rewardList .close")) {
-    document.querySelector("#rewardList").style.display = "none";
+    var box = document.querySelector("#rewardList");
+    box.style.display = "none";
   }
   if (target.matches("#login .close")) {
-    document.querySelector("#login").style.display = "none";
+    var box = document.querySelector("#login");
+    box.style.display = "none";
   }
   if (target.matches(".switch label")) {
     let inputRadio = document.querySelectorAll("#login .switch-input");
