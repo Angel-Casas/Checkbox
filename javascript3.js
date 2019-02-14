@@ -80,7 +80,13 @@ window.onload = init;
         document.querySelectorAll("#home .card .cardIndex").forEach(ci => ci.style.display = "block");
         for (var i=0; i<span.length; i++) {
           var self = span[i];
-          self.addEventListener('click', editRewardHandler, false);
+          self.addEventListener('click', function(event) {
+            event.preventDefault();
+            var card = this.parentElement;
+            cardIdx = this.classList[1];
+            editRewardHandler(card, cardIdx);
+            return;
+          }, false);
         }
         return;
       }
@@ -100,6 +106,12 @@ window.onload = init;
       }
       return;
     }
+    // SUBMIT EDITED CARD
+    if (event.target.matches("#home #editRewards #editFormSubmit")) {
+      event.preventDefault();
+      editCards(document.querySelectorAll("#home #mainObjectives .card")[cardIdx], cardIdx);
+      return;
+    }
     // EXTRA FUNCTIONALITY - DELETE USER LIST
     if (event.target.matches("#clearUsers")) {
       localStorage.removeItem("users");
@@ -116,6 +128,10 @@ window.onload = init;
     // REGISTER PASSWORD INPUT
     if (event.target.matches("#registerAccountDiv input[type='password']")) {
       validPass(event.target, true);
+      return;
+    }
+    if (event.target.matches("#home #editRewards input")) {
+      autoEditor(event.target, document.querySelector("#home #editRewards .card"));
       return;
     }
   }, false);
@@ -240,9 +256,10 @@ function closureHandler(target) {
     document.querySelector("#rewardList .rewardBox").style.display = "flex";
     document.querySelector("#rewardMainBox").style.display = "block";
   }
-  if (target.matches("#home #editBox a.close")) {
+  if (target.matches("#home #editRewards a.close")) {
+    console.log("editBox");
     var box = document.querySelector("#home #editRewards");
-    document.querySelector("#home #editRewards").style.display = "none";
+    box.style.display = "none";
   }
   scrollHandler(false, box);
   return;
@@ -559,8 +576,9 @@ function reloadUsers() {
       var reward = users[i].card[j].reward;
       var creator = users[i].card[j].creator;
       var participants = users[i].card[j].participants;
-      var bckgr = users[i].card[j].bckgr;
-      user.card[j] = new Card(objective, time, reward);
+      var color = users[i].card[j].color;
+      var bckgr = users[i].card[j].bkcgr;
+      user.card[j] = new Card(objective, time, reward, color);
       user.card[j].creator = creator;
       user.card[j].participants = participants;
       user.card[j].bckgr = bckgr;
@@ -597,6 +615,8 @@ function cardToHTML(objective, time, reward, colors, i) {
   // needed for Editor
   var newClose = document.createElement("a");
   var newIndex = document.createElement("span");
+  var randomColor1 = getRandomColor();
+  var randomColor2 = getRandomColor();
   newClose.classList.add("close");
   newIndex.className = "cardIndex";
   newIndex.classList.add(i);
@@ -611,16 +631,23 @@ function cardToHTML(objective, time, reward, colors, i) {
     newCard.style.background = "linear-gradient(30deg, " + colors[0] + ", " + colors[1] + ")";
   }
   else {
-    newCard.style.background = "linear-gradient(30deg, " + getRandomColor() + ", " + getRandomColor() + ")";
+    newCard.style.background = "linear-gradient(30deg, " + randomColor1 + ", " + randomColor2 + ")";
   }
   //add classes
   newButton.className = "rewardAsk";
-  newRewardIcon.className = "fa fa-gift";
   newCard.className = "card";
   newRewardDisplay.className = "rewardItem";
   newObjective.className = "objective";
   // check if reward has been set
-  newRewardDisplay.innerHTML = reward || "";
+  if(reward.length) {
+    newRewardIcon.className = "";
+    newRewardIcon.innerHTML = "&#10004;";
+    newRewardDisplay.innerHTML = reward;
+  }
+  else {
+    newRewardIcon.className = "fa fa-gift";
+    newRewardDisplay.innerHTML = "";
+  }
   //add content to div > span,time
   newP.innerHTML = objective || "I could'nt think of any objectives";
   newTime.innerHTML = txt;
@@ -681,17 +708,22 @@ function handleRewards() {
 }
 
 // EDIT REWARDS
-function editRewardHandler(target, index) {
-  event.preventDefault();
-  scrollHandler(true, document.querySelector("#home #editRewards"));
+function editRewardHandler(card, index) {
+  let editRewards = document.querySelector("#home #editRewards");
+  let newCard = card.cloneNode(true);
+  let viewer = document.querySelector("#home #cardViewer");
+  let color1 = activeUser.card[index].color[0];
+  let color2 = activeUser.card[index].color[1];
+  let inputColor1 = document.querySelector("#editColor1");
+  let inputColor2 = document.querySelector("#editColor2");
+  scrollHandler(true, editRewards);
+  viewer.innerHTML = "";
+  newCard.children[2].style.display = "none";
+  inputColor1.value = color1;
+  inputColor2.value = color2;
+  viewer.appendChild(newCard);
   document.querySelector("#home #editRewards").style.display = "block";
-  if (logged) {
-
-  }
-  else {
-
-  }
-  console.log("hi " + index);
+  minDate();
   return;
 }
 // BITCOIN REWARD
@@ -707,7 +739,8 @@ function giftCardRewards() {
     for (var i=0; i<giftCards.length; i++) {
       giftCards[i].addEventListener('click', function() {
         reward = this.innerHTML;
-        document.querySelector("#home .rewardAsk").innerHTML = "&#10004;";
+        console.log(cardIdx);
+        document.querySelectorAll("#home .rewardAsk")[cardIdx].innerHTML = "&#10004;";
         if (activeUser.card[cardIdx].modifyReward(reward)) {
           activeUser.display();
           localStorageUsers(users, true);
@@ -732,6 +765,81 @@ function getRandomColor() {
   return "#"+c()+c()+c();
 }
 
+// AUTO CARD EDITOR
+function autoEditor(target, card) {
+  switch (target) {
+    case document.querySelector("#home #editRewards #editColor1"):
+      var colorOne = document.querySelector("#home #editRewards #editColor1").value;
+      var colorTwo = document.querySelector("#home #editRewards #editColor2").value;
+      card.style.background = "linear-gradient(30deg, " + colorOne + ", " + colorTwo + ")";
+      break;
+    case document.querySelector("#home #editRewards #editColor2"):
+      var colorOne = document.querySelector("#home #editRewards #editColor1").value;
+      var colorTwo = document.querySelector("#home #editRewards #editColor2").value;
+      card.style.background = "linear-gradient(30deg, " + colorOne + ", " + colorTwo + ")";
+      break;
+    case document.querySelector("#home #editRewards input[type='text']"):
+      var newObjective = document.querySelector("#home #editRewards input[type='text']").value;
+      card.children[0].children[0].innerHTML = newObjective;
+      break;
+    case document.querySelector("#home #editRewards input[type='date']"):
+      var newTime = document.querySelector("#home #editRewards input[type='date']").value;
+      card.children[0].children[1].innerHTML = newTime;
+      break;
+    default:
+      return;
+  }
+  return;
+}
+
+// SET TIME CALENDAR
+function minDate() {
+  //JavaScript:
+  let today = new Date(),
+  day = today.getDate(),
+  month = today.getMonth()+1, //January is 0
+  year = today.getFullYear();
+  if(day<10){
+    day='0'+day
+  }
+  if(month<10){
+    month='0'+month
+  }
+  today = year+'-'+month+'-'+day;
+  document.querySelector("#home #editRewards input[type='date']").setAttribute("min", today);
+  return;
+}
+
+// EDITED CARDS
+function editCards(target, index) {
+  var color1 = document.querySelector("#home #editRewards #editColor1").value;
+  var color2 = document.querySelector("#home #editRewards #editColor2").value;
+  var newObjective = document.querySelector("#home #editRewards input[type='text']").value;
+  var newTime = document.querySelector("#home #editRewards input[type='date']").value;
+  if (logged) {
+    activeUser.card[cardIdx].objective = newObjective;
+    activeUser.card[cardIdx].time = newTime;
+    activeUser.card[cardIdx].color = [color1, color2];
+  }
+  target.children[0].children[0].innerHTML = newObjective;
+  target.children[0].children[1].innerHTML = newTime;
+  target.style.background = "linear-gradient(30deg, " + color1 + ", " + color2 + ")";
+  document.querySelector("#home #editRewards #cardViewer").innerHTML = "";
+  closureHandler(document.querySelector("#home #editRewards a.close"));
+  localStorageUsers(users, true);
+  return;
+}
+
+// FUNCTION RGB TO HEX
+function toHex(n) {
+  var hex = n.toString(16);
+  while (hex.length < 2) {hex = "0" + hex; }
+  return hex;
+}
+function rgbToHex(r, g, b) {
+  return "#" +  toHex(r) + toHex(g) + toHex(b);
+}
+
 // 3. USER MANAGEMENT
 class User {
   constructor(name, email, pass, keepLogged) {
@@ -745,8 +853,8 @@ class User {
     return this.card.length;
   }
   addCard(objective, time) {
-    var newCard = new Card(objective, time);
-    cardToHTML(objective, time, "", [], this.card.length);
+    var newCard = new Card(objective, time, "", [getRandomColor(), getRandomColor()]);
+    cardToHTML(objective, time, "", newCard.color);
     this.card.push(newCard);
     localStorageUsers(users, true);
     return newCard;
@@ -774,8 +882,8 @@ class User {
   display() {
     try {
       document.querySelector("#home #mainObjectives").innerHTML = "";
-      for (var i=0; i<users[userIdx].card.length; i++) {
-        cardToHTML(this.card[i].objective, this.card[i].time, this.card[i].reward, this.card[i].bckgr, i);
+      for (var i=0; i<activeUser.card.length; i++) {
+        cardToHTML(this.card[i].objective, this.card[i].time, this.card[i].reward, this.card[i].color, i);
       }
       return true;
     }
@@ -796,7 +904,7 @@ class Card {
     this.creator = users[userIdx].name || "";
     this.participants = [users[userIdx].name] || "";
     this.bckgr = "";
-    this.color = colors;
+    this.color = colors || "";
     this.cardIdx = cardIdx++;
   }
   modifyObjective(objective) {

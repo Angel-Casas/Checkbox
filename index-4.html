@@ -262,8 +262,42 @@
       </div>
       <div id="editRewards">
         <h4>Edit your Card</h4>
+        <div id="cardViewer"></div>
         <div id="editBox">
-          
+          <form action="" id="editForm" method="post">
+            <p class="text">
+              <span>
+                <label for="editColor1">Color #1:</label>
+                <input type="color" id="editColor1">
+              </span>
+            </p>
+            <p class="text">
+              <span>
+                <label for="editColor2">Color #2:</label>
+                <input type="color" id="editColor2">
+              </span>
+            </p>
+            <p class="text">
+              <span>
+                <input type="text" placeholder="New Objective" id="newObjective">
+                <label for="newObjective">Objective</label>
+              </span>
+            </p>
+            <p class="text">
+              <span>
+                <input type="date" placeholder="New Time" id="newTime">
+                <label for="newTime">Time</label>
+              </span>
+            </p>
+            <p class="text">
+              <span>
+                <label for=""></label>
+              </span>
+            </p>
+            <p class="submitButton">
+              <button type="submit" id="editFormSubmit">Edit</button>
+            </p>
+          </form>
           <a href="#" class="close"></a>
         </div>
       </div>

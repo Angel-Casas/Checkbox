@@ -1149,7 +1149,7 @@ input:hover {
   -webkit-transform-origin: center 15px;
       -ms-transform-origin: center 15px;
           transform-origin: center 15px;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 #mainSection .activeEditor > i {
   color: rgb(221, 182, 78);
@@ -1200,9 +1200,9 @@ input:hover {
   color: white;
 }
 [placeholder]:focus::-webkit-input-placeholder {
-  -webkit-transition: opacity 0.5s 0.5s ease;
-  -o-transition: opacity 0.5s 0.5s ease;
-  transition: opacity 0.5s 0.5s ease;
+  -webkit-transition: opacity 0.2s 0.5s ease;
+  -o-transition: opacity 0.2s 0.5s ease;
+  transition: opacity 0.2s 0.5s ease;
   opacity: 0;
 }
 #home .createForm #inputError {
@@ -1581,10 +1581,13 @@ input:hover {
   display: none;
   position: fixed;
   top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: rgba(33, 35, 73, .9);
+  overflow-y: scroll;
   z-index: 11;
 }
 #editRewards h4 {
@@ -1592,6 +1595,17 @@ input:hover {
   text-align: center;
   margin-top: 100px;
   color: rgb(221, 182, 78);
+}
+#editRewards #cardViewer {
+}
+#cardViewer .card {
+  margin: 20px auto;
+}
+#cardViewer .card .rewardItem {
+  color: rgb(221, 182, 78);
+}
+#cardViewer .cardIndex {
+  display: none;
 }
 #editRewards #editBox {
   position: relative;
@@ -1622,6 +1636,61 @@ input:hover {
   -webkit-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
+}
+#editBox #editForm {
+  width: 100%;
+  height: 100%;
+}
+#editForm .text {
+  margin: 1rem 0;
+  padding: 0;
+}
+#editForm .text span {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+#editForm .text input[type="text"] ~ label,
+#editForm .text input[type="date"] ~ label {
+  display: none;
+}
+#editForm .text input[type="color"] {
+  cursor: pointer;
+  padding: .1rem;
+  width: 50px;
+}
+#editForm .text input {
+  border-radius: 5px;
+  padding: 10px 14px;
+  color: white;
+  width: 100%;
+  background-color: rgb(33, 35, 73);
+  border: 1px solid rgb(221, 182, 78);
+}
+#editForm .text input::placeholder {
+  color: white;
+}
+#editForm .submitButton button {
+  padding: .8rem 0;
+  background: rgb(33, 35, 78);
+  color: rgb(221, 182, 78);
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  line-height: 1.1rem;
+  width: 200px;
+  border: 2px solid rgb(221, 182, 78);
+  -webkit-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+#editForm .submitButton button:hover {
+  color: rgb(33, 35, 78);
+  background: rgb(221, 182, 78);
+  -webkit-transition: all .1s ease-in;
+  -o-transition: all .1s ease-in;
+  transition: all .1s ease-in;
 }
 #editBox .close {
   display: block;
