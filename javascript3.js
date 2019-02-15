@@ -627,7 +627,7 @@ function cardToHTML(objective, time, reward, colors, i) {
     txt = time + " day remining!";
   }
   else {
-    txt = time + " days remaining!";
+    txt = time;
   }
   if (colors.length) {
     newCard.style.background = "linear-gradient(30deg, " + colors[0] + ", " + colors[1] + ")";
@@ -671,40 +671,45 @@ function handleRewards() {
   var rewardBitcoinUser = document.querySelector("#rewardBitcoinUser");
   var rewardGiftCardUser = document.querySelector("#rewardGiftUser");
   var rewardPaypalUser = document.querySelector("#rewardPaypalUser");
-  if (rewardList.style.display === "none" || rewardList.style.display === "") {
-    rewardList.style.display = "block";
-    document.querySelector("#rewardUndo").addEventListener('click', function(e) {
-      e.preventDefault();
-      document.querySelector("#rewardMainBox").style.display = "block";
-      document.querySelector("#giftCardDialogBox").style.display = "none";
-      document.querySelector("#bitcoinDialogBox").style.display = "none";
-      document.querySelector("#paypalDialogBox").style.Display = "none";
-      document.querySelector("#rewardUndo").style.display = "none";
-    }, false);
-    rewardGiftCardUser.addEventListener('click', function() {
-      document.querySelector("#rewardUndo").style.display = "inline-block";
-      document.querySelector("#rewardMainBox").style.display = "none";
-      document.querySelector("#giftCardDialogBox").style.display = "flex";
-      rewardGiftCardUser.checked = false;
-      if (giftCardRewards()) {
-        return true;
-      }
-      return false;
-    }, false);
-    rewardBitcoinUser.addEventListener('click', function() {
-      document.querySelector("#rewardUndo").style.display = "inline-block";
-      document.querySelector("#rewardMainBox").style.display = "none";
-      document.querySelector("#bitcoinDialogBox").style.display = "flex";
-      rewardBitcoinUser.checked = false;
-      document.querySelector("#bitcoinDialogSubmit").addEventListener('click', bitcoinRewards, false);
-      return;
-    }, false);
-    rewardPaypalUser.addEventListener('click', function() {
-      document.querySelector("#rewardUndo").style.display = "inline-block";
-      document.querySelector("#rewardMainBox").style.display = "none";
-      document.querySelector("#paypalDialogBox").style.Display = "flex";
-      rewardPaypalUser.checked = false;
-    }, false);
+  if (!activeUser.card[cardIdx].reward) {
+    if (rewardList.style.display === "none" || rewardList.style.display === "") {
+      rewardList.style.display = "block";
+      document.querySelector("#rewardUndo").addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector("#rewardMainBox").style.display = "block";
+        document.querySelector("#giftCardDialogBox").style.display = "none";
+        document.querySelector("#bitcoinDialogBox").style.display = "none";
+        document.querySelector("#paypalDialogBox").style.Display = "none";
+        document.querySelector("#rewardUndo").style.display = "none";
+      }, false);
+      rewardGiftCardUser.addEventListener('click', function() {
+        document.querySelector("#rewardUndo").style.display = "inline-block";
+        document.querySelector("#rewardMainBox").style.display = "none";
+        document.querySelector("#giftCardDialogBox").style.display = "flex";
+        rewardGiftCardUser.checked = false;
+        if (giftCardRewards()) {
+          return true;
+        }
+        return false;
+      }, false);
+      rewardBitcoinUser.addEventListener('click', function() {
+        document.querySelector("#rewardUndo").style.display = "inline-block";
+        document.querySelector("#rewardMainBox").style.display = "none";
+        document.querySelector("#bitcoinDialogBox").style.display = "flex";
+        rewardBitcoinUser.checked = false;
+        document.querySelector("#bitcoinDialogSubmit").addEventListener('click', bitcoinRewards, false);
+        return;
+      }, false);
+      rewardPaypalUser.addEventListener('click', function() {
+        document.querySelector("#rewardUndo").style.display = "inline-block";
+        document.querySelector("#rewardMainBox").style.display = "none";
+        document.querySelector("#paypalDialogBox").style.Display = "flex";
+        rewardPaypalUser.checked = false;
+      }, false);
+    }
+  }
+  else {
+    console.log("Reward Set!");
   }
   return;
 }
@@ -728,6 +733,7 @@ function editRewardHandler(card, index) {
   minDate();
   return;
 }
+
 // BITCOIN REWARD
 function saveBitcoinReward(address, amount, cardNumber) {
   userUpdatedGlobal.card[cardNumber].reward = {"rewardType": "Bitcoin", "rewardAmount": amount, "rewardAddress": address};
@@ -817,7 +823,7 @@ function editCards(target, index) {
   var color1 = document.querySelector("#home #editRewards #editColor1").value;
   var color2 = document.querySelector("#home #editRewards #editColor2").value;
   var newObjective = document.querySelector("#home #editRewards input[type='text']").value;
-  var newTime = document.querySelector("#home #editRewards input[type='date']").value;
+  var newTime = timeString(new Date(document.querySelector("#home #editRewards input[type='date']").value));
   if (logged) {
     activeUser.card[cardIdx].objective = newObjective;
     activeUser.card[cardIdx].time = newTime;
@@ -830,6 +836,15 @@ function editCards(target, index) {
   closureHandler(document.querySelector("#home #editRewards a.close"));
   localStorageUsers(users, true);
   return;
+}
+
+// TIME STRING
+function timeString(time) {
+  date = new Date();
+  present = date.getTime();
+  delta = Math.abs(time.getTime() - present) / 1000;
+  days = Math.floor(delta / 86400);
+  return "" + days.toString() + " days remaining!";
 }
 
 // FUNCTION RGB TO HEX
