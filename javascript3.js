@@ -102,6 +102,7 @@ window.onload = init;
       if (logged) {
         let main = document.querySelector("#home #mainObjectives");
         cardIdx = Array.from(main.children).indexOf(event.target.parentElement.parentElement);
+        console.log(cardIdx);
         handleRewards();
       }
       return;
