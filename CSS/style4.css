@@ -35,11 +35,12 @@ body {
 }
 #wrapper header {
   position: absolute;
+  display: none;
   top: 100px;
   left: 10px;
   width: 250px;
   font-family: 'Open Sans', sans-serif;
-  background-color: rgba(0, 0, 0, .2);
+  background-color: rgba(0, 0, 0, .3);
   padding: 0 20px;
   margin: 0;
 }
@@ -47,18 +48,17 @@ body {
   position: absolute;
   top: -50px;
   left: -5px;
-  letter-spacing: .1rem;
+  letter-spacing: 1.2rem;
   font-size: 3.2rem;
-  font-family: 'Press Start 2P', cursive;
-  color: rgb(250, 42, 5);
+  color: rgb(250, 218, 5);
   text-transform: uppercase;
-  mix-blend-mode: hard-light;
 }
 #wrapper header h1::before {
   content: "check";
   position: absolute;
-  color: rgb(255, 214, 0);
+  color: rgb(0, 255, 87);
   overflow: hidden;
+  mix-blend-mode: overlay;
   left: -3px;
   top: -4px;
 }
@@ -314,7 +314,15 @@ body {
 }
 #mainFrame > p {
   position: relative;
-  padding: .2em .5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .2rem .5rem;
+  margin: 0;
+  vertical-align: middle;
+  border-radius: 10px;
+  background: linear-gradient(160deg, rgba(50, 52, 105, .8), rgba(34, 36, 92, .9));
+  box-shadow: 6px 6px 20px 4px rgba(0, 0, 0, .3);
   text-align: center;
   -ms-grid-column: 2;
       grid-column-start: 2;
@@ -326,31 +334,6 @@ body {
   grid-row-end: 3;
   z-index: 1;
   font-size: 1.4rem;
-  background: rgba(33, 35, 73, .2);
-}
-#mainFrame > p::before {
-  content: '';
-  position: absolute;
-  top: -1em;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, .0)), color-stop(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, .0)));
-  background: -webkit-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-  background: -o-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-  background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-}
-#mainFrame > p::after {
-  content: '';
-  position: absolute;
-  bottom: -1em;
-  right: 0;
-  width: 100%;
-  height: 1px;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, .0)), color-stop(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, .0)));
-  background: -webkit-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-  background: -o-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-  background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
 }
 #mainFrame > #bckgrClimber {
   position: absolute;
@@ -375,7 +358,7 @@ body {
   -ms-grid-row-span: 1;
   grid-row-end: 4;
   z-index: 1;
-  background: rgba(33, 35, 73, .7);
+  background: rgba(0, 0, 0, .2);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -679,7 +662,11 @@ input:hover {
 }
 #rewardFrame > p {
   position: relative;
-  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .2rem .5rem;
+  margin: 0;
   text-align: center;
   -ms-grid-column: 2;
       grid-column-start: 2;
@@ -691,31 +678,9 @@ input:hover {
   grid-row-end: 3;
   z-index: 1;
   font-size: 1.4rem;
-  background: rgba(33, 35, 73, .2);
-}
-#rewardFrame > p::before {
-  content: '';
-  position: absolute;
-  top: -1em;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, .0)), color-stop(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, .0)));
-  background: -webkit-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-  background: -o-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-  background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-}
-#rewardFrame > p::after {
-  content: '';
-  position: absolute;
-  bottom: -1em;
-  right: 0;
-  width: 100%;
-  height: 1px;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, .0)), color-stop(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, .0)));
-  background: -webkit-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-  background: -o-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-  background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
+  background: linear-gradient(160deg, rgba(50, 52, 105, .8), rgba(34, 36, 92, .9));
+  box-shadow: 6px 6px 20px 4px rgba(0, 0, 0, .3);
+  border-radius: 10px;
 }
 #rewardFrame > #bckgrMoon {
   position: absolute;
@@ -745,7 +710,7 @@ input:hover {
   border-radius: 6px;
   padding: .2em;
   z-index: 1;
-  background: rgba(33, 35, 73, .7);
+  background: rgba(0, 0, 0, .2);
 }
 #rewardFrame .rewardList .rewardBox {
   display: -webkit-box;
@@ -898,7 +863,11 @@ input:hover {
 }
 #completeFrame > p {
   position: relative;
-  padding: .2em .5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .2rem .5rem;
+  margin: 0;
   text-align: center;
   -ms-grid-column: 2;
       grid-column-start: 2;
@@ -909,32 +878,10 @@ input:hover {
   -ms-grid-row-span: 1;
   grid-row-end: 3;
   font-size: 1.4rem;
-  background: rgba(33, 35, 73, .2);
+  background: linear-gradient(160deg, rgba(50, 52, 105, .8), rgba(34, 36, 92, .9));
+  box-shadow: 6px 6px 20px 4px rgba(0, 0, 0, .3);
+  border-radius: 10px;
   z-index: 1;
-}
-#completeFrame > p::before {
-  content: '';
-  position: absolute;
-  top: -1em;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, .0)), color-stop(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, .0)));
-  background: -webkit-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-  background: -o-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-  background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-}
-#completeFrame > p::after {
-  content: '';
-  position: absolute;
-  bottom: -1em;
-  right: 0;
-  width: 100%;
-  height: 1px;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, .0)), color-stop(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, .0)));
-  background: -webkit-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-  background: -o-linear-gradient(left, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
-  background: linear-gradient(90deg, rgba(255, 255, 255, .0), rgba(255, 255, 255, 1), rgba(255, 255, 255, .0));
 }
 #completeFrame > #bckgrFallingStar {
   position: absolute;
@@ -1003,9 +950,11 @@ input:hover {
   font-size: 1.6rem;
 }
 #completeFrame .completeButtonWrapper {
-  background: -webkit-linear-gradient(60deg, rgb(247, 159, 87), rgb(196, 2, 205));
-  background: -o-linear-gradient(60deg, rgb(247, 159, 87), rgb(196, 2, 205));
-  background: linear-gradient(30deg, rgb(247, 159, 87), rgb(196, 2, 205));
+  background: linear-gradient(208deg, #12ffc2, #67ff12, #faff12, #ff5d12, #ff1212, #9512ff, #1280ff);
+  background-size: 1400% 1400%;
+  -webkit-animation: loopColor 10s ease infinite;
+  -moz-animation: loopColor 10s ease infinite;
+  animation: loopColor 10s ease infinite;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -1031,11 +980,8 @@ input:hover {
   transition: all .3s ease-in-out;
 }
 #completeFrame .completeButton:hover {
-  background: -webkit-linear-gradient(30deg, rgb(255, 122, 0), rgb(85, 0, 208));
-  background: -o-linear-gradient(30deg, rgb(255, 122, 0), rgb(85, 0, 208));
-  background: linear-gradient(30deg, rgb(255, 122, 0), rgb(85, 0, 208));
-  font-size: 1.3rem;
   transition: all .2s ease-in-out;
+  letter-spacing: .2rem;
 }
 /* ----------------------------- */
 /*            Home               */
@@ -1098,6 +1044,7 @@ input:hover {
   width: 80vw;
   max-width: 600px;
   height: 250px;
+  background: rgba(33, 35, 73, .8);
 }
 #wrapper #home > h2 {
   position: relative;
@@ -1113,12 +1060,15 @@ input:hover {
   width: 80vw;
   max-width: 400px;
   position: relative;
+  padding: 0 .5rem;
+  margin: 0;
   height: 100px;
   font-size: .8rem;
   font-weight: 600;
   text-align: center;
   color: rgb(221, 182, 78);
-  background: linear-gradient(160deg, rgb(33, 35, 73), rgba(255, 255, 255, .1));
+  background: linear-gradient(160deg, rgb(50, 52, 105), rgb(34, 36, 92));
+  box-shadow: 6px 6px 20px 4px rgba(0, 0, 0, .3);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1131,6 +1081,7 @@ input:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  border-radius: 10px;
 }
 #home #randomQuote #quote::before,
 #home #randomQuote #quote::after {
@@ -1139,11 +1090,11 @@ input:hover {
 }
 #home #randomQuote #quote::before {
   content: "“";
-  left: 0;
+  left: .2rem;
 }
 #home #randomQuote #quote::after {
   content: "”";
-  right: 0;
+  right: .2rem;
 }
 #home #randomQuote.quoteAnimation {
   -webkit-animation: quoteFade 10s; /* Chrome, Safari, Opera */
@@ -2311,6 +2262,21 @@ input:hover {
   100% {
     opacity: 0;
   }
+}
+@-webkit-keyframes loopColor {
+   0%{background-position:0% 50%}
+   50%{background-position:100% 50%}
+   100%{background-position:0% 50%}
+}
+@-moz-keyframes loopColor {
+   0%{background-position:0% 50%}
+   50%{background-position:100% 50%}
+   100%{background-position:0% 50%}
+}
+@keyframes loopColor {
+   0%{background-position:0% 50%}
+   50%{background-position:100% 50%}
+   100%{background-position:0% 50%}
 }
 /* @media (min-width: 800px) {
   #wrapper > #bckgr {
