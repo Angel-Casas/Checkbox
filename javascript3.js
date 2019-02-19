@@ -138,6 +138,23 @@ window.onload = init;
   }, false);
 })();
 
+// SCROLLEVENTLISTENER
+(function() {
+  document.addEventListener('scroll', function(event) {
+    // if supported get scroll Y offset
+    var arrows = document.querySelectorAll("#scrollArrowBox .scrollArrow");
+    var scrollPos = window.pageYOffset || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
+    if (scrollPos > 80 && !arrows[0].classList.contains('reverse')) {
+      arrows[0].classList.add('reverse');
+      arrows[1].classList.add('reverse');
+    }
+    else if (scrollPos <= 80) {
+      arrows[0].classList.remove('reverse');
+      arrows[1].classList.remove('reverse');
+    }
+    return;
+  })
+})();
 // 2. Global Functions
 // INIT HANDLER
 function init() {
