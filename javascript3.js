@@ -936,6 +936,33 @@ function quoteLoop() {
   }
   setInterval(nextQuote, 10000);
 }
+
+// LOADING SCREEN
+function onReady(callback) {
+  var intervalId = window.setInterval(function() {
+    var self = this;
+    var load = document.querySelector("#loaderWrapper .checkLoader:nth-child(1)");
+    if (document.getElementsByTagName('body')[0] !== undefined) {
+      load.addEventListener('animationend', function() {
+        window.clearInterval(intervalId);
+        callback.call(self);
+      }, false);
+    }
+    else {
+      load.style.animation = "loaderBoop1 2s ease-in-out 0s 1;";
+    }
+  }, 1000);
+}
+
+function setVisible(selector, visible) {
+  document.querySelector(selector).style.display = visible ? 'block' : 'none';
+}
+
+onReady(function() {
+  setVisible('#wrapper', true);
+  setVisible('#loaderWrapper', false);
+});
+
 // 3. USER MANAGEMENT
 class User {
   constructor(name, email, pass, keepLogged) {
