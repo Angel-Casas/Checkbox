@@ -14,7 +14,7 @@
 <body>
   <div id="wrapper">
     <header>
-      <h1>CHECK</h1>
+      <h1>CARE</h1>
       <p>Raise your bonding<br>clear your objectives</p>
     </header>
     <div id="bckgr"></div>
@@ -29,7 +29,7 @@
         <ul id="mainUlNav">
           <li><a href="#" class="navLinks navIntroduction">Introduction</a></li>
           <li><a href="#" class="navLinks navHome">Home</a></li>
-          <li><a href="#" class="navLinks navAbout">About</a></li>
+          <li><a href="#" class="navLinks navProgress">Progress</a></li>
           <li id="navRegister"><a href="" class="navLinks navRegister">Login / Register</a></li>
           <li id="navSignOut"><a href="" class="navLinks navSignOut">SignOut</a></li>
         </ul>
@@ -193,14 +193,16 @@
     </section>
     <!-- End Login Section -->
     <section id="home">
-      <h2>Objectives</h2>
+      <div id="quoteBox">
+        <blockquote id="randomQuote" cite="">
+          <i id="quote">Specify your damn goals</i>
+          <i id="author">- Jordan B. Peterson -</i>
+        </blockquote>
+      </div>
+      <header>
+        <h2>Objectives</h2>
+      </header>
       <div id="objectivesBox">
-        <div id="quoteBox">
-          <blockquote id="randomQuote" cite="">
-            <i id="quote">Specify your damn goals</i>
-            <i id="author">- Jordan B. Peterson -</i>
-          </blockquote>
-        </div>
         <form class="createForm" id="homeForm">
           <input type="text" id="entry" maxlength="25" placeholder="Objective">
           <p id="inputError"></p>
@@ -312,8 +314,8 @@
         </div>
       </div>
     </section>
-    <section id="about">
-      <h2>About</h2>
+    <section id="progress">
+      <h2>Progress</h2>
       <div></div>
     </section>
     <footer id="mainFooter">
@@ -322,9 +324,9 @@
         <li><a href="#" class="navLinks navIntroduction">Introduction</a></li>
         <li><a href="#" class="navLinks navHome">Home</a></li>
         <li><a href="#" class="navLinks navRegister">Login / Register</a></li>
-        <li><a href="#" class="navLinks navAbout">About</a></li>
+        <li><a href="#" class="navLinks navProgress">Progress</a></li>
       </ul>
-      <div id="donations"><i class="fas fa-bolt fa-2x"></i><p>Check provides a unique service towards the betterment of your productivity and wellfare.<br>
+      <div id="donations"><a href="https://tippin.me/@AngelCasas93" id="anchorTip"><i class="fas fa-bolt fa-2x"></i></a><p>Check provides a unique service towards the betterment of your productivity and wellfare.<br>
       If you enjoy this App please consider donating via <a href="https://tippin.me/@AngelCasas93">Tippin.me</a> so we can keep this project <b>growing.</b></p>
       </div>
       <div id="copyright"><span>Created by Ángel Casas Pescador</span></div>

@@ -33,34 +33,33 @@ body {
   z-index: 1;
   color: white;
 }
-#wrapper header {
+#wrapper > header {
   position: absolute;
-  display: none;
-  top: 100px;
-  left: 10px;
+  display: block;
+  top: calc(100vw * .9 + 70px);
+  right: 10px;
   width: 250px;
-  font-family: 'Open Sans', sans-serif;
-  background-color: rgba(0, 0, 0, .3);
+  font-family: 'Cinzel', serif;
   padding: 0 20px;
   margin: 0;
 }
 #wrapper header h1 {
   position: absolute;
   top: -50px;
-  left: -5px;
+  right: 40px;
   letter-spacing: 1.2rem;
   font-size: 3.2rem;
-  color: rgb(250, 218, 5);
+  color: rgb(250, 189, 5);
   text-transform: uppercase;
 }
 #wrapper header h1::before {
-  content: "check";
+  content: "care";
   position: absolute;
   color: rgb(0, 255, 87);
   overflow: hidden;
-  mix-blend-mode: overlay;
   left: -3px;
   top: -4px;
+  mix-blend-mode: color;
 }
 #wrapper header p {
   padding-top: 30px;
@@ -70,7 +69,7 @@ body {
 #wrapper #scrollArrowBox {
   display: block;
   position: fixed;
-  bottom: 60px;
+  bottom: 0px;
   right: 20px;
   width: 30px;
   height: 40px;
@@ -85,6 +84,7 @@ body {
   height: 13px;
   opacity: .5;
   box-sizing: border-box;
+  transition: all .8s ease-in-out;
 }
 #wrapper .scrollArrow.reverse::before, #wrapper .scrollArrow.reverse::after {
   transition: all .5s ease-in-out;
@@ -109,14 +109,14 @@ body {
 #wrapper .scrollArrow::before {
   left: 5px;
   bottom: 0px;
-  border-left: 3px solid white;
+  border-left: 3px solid rgb(221, 182, 78);
   border-top: 6px solid transparent;
   transform: rotate(-60deg);
 }
 #wrapper .scrollArrow::after {
   right: 5px;
   bottom: 0px;
-  border-right: 3px solid white;
+  border-right: 3px solid rgb(221, 182, 78);
   border-top: 6px solid transparent;
   transform: rotate(60deg);
 }
@@ -1034,17 +1034,15 @@ input:hover {
 }
 #completeFrame .completeButton:hover {
   transition: all .2s ease-in-out;
-  letter-spacing: .2rem;
 }
 /* ----------------------------- */
 /*            Home               */
 /* ------------------------------*/
 #wrapper #home {
   height: auto;
-  min-height: 100vh;
   background-color: rgb(33, 35, 73);
-  margin-top: 0.2em;
-  padding: .5em 0;
+  margin-top: 0.2rem;
+  padding: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1054,7 +1052,7 @@ input:hover {
           flex-flow: column nowrap;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
-          justify-content: flex-start;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -1099,29 +1097,25 @@ input:hover {
   height: 250px;
   background: rgba(33, 35, 73, .8);
 }
-#wrapper #home > h2 {
+#wrapper #home h2 {
   position: relative;
-  top: -15px;
-  left: 0;
   font-size: 2.2rem;
   text-transform: uppercase;
-  padding: .2em 0;
-  margin: .1em .2em;
   border-bottom: 2px solid white;
 }
 #home #randomQuote {
   width: 80vw;
   max-width: 400px;
   position: relative;
-  padding: 0 .5rem;
+  padding: 0;
   margin: 0;
-  height: 100px;
+  height: 200px;
   font-size: .8rem;
   font-weight: 600;
   text-align: center;
   color: rgb(221, 182, 78);
-  background: linear-gradient(160deg, rgb(50, 52, 105), rgb(34, 36, 92));
-  box-shadow: 6px 6px 20px 4px rgba(0, 0, 0, .3);
+  /* background: linear-gradient(160deg, rgb(50, 52, 105), rgb(34, 36, 92)); */
+  /* box-shadow: 6px 6px 20px 4px rgba(0, 0, 0, .3); */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1139,15 +1133,13 @@ input:hover {
 #home #randomQuote #quote::before,
 #home #randomQuote #quote::after {
   font-size: 1.6rem;
-  position: absolute;
+  padding: 0 .4rem;
 }
 #home #randomQuote #quote::before {
   content: "“";
-  left: .2rem;
 }
 #home #randomQuote #quote::after {
   content: "”";
-  right: .2rem;
 }
 #home #randomQuote.quoteAnimation {
   -webkit-animation: quoteFade 10s; /* Chrome, Safari, Opera */
@@ -1157,12 +1149,11 @@ input:hover {
     animation-iteration-count: infinite;
 }
 #home #randomQuote > i {
-  letter-spacing: .2em;
+  letter-spacing: .1em;
 }
 #home #randomQuote #author {
   display: block;
   white-space: nowrap;
-  margin-top: 1em;
 }
 #home > #mainSection {
   width: 100%;
@@ -1198,10 +1189,12 @@ input:hover {
   width: 100%;
   height: 100%;
   color: rgba(255, 255, 255, .6);
+  transition: all .2s ease-in-out;
 }
 #cardEditor > i:hover {
   color: rgb(221, 182, 78);
   cursor: pointer;
+  transform: rotate(-10deg);
 }
 #mainSection #cardEditorDiv #cardEditorInfo {
   display: none;
@@ -1775,13 +1768,19 @@ input:hover {
 /*            About              */
 /* ------------------------------*/
 
-#about {
+#progress {
   display: none;
   width: 100%;
   height: 100vh;
   margin-top: 0.2em;
   padding: .5em 0;
   background: rgb(33, 35, 73);
+}
+#progress h2 {
+  position: relative;
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  border-bottom: 2px solid white;
 }
 
 
@@ -2227,15 +2226,21 @@ input:hover {
   color: rgba(221, 182, 78, .8);
   padding: 1rem 1rem 1rem 60px;
   width: 100%;
+  padding-bottom: 40px;
   background-color: black;
   border-top: 1px solid rgb(221, 182, 78);
 }
-#mainFooter #donations i {
+#mainFooter #donations #anchorTip {
+  color: rgb(221, 182, 78);
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 50px;
+  text-decoration: none;
+}
+#mainFooter #donations i {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

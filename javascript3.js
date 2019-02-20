@@ -119,7 +119,9 @@ window.onload = init;
       location.reload();
       return;
     }
-    else {
+    if (event.target.matches(".scrollArrow")) {
+      event.preventDefault();
+      scrollTop();
     }
   }, false);
 })();
@@ -176,6 +178,13 @@ function init() {
       console.log(activeUser);
     }
   }
+  try {
+    quoteLoop();
+    return;
+  }
+  catch(error) {
+    console.log(error);
+  }
   return;
 }
 
@@ -184,7 +193,7 @@ function navHandler(target) {
   let introduction = document.getElementById("main");
   let home = document.getElementById("home");
   let login = document.getElementById("login");
-  let about = document.getElementById("about");
+  let progress = document.getElementById("progress");
   if (target.classList.contains("navRegister")) {
     login.style.display = "block";
     scrollHandler(true, login);
@@ -204,7 +213,7 @@ function navHandler(target) {
     introduction.style.display = "none";
     home.style.display = "none";
     login.style.display = "none";
-    about.style.display = "none";
+    progress.style.display = "none";
     // check Nav button clicked
     if (target.classList.contains("navIntroduction")) {
       introduction.style.display = "flex";
@@ -214,8 +223,8 @@ function navHandler(target) {
       home.style.display = "flex";
       return;
     }
-    else if (target.classList.contains("navAbout")) {
-      about.style.display = "block";
+    else if (target.classList.contains("navProgress")) {
+      progress.style.display = "block";
       return;
     }
   }
@@ -875,6 +884,47 @@ function rgbToHex(r, g, b) {
   return "#" +  toHex(r) + toHex(g) + toHex(b);
 }
 
+// SCROLLTOP
+function scrollTop() {
+  if (document.body.scrollTop!=0 || document.documentElement.scrollTop!=0) {
+    window.scrollBy(0, -50);
+    timeout = setTimeout('scrollTop()', 10);
+  }
+  else clearTimeout(timeout);
+}
+
+// QUOTELOOP
+function quoteLoop() {
+  let quotes = {
+    "Aim at the highest good, tool yourself into something that can attain it and go out there and manifest it in the world, so everything that comes your way will be a blessing. All you have to do is give up your resentment and hatred.": "- Jordan Bernt Peterson -",
+    "We all want to be famous people, and the moment we want to be something we are no longer free.": "- Jiddu Krishnamurti -",
+    "Tradition becomes our security, and when the mind is secure it is in decay.": "- Jiddu Krishnamurti -",
+    "Die to everything of yesterday so that your mind is always fresh, always young, innocent, full of vigor and passion.": "- Jiddu Krishnamurti -",
+    "Education is what remains after one has forgotten what one has learned in school.": "- Albert Einstein -",
+    "Anyone who has never made a mistake has never tried anything new.": "- Albert Einstein -",
+    "The most beautiful thing we can experience is the mysterious. It is the source of all true art and science.": "- Albert Einstein -",
+    "Stay hungry, stay foolish.": "- Steve Jobs -",
+    "I believe life is an intelligent thing: that things aren't random.": "- Steve Jobs -",
+    "Self-education is, I firmly believe, the only kind of education there is.": "- Isaac Asimov -",
+    "In all chaos there is a cosmos, in all disorder a secret order.": "- Carl Gustav Jung -",
+    "Imagination will often carry us to worlds that never were. But without it we go nowhere.": "- Carl Sagan -",
+    "The first principle is that you must not fool yourself and you are the easiest person to fool.": "- Richard P. Feynman -",
+    "The secret of genius is to carry the spirit of the child into old age, which means never losing your enthusiasm.": "- Aldous Huxley -",
+    "Clean your room.": "- Jordan B. Peterson -"
+  };
+  let previous = null;
+  function nextQuote() {
+    var randomNumber = Math.floor(Math.random()*Object.keys(quotes).length);
+    if (previous == randomNumber) {
+      randomNumber = Math.floor(Math.random()*Object.keys(quotes).length);
+    }
+    document.getElementById("quote").innerHTML = Object.keys(quotes)[randomNumber];
+    document.getElementById("author").innerHTML = Object.values(quotes)[randomNumber];
+    previous = randomNumber;
+    return;
+  }
+  setInterval(nextQuote, 10000);
+}
 // 3. USER MANAGEMENT
 class User {
   constructor(name, email, pass, keepLogged) {
