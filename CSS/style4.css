@@ -39,27 +39,27 @@ body {
   top: calc(100vw * .9 + 80px);
   right: 0px;
   width: 250px;
-  font-family: 'Cinzel', serif;
+  font-family: 'Playfair Display SC', serif;
   padding: 0 20px;
   margin: 0;
 }
 #wrapper header h1 {
   position: absolute;
-  top: -50px;
-  right: 40px;
+  top: -60px;
+  right: 30px;
   letter-spacing: 1.2rem;
-  font-size: 3.6rem;
+  font-size: 3.8rem;
   color: rgb(250, 189, 5);
   text-transform: uppercase;
 }
 #wrapper header h1::before {
   content: "care";
   position: absolute;
-  color: rgb(0, 255, 87);
+  color: rgb(0, 255, 171);
   overflow: hidden;
   left: -3px;
   top: -4px;
-  mix-blend-mode: color;
+  mix-blend-mode: hue;
 }
 #wrapper header p {
   padding-top: 30px;

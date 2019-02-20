@@ -55,7 +55,7 @@ window.onload = init;
     // CREATE CARD HANDLER
     if (event.target.matches("#home #cardCreate")) {
       let objective = document.querySelector("#home #entry").value || "I can't think of any Objectives.";
-      let time = document.querySelector("#home .timeRange input:checked").value;
+      let time = document.querySelector("#home .timeRange input:checked").value + " days Remaining!";
       event.preventDefault();
       if (logged) {
         var addedCard = activeUser.addCard(objective, time);
@@ -100,10 +100,14 @@ window.onload = init;
     // REWARD HANDLER
     if (event.target.matches("#home .rewardAsk") || event.target.matches("#home .rewardAsk i")) {
       if (logged) {
-        let main = document.querySelector("#home #mainObjectives");
+        var main = document.querySelector("#home #mainObjectives");
+        var box = document.querySelector("#home #rewardList")
         cardIdx = Array.from(main.children).indexOf(event.target.parentElement.parentElement);
         console.log(cardIdx);
-        handleRewards();
+        if (!activeUser.card[cardIdx].reward) {
+          scrollHandler(true, box);
+          handleRewards();
+        }
       }
       return;
     }
@@ -125,6 +129,7 @@ window.onload = init;
     }
   }, false);
 })();
+
 // INPUTEVENTLISTENER
 (function() {
   document.addEventListener("input", function(event) {
@@ -715,8 +720,10 @@ function handleRewards() {
         document.querySelector("#giftCardDialogBox").style.display = "flex";
         rewardGiftCardUser.checked = false;
         if (giftCardRewards()) {
+          console.log("True");
           return true;
         }
+        console.log("false");
         return false;
       }, false);
       rewardBitcoinUser.addEventListener('click', function() {
@@ -736,9 +743,9 @@ function handleRewards() {
     }
   }
   else {
-    console.log("Reward Set!");
+    console.log("Reward already Set!");
   }
-  return;
+  return false;
 }
 
 // EDIT REWARDS
@@ -779,6 +786,7 @@ function giftCardRewards() {
         if (activeUser.card[cardIdx].modifyReward(reward)) {
           activeUser.display();
           localStorageUsers(users, true);
+          closureHandler(document.querySelector("#home #rewardList a.close"));
           return;
         }
       }, false);
@@ -871,7 +879,10 @@ function timeString(time) {
   present = date.getTime();
   delta = Math.abs(time.getTime() - present) / 1000;
   days = Math.floor(delta / 86400);
-  return "" + days.toString() + " days remaining!";
+  if (days === 1) {
+    return days.toString() + " day Remaining!";
+  }
+  return days.toString() + " days remaining!";
 }
 
 // FUNCTION RGB TO HEX
@@ -939,7 +950,7 @@ class User {
   }
   addCard(objective, time) {
     var newCard = new Card(objective, time, "", [getRandomColor(), getRandomColor()]);
-    cardToHTML(objective, time, "", newCard.color);
+    cardToHTML(objective, time, "", newCard.color, this.card.length);
     this.card.push(newCard);
     localStorageUsers(users, true);
     return newCard;
