@@ -36,8 +36,8 @@ body {
 #wrapper > header {
   position: absolute;
   display: block;
-  top: calc(100vw * .9 + 70px);
-  right: 10px;
+  top: calc(100vw * .9 + 80px);
+  right: 0px;
   width: 250px;
   font-family: 'Cinzel', serif;
   padding: 0 20px;
@@ -48,7 +48,7 @@ body {
   top: -50px;
   right: 40px;
   letter-spacing: 1.2rem;
-  font-size: 3.2rem;
+  font-size: 3.6rem;
   color: rgb(250, 189, 5);
   text-transform: uppercase;
 }
