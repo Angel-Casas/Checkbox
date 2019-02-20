@@ -940,7 +940,7 @@ function quoteLoop() {
 // LOADING SCREEN
 function onReady(callback) {
   var intervalId = window.setInterval(function() {
-    var self = this;
+    self = this;
     var load = document.querySelector("#loaderWrapper .checkLoader:nth-child(1)");
     if (document.getElementsByTagName('body')[0] !== undefined) {
       load.addEventListener('animationend', function() {
@@ -948,9 +948,8 @@ function onReady(callback) {
         callback.call(self);
       }, false);
     }
-    else {
-      load.style.animation = "loaderBoop1 2s ease-in-out 0s 1;";
-    }
+    console.log("been");
+    load.style.animation = "loaderBoop1 3s ease-in-out 0s 1";
   }, 1000);
 }
 
