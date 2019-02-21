@@ -942,9 +942,12 @@ function onReady(callback) {
   var intervalId = window.setInterval(function() {
     self = this;
     var load = document.querySelector("#loaderWrapper .checkLoader:nth-child(1)");
+    var title = document.querySelector("h1");
     if (document.getElementsByTagName('body')[0] !== undefined) {
       load.addEventListener('animationend', function() {
         window.clearInterval(intervalId);
+        document.querySelector(".boxCheck").style.display = "none";
+        title.style.animation = "titleLoader 2s ease-in-out 0s 1 forwards";
         callback.call(self);
       }, false);
     }
@@ -959,7 +962,9 @@ function setVisible(selector, visible) {
 
 onReady(function() {
   setVisible('#wrapper', true);
-  setVisible('#loaderWrapper', false);
+  setTimeout(function() {
+    setVisible('#loaderWrapper', false);
+  }, 2000);
 });
 
 // 3. USER MANAGEMENT
