@@ -23,12 +23,14 @@ body {
   overflow-x: hidden;
   z-index: 0;
 }
-h1 {
+#title {
   position: absolute;
+  top: 10%;
+  width: 100%;
+}
+#title h1 {
   margin: 0;
   padding: 0;
-  top: calc(100vw * .9 + 70px);
-  top: 10%;
   width: 100%;
   text-align: center;
   text-transform: uppercase;
@@ -54,6 +56,21 @@ h1::before {
     top: calc(100vw * .9 + 70px);
   }
 }
+@keyframes growLoader {
+  from {
+    width: 100px;
+    height: 100px;
+    bottom: 0;
+    border-width: 20px;
+  }
+  to {
+    width: 200vw;
+    height: 200vh;
+    bottom: -100vh;
+    right: calc(50% - 100vw);
+    border-width: 200px;
+  }
+}
 /*--------------------*/
 /*    Loader          */
 /*--------------------*/
@@ -74,8 +91,12 @@ h1::before {
 }
 #loaderWrapper .loaderSection .boxCheck {
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 200px;
   width: 100%;
+  transition: all 2s ease-in-out;
 }
 #loaderWrapper .loaderSection .boxCheck > * {
   display: inline-block;
@@ -87,10 +108,10 @@ h1::before {
   border-radius: 10px;
 }
 #loaderWrapper .loaderSection .boxCheck .checkLoader:nth-child(1) {
-  animation: loaderBoop1 3s ease-in-out 0s infinite;
   width: 100px;
   height: 100px;
   right: calc(50% - 50px);
+  animation: loaderBoop1 3s ease-in-out 0s infinite;
   z-index: 1;
 }
 #loaderWrapper .loaderSection .boxCheck .checkLoader:nth-child(2) {

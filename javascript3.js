@@ -942,11 +942,15 @@ function onReady(callback) {
   var intervalId = window.setInterval(function() {
     self = this;
     var load = document.querySelector("#loaderWrapper .checkLoader:nth-child(1)");
-    var title = document.querySelector("h1");
+    var title = document.querySelector("#title");
+    var icons = document.querySelectorAll("#loaderWrapper .checkLoader");
     if (document.getElementsByTagName('body')[0] !== undefined) {
       load.addEventListener('animationend', function() {
         window.clearInterval(intervalId);
-        document.querySelector(".boxCheck").style.display = "none";
+        for (var i=0; i<icons.length; i++) {
+          // icons[i].style.animation = "growLoader 2s ease-in-out 0s 1";
+        }
+        document.querySelector("#loaderWrapper .boxCheck").style.display = "none";
         title.style.animation = "titleLoader 2s ease-in-out 0s 1 forwards";
         callback.call(self);
       }, false);
