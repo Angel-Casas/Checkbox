@@ -903,6 +903,14 @@ function scrollTop() {
   }
   else clearTimeout(timeout);
 }
+// SCROLL TITLE
+function scrollTitle(title, p) {
+  if ((document.body.scrollTop!=0 && document.body.scrollTop<1000) || (document.documentElement.scrollTop!=0 && document.documentElement.scrollTop<100)) {
+    title.style.right = document.body.scrollTop;
+    console.log("tah");
+  }
+  console.log("insideee");
+}
 
 // QUOTELOOP
 function quoteLoop() {
@@ -942,17 +950,17 @@ function onReady(callback) {
   var intervalId = window.setInterval(function() {
     self = this;
     var load = document.querySelector("#loaderWrapper .checkLoader:nth-child(1)");
-    var title = document.querySelector("#title");
     var icons = document.querySelectorAll("#loaderWrapper .checkLoader");
+    var p = document.querySelectorAll("#wrapper > header p");
+    var title = document.querySelector("#wrapper > header h2");
     if (document.getElementsByTagName('body')[0] !== undefined) {
       load.addEventListener('animationend', function() {
         window.clearInterval(intervalId);
-        for (var i=0; i<icons.length; i++) {
-          // icons[i].style.animation = "growLoader 2s ease-in-out 0s 1";
-        }
-        document.querySelector("#loaderWrapper .boxCheck").style.display = "none";
-        title.style.animation = "titleLoader 2s ease-in-out 0s 1 forwards";
+        document.querySelector("#loaderWrapper").style.display = "none";
+        p[0].style.animation = "pScrollIn 1s ease-in-out 2s 1 forwards";
+        p[1].style.animation = "pScrollIn 1s ease-in-out 3s 1 forwards";
         callback.call(self);
+        window.addEventListener('scroll', scrollTitle(title, p), false);
       }, false);
     }
     console.log("been");
@@ -966,9 +974,7 @@ function setVisible(selector, visible) {
 
 onReady(function() {
   setVisible('#wrapper', true);
-  setTimeout(function() {
-    setVisible('#loaderWrapper', false);
-  }, 2000);
+  setVisible('#loaderWrapper', false);
 });
 
 // 3. USER MANAGEMENT

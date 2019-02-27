@@ -23,31 +23,6 @@ body {
   overflow-x: hidden;
   z-index: 0;
 }
-#title {
-  position: absolute;
-  top: 10%;
-  width: 100%;
-}
-#title h1 {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: 'Playfair Display SC', serif;
-  color: rgb(221, 182, 73);
-  font-size: 4.4rem;
-}
-h1::before {
-  position: absolute;
-  content: "check";
-  left: 3px;
-  top: 0;
-  width: 100%;
-  color: rgb(0, 255, 171);
-  mix-blend-mode: hue;
-  animation: rollLoader 4s ease-in-out 0s infinite;
-}
 @keyframes titleLoader {
   from {
     top: 10%;
@@ -82,6 +57,27 @@ h1::before {
   height: 100vh;
   padding-top: 20%;
   background-color: rgb(33, 35, 73);
+}
+#loaderWrapper #title h1 {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Playfair Display SC', serif;
+  color: rgb(221, 182, 73);
+  font-size: 4.4rem;
+}
+#loaderWrapper #title h1::before {
+  position: absolute;
+  content: "check";
+  left: 3px;
+  top: 50px;
+  width: 100%;
+  color: rgb(0, 255, 140);
+  mix-blend-mode: hue;
+  animation: rollLoader 4s ease-in-out 0s infinite;
 }
 #loaderWrapper .loaderSection {
   display: flex;
@@ -386,8 +382,8 @@ h1::before {
   padding: 0 20px;
   margin: 0;
 }
-#wrapper header h2 {
-  display: none;
+#wrapper > header h2 {
+  display: block;
   position: absolute;
   top: -60px;
   right: 0px;
@@ -397,18 +393,18 @@ h1::before {
   color: rgb(250, 189, 5);
   text-transform: uppercase;
 }
-#wrapper header h2::before {
+#wrapper > header h2::before {
   content: "check";
   position: absolute;
   left: -3px;
-  top: -4px;
+  top: -2px;
   color: rgb(0, 255, 163);
   mix-blend-mode: hue;
 }
 #wrapper header p {
-  padding-top: 50px;
   font-size: 1.1rem;
   font-family: 'Cinzel', serif;
+  opacity: 0;
 }
 #wrapper #scrollArrowBox {
   display: block;
@@ -1455,6 +1451,7 @@ input:hover {
   margin: 0;
   height: 200px;
   font-size: .8rem;
+  letter-spacing: .2rem;
   font-weight: 600;
   text-align: center;
   color: rgb(221, 182, 78);
@@ -2611,15 +2608,15 @@ input:hover {
 @keyframes rollLoader {
   0% {
     left: 3px;
-    top: calc(10% - 13px);
+    top: 0;
   }
   50% {
     left: 10px;
-    top: calc(10% - 10px);
+    top: 3px;
   }
   100% {
     left: 3px;
-    top: calc(10% - 13px);
+    top: 0;
   }
 }
 @-webkit-keyframes loop {
@@ -2703,6 +2700,22 @@ input:hover {
   }
   100% {
     height: 13px;
+  }
+}
+@keyframes scrollIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pScrollIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 /* @media (min-width: 800px) {
