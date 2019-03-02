@@ -64,10 +64,10 @@ window.onload = init;
         return;
       }
       else {
-        cardToHTML(objective, time, "", "");
+        cardIdx = findCardIdx();
+        cardToHTML(objective, time, "", "", cardIdx);
         return;
       }
-      return;
     }
     // EDIT CARD HANDLER
     if (event.target.matches("#home #cardEditor i")) {
@@ -99,16 +99,23 @@ window.onload = init;
     }
     // REWARD HANDLER
     if (event.target.matches("#home .rewardAsk") || event.target.matches("#home .rewardAsk i")) {
+      var main = document.querySelector("#home #mainObjectives");
+      var box = document.querySelector("#home #rewardList");
       if (logged) {
-        var main = document.querySelector("#home #mainObjectives");
-        var box = document.querySelector("#home #rewardList")
         cardIdx = Array.from(main.children).indexOf(event.target.parentElement.parentElement);
         console.log(cardIdx);
         if (!activeUser.card[cardIdx].reward) {
-          scrollHandler(true, box);
-          handleRewards();
         }
+        else {
+          console.log("error in reward");
+          return;
+        }
+        handleRewards(true);
       }
+      else {
+        handleRewards(false);
+      }
+      scrollHandler(true, box);
       return;
     }
     // SUBMIT EDITED CARD
@@ -182,6 +189,10 @@ function init() {
       document.querySelector("#mainNav #navSignOut").style.display = "flex";
       console.log(activeUser);
     }
+  }
+  window.addEventListener('scroll', scrollTitle, false);
+  if (document.querySelector("#loaderWrapper").style.display !== "none") {
+    scrollHandler(true, document.querySelector("#loaderWrapper"));
   }
   try {
     quoteLoop();
@@ -626,11 +637,16 @@ function reloadUsers() {
 // FIND CARD INDEX
 function findCardIdx(target) {
   var cards = document.querySelectorAll("#home .card");
-  for (var i=0; i<cards.length; i++) {
-    if (target.cardIdx === cards[i].cardIdx) {
-      cardIdx = i;
-      break;
+  if (logged) {
+    for (var i=0; i<cards.length; i++) {
+      if (target.cardIdx === cards[i].cardIdx) {
+        cardIdx = i;
+        break;
+      }
     }
+  }
+  else {
+    cardIdx = cards.length;
   }
   return cardIdx;
 }
@@ -698,12 +714,12 @@ function cardToHTML(objective, time, reward, colors, i) {
 }
 
 // HANDLE REWARDS
-function handleRewards() {
+function handleRewards(bool) {
   var rewardList = document.querySelector("#home #rewardList");
   var rewardBitcoinUser = document.querySelector("#rewardBitcoinUser");
   var rewardGiftCardUser = document.querySelector("#rewardGiftUser");
   var rewardPaypalUser = document.querySelector("#rewardPaypalUser");
-  if (!activeUser.card[cardIdx].reward) {
+  if (!bool || !activeUser.card[cardIdx].reward) {
     if (rewardList.style.display === "none" || rewardList.style.display === "") {
       rewardList.style.display = "block";
       document.querySelector("#rewardUndo").addEventListener('click', function(e) {
@@ -753,18 +769,25 @@ function editRewardHandler(card, index) {
   let editRewards = document.querySelector("#home #editRewards");
   let newCard = card.cloneNode(true);
   let viewer = document.querySelector("#home #cardViewer");
-  let color1 = activeUser.card[index].color[0];
-  let color2 = activeUser.card[index].color[1];
   let inputColor1 = document.querySelector("#editColor1");
   let inputColor2 = document.querySelector("#editColor2");
+  if (logged) {
+    let color1 = activeUser.card[index].color[0];
+    let color2 = activeUser.card[index].color[1];
+    inputColor1.value = color1;
+    inputColor2.value = color2;
+  }
+  else {
+    inputColor1.value = getRandomColor();
+    inputColor2.value = getRandomColor();
+  }
   scrollHandler(true, editRewards);
   viewer.innerHTML = "";
   newCard.children[2].style.display = "none";
-  inputColor1.value = color1;
-  inputColor2.value = color2;
   viewer.appendChild(newCard);
   document.querySelector("#home #editRewards").style.display = "block";
   minDate();
+
   return;
 }
 
@@ -783,12 +806,16 @@ function giftCardRewards() {
         reward = this.innerHTML;
         console.log(cardIdx);
         document.querySelectorAll("#home .rewardAsk")[cardIdx].innerHTML = "&#10004;";
-        if (activeUser.card[cardIdx].modifyReward(reward)) {
-          activeUser.display();
-          localStorageUsers(users, true);
-          closureHandler(document.querySelector("#home #rewardList a.close"));
-          return;
+        if (logged) {
+          if (activeUser.card[cardIdx].modifyReward(reward)) {
+            activeUser.display();
+            localStorageUsers(users, true);
+          }
         }
+        else {
+        }
+        closureHandler(document.querySelector("#home #rewardList a.close"));
+        return;
       }, false);
     }
     return true;
@@ -904,12 +931,15 @@ function scrollTop() {
   else clearTimeout(timeout);
 }
 // SCROLL TITLE
-function scrollTitle(title, p) {
-  if ((document.body.scrollTop!=0 && document.body.scrollTop<1000) || (document.documentElement.scrollTop!=0 && document.documentElement.scrollTop<100)) {
-    title.style.right = document.body.scrollTop;
-    console.log("tah");
+function scrollTitle() {
+  if ((document.body.scrollTop>200 && document.body.scrollTop<700) || (document.documentElement.scrollTop>200 && document.documentElement.scrollTop<700)) {
+    document.querySelector("#wrapper #stars header h2").style.right = -120 + window.scrollY * .6 + "px";
+    document.querySelector("#wrapper #stars header #titleP").style.left = -120 + window.scrollY * .7 + "px";
   }
-  console.log("insideee");
+  else {
+    document.querySelector("#wrapper #stars header h2").style.right = "0px";
+    document.querySelector("#wrapper #stars header #titleP").style.left = "0px";
+  }
 }
 
 // QUOTELOOP
@@ -950,21 +980,20 @@ function onReady(callback) {
   var intervalId = window.setInterval(function() {
     self = this;
     var load = document.querySelector("#loaderWrapper .checkLoader:nth-child(1)");
-    var icons = document.querySelectorAll("#loaderWrapper .checkLoader");
-    var p = document.querySelectorAll("#wrapper > header p");
-    var title = document.querySelector("#wrapper > header h2");
+    var p = document.querySelectorAll("#wrapper #stars header p");
+    var title = document.querySelector("#wrapper #stars header h2");
+    load.style.animation = "loaderRoll1 3s ease-in-out 0s 1 forwards";
     if (document.getElementsByTagName('body')[0] !== undefined) {
+      document.querySelector("#wrapper").style.display = "block";
+      window.clearInterval(intervalId);
       load.addEventListener('animationend', function() {
-        window.clearInterval(intervalId);
-        document.querySelector("#loaderWrapper").style.display = "none";
-        p[0].style.animation = "pScrollIn 1s ease-in-out 2s 1 forwards";
-        p[1].style.animation = "pScrollIn 1s ease-in-out 3s 1 forwards";
+        document.querySelector("#loaderWrapper").style.opacity = "0";
+        p[0].style.animation = "pScrollIn 1s ease-in-out 1.5s 1 forwards";
+        p[1].style.animation = "pScrollIn 1s ease-in-out 2.5s 1 forwards";
         callback.call(self);
-        window.addEventListener('scroll', scrollTitle(title, p), false);
       }, false);
+      return;
     }
-    console.log("been");
-    load.style.animation = "loaderBoop1 3s ease-in-out 0s 1";
   }, 1000);
 }
 
@@ -973,8 +1002,8 @@ function setVisible(selector, visible) {
 }
 
 onReady(function() {
-  setVisible('#wrapper', true);
-  setVisible('#loaderWrapper', false);
+  setVisible("#loaderWrapper", false);
+  scrollHandler(false, document.querySelector("#loaderWrapper"));
 });
 
 // 3. USER MANAGEMENT

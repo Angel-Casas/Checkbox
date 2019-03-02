@@ -23,40 +23,22 @@ body {
   overflow-x: hidden;
   z-index: 0;
 }
-@keyframes titleLoader {
-  from {
-    top: 10%;
-  }
-  to {
-    top: calc(100vw * .9 + 70px);
-  }
-}
-@keyframes growLoader {
-  from {
-    width: 100px;
-    height: 100px;
-    bottom: 0;
-    border-width: 20px;
-  }
-  to {
-    width: 200vw;
-    height: 200vh;
-    bottom: -100vh;
-    right: calc(50% - 100vw);
-    border-width: 200px;
-  }
-}
 /*--------------------*/
 /*    Loader          */
 /*--------------------*/
 
 #loaderWrapper {
   display: block;
-  z-index: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1010;
+  opacity: 1;
   width: 100vw;
   height: 100vh;
   padding-top: 20%;
   background-color: rgb(33, 35, 73);
+  transition: all .5s ease-in-out;
 }
 #loaderWrapper #title h1 {
   position: relative;
@@ -68,16 +50,6 @@ body {
   font-family: 'Playfair Display SC', serif;
   color: rgb(221, 182, 73);
   font-size: 4.4rem;
-}
-#loaderWrapper #title h1::before {
-  position: absolute;
-  content: "check";
-  left: 3px;
-  top: 50px;
-  width: 100%;
-  color: rgb(0, 255, 140);
-  mix-blend-mode: hue;
-  animation: rollLoader 4s ease-in-out 0s infinite;
 }
 #loaderWrapper .loaderSection {
   display: flex;
@@ -107,7 +79,7 @@ body {
   width: 100px;
   height: 100px;
   right: calc(50% - 50px);
-  animation: loaderBoop1 3s ease-in-out 0s infinite;
+  animation: loaderRoll1 3s ease-in-out 0s infinite;
   z-index: 1;
 }
 #loaderWrapper .loaderSection .boxCheck .checkLoader:nth-child(2) {
@@ -120,247 +92,8 @@ body {
 }
 #loaderWrapper .loaderSection .boxCheck .checkLoader:nth-child(3) {
   border: 10px solid rgb(94, 222, 183);
-  transform-origin: 80px;
   animation: loaderRoll3 3s ease-in-out 0s infinite;
   z-index: 3;
-}
-@keyframes loaderRoll2 {
-  0% {
-    right: calc(50% - 40px);
-    width: 80px;
-    height: 80px;
-    border-width: 20px;
-  }
-  10% {
-    right: calc(50% - 40px);
-    width: 80px;
-    height: 80px;
-    border-width: 20px;
-    transform: skewX(0deg);
-  }
-  30% {
-    transform: skewX(0deg);
-  }
-  40% {
-    right: calc(50% - 30px);
-    width: 60px;
-    height: 65px;
-    border-width: 20px;
-    transform: skewX(0deg);
-  }
-  50% {
-    right: calc(50% - 100px);
-    width: 60px;
-    height: 65px;
-    border-width: 20px;
-    transform: skewX(-3deg);
-  }
-  54% {
-    transform: skewX(0deg);
-  }
-  70% {
-    right: calc(50% - 100px);
-    width: 60px;
-    height: 65px;
-    border-width: 20px;
-    transform: skewX(0deg);
-  }
-  80% {
-    transform: skewX(3deg);
-  }
-  90% {
-    right: calc(50% - 30px);
-    width: 60px;
-    height: 65px;
-    border-width: 20px;
-    transform: skewX(4deg);
-  }
-  92% {
-    transform: skewX(0deg);
-  }
-  100% {
-    right: calc(50% - 40px);
-    width: 80px;
-    height: 80px;
-    border-width: 20px;
-    transform: skewX(0deg);
-  }
-}
-@keyframes loaderRoll3 {
-  0% {
-    left: calc(50% - 30px);
-    width: 60px;
-    height: 65px;
-    border-width: 20px;
-  }
-  10% {
-    left: calc(50% - 30px);
-    width: 60px;
-    height: 65px;
-    border-width: 20px;
-  }
-  30% {
-    left: calc(50% - 30px);
-    width: 60px;
-    height: 65px;
-    border-width: 20px;
-    transform: skewX(0deg);
-  }
-  40% {
-    transform: skewX(0deg);
-  }
-  50% {
-    left: calc(50% - 100px);
-    width: 60px;
-    height: 65px;
-    border-width: 20px;
-    transform: skewX(3deg);
-  }
-  54% {
-    transform: skewX(0deg);
-  }
-  70% {
-    left: calc(50% - 100px);
-    width: 60px;
-    height: 65px;
-    border-width: 20px;
-    transform: skewX(0deg);
-  }
-  90% {
-    left: calc(50% - 30px);
-    width: 60px;
-    height: 65px;
-    border-width: 20px;
-    transform: skewX(-3deg);
-  }
-  91% {
-    transform: skewX(0deg);
-  }
-  100% {
-    left: calc(50% - 30px);
-    width: 60px;
-    height: 65px;
-    border-width: 20px;
-  }
-}
-@keyframes loaderBoop1 {
-  0% {
-    width: 100px;
-    height: 100px;
-    border: 20px solid rgb(221, 182, 73);
-    right: calc(50% - 50px);
-  }
-  10% {
-    width: 100px;
-    height: 100px;
-    border: 20px solid rgb(221, 182, 73);
-    right: calc(50% - 50px);
-  }
-  40% {
-    width: 60px;
-    height: 65px;
-    border: 20px solid rgb(221, 182, 73);
-    right: calc(50% - 30px);
-  }
-  90% {
-    width: 60px;
-    height: 65px;
-    border: 20px solid rgb(221, 182, 73);
-    right: calc(50% - 30px);
-  }
-  100% {
-    width: 100px;
-    height: 100px;
-    border: 20px solid rgb(221, 182, 73);
-    right: calc(50% - 50px);
-  }
-}
-@keyframes loaderBoop2 {
-  0% {
-    transform: rotate(0deg);
-    width: 80px;
-    height: 80px;
-    border: 20px solid rgb(240, 90, 90);
-    right: calc(50% - 40px);
-  }
-  10% {
-    width: 80px;
-    height: 80px;
-    border: 20px solid rgb(240, 90, 90);
-    right: calc(50% - 40px);
-  }
-  20% {
-    transform: rotate(0deg);
-    width: 60px;
-    height: 65px;
-    border: 30px solid rgb(240, 90, 90);
-    right: calc(50% - 30px);
-  }
-  40% {
-    transform: rotate(-180deg);
-    width: 60px;
-    height: 65px;
-    border: 30px solid rgb(240, 90, 90);
-    right: calc(50% - 30px);
-  }
-  80% {
-    transform: rotate(-360deg);
-    width: 60px;
-    height: 65px;
-    border: 30px solid rgb(240, 90, 90);
-    right: calc(50% - 30px);
-  }
-  100% {
-    transform: rotate(-360deg);
-    width: 80px;
-    height: 80px;
-    border: 20px solid rgb(240, 90, 90);
-    right: calc(50% - 40px);
-  }
-}
-@keyframes loaderBoop3 {
-  0% {
-    transform: rotate(0deg);
-    width: 60px;
-    height: 60px;
-    border: 20px solid rgb(94, 222, 183);
-    right: calc(50% - 30px);
-  }
-  10% {
-    transform: rotate(0deg);
-    width: 60px;
-    height: 60px;
-    border: 20px solid rgb(94, 222, 183);
-    right: calc(50% - 30px);
-  }
-  20% {
-    transform: rotate(0deg);
-    width: 60px;
-    height: 65px;
-    border: 30px solid rgb(94, 222, 183);
-    right: calc(50% - 30px);
-  }
-  60% {
-    transform: rotate(-180deg);
-    width: 60px;
-    height: 65px;
-    border: 30px solid rgb(94, 222, 183);
-    right: calc(50% - 30px);
-  }
-  80% {
-    transform: rotate(-360deg);
-    width: 60px;
-    height: 65px;
-    border: 30px solid rgb(94, 222, 183);
-    right: calc(50% - 30px);
-  }
-  100% {
-    transform: rotate(-360deg);
-    width: 60px;
-    height: 60px;
-    border: 20px solid rgb(94, 222, 183);
-    right: calc(50% - 30px);
-  }
 }
 #wrapper {
   display: none;
@@ -372,17 +105,18 @@ body {
   z-index: 1;
   color: white;
 }
-#wrapper > header {
+#wrapper #stars header {
   position: absolute;
   display: block;
-  top: calc(100vw * .9 + 90px);
+  bottom: 0;
   right: 0px;
   width: 250px;
+  height: 100px;
   font-family: 'Playfair Display SC', serif;
   padding: 0 20px;
   margin: 0;
 }
-#wrapper > header h2 {
+#wrapper #stars header h2 {
   display: block;
   position: absolute;
   top: -60px;
@@ -393,13 +127,19 @@ body {
   color: rgb(250, 189, 5);
   text-transform: uppercase;
 }
-#wrapper > header h2::before {
+#wrapper #stars header h2::before {
   content: "check";
   position: absolute;
-  left: -3px;
-  top: -2px;
+  left: -4px;
+  top: -1px;
   color: rgb(0, 255, 163);
   mix-blend-mode: hue;
+}
+#wrapper header #titleP {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
 }
 #wrapper header p {
   font-size: 1.1rem;
@@ -598,6 +338,7 @@ body {
   z-index: -1;
 }
 #wrapper #stars {
+  position: relative;
   width: 100%;
   background: url("../images/checkMobileFinal.png");
   background-position: center center;
@@ -1146,7 +887,6 @@ input:hover {
   border-radius: 20px;
   border: 2px solid rgb(221, 182, 78);
   background: rgb(33, 35, 78);
-
 }
 .rewardBox input[type="radio"]:checked + label {
   background-color: rgb(221, 182, 78);
@@ -1660,6 +1400,8 @@ input:hover {
   padding: 15px;
   font-weight: bold;
   font-size: 1.4rem;
+  line-height: 350px;
+  text-align: end;
   background-color: rgba(134, 178, 252, 0.4);
   color: rgb(221, 182, 78);
   border-radius: 20px;
@@ -2702,7 +2444,7 @@ input:hover {
     height: 13px;
   }
 }
-@keyframes scrollIn {
+@keyframes pScrollIn {
   from {
     opacity: 0;
   }
@@ -2710,12 +2452,155 @@ input:hover {
     opacity: 1;
   }
 }
-@keyframes pScrollIn {
-  from {
-    opacity: 0;
+@keyframes loaderRoll1 {
+  0% {
+    width: 100px;
+    height: 100px;
+    border: 20px solid rgb(221, 182, 73);
+    right: calc(50% - 50px);
   }
-  to {
-    opacity: 1;
+  10% {
+    width: 100px;
+    height: 100px;
+    border: 20px solid rgb(221, 182, 73);
+    right: calc(50% - 50px);
+  }
+  40% {
+    width: 60px;
+    height: 65px;
+    border: 20px solid rgb(221, 182, 73);
+    right: calc(50% - 30px);
+  }
+  90% {
+    width: 60px;
+    height: 65px;
+    border: 20px solid rgb(221, 182, 73);
+    right: calc(50% - 30px);
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+    border: 20px solid rgb(221, 182, 73);
+    right: calc(50% - 50px);
+  }
+}
+@keyframes loaderRoll2 {
+  0% {
+    right: calc(50% - 40px);
+    width: 80px;
+    height: 80px;
+    border-width: 20px;
+  }
+  10% {
+    right: calc(50% - 40px);
+    width: 80px;
+    height: 80px;
+    border-width: 20px;
+    transform: skewX(0deg);
+  }
+  30% {
+    transform: skewX(0deg);
+  }
+  40% {
+    right: calc(50% - 30px);
+    width: 60px;
+    height: 65px;
+    border-width: 20px;
+    transform: skewX(0deg);
+  }
+  50% {
+    right: calc(50% - 100px);
+    width: 60px;
+    height: 65px;
+    border-width: 20px;
+    transform: skewX(-3deg);
+  }
+  54% {
+    transform: skewX(0deg);
+  }
+  70% {
+    right: calc(50% - 100px);
+    width: 60px;
+    height: 65px;
+    border-width: 20px;
+    transform: skewX(0deg);
+  }
+  80% {
+    transform: skewX(3deg);
+  }
+  90% {
+    right: calc(50% - 30px);
+    width: 60px;
+    height: 65px;
+    border-width: 20px;
+    transform: skewX(4deg);
+  }
+  92% {
+    transform: skewX(0deg);
+  }
+  100% {
+    right: calc(50% - 40px);
+    width: 80px;
+    height: 80px;
+    border-width: 20px;
+    transform: skewX(0deg);
+  }
+}
+@keyframes loaderRoll3 {
+  0% {
+    left: calc(50% - 30px);
+    width: 60px;
+    height: 65px;
+    border-width: 20px;
+  }
+  10% {
+    left: calc(50% - 30px);
+    width: 60px;
+    height: 65px;
+    border-width: 20px;
+  }
+  30% {
+    left: calc(50% - 30px);
+    width: 60px;
+    height: 65px;
+    border-width: 20px;
+    transform: skewX(0deg);
+  }
+  40% {
+    transform: skewX(0deg);
+  }
+  50% {
+    left: calc(50% - 100px);
+    width: 60px;
+    height: 65px;
+    border-width: 20px;
+    transform: skewX(3deg);
+  }
+  54% {
+    transform: skewX(0deg);
+  }
+  70% {
+    left: calc(50% - 100px);
+    width: 60px;
+    height: 65px;
+    border-width: 20px;
+    transform: skewX(0deg);
+  }
+  90% {
+    left: calc(50% - 30px);
+    width: 60px;
+    height: 65px;
+    border-width: 20px;
+    transform: skewX(-3deg);
+  }
+  91% {
+    transform: skewX(0deg);
+  }
+  100% {
+    left: calc(50% - 30px);
+    width: 60px;
+    height: 65px;
+    border-width: 20px;
   }
 }
 /* @media (min-width: 800px) {
@@ -2762,16 +2647,26 @@ input:hover {
 @media (min-width: 500px) and (max-width: 900px) {
   #wrapper > #bckgr {
     background: url("../images/check2.png");
-    background-size: contain;
+    background-size: 700px auto;
     background-repeat: repeat;
+    background-position: left bottom;
   }
   #wrapper > #stars {
-    background: url("../images/checkDesktopStarsFinal2.png");
-    background-size: cover;
+    background-size: 400px auto;
     background-repeat: no-repeat;
   }
   #wrapper > #stars::after {
     padding-top: 68.3%;
+  }
+  #wrapper #hugeBckgr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(33, 35, 73);
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    border: 1px solid red;
   }
   #mainFrame {
     -ms-grid-columns: 70px minmax(200px, 400px) 40px 40px;
