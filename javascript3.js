@@ -452,6 +452,7 @@ function loginHandler(target) {
       logged = true;
       userIdx = findUser(name);
       activeUser = users[userIdx];
+      document.querySelector("#home #mainObjectives").innerHTML = "";
       return;
     }
     else {
@@ -813,6 +814,7 @@ function giftCardRewards() {
           }
         }
         else {
+          document.querySelectorAll("#home .rewardItem")[cardIdx].innerHTML = reward;
         }
         closureHandler(document.querySelector("#home #rewardList a.close"));
         return;
@@ -884,8 +886,8 @@ function minDate() {
 function editCards(target, index) {
   var color1 = document.querySelector("#home #editRewards #editColor1").value;
   var color2 = document.querySelector("#home #editRewards #editColor2").value;
-  var newObjective = document.querySelector("#home #editRewards input[type='text']").value;
-  var newTime = timeString(new Date(document.querySelector("#home #editRewards input[type='date']").value));
+  var newObjective = document.querySelector("#home #editRewards input[type='text']").value || "I can't think of any Objectives.";
+  var newTime = !isNaN(new Date(document.querySelector("#home #editRewards input[type='date']").value)) ? timeString(new Date(document.querySelector("#home #editRewards input[type='date']").value)) : "No time set!";
   if (logged) {
     activeUser.card[cardIdx].objective = newObjective;
     activeUser.card[cardIdx].time = newTime;
