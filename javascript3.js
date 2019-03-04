@@ -972,7 +972,7 @@ function onReady(callback) {
     var load = document.querySelector("#loaderWrapper .checkLoader:nth-child(1)");
     var p = document.querySelectorAll("#wrapper #stars header p");
     var title = document.querySelector("#wrapper #stars header h2");
-    load.style.animation = "loaderRoll1 3s ease-in-out 0s 1 forwards";
+    load.style.animation = "loaderRoll1 4s ease-in-out 0s 1 forwards";
     if (document.getElementsByTagName('body')[0] !== undefined) {
       document.querySelector("#wrapper").style.display = "block";
       window.clearInterval(intervalId);
