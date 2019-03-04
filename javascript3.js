@@ -190,7 +190,6 @@ function init() {
       console.log(activeUser);
     }
   }
-  window.addEventListener('scroll', scrollTitle, false);
   if (document.querySelector("#loaderWrapper").style.display !== "none") {
     scrollHandler(true, document.querySelector("#loaderWrapper"));
   }
@@ -931,17 +930,6 @@ function scrollTop() {
     timeout = setTimeout('scrollTop()', 10);
   }
   else clearTimeout(timeout);
-}
-// SCROLL TITLE
-function scrollTitle() {
-  if ((document.body.scrollTop>200 && document.body.scrollTop<700) || (document.documentElement.scrollTop>200 && document.documentElement.scrollTop<700)) {
-    document.querySelector("#wrapper #stars header h2").style.right = -120 + window.scrollY * .6 + "px";
-    document.querySelector("#wrapper #stars header #titleP").style.left = -120 + window.scrollY * .7 + "px";
-  }
-  else {
-    document.querySelector("#wrapper #stars header h2").style.right = "0px";
-    document.querySelector("#wrapper #stars header #titleP").style.left = "0px";
-  }
 }
 
 // QUOTELOOP
