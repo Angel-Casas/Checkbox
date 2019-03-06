@@ -1902,6 +1902,7 @@ input:hover {
   padding: 20px;
   flex-flow: column nowrap;
   justify-content: space-between;
+  transition: border-radius .2s ease-in-out;
 }
 #statisticsBox > .pieBox:hover {
   background-color: rgba(255, 255, 255, .2);
@@ -1955,7 +1956,7 @@ input:hover {
   justify-content: space-between;
   align-items: center;
   color: rgb(221, 182, 78);
-  transition: all .4s ease-in-out;
+  transition: all .2s ease-in-out;
 }
 #statisticsBox .pieBox .shareStats a {
 }
