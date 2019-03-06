@@ -239,7 +239,7 @@ function navHandler(target) {
       return;
     }
     else if (target.classList.contains("navProgress")) {
-      progress.style.display = "block";
+      progress.style.display = "flex";
       return;
     }
   }
@@ -975,6 +975,12 @@ function onReady(callback) {
     load.style.animation = "loaderRoll1 4s ease-in-out 0s 1 forwards";
     if (document.getElementsByTagName('body')[0] !== undefined) {
       document.querySelector("#wrapper").style.display = "block";
+      if (logged) {
+        document.querySelector("#wrapper #home").style.display = "flex";
+      }
+      else {
+        document.querySelector("#wrapper #main").style.display = "flex";
+      }
       window.clearInterval(intervalId);
       load.addEventListener('animationend', function() {
         document.querySelector("#loaderWrapper").style.opacity = "0";

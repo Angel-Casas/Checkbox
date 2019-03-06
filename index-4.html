@@ -86,13 +86,13 @@
         <div class="rewardList">
           <div class="rewardBox">
             <div class="reward-list-cards">
-              <input type="radio" name="rewardSelector" value="Gift Card" id="rewardGift"><label for="rewardGift">Gift Card</label>
+              <input type="radio" name="rewardSelector" value="Gift Card" id="rewardGift"><label for="rewardGift"><i class="far fa-credit-card fa-2x"></i><br>Gift Card</label>
             </div>
             <div class="reward-list-bitcoin">
-              <input type="radio" name="rewardSelector" value="Bitcoin" id="rewardBitcoin"><label for="rewardBitcoin">Bitcoin</label>
+              <input type="radio" name="rewardSelector" value="Bitcoin" id="rewardBitcoin"><label for="rewardBitcoin"><i class="fab fa-bitcoin fa-2x"></i><br>Bitcoin</label>
             </div>
             <div class="reward-list-paypal">
-              <input type="radio" name="rewardSelector" value="Paypal" id="rewardPaypal"><label for="rewardPaypal">Paypal</label>
+              <input type="radio" name="rewardSelector" value="Paypal" id="rewardPaypal"><label for="rewardPaypal"><i class="fab fa-paypal fa-2x"></i><br>Paypal</label>
             </div>
             <p id="successRewardInfo"><span>&darr;</span> Reward added to card below <span>&darr;</span></p>
           </div>
@@ -330,7 +330,36 @@
     </section>
     <section id="progress">
       <h2>Progress</h2>
-      <div></div>
+      <div id="statisticsBox">
+        <div class="pieBox">
+          <p class="title">% of Completed Objectives</p>
+          <svg class="pieSVG completed" viewBox="0 0 32 32">
+            <circle r="16" cx="16" cy="16" />
+          </svg>
+          <p>0 out of 0 Objectives Completed</p>
+        </div>
+        <div class="pieBox">
+          <p class="title"># of Created Objectives</p>
+          <svg class="pieSVG created" viewBox="0 0 32 32">
+            <circle r="16" cx="16" cy="16" />
+          </svg>
+          <p>0 Created Objectives</p>
+        </div>
+        <div class="pieBox">
+          <p class="title"># of Participated Objectives</p>
+          <svg class="pieSVG participated" viewBox="0 0 32 32">
+             <circle r="16" cx="16" cy="16" />
+          </svg>
+          <p>0 out of 0 Objectives participated</p>
+        </div>
+        <div class="pieBox">
+          <p class="title">% mean duration of Objectives</p>
+          <svg class="pieSVG duration" viewBox="0 0 32 32">
+            <circle r="16" cx="16" cy="16" />
+          </svg>
+          <p>Mean Duration of 10 days</p>
+        </div>
+      </div>
     </section>
     <footer id="mainFooter">
       <h2><span>CHECK</span></h2>
