@@ -1887,8 +1887,8 @@ input:hover {
   justify-content: space-around;
   align-items: center;
   width: 90vw;
-  height: 100%;
   margin: 1.2rem 0;
+  padding: 1.2rem 0;
   background-color: rgba(0, 0, 0, .5);
   border: 2px solid rgb(221, 182, 78);
   border-radius: 10px;
@@ -1896,7 +1896,7 @@ input:hover {
 #statisticsBox > .pieBox {
   border-bottom: 1px solid rgb(221, 182, 78);
   width: 150px;
-  height: auto;
+  height: 280px;
 }
 #statisticsBox .pieBox .pieSVG {
   display: block;
