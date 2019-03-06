@@ -1898,6 +1898,11 @@ input:hover {
   width: 150px;
   height: 280px;
 }
+#statisticsBox > .pieBox:hover {
+  background-color: rgba(255, 255, 255, .2);
+  border: 1px solid rgb(255, 255, 255, .3);
+  border-radius: 10px;
+}
 #statisticsBox .pieBox .pieSVG {
   display: block;
   width: 100px;
