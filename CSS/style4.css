@@ -1872,7 +1872,7 @@ input:hover {
   padding: .5em 0;
   background: rgb(33, 35, 73);
   flex-flow: column nowrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 #progress h2 {
