@@ -2001,7 +2001,6 @@ input:hover {
   letter-spacing: -1px;
   opacity: .4;
   width: 100%;
-  color: black;
 }
 #statisticsBox .barChart .text {
   width: 100%;
@@ -2014,22 +2013,22 @@ input:hover {
   text-transform: uppercase;
 }
 #statisticsBox .barChart .giftCard {
-  width: 95%;
+  width: 65%;
   background: rgb(119, 0, 255);
   background-image: linear-gradient(to right, rgb(119, 0, 255), rgb(221, 182, 78) 70%);
   border: 1px solid rgb(221, 182, 78);
 }
 #statisticsBox .barChart .bitcoin {
-  width: 45%;
+  width: 25%;
   background: rgb(119, 0, 255);
   background-image: linear-gradient(to right, rgb(119, 0, 255), rgb(221, 182, 78) 70%);
-  border: 1px solid rgb(221, 182, 78); 
+  border: 1px solid rgb(221, 182, 78);
 }
 #statisticsBox .barChart .paypal {
-  width: 15%;
+  width: 10%;
   background: rgb(119, 0, 255);
   background-image: linear-gradient(to right, rgb(119, 0, 255), rgb(221, 182, 78) 70%);
-  border: 1px solid rgb(221, 182, 78); 
+  border: 1px solid rgb(221, 182, 78);
 }
 #statisticsBox .barChart span {
   font-size: 30px;
@@ -2742,24 +2741,24 @@ input:hover {
     font-size: 1.3rem;
   }
   #statisticsBox .barChart .giftCard {
-    height: 95%;
+    height: 65%;
     width: 150px;
     background-image: linear-gradient(rgb(119, 0, 255), rgb(221, 182, 78) 70%);
     border: 1px solid rgb(221, 182, 78);
   }
   #statisticsBox .barChart .bitcoin {
-    height: 45%;
+    height: 25%;
     width: 150px;
     background: rgb(119, 0, 255);
     background-image: linear-gradient(rgb(119, 0, 255), rgb(221, 182, 78) 70%);
-    border: 1px solid rgb(221, 182, 78); 
+    border: 1px solid rgb(221, 182, 78);
   }
   #statisticsBox .barChart .paypal {
-    height: 15%;
+    height: 10%;
     width: 150px;
     background: rgb(119, 0, 255);
     background-image: linear-gradient(rgb(119, 0, 255), rgb(221, 182, 78) 70%);
-    border: 1px solid rgb(221, 182, 78); 
+    border: 1px solid rgb(221, 182, 78);
   }
 }
 @media (min-width: 500px) and (max-width: 900px) {
@@ -2770,7 +2769,8 @@ input:hover {
     background-position: left bottom;
   }
   #wrapper > #stars {
-    background-size: 400px auto;
+    background: url("../images/checkDesktopFinal.png");
+    background-size: 100vw auto;
     background-repeat: no-repeat;
   }
   #wrapper > #stars::after {
