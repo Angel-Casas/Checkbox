@@ -1881,6 +1881,9 @@ input:hover {
   text-transform: uppercase;
   border-bottom: 2px solid white;
 }
+#progress > p {
+  text-align: center;
+}
 #progress #statisticsBox {
   display: flex;
   flex-flow: row wrap;
@@ -1895,16 +1898,18 @@ input:hover {
   border-radius: 10px;
 }
 #statisticsBox > .pieBox {
-  border-bottom: 1px solid rgb(221, 182, 78);
-  width: 190px;
-  height: 320px;
+  width: 180px;
+  height: 280px;
   display: flex;
-  padding: 20px;
+  padding: 0;
   flex-flow: column nowrap;
   justify-content: space-between;
   transition: border-radius .2s ease-in-out;
 }
-#statisticsBox > .pieBox:hover {
+#statisticsBox > * {
+  border-bottom: 1px solid rgb(221, 182, 78);
+}
+#statisticsBox > *:hover {
   background-color: rgba(255, 255, 255, .2);
   border: 1px solid rgb(255, 255, 255, .3);
   border-radius: 10px;
@@ -1923,11 +1928,11 @@ input:hover {
   stroke: #ffd000;
   stroke-width: 32;
 }
-#statisticsBox .pieBox > p.title {
+#statisticsBox p.title {
   text-transform: uppercase;
   font-weight: bold;
 }
-#statisticsBox .pieBox > p {
+#statisticsBox p {
   text-align: center;
 }
 #statisticsBox .pieBox .pieSVG.completed {
@@ -1944,24 +1949,90 @@ input:hover {
 #statisticsBox .pieBox .pieSVG.duration circle {
   stroke-dasharray: 18 100;
 }
-#statisticsBox .pieBox:hover .shareStats {
+#statisticsBox >*:hover .shareStats {
   cursor: pointer;
   opacity: 1;
 }
-#statisticsBox .pieBox .shareStats {
+#statisticsBox .shareStats {
   display: flex;
   width: 100%;
   flex-flow: row nowrap;
   opacity: 0;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   color: rgb(221, 182, 78);
   transition: all .2s ease-in-out;
 }
-#statisticsBox .pieBox .shareStats a {
-}
-#statisticsBox .pieBox .shareStats a:hover {
+#statisticsBox .shareStats a:hover {
   color: white;
+}
+#statisticsBox .barChart {
+  clear: both;
+  position: relative;
+  width: 80vw;
+  max-width: 600px;
+  padding: 0;
+  margin: .4rem;
+}
+#statisticsBox .barChart li {
+  display: block;
+  position: relative;
+  height: 125px;
+  padding: 25px 0;
+  text-align: center;
+  vertical-align: bottom;
+  list-style-type: none;
+}
+#statisticsBox .barChart .axis {
+  display: none;
+  width: 50px;
+  height: 100%;
+  z-index: 10;
+}
+#statisticsBox .barChart .label {
+  background: rgb(221, 182, 78);
+  margin: -.6rem 0 141px 0;
+  height: 20px;
+}
+#statisticsBox .barChart .percentage {
+  left: 0;
+  top: 0;
+  font-size: 1.1rem;
+  letter-spacing: -1px;
+  opacity: .4;
+  width: 100%;
+  color: black;
+}
+#statisticsBox .barChart .text {
+  width: 100%;
+  bottom: 10px;
+  left: 0;
+  font-weight: 800;
+  font-size: 1.2rem;
+  opacity: .5;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+#statisticsBox .barChart .giftCard {
+  width: 95%;
+  background: rgb(119, 0, 255);
+  background-image: linear-gradient(to right, rgb(119, 0, 255), rgb(221, 182, 78) 70%);
+  border: 1px solid rgb(221, 182, 78);
+}
+#statisticsBox .barChart .bitcoin {
+  width: 45%;
+  background: rgb(119, 0, 255);
+  background-image: linear-gradient(to right, rgb(119, 0, 255), rgb(221, 182, 78) 70%);
+  border: 1px solid rgb(221, 182, 78); 
+}
+#statisticsBox .barChart .paypal {
+  width: 15%;
+  background: rgb(119, 0, 255);
+  background-image: linear-gradient(to right, rgb(119, 0, 255), rgb(221, 182, 78) 70%);
+  border: 1px solid rgb(221, 182, 78); 
+}
+#statisticsBox .barChart span {
+  font-size: 30px;
 }
 /* ----------------------------- */
 /*            Login              */
@@ -2644,6 +2715,51 @@ input:hover {
   }
   #wrapper > #stars::after {
     padding-top: 68.3%;
+  }
+}
+@media (min-width: 700px) {
+  #statisticsBox .barChart {
+    height: 425px;
+    margin: 0 auto 0;
+  }
+  #statisticsBox .barChart li {
+    display: inline-block;
+    height: 425px;
+    margin: 0 1.8% 0 0;
+    width: 30%;
+  }
+  #statisticsBox .barChart .axis {
+    display: inline-block;
+  }
+  #statisticsBox .barChart .percentage {
+    position: absolute;
+    font-size: 1.3rem;
+  }
+  #statisticsBox .barChart .text {
+    position: abslute;
+    bottom: 10px;
+    left: 0;
+    font-size: 1.3rem;
+  }
+  #statisticsBox .barChart .giftCard {
+    height: 95%;
+    width: 150px;
+    background-image: linear-gradient(rgb(119, 0, 255), rgb(221, 182, 78) 70%);
+    border: 1px solid rgb(221, 182, 78);
+  }
+  #statisticsBox .barChart .bitcoin {
+    height: 45%;
+    width: 150px;
+    background: rgb(119, 0, 255);
+    background-image: linear-gradient(rgb(119, 0, 255), rgb(221, 182, 78) 70%);
+    border: 1px solid rgb(221, 182, 78); 
+  }
+  #statisticsBox .barChart .paypal {
+    height: 15%;
+    width: 150px;
+    background: rgb(119, 0, 255);
+    background-image: linear-gradient(rgb(119, 0, 255), rgb(221, 182, 78) 70%);
+    border: 1px solid rgb(221, 182, 78); 
   }
 }
 @media (min-width: 500px) and (max-width: 900px) {
