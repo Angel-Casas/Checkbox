@@ -2690,30 +2690,22 @@ input:hover {
   }
 } */
 
-@media screen and (max-height: 650px) {
-  #main nav ul {
+@media screen and (max-height: 500px) {
+  #wrapper {
+    padding-top: 50px;
+  }
+  #wrapper #mainNav {
+    position: absolute;
+    height: 50px;
+  }
+  #mainNav ul {
     height: 45px;
   }
-  #main nav ul li {
+  #mainNav ul li {
     font-size: .8rem;
   }
-  #main nav ul .icon {
+  #mainNav ul .icon {
     display: block;
-  }
-}
-@media (min-width: 900px) {
-  #wrapper > #bckgr {
-    background: url("../images/check2HugeBckgr.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
-  #wrapper > #stars {
-    background: url("../images/checkHugeStarsFinal2.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  #wrapper > #stars::after {
-    padding-top: 68.3%;
   }
 }
 @media (min-width: 700px) {
@@ -2761,10 +2753,10 @@ input:hover {
     border: 1px solid rgb(221, 182, 78);
   }
 }
-@media (min-width: 500px) and (max-width: 900px) {
+@media (min-width: 500px) {
   #wrapper > #bckgr {
     background: url("../images/check2.png");
-    background-size: 700px auto;
+    background-size: 600px auto;
     background-repeat: repeat;
     background-position: left bottom;
   }
