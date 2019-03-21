@@ -47,7 +47,7 @@ body {
   width: 100%;
   text-align: center;
   text-transform: uppercase;
-  font-family: 'Playfair Display SC', serif;
+  font-family: 'Playfair Display', serif;
   color: rgb(221, 182, 73);
   font-size: 4.4rem;
 }
@@ -114,7 +114,7 @@ body {
   right: 0px;
   width: 250px;
   height: 100px;
-  font-family: 'Playfair Display SC', serif;
+  font-family: 'Playfair Display', serif;
   padding: 0 20px;
   margin: 0;
 }
@@ -2753,10 +2753,10 @@ input:hover {
     border: 1px solid rgb(221, 182, 78);
   }
 }
-@media (min-width: 500px) {
-  #wrapper > #bckgr {
-    background: url("../images/check2.png");
-    background-size: 600px auto;
+@media screen and (min-width: 500px) {
+  #wrapper > #bckgr::before {
+    background: url("../images/checkMobileBckgr.png");
+    background-size: 700px auto;
     background-repeat: repeat;
     background-position: left bottom;
   }
