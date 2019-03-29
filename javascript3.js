@@ -919,6 +919,7 @@ function toHex(n) {
   while (hex.length < 2) {hex = "0" + hex; }
   return hex;
 }
+
 function rgbToHex(r, g, b) {
   return "#" +  toHex(r) + toHex(g) + toHex(b);
 }
